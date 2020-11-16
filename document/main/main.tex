@@ -1,0 +1,45 @@
+\documentclass{ieeeaccess}
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+
+\usepackage{enumitem}
+
+%Please add the following packages if necessary:
+\usepackage{booktabs, multirow} % for borders and merged ranges
+\usepackage{soul}% for underlines
+\usepackage[table]{xcolor} % for cell colors
+\usepackage{changepage,threeparttable} % for wide tables
+
+\newcommand\Fig[1]{\textbf{Fig.}~\ref{#1}}
+\newcommand\fig[1]{\textbf{Fig.}~\ref{#1}}
+\newcommand\Tab[1]{\textbf{Tab.}~\ref{#1}}
+\newcommand\tab[1]{\textbf{tab.}~\ref{#1}}
+\newcommand\Equ[1]{\textbf{Eq.}~(\ref{#1})}
+\newcommand\equ[1]{\textbf{Eq.}~(\ref{#1})}
+
+\newcommand\todo[1]{\textbf{(TODO: {#1}})\\}
+
+\begin{document}
+\history{Date of publication xxxx 00, 0000, date of current version xxxx 00, 0000.}
+\doi{10.1109/ACCESS.2017.DOI}
+
+
+\input{../content/abstract.tex}
+\input{../content/introduction.tex}
+\input{../content/related_work.tex}
+\input{../content/background.tex}
+\input{../content/system_design.tex}
+\input{../content/experimental_results.tex}
+\input{../content/conclusions.tex}
+
+\bibliographystyle{IEEEtran}
+\bibliography{../content/bibliography.bib}
+
+\input{../biography/biography.tex}
+
+\EOD
+
+\end{document}

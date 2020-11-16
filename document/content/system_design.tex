@@ -1,0 +1,130 @@
+\section{System Design}
+
+\subsection{Hardware architecture} \label{Hardware_architecture}
+As a hardware and software design, the proposed architecture is composed mainly by a CPU and a collection of four heterogeneous PUs: \emph{Spike} (input layer), \emph{Conv} (convolution), \emph{Pool} (pooling), and \emph{FC} (fully connected). Each PU is connected through an AXI-Lite interface for configuration of operational mode, and AXI-Stream interfaces for data transfer via Direct Memory Access (DMA) allowing data movement with high transfer rate. Each PU asserts an interrupt flag on task or transaction completion which is handled by the software drivers to collect results and start a new transaction. The hardware architecture can resize its resource utilization by changing the number of PUs instances, this provides a good tradeoff between area and throughput (see \fig{fig:hw_sbs}). The dedicated PUs for \emph{Spike}, \emph{Conv}, and \emph{FC} use custom floating-point, and logarithmic computation, while the \emph{Pool} uses standard floating-point.
+
+The PUs are written in C using Vivado HLS (High-Level Synthesis) tool. In this publication we focus on the optimizations achieved by using reduced custom floating-point and logarithmic computation in the processing unit dedicated for convolution layers.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.5\textwidth]{../figures/sbs_hw.pdf}
+	\caption{System overview of the proposed architecture with scalable number of heterogeneous PUs: \emph{Spike}, \emph{Conv}, \emph{Pool}, and \emph{FC}}
+	\label{fig:hw_sbs}
+\end{figure}
+
+\subsection{Conv processing unit}
+This hardware module computes the IP dynamics defined by \equ{eq:sbs_update} and offers two modes of operation: \emph{configuration} and \emph{computation}.
+
+\subsubsection{Configuration mode}
+In this mode of operation, the PU receives and stores in on-chip memory the parameter to compute the IP dynamics: $\epsilon$ as the epsilon, $N$ as the length of $h_\mu\in\mathbb{R}^{N}$, $K\in\mathbb{N}$ as the size of the convolution kernel, and $H\in\mathbb{N}$ as the number of IPs to process per transaction, this is the number of IPs in a layer or a partition.
+
+Additionally, the processing unit also stores in on-chip memory the synaptic weight matrix using a number representation with a reduced memory footprint. In principle, the synaptic weight matrix is defined by $W\in\mathbb{R}^{K\times K\times M\times N}$ with $0\le W(s_t|j)\le1$ and $\sum_{j=0}^{N-1}W(s_t|j)=1$ \cite{rotermund2019Backpropagation}; hence, $W$ employs only positive normalized real numbers. With this, $W$ is deployed using a reduced floating-point or logarithmic representation as flows:
+
+\begin{itemize}
+	\item{Custom floating-point}.
+	In this case, $W$ is deployed with a reduced floating-point representation using the necessary bit width for the exponent and for the mantissa according to the given application. For example, 4-bit exponent, 1-bit mantissa; as a result: 5-bit custom floating-point.
+	\item{Logarithmic}.
+	In this case, the synaptic weight matrix is $W\in\mathbb{N}^{K\times K\times M\times N}$ with positive natural numbers. Since $0\le W(s_t|j)\le1$ and $\sum_{j=0}^{N-1}W(s_t|j)=1$, $W$ has only negative values in the logarithmic domain; therefore, the sign bit is avoided, and the values are represented in its positive version. Therefore, $W$ is deployed with a representation using the necessary bit width for the exponent according to the given application. For example, 4-bit exponent.
+\end{itemize}
+
+The PU can be reconfigured with different synaptic weight matrix and parameters as needed.
+
+\subsubsection{Computation mode}
+In this mode of operation, the PU executes a transaction to process a group of IPs using the previously given parameters and synaptic weight matrix. This process operates in six stages as shown in \fig{fig:hw_conv}. In the first two stages, the PU receives $h_\mu\in\mathbb{R}^{N}$, then the PU calculates the firing spike, and stores it in $S^{new}\in\mathbb{N}^{H}$ (output spike vector). From the third to the fifth stage, the PU receives $S_t\in\mathbb{N}^{K\times K}$ (input spike matrix), then it computes the update dynamics, and then it dispatches $h_\mu^{new}\in\mathbb{R}^{N}$. The process repeats from the first to the fifth stage for $H$ number of loops. Finally, the $S^{new}$ is dispatched.
+
+The computation of the update dynamics [see \fig{fig:hw_conv}(d)] operates in two modular stages: \emph{dot-product} and \emph{neuron update}. First, the \emph{dot-product} module calculates $\sum_{j=0}^{N-1}h_{\mu}(j)W(s_t|j)$, while storing each element-wise multiplication as intermediate results. And then, the \emph{neuron update} module calculates \equ{eq:sbs_update} reusing previous results and parameters.
+
+
+The computation of the dot-product is the main piece of \equ{eq:sbs_update} and represents a considerable computational cost using standard floating-point in non-quantized network models. In the following section, we focus on an optimized design for this dot-product module to improve performance while preserving inference accuracy.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.5\textwidth]{../figures/sbs_conv.pdf}
+	\caption{The \emph{Conv} processing unit and its six stages: (a) receive IP vector, (b) spike firing, (c) receive spike kernel, (d) update dynamics, (e) dispatch new IP vector, (f) dispatch output spike matrix.}
+	\label{fig:hw_conv}
+\end{figure}
+
+\subsection{dot-product hardware module}
+This module is part of an application-specific architecture optimized to calculate dot-product of arbitrary length, see \equ{eq:dot_product}. In this section, we present three pipelined hardware modules using standard floating-point, custom floating-point, and logarithmic computation, respectively.
+
+\begin{eqnarray} \label{eq:dot_product}
+r_{\mu}\left(s_t\right)=h_{\mu}\cdot W(s_t)=\sum_{j=0}^{N-1}h_{\mu}(j)W(s_t|j)
+\end{eqnarray}
+
+
+
+\subsubsection{Dot-product using standard floating-point computation}
+ The hardware module to calculate the dot-product using standard floating-point computation is shown in \fig{fig:dot_product_float}, this diagram exhibits the hardware blocks and their clock cycle schedule. This module loads both $h_\mu(i)$ and $W(s|i)$ from BRAM, then the PU executes the element-wise multiplication [\fig{fig:dot_product_float}(c)] and accumulation [\fig{fig:dot_product_float}(d)]. The intermediate results of $h_\mu(j) W(s_t|j)$ are stored in BRAM for reuse in the neuron update. The latency in clock cycles of this hardware module is defined by \equ{eq:dot_standard_float_latency}, where $N$ is the dot-product length. This latency equation is obtained from the general pipelined hardware latency formula: $L=\left(N-1\right)II+IL$, where $II$ is the initiation interval [\fig{fig:dot_product_float}(a)], and $IL$ is the iteration latency [\fig{fig:dot_product_float}(b)]. Both $II$ and $IL$ are obtained from the high-level synthesis analysis.
+ 
+ \begin{eqnarray} \label{eq:dot_standard_float_latency}
+ L_{f32}=10N+9
+ \end{eqnarray}
+ 
+In this design, the high level synthesis tool infers computational blocks with considerable latency cost for standard floating-point. In the case of floating-point multiplication [\fig{fig:dot_product_float}(c)], the synthesis infers a hardware block with a latency cost of 5 clock cycles; theoretically, this block would handle exponents addition, mantissas multiplication, and mantissa correction when needed. Moreover, in the case of floating-point addition [\fig{fig:dot_product_float}(d)], the synthesis infers a hardware block with a latency cost of 9 clock cycles; theoretically, this block would handle mantissas alignment, addition, and correction if necessary. Therefore, the use of standard floating-point in high-level synthesis results in a high computational cost that can be enhanced by a custom design.
+
+
+
+\begin{figure}[t!]
+	\centering
+	\includegraphics[width=0.5\textwidth]{../figures/dot_product_float.pdf}
+	\caption{Dot-product hardware module using standard floating-point computation. (a) Illustrates the iteration interval of 10 clock cycles. (b) Illustrates the iteration latency of 19 clock cycles. (c) Illustrates the element-wise multiplication block in dark-gray. (d) Illustrates the accumulation block in light-gray.}
+	\label{fig:dot_product_float}
+\end{figure}
+
+\subsubsection{Dot-product using custom floating-point and logarithmic computation}
+ The hardware module to calculate dot-product using custom floating-point computation is shown in \fig{fig:dot_product_custom}. In this design, $h_\mu$ uses standard floating-point number representation, and $W(s)$ uses a positive custom floating-point number representation where the exponent and mantissa bit width are design parameters. A slight modification in this design yields a hardware module which computes the dot-product using logarithmic computation, this is shown in \fig{fig:dot_product_log}. In this design, $W(s)$ uses a logarithmic number representation where the exponent bit width is a design parameter.
+ 
+ The computation of these designs work in three phases: \emph{Computation}, \emph{Threshold-test}, and \emph{Result normalization}.
+ 
+ \begin{itemize}
+ 	\item{Phase I, \emph{Computation}}: 
+ 	\\In this phase, it is calculated the magnitude of the dot-product in a denormalized representation. This is done in two iterative steps: \emph{element-wise multiplication} and \emph{accumulation}. Where \emph{element-wise multiplication} is executed either in custom floating-point or logarithmic computation described below.
+ 	 \begin{itemize}[label={--}]
+ 	 	\item{Element-wise multiplication}.
+ 	 	\begin{itemize} [label={--}]
+	 		\item{Custom floating-point}.
+	 	 	As shown in \fig{fig:dot_product_custom}(c) in dark-gray, the element-wise multiplication is obtained by adding the exponents and multiplying the mantissa of both $W(s|i)$ and $h_\mu(i)$. If the mantissa multiplication results in an overflow, then it is corrected by increasing the  exponent and shifting the resulting mantissa by one position to the right. Then we have $h_\mu(j) W(s_t|j)$ as an intermediate result which is stored for future reuse on the neuron update calculation. In this design the element-wise multiplication has a latency of 5 clock cycles.
+	 	 	\item{Logarithmic}.
+	 	 	As shown in \fig{fig:dot_product_log}(c) in dark-gray, the content values of $W(s)$ are represented in the logarithmic domain, and $h_\mu$ in standard floating-point. Hence, the element-wise multiplication is obtained by adding $W(s|i)$ to the exponent of $h_\mu(i)$. In this design the element-wise multiplication has a latency of one clock cycle.
+ 	 	\end{itemize}
+ 		\item{Accumulation}. As shown both \fig{fig:dot_product_custom}(d) and \fig{fig:dot_product_log}(d) in light-gray, first, it is obtained the denormalized representation of $h_\mu(j) W(s_t|j)$ by shifting its mantissa using its exponent as shifting parameter. And then, this denormalized representation is accumulated to obtain the magnitude of the dot-product.
+ 	 \end{itemize}
+ 	The element-wise multiplication and accumulation is an iterative process, the computation latency is given by \equ{eq:dot_standard_custom_float_latency} for custom floating-point, and \equ{eq:dot_log_latency} for logarithmic, where $N$ is the length of the vectors. Both pipelined hardware modules have the same throughput, since both have the same initiation interval of two clock cycles.
+ 	
+ 	\begin{eqnarray} \label{eq:dot_standard_custom_float_latency}
+ 	L_{custom}=2N+11
+ 	\end{eqnarray}
+ 	
+	\begin{eqnarray} \label{eq:dot_log_latency}
+ 	L_{log}=2N+7
+ 	\end{eqnarray}
+ 	
+ 	\item{Phase II, \emph{Threshold-test}}: \\
+	In this phase, the accumulated denormalized magnitude is tested to be above of a predefined threshold, this must be above zero, since the dot-product is a denominator in \equ{eq:sbs_update}.
+ 	If passing the test, then the next phase is executed, otherwise the rest of update dynamics is skipped. The threshold-test takes one clock cycle.
+ 	\item{Phase III, \emph{Result-normalization}}: \\
+ 	In this phase, the dot-product is normalized to obtain the exponent and mantissa in order to build a standard floating-point for later use in the neuron update. The normalization is obtained by shifting the resulting dot-product magnitude in a loop until it is in the form of a normalized mantissa where the iteration count represents the negative exponent of the dot-product, each iteration takes one clock cycle.
+ 	
+ \end{itemize}
+ 
+ 
+
+The total latency of the hardware module using custom floating-point and logarithmic computation is the accumulated latency of its three phases.
+
+The proposed architecture using custom floating-point and logarithmic computation overcomes the performance of the design using standard floating-point. The performance enhancement is achieved by decomposing the floating-point computation into an advantageous handling of exponent and mantissa using intermediate accumulation in denormalized representation and one final normalization.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.5\textwidth]{../figures/dot_product.pdf}
+	\caption{Dot-product hardware module using custom floating-point computation. (a) Illustrates the iteration interval of 2 clock cycles. (b) Illustrates the iteration latency of 13 clock cycles. (c) Illustrates the element-wise multiplication blocks in dark-gray. (d) Illustrates the accumulation blocks in light-gray.}
+	\label{fig:dot_product_custom}
+\end{figure}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.5\textwidth]{../figures/dot_product_log.pdf}
+	\caption{Dot-product hardware module using logarithmic computation. (a) Illustrates the iteration interval of 2 clock cycles. (b) Illustrates the iteration latency of 9 clock cycles. (c) Illustrates the element-wise multiplication block in dark-gray. (d) Illustrates the accumulation blocks in light-gray.}
+	\label{fig:dot_product_log}
+\end{figure}
+
+

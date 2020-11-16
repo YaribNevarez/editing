@@ -1,0 +1,13 @@
+\section{Background}
+
+\input{../content/sbs_networks.tex}
+
+\subsection{Parallelization in SbS networks}
+SbS network models are constructed in sequential layered structures, each layer consists of many IPs which can be simulated independently while the communication between the IPs is organized by a low bandwidth signal -- the spikes \cite{Rotermund500280}. Technically, each IP is an independent computational entity (see \fig{fig:SbS_layer}), this allows to design specialized hardware architectures that can be massively parallelized.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.5\textwidth]{../figures/SbS_layer.pdf}
+	\caption{(a) Illustrates an input layer with a massive amount of IPs operating as independent computational entities. (b) Illustrate a hidden layer with an arbitrary amount of IPs as independent computational entities. (c) Illustrates a set of neurons grouped in an IP. }
+	\label{fig:SbS_layer}
+\end{figure}
