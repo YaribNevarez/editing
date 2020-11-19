@@ -1,4 +1,5 @@
-\section{Experimental results} \label{sec:exp}
+\section{Experimental results}
+\label{sec:experimental_results}
 The proposed architecture is demonstrated on a Xilinx Zynq-7020. This device integrates a dual ARM Cortex-A9 based processing system (PS) and programmable logic (PL) equivalent to Xilinx Artix-7 (FPGA) in a single chip \cite{xilinx2015zynq}. The Zynq-7020 architecture conveniently maps the custom logic and software in the PL and PS respectively as an embedded system.
 
 In this platform, we implement the proposed hardware architecture to deploy an SbS network structure for MNIST classification task as shown in \fig{fig:sbs_network}. The training of the SbS model is performed in Matlab and the resulting synaptic weight matrices are deployed on the embedded system. The SbS network is built as a sequential model using the API from the SbS embedded software framework \cite{nevarez2020accelerator}, where the computation of the network is distributed among the hardware processing units and the CPU.

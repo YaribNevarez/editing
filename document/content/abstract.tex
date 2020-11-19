@@ -1,4 +1,4 @@
-\title {Approximate Dot-Product using Hybrid Custom Floating-Point and Logarithm Computation for Spike-by-Spike Neural Networks}
+\title {Accelerating Spike-by-Spike Neural Networks with Approximate Dot-Product on FPGA}
 
 \author{
 	\uppercase{Yarib Nevarez}\authorrefmark{1},	
@@ -27,7 +27,7 @@
 .
 
 \begin{abstract}
-	Computational performance and memory footprint are recognized as the fundamental constraints in artificial neural networks (ANNs) for deployment in embedded systems. Implementations using logarithmic quantization have demonstrated huge potential to overcome the aforementioned limitations; however, this solution is often accompanied by quantization-aware training methods that, in some cases, are problematic or even inaccessible, particularly in emerging Spike-by-Spike (SbS) neural network algorithms. As an alternative, leveraging its intrinsic tolerance to deviations, we present a hardware architecture for non-quantized SbS network simulations based on approximate dot-product using hybrid custom floating-point and logarithmic computation. The proposed hardware architecture is demonstrated with a design exploration using high-level synthesis and a Xilinx FPGA. As a result, the proposed architecture with synaptic representation using 5-bit custom floating-point, and 4-bit logarithmic achieve 20.5x latency enhancement with less than 0.5\% of accuracy degradation. Moreover, inserting positive additive uniformly distributed noise at 50\% amplitude to the input images, the SbS network simulation presents an accuracy degradation of less than 1\% using custom floating-point, and less than 5\% using logarithmic computation.
+The Spike-by-Spike (SbS) neural network algorithm is a powerful machine learning technique for image classification with a remarkable noise robustness. However, computational performance and memory footprint are recognized as the fundamental constraints for deployment in embedded systems. In this article, we present a hardware architecture for non-quantized SbS network simulations based on approximate dot-product using hybrid custom floating-point and logarithmic computation. The proposed hardware architecture is demonstrated with a design exploration using high-level synthesis and a Xilinx FPGA. As a result, the proposed architecture with synaptic representation using 5-bit custom floating-point, and 4-bit logarithmic achieve 20.5x latency enhancement with less than 0.5\% of accuracy degradation. Moreover, inserting positive additive uniformly distributed noise at 50\% amplitude to the input images, the SbS network simulation presents an accuracy degradation of less than 1\% using custom floating-point, and less than 5\% using logarithmic computation.
 	
 \end{abstract}
 
