@@ -48,7 +48,7 @@ The computation of the dot-product is the main piece of \equ{eq:sbs_update} and 
 This module is part of an application-specific architecture optimized to calculate dot-product of arbitrary length, see \equ{eq:dot_product}. In this section, we present three pipelined hardware modules using standard floating-point, custom floating-point, and logarithmic computation, respectively.
 
 \begin{eqnarray} \label{eq:dot_product}
-r_{\mu}\left(s_t\right)=h_{\mu}\cdot W(s_t)=\sum_{j=0}^{N-1}h_{\mu}(j)W(s_t|j)
+r_{\mu}\left(s_t\right)=\sum_{j=0}^{N-1}h_{\mu}(j)W(s_t|j)
 \end{eqnarray}
 
 
