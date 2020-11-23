@@ -21,6 +21,16 @@
 \providecommand{\BIBdecl}{\relax}
 \BIBdecl
 
+\bibitem{schmidhuber2015deep}
+J.~Schmidhuber, ``Deep learning in neural networks: An overview,'' \emph{Neural
+  networks}, vol.~61, pp. 85--117, 2015.
+
+\bibitem{Taigman_2014_CVPR}
+Y.~Taigman, M.~Yang, M.~Ranzato, and L.~Wolf, ``Deepface: Closing the gap to
+  human-level performance in face verification,'' in \emph{Proceedings of the
+  IEEE Conference on Computer Vision and Pattern Recognition (CVPR)}, June
+  2014.
+
 \bibitem{Design_Exploration_SbS_Trans20}
 N.~Abderrahmane, E.~Lemaire, and B.~Miramond, ``Design space exploration of
   hardware spiking neurons for embedded artificial intelligence,'' \emph{Neural
@@ -51,13 +61,6 @@ D.~Rotermund and K.~R. Pawelzik, ``Back-propagation learning in deep
   spike-by-spike networks,'' \emph{Frontiers in Computational Neuroscience},
   vol.~13, p.~55, 2019.
 
-\bibitem{nevarez2020accelerator}
-Y.~Nevarez, A.~Garcia-Ortiz, D.~Rotermund, and K.~R. Pawelzik, ``Accelerator
-  framework of spike-by-spike neural networks for inference and incremental
-  learning in embedded systems,'' in \emph{2020 9th International Conference on
-  Modern Circuits and Systems Technologies (MOCAST)}.\hskip 1em plus 0.5em
-  minus 0.4em\relax IEEE, 2020, pp. 1--5.
-
 \bibitem{zhang2018survey}
 M.~ZHANG, G.~Zonghua, and P.~Gang, ``A survey of neuromorphic computing based
   on spiking neural networks,'' \emph{Chinese Journal of Electronics}, vol.~27,
@@ -67,10 +70,21 @@ M.~ZHANG, G.~Zonghua, and P.~Gang, ``A survey of neuromorphic computing based
 D.~Rotermund and K.~R. Pawelzik, ``Massively parallel {FPGA} hardware for
   spike-by-spike networks,'' \emph{bioRxiv}, 2019.
 
+\bibitem{nevarez2020accelerator}
+Y.~Nevarez, A.~Garcia-Ortiz, D.~Rotermund, and K.~R. Pawelzik, ``Accelerator
+  framework of spike-by-spike neural networks for inference and incremental
+  learning in embedded systems,'' in \emph{2020 9th International Conference on
+  Modern Circuits and Systems Technologies (MOCAST)}.\hskip 1em plus 0.5em
+  minus 0.4em\relax IEEE, 2020, pp. 1--5.
+
+\bibitem{lecun1998mnist}
+Y.~LeCun, ``The mnist database of handwritten digits,'' \emph{http://yann.
+  lecun. com/exdb/mnist/}, 1998.
+
 \bibitem{Rotermund500280}
 \BIBentryALTinterwordspacing
-------, ``Massively parallel fpga hardware for spike-by-spike networks,''
-  \emph{bioRxiv}, 2019. [Online]. Available:
+D.~Rotermund and K.~R. Pawelzik, ``Massively parallel fpga hardware for
+  spike-by-spike networks,'' \emph{bioRxiv}, 2019. [Online]. Available:
   \url{https://www.biorxiv.org/content/early/2019/06/14/500280}
 \BIBentrySTDinterwordspacing
 
