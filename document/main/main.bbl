@@ -66,6 +66,30 @@ M.~ZHANG, G.~Zonghua, and P.~Gang, ``A survey of neuromorphic computing based
   on spiking neural networks,'' \emph{Chinese Journal of Electronics}, vol.~27,
   no.~4, pp. 667--674, 2018.
 
+\bibitem{lotrivc2012applicability}
+U.~Lotri{\v{c}} and P.~Buli{\'c}, ``Applicability of approximate multipliers in
+  hardware neural networks,'' \emph{Neurocomputing}, vol.~96, pp. 57--65, 2012.
+
+\bibitem{sarwar2016multiplier}
+S.~S. Sarwar, S.~Venkataramani, A.~Raghunathan, and K.~Roy, ``Multiplier-less
+  artificial neurons exploiting error resiliency for energy-efficient neural
+  computing,'' in \emph{2016 Design, Automation \& Test in Europe Conference \&
+  Exhibition (DATE)}.\hskip 1em plus 0.5em minus 0.4em\relax IEEE, 2016, pp.
+  145--150.
+
+\bibitem{mrazek2016design}
+V.~Mrazek, S.~S. Sarwar, L.~Sekanina, Z.~Vasicek, and K.~Roy, ``Design of
+  power-efficient approximate multipliers for approximate artificial neural
+  networks,'' in \emph{Proceedings of the 35th International Conference on
+  Computer-Aided Design}, 2016, pp. 1--7.
+
+\bibitem{du2014leveraging}
+Z.~Du, K.~Palem, A.~Lingamneni, O.~Temam, Y.~Chen, and C.~Wu, ``Leveraging the
+  error resilience of machine-learning applications for designing highly energy
+  efficient accelerators,'' in \emph{2014 19th Asia and South Pacific design
+  automation conference (ASP-DAC)}.\hskip 1em plus 0.5em minus 0.4em\relax
+  IEEE, 2014, pp. 201--206.
+
 \bibitem{rotermund2018massively}
 D.~Rotermund and K.~R. Pawelzik, ``Massively parallel {FPGA} hardware for
   spike-by-spike networks,'' \emph{bioRxiv}, 2019.

@@ -174,8 +174,9 @@ E_{\min}=\log _2(\min_{\forall i}(W(i)))
 N_E=\lceil\log_2(|E_{\min}|)\rceil
 \end{eqnarray}
 
-Applying \equ{eq:exp_max} and \equ{eq:bits_exp} to the given SbS network, we obtain $-13$ as the minimum exponent value of the synaptic weights, and 4-bit needed for its absolute binary representation. The mantissa bit width is a parameter that needs to
-be determined/tuned by the designer, to perform trade-off between computation accuracy and synaptic memory footprint. In this publication we present a case study with 1-bit mantissa corresponding to the custom floating-point in the next section.
+Applying \equ{eq:exp_max} and \equ{eq:bits_exp} to the given SbS network, we obtain $-13$ as the minimum exponent value of the synaptic weights, and 4-bit needed for its absolute binary representation.
+
+As a quality-configurable approximate computing approach, the mantissa bit width is a parameter that is modulated/tuned by the designer. This parameter leverages the builtin error-tolerance of neural networks and performs a trade-off between computation accuracy and synaptic memory footprint. In this publication we present a case study with 1-bit mantissa corresponding to the custom floating-point in the next section.
 
 \begin{figure}[h!]
 	\includegraphics[width=\columnwidth]{../figures/log2_histogram.pdf}
