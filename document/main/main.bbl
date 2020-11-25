@@ -101,6 +101,139 @@ Y.~Nevarez, A.~Garcia-Ortiz, D.~Rotermund, and K.~R. Pawelzik, ``Accelerator
   Modern Circuits and Systems Technologies (MOCAST)}.\hskip 1em plus 0.5em
   minus 0.4em\relax IEEE, 2020, pp. 1--5.
 
+\bibitem{han2013approximate}
+J.~Han and M.~Orshansky, ``Approximate computing: An emerging paradigm for
+  energy-efficient design,'' in \emph{2013 18th IEEE European Test Symposium
+  (ETS)}.\hskip 1em plus 0.5em minus 0.4em\relax IEEE, 2013, pp. 1--6.
+
+\bibitem{courbariaux2015binaryconnect}
+M.~Courbariaux, Y.~Bengio, and J.-P. David, ``Binaryconnect: Training deep
+  neural networks with binary weights during propagations,'' in \emph{Advances
+  in neural information processing systems}, 2015, pp. 3123--3131.
+
+\bibitem{han2015deep}
+S.~Han, H.~Mao, and W.~J. Dally, ``Deep compression: Compressing deep neural
+  networks with pruning, trained quantization and huffman coding,'' \emph{arXiv
+  preprint arXiv:1510.00149}, 2015.
+
+\bibitem{hubara2017quantized}
+I.~Hubara, M.~Courbariaux, D.~Soudry, R.~El-Yaniv, and Y.~Bengio, ``Quantized
+  neural networks: Training neural networks with low precision weights and
+  activations,'' \emph{The Journal of Machine Learning Research}, vol.~18,
+  no.~1, pp. 6869--6898, 2017.
+
+\bibitem{rastegari2016xnor}
+M.~Rastegari, V.~Ordonez, J.~Redmon, and A.~Farhadi, ``Xnor-net: Imagenet
+  classification using binary convolutional neural networks,'' in
+  \emph{European conference on computer vision}.\hskip 1em plus 0.5em minus
+  0.4em\relax Springer, 2016, pp. 525--542.
+
+\bibitem{moons20160}
+B.~Moons and M.~Verhelst, ``A 0.3--2.6 tops/w precision-scalable processor for
+  real-time large-scale convnets,'' in \emph{2016 IEEE Symposium on VLSI
+  Circuits (VLSI-Circuits)}.\hskip 1em plus 0.5em minus 0.4em\relax IEEE, 2016,
+  pp. 1--2.
+
+\bibitem{whatmough201714}
+P.~N. Whatmough, S.~K. Lee, H.~Lee, S.~Rama, D.~Brooks, and G.-Y. Wei, ``14.3 a
+  28nm soc with a 1.2 ghz 568nj/prediction sparse deep-neural-network engine
+  with> 0.1 timing error rate tolerance for iot applications,'' in \emph{2017
+  IEEE International Solid-State Circuits Conference (ISSCC)}.\hskip 1em plus
+  0.5em minus 0.4em\relax IEEE, 2017, pp. 242--243.
+
+\bibitem{sun2018xnor}
+X.~Sun, S.~Yin, X.~Peng, R.~Liu, J.-s. Seo, and S.~Yu, ``Xnor-rram: A scalable
+  and parallel resistive synaptic architecture for binary neural networks,'' in
+  \emph{2018 Design, Automation \& Test in Europe Conference \& Exhibition
+  (DATE)}.\hskip 1em plus 0.5em minus 0.4em\relax IEEE, 2018, pp. 1423--1428.
+
+\bibitem{jin2017performance}
+Y.~Jin and P.~Li, ``Performance and robustness of bio-inspired digital liquid
+  state machines: A case study of speech recognition,'' \emph{Neurocomputing},
+  vol. 226, pp. 145--160, 2017.
+
+\bibitem{rathi2018stdp}
+N.~Rathi, P.~Panda, and K.~Roy, ``Stdp-based pruning of connections and weight
+  quantization in spiking neural networks for energy-efficient recognition,''
+  \emph{IEEE Transactions on Computer-Aided Design of Integrated Circuits and
+  Systems}, vol.~38, no.~4, pp. 668--677, 2018.
+
+\bibitem{sen2017approximate}
+S.~Sen, S.~Venkataramani, and A.~Raghunathan, ``Approximate computing for
+  spiking neural networks,'' in \emph{Design, Automation \& Test in Europe
+  Conference \& Exhibition (DATE), 2017}.\hskip 1em plus 0.5em minus
+  0.4em\relax IEEE, 2017, pp. 193--198.
+
+\bibitem{srivastava2014dropout}
+N.~Srivastava, G.~Hinton, A.~Krizhevsky, I.~Sutskever, and R.~Salakhutdinov,
+  ``Dropout: a simple way to prevent neural networks from overfitting,''
+  \emph{The journal of machine learning research}, vol.~15, no.~1, pp.
+  1929--1958, 2014.
+
+\bibitem{wan2013regularization}
+L.~Wan, M.~Zeiler, S.~Zhang, Y.~Le~Cun, and R.~Fergus, ``Regularization of
+  neural networks using dropconnect,'' in \emph{International conference on
+  machine learning}, 2013, pp. 1058--1066.
+
+\bibitem{neftci2016stochastic}
+E.~O. Neftci, B.~U. Pedroni, S.~Joshi, M.~Al-Shedivat, and G.~Cauwenberghs,
+  ``Stochastic synapses enable efficient brain-inspired learning machines,''
+  \emph{Frontiers in neuroscience}, vol.~10, p. 241, 2016.
+
+\bibitem{srinivasan2016magnetic}
+G.~Srinivasan, A.~Sengupta, and K.~Roy, ``Magnetic tunnel junction based
+  long-term short-term stochastic synapse for a spiking neural network with
+  on-chip stdp learning,'' \emph{Scientific reports}, vol.~6, p. 29545, 2016.
+
+\bibitem{buesing2011neural}
+L.~Buesing, J.~Bill, B.~Nessler, and W.~Maass, ``Neural dynamics as sampling: a
+  model for stochastic computation in recurrent networks of spiking neurons,''
+  \emph{PLoS Comput Biol}, vol.~7, no.~11, p. e1002211, 2011.
+
+\bibitem{bellec2017deep}
+G.~Bellec, D.~Kappel, W.~Maass, and R.~Legenstein, ``Deep rewiring: Training
+  very sparse deep networks,'' \emph{arXiv preprint arXiv:1711.05136}, 2017.
+
+\bibitem{chen20184096}
+G.~K. Chen, R.~Kumar, H.~E. Sumbul, P.~C. Knag, and R.~K. Krishnamurthy, ``A
+  4096-neuron 1m-synapse 3.8-pj/sop spiking neural network with on-chip stdp
+  learning and sparse weights in 10-nm finfet cmos,'' \emph{IEEE Journal of
+  Solid-State Circuits}, vol.~54, no.~4, pp. 992--1002, 2018.
+
+\bibitem{sheik2016synaptic}
+S.~Sheik, S.~Paul, C.~Augustine, C.~Kothapalli, M.~M. Khellah, G.~Cauwenberghs,
+  and E.~Neftci, ``Synaptic sampling in hardware spiking neural networks,'' in
+  \emph{2016 IEEE International Symposium on Circuits and Systems
+  (ISCAS)}.\hskip 1em plus 0.5em minus 0.4em\relax IEEE, 2016, pp. 2090--2093.
+
+\bibitem{jerry2017ultra}
+M.~Jerry, A.~Parihar, B.~Grisafe, A.~Raychowdhury, and S.~Datta, ``Ultra-low
+  power probabilistic imt neurons for stochastic sampling machines,'' in
+  \emph{2017 Symposium on VLSI Circuits}.\hskip 1em plus 0.5em minus
+  0.4em\relax IEEE, 2017, pp. T186--T187.
+
+\bibitem{knag2014native}
+P.~Knag, W.~Lu, and Z.~Zhang, ``A native stochastic computing architecture
+  enabled by memristors,'' \emph{IEEE Transactions on Nanotechnology}, vol.~13,
+  no.~2, pp. 283--293, 2014.
+
+\bibitem{kim2013energy}
+Y.~Kim, Y.~Zhang, and P.~Li, ``An energy efficient approximate adder with carry
+  skip for error resilient neuromorphic vlsi systems,'' in \emph{2013 IEEE/ACM
+  International Conference on Computer-Aided Design (ICCAD)}.\hskip 1em plus
+  0.5em minus 0.4em\relax IEEE, 2013, pp. 130--137.
+
+\bibitem{he2016deep}
+K.~He, X.~Zhang, S.~Ren, and J.~Sun, ``Deep residual learning for image
+  recognition,'' in \emph{Proceedings of the IEEE conference on computer vision
+  and pattern recognition}, 2016, pp. 770--778.
+
+\bibitem{russakovsky2015imagenet}
+O.~Russakovsky, J.~Deng, H.~Su, J.~Krause, S.~Satheesh, S.~Ma, Z.~Huang,
+  A.~Karpathy, A.~Khosla, M.~Bernstein \emph{et~al.}, ``Imagenet large scale
+  visual recognition challenge,'' \emph{International journal of computer
+  vision}, vol. 115, no.~3, pp. 211--252, 2015.
+
 \bibitem{lecun1998mnist}
 Y.~LeCun, ``The mnist database of handwritten digits,'' \emph{http://yann.
   lecun. com/exdb/mnist/}, 1998.
