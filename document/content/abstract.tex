@@ -27,12 +27,12 @@
 .
 
 \begin{abstract}
-The Spike-by-Spike (SbS) neural network algorithm is a powerful machine learning technique for image classification with a remarkable noise robustness. However, deep SbS networks are highly compute and data intensive, requiring new approaches to improve deployment efficiency in resource limited-devices. In this article, we present a hardware architecture for SbS network simulations based on approximate dot-product using hybrid custom floating-point and logarithmic computation, which leverages the extraordinary intrinsic error-tolerance of SbS networks. The proposed hardware architecture is demonstrated with a design exploration flow using high-level synthesis and a Xilinx FPGA. As a result, the proposed architecture achieves 20.5x latency enhancement, 8x synaptic memory footprint reduction, and less than 0.5\% of accuracy degradation.
+The Spike-by-Spike (SbS) neural network algorithm is a powerful machine learning technique for image classification with a remarkable noise robustness. However, deep SbS networks are highly compute and data intensive, requiring new approaches to improve deployment efficiency in resource limited-devices. In this article, we accelerate SbS neural networks with a dot-product hardware design based on approximate computing, this approach leverages the intrinsic error-tolerance of SbS neural networks. The proposed hardware architecture is demonstrated with a design exploration flow using high-level synthesis and a Xilinx FPGA. As a result, the proposed architecture achieves 20.5x latency enhancement, 8x synaptic memory footprint reduction, and less than 0.5\% of accuracy degradation on handwritten digit recognition task.
 	
 \end{abstract}
 
 \begin{keywords}
-Artificial intelligence, spiking neural networks, quantization, logarithmic computation, parameterisable floating-point, optimization, hardware accelerator, embedded systems, FPGA
+Artificial intelligence, spiking neural networks, approximate computing, logarithmic, parameterisable floating-point, optimization, hardware accelerator, embedded systems, FPGA
 \end{keywords}
 
 \titlepgskip=-15pt
