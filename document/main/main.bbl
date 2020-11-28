@@ -90,6 +90,17 @@ Z.~Du, K.~Palem, A.~Lingamneni, O.~Temam, Y.~Chen, and C.~Wu, ``Leveraging the
   automation conference (ASP-DAC)}.\hskip 1em plus 0.5em minus 0.4em\relax
   IEEE, 2014, pp. 201--206.
 
+\bibitem{park2009dynamic}
+J.~Park, J.~H. Choi, and K.~Roy, ``Dynamic bit-width adaptation in dct: An
+  approach to trade off image quality and computation energy,'' \emph{IEEE
+  transactions on very large scale integration (VLSI) systems}, vol.~18, no.~5,
+  pp. 787--793, 2009.
+
+\bibitem{han2013approximate}
+J.~Han and M.~Orshansky, ``Approximate computing: An emerging paradigm for
+  energy-efficient design,'' in \emph{2013 18th IEEE European Test Symposium
+  (ETS)}.\hskip 1em plus 0.5em minus 0.4em\relax IEEE, 2013, pp. 1--6.
+
 \bibitem{rotermund2018massively}
 D.~Rotermund and K.~R. Pawelzik, ``Massively parallel {FPGA} hardware for
   spike-by-spike networks,'' \emph{bioRxiv}, 2019.
@@ -100,11 +111,6 @@ Y.~Nevarez, A.~Garcia-Ortiz, D.~Rotermund, and K.~R. Pawelzik, ``Accelerator
   learning in embedded systems,'' in \emph{2020 9th International Conference on
   Modern Circuits and Systems Technologies (MOCAST)}.\hskip 1em plus 0.5em
   minus 0.4em\relax IEEE, 2020, pp. 1--5.
-
-\bibitem{han2013approximate}
-J.~Han and M.~Orshansky, ``Approximate computing: An emerging paradigm for
-  energy-efficient design,'' in \emph{2013 18th IEEE European Test Symposium
-  (ETS)}.\hskip 1em plus 0.5em minus 0.4em\relax IEEE, 2013, pp. 1--6.
 
 \bibitem{courbariaux2015binaryconnect}
 M.~Courbariaux, Y.~Bengio, and J.-P. David, ``Binaryconnect: Training deep
