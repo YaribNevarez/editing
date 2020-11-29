@@ -101,16 +101,11 @@ J.~Han and M.~Orshansky, ``Approximate computing: An emerging paradigm for
   energy-efficient design,'' in \emph{2013 18th IEEE European Test Symposium
   (ETS)}.\hskip 1em plus 0.5em minus 0.4em\relax IEEE, 2013, pp. 1--6.
 
-\bibitem{rotermund2018massively}
-D.~Rotermund and K.~R. Pawelzik, ``Massively parallel {FPGA} hardware for
-  spike-by-spike networks,'' \emph{bioRxiv}, 2019.
-
-\bibitem{nevarez2020accelerator}
-Y.~Nevarez, A.~Garcia-Ortiz, D.~Rotermund, and K.~R. Pawelzik, ``Accelerator
-  framework of spike-by-spike neural networks for inference and incremental
-  learning in embedded systems,'' in \emph{2020 9th International Conference on
-  Modern Circuits and Systems Technologies (MOCAST)}.\hskip 1em plus 0.5em
-  minus 0.4em\relax IEEE, 2020, pp. 1--5.
+\bibitem{bouvier2019spiking}
+M.~Bouvier, A.~Valentian, T.~Mesquida, F.~Rummens, M.~Reyboz, E.~Vianello, and
+  E.~Beigne, ``Spiking neural networks hardware implementations and challenges:
+  A survey,'' \emph{ACM Journal on Emerging Technologies in Computing Systems
+  (JETC)}, vol.~15, no.~2, pp. 1--35, 2019.
 
 \bibitem{courbariaux2015binaryconnect}
 M.~Courbariaux, Y.~Bengio, and J.-P. David, ``Binaryconnect: Training deep
@@ -152,11 +147,6 @@ X.~Sun, S.~Yin, X.~Peng, R.~Liu, J.-s. Seo, and S.~Yu, ``Xnor-rram: A scalable
   and parallel resistive synaptic architecture for binary neural networks,'' in
   \emph{2018 Design, Automation \& Test in Europe Conference \& Exhibition
   (DATE)}.\hskip 1em plus 0.5em minus 0.4em\relax IEEE, 2018, pp. 1423--1428.
-
-\bibitem{jin2017performance}
-Y.~Jin and P.~Li, ``Performance and robustness of bio-inspired digital liquid
-  state machines: A case study of speech recognition,'' \emph{Neurocomputing},
-  vol. 226, pp. 145--160, 2017.
 
 \bibitem{rathi2018stdp}
 N.~Rathi, P.~Panda, and K.~Roy, ``Stdp-based pruning of connections and weight
@@ -218,11 +208,6 @@ M.~Jerry, A.~Parihar, B.~Grisafe, A.~Raychowdhury, and S.~Datta, ``Ultra-low
   \emph{2017 Symposium on VLSI Circuits}.\hskip 1em plus 0.5em minus
   0.4em\relax IEEE, 2017, pp. T186--T187.
 
-\bibitem{knag2014native}
-P.~Knag, W.~Lu, and Z.~Zhang, ``A native stochastic computing architecture
-  enabled by memristors,'' \emph{IEEE Transactions on Nanotechnology}, vol.~13,
-  no.~2, pp. 283--293, 2014.
-
 \bibitem{kim2013energy}
 Y.~Kim, Y.~Zhang, and P.~Li, ``An energy efficient approximate adder with carry
   skip for error resilient neuromorphic vlsi systems,'' in \emph{2013 IEEE/ACM
@@ -239,6 +224,17 @@ O.~Russakovsky, J.~Deng, H.~Su, J.~Krause, S.~Satheesh, S.~Ma, Z.~Huang,
   A.~Karpathy, A.~Khosla, M.~Bernstein \emph{et~al.}, ``Imagenet large scale
   visual recognition challenge,'' \emph{International journal of computer
   vision}, vol. 115, no.~3, pp. 211--252, 2015.
+
+\bibitem{rotermund2018massively}
+D.~Rotermund and K.~R. Pawelzik, ``Massively parallel {FPGA} hardware for
+  spike-by-spike networks,'' \emph{bioRxiv}, 2019.
+
+\bibitem{nevarez2020accelerator}
+Y.~Nevarez, A.~Garcia-Ortiz, D.~Rotermund, and K.~R. Pawelzik, ``Accelerator
+  framework of spike-by-spike neural networks for inference and incremental
+  learning in embedded systems,'' in \emph{2020 9th International Conference on
+  Modern Circuits and Systems Technologies (MOCAST)}.\hskip 1em plus 0.5em
+  minus 0.4em\relax IEEE, 2020, pp. 1--5.
 
 \bibitem{lecun1998mnist}
 Y.~LeCun, ``The mnist database of handwritten digits,'' \emph{http://yann.
