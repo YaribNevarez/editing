@@ -5,9 +5,9 @@ In this publication, we present a dot-product hardware design based on approxima
 
 This approach reduces computational latency, memory footprint, and power dissipation while preserving accuracy and noise robustness. This solution is compatible with standard floating-point and, it does not require training algorithm adjustments, representing a convenient solution for efficient deployment of emerging ML algorithms on resource-limited devices.
 
-We demonstrate our approach with a design exploration flow on a Xilinx Zynq-7020 with a deployment of NMIST classification task, this implementation achieves up to $20.49\times$ latency enhancement, $8\times$ synaptic memory footprint reduction, $12.35\%$ of energy consumption improvement, and less than $0.5\%$ of accuracy degradation. Moreover, with positive additive uniformly distributed noise at $50\%$ of amplitude on the input image, the SbS network simulation presents an accuracy degradation of less than $5\%$.
+We demonstrate our approach with a design exploration flow on a Xilinx Zynq-7020 with a deployment of NMIST classification task, this implementation achieves up to $20.49\times$ latency enhancement, $8\times$ synaptic memory footprint reduction, less than $0.5\%$ of accuracy degradation, and $12.35\%$ of energy efficiency improvement over the standard floating-point implementation. Moreover, with positive additive uniformly distributed noise at $50\%$ of amplitude on the input image, the SbS network simulation presents an accuracy degradation of less than $5\%$.
 
-In conclusion, based on the relaxed need for fully precise or deterministic computation of SbS neural networks, approximate computing techniques allow substantial enhancement in processing efficiency with moderated accuracy degradation.
+In conclusion, based on the relaxed need for fully accurate or deterministic computation of SbS neural networks, approximate computing techniques allow substantial enhancement in processing efficiency with moderated accuracy degradation.
 
 \section * {Acknowledgments}\label{sec:Ack}
 This work is funded by the \textit{Consejo Nacional de Ciencia y Tecnologia -- CONACYT} (the Mexican National Council for Science and Technology).
