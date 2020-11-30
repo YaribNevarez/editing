@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.8.18)  30 NOV 2020 05:16
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.8.18)  30 NOV 2020 06:01
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -694,10 +694,10 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 
 [3]
 
-Package xcolor Warning: Incompatible color definition on input line 14.
+Package xcolor Warning: Incompatible color definition on input line 16.
 
 
-Package xcolor Warning: Incompatible color definition on input line 19.
+Package xcolor Warning: Incompatible color definition on input line 21.
 
 ) (../content/background.tex
 
@@ -707,25 +707,9 @@ Package xcolor Warning: Incompatible color definition on input line 1.
 
 Package xcolor Warning: Incompatible color definition on input line 1.
 
-
-
-pdfTeX warning: /usr/bin/pdflatex (file ../figures/sbs_robustnes.pdf): PDF incl
-usion: found PDF version <1.7>, but at most version <1.5> allowed
-<../figures/sbs_robustnes.pdf, id=28, 549.76204pt x 296.34586pt>
-File: ../figures/sbs_robustnes.pdf Graphic file (type pdf)
-<use ../figures/sbs_robustnes.pdf>
-Package pdftex.def Info: ../figures/sbs_robustnes.pdf  used on input line 50.
-(pdftex.def)             Requested size: 242.67355pt x 130.81311pt.
-
-Package xcolor Warning: Incompatible color definition on input line 51.
-
-
-Package xcolor Warning: Incompatible color definition on input line 51.
-
-)
 File: notaglinelogo.png Graphic file (type png)
 <use notaglinelogo.png>
-Package pdftex.def Info: notaglinelogo.png  used on input line 4.
+Package pdftex.def Info: notaglinelogo.png  used on input line 34.
 (pdftex.def)             Requested size: 91.32pt x 23.1352pt.
 
 Overfull \hbox (505.12177pt too wide) has occurred while \output is active
@@ -743,6 +727,21 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  []
 
 [4]
+
+pdfTeX warning: /usr/bin/pdflatex (file ../figures/sbs_robustnes.pdf): PDF incl
+usion: found PDF version <1.7>, but at most version <1.5> allowed
+<../figures/sbs_robustnes.pdf, id=36, 549.76204pt x 296.34586pt>
+File: ../figures/sbs_robustnes.pdf Graphic file (type pdf)
+<use ../figures/sbs_robustnes.pdf>
+Package pdftex.def Info: ../figures/sbs_robustnes.pdf  used on input line 50.
+(pdftex.def)             Requested size: 242.67355pt x 130.81311pt.
+
+Package xcolor Warning: Incompatible color definition on input line 51.
+
+
+Package xcolor Warning: Incompatible color definition on input line 51.
+
+)
 
 Package xcolor Warning: Incompatible color definition on input line 5.
 
@@ -801,7 +800,7 @@ Package xcolor Warning: Incompatible color definition on input line 19.
 
 File: notaglinelogo.png Graphic file (type png)
 <use notaglinelogo.png>
-Package pdftex.def Info: notaglinelogo.png  used on input line 25.
+Package pdftex.def Info: notaglinelogo.png  used on input line 22.
 (pdftex.def)             Requested size: 91.32pt x 23.1352pt.
 
 Overfull \hbox (505.12177pt too wide) has occurred while \output is active
@@ -863,7 +862,7 @@ Package xcolor Warning: Incompatible color definition on input line 57.
 
 File: notaglinelogo.png Graphic file (type png)
 <use notaglinelogo.png>
-Package pdftex.def Info: notaglinelogo.png  used on input line 65.
+Package pdftex.def Info: notaglinelogo.png  used on input line 62.
 (pdftex.def)             Requested size: 91.32pt x 23.1352pt.
 
 Overfull \hbox (505.12177pt too wide) has occurred while \output is active
@@ -906,7 +905,7 @@ Package xcolor Warning: Incompatible color definition on input line 75.
 
 File: notaglinelogo.png Graphic file (type png)
 <use notaglinelogo.png>
-Package pdftex.def Info: notaglinelogo.png  used on input line 109.
+Package pdftex.def Info: notaglinelogo.png  used on input line 106.
 (pdftex.def)             Requested size: 91.32pt x 23.1352pt.
 
 Overfull \hbox (505.12177pt too wide) has occurred while \output is active
@@ -995,26 +994,9 @@ Package xcolor Warning: Incompatible color definition on input line 17.
 
 Package xcolor Warning: Incompatible color definition on input line 18.
 
-
-Package xcolor Warning: Incompatible color definition on input line 25.
-
-<../figures/latency_sw.pdf, id=645, 252.91655pt x 93.92255pt>
-File: ../figures/latency_sw.pdf Graphic file (type pdf)
-<use ../figures/latency_sw.pdf>
-Package pdftex.def Info: ../figures/latency_sw.pdf  used on input line 44.
-(pdftex.def)             Requested size: 242.67355pt x 90.12161pt.
-
-Package xcolor Warning: Incompatible color definition on input line 45.
-
-
-Package xcolor Warning: Incompatible color definition on input line 45.
-
-
-Package xcolor Warning: Incompatible color definition on input line 49.
-
 File: notaglinelogo.png Graphic file (type png)
 <use notaglinelogo.png>
-Package pdftex.def Info: notaglinelogo.png  used on input line 51.
+Package pdftex.def Info: notaglinelogo.png  used on input line 23.
 (pdftex.def)             Requested size: 91.32pt x 23.1352pt.
 
 Overfull \hbox (505.12177pt too wide) has occurred while \output is active
@@ -1032,6 +1014,24 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  []
 
 [8 <../figures/dot_product.pdf> <../figures/dot_product_log.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 25.
+
+<../figures/latency_sw.pdf, id=698, 252.91655pt x 93.92255pt>
+File: ../figures/latency_sw.pdf Graphic file (type pdf)
+<use ../figures/latency_sw.pdf>
+Package pdftex.def Info: ../figures/latency_sw.pdf  used on input line 44.
+(pdftex.def)             Requested size: 242.67355pt x 90.12161pt.
+
+Package xcolor Warning: Incompatible color definition on input line 45.
+
+
+Package xcolor Warning: Incompatible color definition on input line 45.
+
+
+Package xcolor Warning: Incompatible color definition on input line 49.
+
+
 
 pdfTeX warning: /usr/bin/pdflatex (file ../figures/sbs_hw_experimental.pdf): PD
 F inclusion: found PDF version <1.7>, but at most version <1.5> allowed
@@ -1069,21 +1069,9 @@ Package xcolor Warning: Incompatible color definition on input line 85.
 
 Package xcolor Warning: Incompatible color definition on input line 85.
 
-<../figures/latency_fp_cycle.pdf, id=701, 252.91655pt x 124.99297pt>
-File: ../figures/latency_fp_cycle.pdf Graphic file (type pdf)
-<use ../figures/latency_fp_cycle.pdf>
-Package pdftex.def Info: ../figures/latency_fp_cycle.pdf  used on input line 95
-.
-(pdftex.def)             Requested size: 242.67355pt x 119.93465pt.
-
-Package xcolor Warning: Incompatible color definition on input line 96.
-
-
-Package xcolor Warning: Incompatible color definition on input line 96.
-
 File: notaglinelogo.png Graphic file (type png)
 <use notaglinelogo.png>
-Package pdftex.def Info: notaglinelogo.png  used on input line 98.
+Package pdftex.def Info: notaglinelogo.png  used on input line 90.
 (pdftex.def)             Requested size: 91.32pt x 23.1352pt.
 
 Overfull \hbox (505.12177pt too wide) has occurred while \output is active
@@ -1106,17 +1094,24 @@ experimental.pdf> <../figures/latency_pu_fp.pdf
 pdfTeX warning: /usr/bin/pdflatex (file ../figures/latency_pu_fp.pdf): PDF incl
 usion: multiple pdfs with page group included in a single page
 >]
+<../figures/latency_fp_cycle.pdf, id=824, 252.91655pt x 124.99297pt>
+File: ../figures/latency_fp_cycle.pdf Graphic file (type pdf)
+<use ../figures/latency_fp_cycle.pdf>
+Package pdftex.def Info: ../figures/latency_fp_cycle.pdf  used on input line 95
+.
+(pdftex.def)             Requested size: 242.67355pt x 119.93465pt.
+
+
+Package xcolor Warning: Incompatible color definition on input line 96.
+
+
+Package xcolor Warning: Incompatible color definition on input line 96.
+
 
 Package xcolor Warning: Incompatible color definition on input line 127.
 
 
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
 Package xcolor Warning: Incompatible color definition on input line 140.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 <../figures/accuracy_vs_noise_pu_fp.pdf, id=825, 252.91655pt x 433.59154pt>
 File: ../figures/accuracy_vs_noise_pu_fp.pdf Graphic file (type pdf)
@@ -1139,14 +1134,9 @@ Package xcolor Warning: Incompatible color definition on input line 161.
 
 Package xcolor Warning: Incompatible color definition on input line 165.
 
-
-Underfull \hbox (badness 1377) in paragraph at lines 179--180
-[]\T1/ptm/n/n/10 As a quality-configurable ap-prox-i-mate com-put-ing ap-
- []
-
 File: notaglinelogo.png Graphic file (type png)
 <use notaglinelogo.png>
-Package pdftex.def Info: notaglinelogo.png  used on input line 180.
+Package pdftex.def Info: notaglinelogo.png  used on input line 175.
 (pdftex.def)             Requested size: 91.32pt x 23.1352pt.
 
 Overfull \hbox (505.12177pt too wide) has occurred while \output is active
@@ -1164,13 +1154,16 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  []
 
 [10 <../figures/latency_fp_cycle.pdf>]
+Underfull \hbox (badness 1377) in paragraph at lines 179--180
+[]\T1/ptm/n/n/10 As a quality-configurable ap-prox-i-mate com-put-ing ap-
+ []
+
 <../figures/log2_histogram.pdf, id=853, 252.91655pt x 361.32155pt>
 File: ../figures/log2_histogram.pdf Graphic file (type pdf)
 <use ../figures/log2_histogram.pdf>
 Package pdftex.def Info: ../figures/log2_histogram.pdf  used on input line 182.
 
 (pdftex.def)             Requested size: 242.67355pt x 346.69934pt.
-
 
 Package xcolor Warning: Incompatible color definition on input line 183.
 
@@ -1183,59 +1176,9 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 Package xcolor Warning: Incompatible color definition on input line 186.
 
-
-Package xcolor Warning: Incompatible color definition on input line 194.
-
-<../figures/latency_cfp_cycle.pdf, id=854, 252.91655pt x 252.91655pt>
-File: ../figures/latency_cfp_cycle.pdf Graphic file (type pdf)
-<use ../figures/latency_cfp_cycle.pdf>
-Package pdftex.def Info: ../figures/latency_cfp_cycle.pdf  used on input line 2
-14.
-(pdftex.def)             Requested size: 242.67355pt x 242.68134pt.
-
-Package xcolor Warning: Incompatible color definition on input line 215.
-
-
-Package xcolor Warning: Incompatible color definition on input line 215.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
-Package xcolor Warning: Incompatible color definition on input line 220.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
-Package xcolor Warning: Incompatible color definition on input line 231.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-<../figures/accuracy_vs_noise_pu_cfp(4-bit-exponent_1-bit-mantissa).pdf, id=855
-, 252.91655pt x 433.59154pt>
-File: ../figures/accuracy_vs_noise_pu_cfp(4-bit-exponent_1-bit-mantissa).pdf Gr
-aphic file (type pdf)
-<use ../figures/accuracy_vs_noise_pu_cfp(4-bit-exponent_1-bit-mantissa).pdf>
-Package pdftex.def Info: ../figures/accuracy_vs_noise_pu_cfp(4-bit-exponent_1-b
-it-mantissa).pdf  used on input line 243.
-(pdftex.def)             Requested size: 242.67355pt x 416.04468pt.
-
-Package xcolor Warning: Incompatible color definition on input line 244.
-
-
-Package xcolor Warning: Incompatible color definition on input line 244.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
-Package xcolor Warning: Incompatible color definition on input line 248.
-
 File: notaglinelogo.png Graphic file (type png)
 <use notaglinelogo.png>
-Package pdftex.def Info: notaglinelogo.png  used on input line 250.
+Package pdftex.def Info: notaglinelogo.png  used on input line 192.
 (pdftex.def)             Requested size: 91.32pt x 23.1352pt.
 
 Overfull \hbox (505.12177pt too wide) has occurred while \output is active
@@ -1258,56 +1201,52 @@ pdfTeX warning: /usr/bin/pdflatex (file ../figures/log2_histogram.pdf): PDF inc
 lusion: multiple pdfs with page group included in a single page
 >]
 
-Package xcolor Warning: Incompatible color definition on input line 256.
+Package xcolor Warning: Incompatible color definition on input line 194.
 
-<../figures/latency_log_cycle.pdf, id=886, 252.91655pt x 252.91655pt>
-File: ../figures/latency_log_cycle.pdf Graphic file (type pdf)
-<use ../figures/latency_log_cycle.pdf>
-Package pdftex.def Info: ../figures/latency_log_cycle.pdf  used on input line 2
-76.
+<../figures/latency_cfp_cycle.pdf, id=884, 252.91655pt x 252.91655pt>
+File: ../figures/latency_cfp_cycle.pdf Graphic file (type pdf)
+<use ../figures/latency_cfp_cycle.pdf>
+Package pdftex.def Info: ../figures/latency_cfp_cycle.pdf  used on input line 2
+14.
 (pdftex.def)             Requested size: 242.67355pt x 242.68134pt.
 
-Package xcolor Warning: Incompatible color definition on input line 277.
+Package xcolor Warning: Incompatible color definition on input line 215.
 
 
-Package xcolor Warning: Incompatible color definition on input line 277.
+Package xcolor Warning: Incompatible color definition on input line 215.
 
 
-Package xcolor Warning: Incompatible color definition on input line 282.
+Package xcolor Warning: Incompatible color definition on input line 220.
 
 
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
-Package xcolor Warning: Incompatible color definition on input line 293.
+Package xcolor Warning: Incompatible color definition on input line 231.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<../figures/accuracy_vs_noise_pu_log.pdf, id=887, 252.91655pt x 433.59154pt>
-File: ../figures/accuracy_vs_noise_pu_log.pdf Graphic file (type pdf)
-<use ../figures/accuracy_vs_noise_pu_log.pdf>
-Package pdftex.def Info: ../figures/accuracy_vs_noise_pu_log.pdf  used on input
- line 305.
+<../figures/accuracy_vs_noise_pu_cfp(4-bit-exponent_1-bit-mantissa).pdf, id=885
+, 252.91655pt x 433.59154pt>
+File: ../figures/accuracy_vs_noise_pu_cfp(4-bit-exponent_1-bit-mantissa).pdf Gr
+aphic file (type pdf)
+<use ../figures/accuracy_vs_noise_pu_cfp(4-bit-exponent_1-bit-mantissa).pdf>
+Package pdftex.def Info: ../figures/accuracy_vs_noise_pu_cfp(4-bit-exponent_1-b
+it-mantissa).pdf  used on input line 243.
 (pdftex.def)             Requested size: 242.67355pt x 416.04468pt.
 
-Package xcolor Warning: Incompatible color definition on input line 306.
+Package xcolor Warning: Incompatible color definition on input line 244.
 
 
-Package xcolor Warning: Incompatible color definition on input line 306.
+Package xcolor Warning: Incompatible color definition on input line 244.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
-Package xcolor Warning: Incompatible color definition on input line 311.
-
-
-Underfull \vbox (badness 2103) has occurred while \output is active []
+Package xcolor Warning: Incompatible color definition on input line 248.
 
 File: notaglinelogo.png Graphic file (type png)
 <use notaglinelogo.png>
-Package pdftex.def Info: notaglinelogo.png  used on input line 311.
+Package pdftex.def Info: notaglinelogo.png  used on input line 252.
 (pdftex.def)             Requested size: 91.32pt x 23.1352pt.
 
 Overfull \hbox (505.12177pt too wide) has occurred while \output is active
@@ -1331,9 +1270,51 @@ pdfTeX warning: /usr/bin/pdflatex (file ../figures/accuracy_vs_noise_pu_cfp(4-b
 it-exponent_1-bit-mantissa).pdf): PDF inclusion: multiple pdfs with page group 
 included in a single page
 >]
+
+Package xcolor Warning: Incompatible color definition on input line 256.
+
+<../figures/latency_log_cycle.pdf, id=928, 252.91655pt x 252.91655pt>
+File: ../figures/latency_log_cycle.pdf Graphic file (type pdf)
+<use ../figures/latency_log_cycle.pdf>
+Package pdftex.def Info: ../figures/latency_log_cycle.pdf  used on input line 2
+76.
+(pdftex.def)             Requested size: 242.67355pt x 242.68134pt.
+
+Package xcolor Warning: Incompatible color definition on input line 277.
+
+
+Package xcolor Warning: Incompatible color definition on input line 277.
+
+
+Package xcolor Warning: Incompatible color definition on input line 282.
+
+
+Package xcolor Warning: Incompatible color definition on input line 293.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<../figures/accuracy_vs_noise_pu_log.pdf, id=929, 252.91655pt x 433.59154pt>
+File: ../figures/accuracy_vs_noise_pu_log.pdf Graphic file (type pdf)
+<use ../figures/accuracy_vs_noise_pu_log.pdf>
+Package pdftex.def Info: ../figures/accuracy_vs_noise_pu_log.pdf  used on input
+ line 305.
+(pdftex.def)             Requested size: 242.67355pt x 416.04468pt.
+
+Package xcolor Warning: Incompatible color definition on input line 306.
+
+
+Package xcolor Warning: Incompatible color definition on input line 306.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+Package xcolor Warning: Incompatible color definition on input line 311.
+
 File: notaglinelogo.png Graphic file (type png)
 <use notaglinelogo.png>
-Package pdftex.def Info: notaglinelogo.png  used on input line 315.
+Package pdftex.def Info: notaglinelogo.png  used on input line 313.
 (pdftex.def)             Requested size: 91.32pt x 23.1352pt.
 
 Overfull \hbox (505.12177pt too wide) has occurred while \output is active
@@ -1395,7 +1376,7 @@ Underfull \hbox (badness 1460) in paragraph at lines 105--109
 
 File: notaglinelogo.png Graphic file (type png)
 <use notaglinelogo.png>
-Package pdftex.def Info: notaglinelogo.png  used on input line 169.
+Package pdftex.def Info: notaglinelogo.png  used on input line 150.
 (pdftex.def)             Requested size: 91.32pt x 23.1352pt.
 
 Overfull \hbox (505.12177pt too wide) has occurred while \output is active
@@ -1431,18 +1412,9 @@ File: ../biography/david.png Graphic file (type png)
 <use ../biography/david.png>
 Package pdftex.def Info: ../biography/david.png  used on input line 7.
 (pdftex.def)             Requested size: 72.2709pt x 90.33864pt.
-<../biography/klaus.png, id=978, 72.27pt x 90.3375pt>
-File: ../biography/klaus.png Graphic file (type png)
-<use ../biography/klaus.png>
-Package pdftex.def Info: ../biography/klaus.png  used on input line 10.
-(pdftex.def)             Requested size: 72.2709pt x 90.33864pt.
-File: ../biography/klaus.png Graphic file (type png)
-<use ../biography/klaus.png>
-Package pdftex.def Info: ../biography/klaus.png  used on input line 10.
-(pdftex.def)             Requested size: 72.2709pt x 90.33864pt.
 File: notaglinelogo.png Graphic file (type png)
 <use notaglinelogo.png>
-Package pdftex.def Info: notaglinelogo.png  used on input line 13.
+Package pdftex.def Info: notaglinelogo.png  used on input line 10.
 (pdftex.def)             Requested size: 91.32pt x 23.1352pt.
 
 Overfull \hbox (505.12177pt too wide) has occurred while \output is active
@@ -1459,9 +1431,17 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 []
  []
 
-[15 <../biography/yarib_300_375.jpg> <../biography/david.png> <../biography/kla
-us.png>]
-<../biography/alberto.png, id=988, 72.27pt x 90.3375pt>
+[15 <../biography/yarib_300_375.jpg> <../biography/david.png>]
+<../biography/klaus.png, id=984, 72.27pt x 90.3375pt>
+File: ../biography/klaus.png Graphic file (type png)
+<use ../biography/klaus.png>
+Package pdftex.def Info: ../biography/klaus.png  used on input line 10.
+(pdftex.def)             Requested size: 72.2709pt x 90.33864pt.
+File: ../biography/klaus.png Graphic file (type png)
+<use ../biography/klaus.png>
+Package pdftex.def Info: ../biography/klaus.png  used on input line 10.
+(pdftex.def)             Requested size: 72.2709pt x 90.33864pt.
+<../biography/alberto.png, id=987, 72.27pt x 90.3375pt>
 File: ../biography/alberto.png Graphic file (type png)
 <use ../biography/alberto.png>
 Package pdftex.def Info: ../biography/alberto.png  used on input line 13.
@@ -1496,19 +1476,19 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 
 [16
 
- <../biography/alberto.png>] (./main.aux)
+ <../biography/klaus.png> <../biography/alberto.png>] (./main.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  ) 
 Here is how much of TeX's memory you used:
- 5908 strings out of 492982
- 87986 string characters out of 6134896
+ 5907 strings out of 492982
+ 87974 string characters out of 6134896
  171667 words of memory out of 5000000
- 9273 multiletter control sequences out of 15000+600000
- 115493 words of font info for 141 fonts, out of 8000000 for 9000
+ 9272 multiletter control sequences out of 15000+600000
+ 113849 words of font info for 140 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,18n,53p,1390b,476s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 41i,18n,53p,1390b,478s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/cmextra/cmex7.pfb></usr/share/texlive/texmf-
@@ -1526,7 +1506,7 @@ ist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/ty
 pe1/urw/helvetic/uhvro8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/tim
 es/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><
 /usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (16 pages, 2894805 bytes).
+Output written on main.pdf (16 pages, 2895155 bytes).
 PDF statistics:
  1053 PDF objects out of 1200 (max. 8388607)
  867 compressed objects within 9 object streams
