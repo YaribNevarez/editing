@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.8.18)  1 DEC 2020 01:48
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.8.18)  1 DEC 2020 16:04
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1347,12 +1347,12 @@ Package xcolor Warning: Incompatible color definition on input line 333.
 Package xcolor Warning: Incompatible color definition on input line 1.
 
 
-Underfull \hbox (badness 2213) in paragraph at lines 8--9
+Underfull \hbox (badness 2213) in paragraph at lines 5--6
 []\T1/ptm/n/n/10 We demon-strate our ap-proach with a de-sign ex-plo-
  []
 
 
-Package xcolor Warning: Incompatible color definition on input line 12.
+Package xcolor Warning: Incompatible color definition on input line 9.
 
 ) (./main.bbl
 
@@ -1378,7 +1378,7 @@ Underfull \hbox (badness 1460) in paragraph at lines 105--109
 
 File: notaglinelogo.png Graphic file (type png)
 <use notaglinelogo.png>
-Package pdftex.def Info: notaglinelogo.png  used on input line 144.
+Package pdftex.def Info: notaglinelogo.png  used on input line 157.
 (pdftex.def)             Requested size: 91.32pt x 23.1352pt.
 
 Overfull \hbox (505.12177pt too wide) has occurred while \output is active
@@ -1490,7 +1490,7 @@ Here is how much of TeX's memory you used:
  9272 multiletter control sequences out of 15000+600000
  113849 words of font info for 140 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,18n,53p,1390b,478s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 41i,18n,53p,1390b,476s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/cmextra/cmex7.pfb></usr/share/texlive/texmf-
@@ -1508,7 +1508,7 @@ ist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/ty
 pe1/urw/helvetic/uhvro8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/tim
 es/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><
 /usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (16 pages, 2894340 bytes).
+Output written on main.pdf (16 pages, 2893996 bytes).
 PDF statistics:
  1053 PDF objects out of 1200 (max. 8388607)
  867 compressed objects within 9 object streams
