@@ -1,7 +1,7 @@
 \section{Conclusions}
 \label{sec:conclusions}
-
-In this publication, we present a dot-product hardware design based on approximate computing, with three design features: (1) the element-wise multiplication is done by adding integer exponents as well as accumulation is done by adding denormalized integer products, which increases computational throughput; (2) the synaptic weight vector uses either reduced custom floating-point or logarithmic representation, which reduces memory footprint; and (3) the neuron vector uses either standard or custom floating-point representation, which preserves inference accuracy.
+In this publication, we accelerate SbS neural networks with a dot-product functional unit based on approximate computing.
+This hardware module has the following three design features: (1) the pairwise product is done by adding exponents, then accumulation is done by adding denormalized products, which increases computational throughput; (2) the synaptic weight vector uses either reduced custom floating-point or logarithmic representation, which reduces memory footprint; and (3) the neuron vector uses either standard or custom floating-point representation, which preserves inference accuracy.
 
 This approach reduces computational latency, memory footprint, and power dissipation while preserving accuracy and noise robustness. This solution is compatible with standard floating-point and, it does not require training algorithm adjustments, representing a convenient solution for efficient deployment of emerging ML algorithms on resource-limited devices.
 

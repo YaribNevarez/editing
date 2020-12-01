@@ -62,24 +62,24 @@
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {IV-B}1}Configuration mode}{5}}
 \citation{rotermund2019Backpropagation}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {IV-B}2}Computation mode}{6}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-C}}dot-product hardware module}{6}}
 \@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces The {\it  Conv} processing unit and its six stages: (a) receive IP vector, (b) spike firing, (c) receive spike kernel, (d) update dynamics, (e) dispatch new IP vector, (f) dispatch output spike matrix.}}{6}}
 \newlabel{fig:hw_conv}{{4}{6}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-C}}dot-product hardware module}{6}}
 \newlabel{eq:dot_product}{{2}{6}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {IV-C}1}Dot-product using standard floating-point computation}{6}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Dot-product hardware module using standard floating-point computation. (a) Illustrates the iteration interval of 10 clock cycles. (b) Illustrates the iteration latency of 19 clock cycles. (c) Illustrates the element-wise multiplication block in dark-gray. (d) Illustrates the accumulation block in light-gray.}}{7}}
+\newlabel{eq:dot_standard_float_latency}{{3}{6}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Dot-product hardware module using standard floating-point computation. (a) Illustrates the iteration interval of 10 clock cycles. (b) Illustrates the iteration latency of 19 clock cycles. (c) Illustrates the pairwise product block in dark-gray. (d) Illustrates the accumulation block in light-gray.}}{7}}
 \newlabel{fig:dot_product_float}{{5}{7}}
-\newlabel{eq:dot_standard_float_latency}{{3}{7}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {IV-C}2}Dot-product using custom floating-point and logarithmic computation}{7}}
 \newlabel{eq:dot_standard_custom_float_latency}{{4}{7}}
 \newlabel{eq:dot_log_latency}{{5}{7}}
 \citation{xilinx2015zynq}
 \citation{nevarez2020accelerator}
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Dot-product hardware module using custom floating-point computation. (a) Illustrates the iteration interval of 2 clock cycles. (b) Illustrates the iteration latency of 13 clock cycles. (c) Illustrates the element-wise multiplication blocks in dark-gray. (d) Illustrates the accumulation blocks in light-gray.}}{8}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Dot-product hardware module using custom floating-point computation. (a) Illustrates the iteration interval of 2 clock cycles. (b) Illustrates the iteration latency of 13 clock cycles. (c) Illustrates the pairwise product blocks in dark-gray. (d) Illustrates the accumulation blocks in light-gray.}}{8}}
 \newlabel{fig:dot_product_custom}{{6}{8}}
 \@writefile{toc}{\contentsline {section}{\numberline {V}Experimental results}{8}}
 \newlabel{sec:experimental_results}{{V}{8}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Dot-product hardware module using logarithmic computation. (a) Illustrates the iteration interval of 2 clock cycles. (b) Illustrates the iteration latency of 9 clock cycles. (c) Illustrates the element-wise multiplication block in dark-gray. (d) Illustrates the accumulation blocks in light-gray.}}{8}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Dot-product hardware module using logarithmic computation. (a) Illustrates the iteration interval of 2 clock cycles. (b) Illustrates the iteration latency of 9 clock cycles. (c) Illustrates the pairwise product block in dark-gray. (d) Illustrates the accumulation blocks in light-gray.}}{8}}
 \newlabel{fig:dot_product_log}{{7}{8}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-A}}Performance benchmark}{8}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {V-A}1}Benchmark on CPU}{8}}
@@ -160,11 +160,11 @@
 \bibcite{rastegari2016xnor}{19}
 \bibcite{moons20160}{20}
 \bibcite{whatmough201714}{21}
-\bibcite{sun2018xnor}{22}
 \@writefile{toc}{\contentsline {section}{\numberline {VI}Conclusions}{14}}
 \newlabel{sec:conclusions}{{VI}{14}}
 \newlabel{sec:Ack}{{VI}{14}}
 \@writefile{toc}{\contentsline {section}{REFERENCES}{14}}
+\bibcite{sun2018xnor}{22}
 \bibcite{rathi2018stdp}{23}
 \bibcite{sen2017approximate}{24}
 \bibcite{srivastava2014dropout}{25}
