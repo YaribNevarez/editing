@@ -2,8 +2,8 @@
 \label{sec:background}
 \input{../content/sbs_networks.tex}
 
-\subsection{Parallelization in SbS networks}
-SbS network models are constructed in sequential layered structures, each layer consists of many IPs which can be simulated independently while the communication between the IPs is organized by a low bandwidth signal -- the spikes \cite{Rotermund500280}. Technically, each IP is an independent computational entity (see \fig{fig:SbS_layer}), this allows to design specialized hardware architectures that can be massively parallelized.
+%%%%\subsection{Parallelization in SbS networks}
+The SbS network algorithm is highly suitable for parallelization. SbS network models are constructed in sequential layered structures, each layer consists of many IPs which can be simulated independently while the communication between the IPs is organized by a low bandwidth signal -- the spikes \cite{Rotermund500280}. Technically, each IP is an independent computational entity (see \fig{fig:SbS_layer}), this allows to design specialized hardware architectures that can be massively parallelized.
 
 \begin{figure}
 	\centering

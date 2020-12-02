@@ -1,8 +1,18 @@
 \section{System Design}
 \label{sec:system_design}
-\subsection{Hardware architecture} \label{Hardware_architecture}
+In this section, we present the system design as a hardware/software solution for rapid prototyping and deployment of SbS networks with configurable hardware acceleration in embedded systems\cite{nevarez2020accelerator}. In principle, the proposed architecture is a cross-platform software library for SbS model simulation, capable of utilizing the available hardware resources for computation.
 
-As a hardware/software (HW/SW) co-design, the system architecture is a CPU+FPGA-based platform, where the acceleration of SbS network computation is based on asynchronous execution of parallel heterogeneous PUs: \emph{Spike} (input layer), \emph{Conv} (convolution), \emph{Pool} (pooling), and \emph{FC} (fully connected). Each PU is connected through an AXI-Lite interface for configuration of operational mode, and AXI-Stream interfaces for data transfer via Direct Memory Access (DMA) allowing data movement with high transfer rate. Each PU asserts an interrupt flag on task or transaction completion which is handled by the software drivers to collect results and start a new transaction. The hardware architecture can resize its resource utilization by changing the number of PUs instances, this provides a good tradeoff between area and throughput (see \fig{fig:hw_sbs}). The dedicated PUs for \emph{Spike}, \emph{Conv}, and \emph{FC} use custom floating-point, and logarithmic computation, while the \emph{Pool} uses standard floating-point.
+The software architecture is structured as a layered object oriented application framework written in C language. This offers a comprehensive high level software API that allows the construction of scalable sequential SbS networks with configurable hardware acceleration. Conceptually this design is modular, reusable, and extensible. The overall structure is depicted in \fig{fig:sw_stack}.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.5\textwidth]{../figures/sbs_software_component.pdf}
+	\caption{System-level overview of the software architecture.}
+	\label{fig:sw_stack}
+\end{figure}
+
+\subsection{Hardware architecture} \label{Hardware_architecture}
+As a hardware/software co-design, the system architecture is a CPU+FPGA-based platform, where the acceleration of SbS network computation is based on asynchronous execution of parallel heterogeneous PUs: \emph{Spike} (input layer), \emph{Conv} (convolution), \emph{Pool} (pooling), and \emph{FC} (fully connected). Each PU is connected through an AXI-Lite interface for configuration of operational mode, and AXI-Stream interfaces for data transfer via Direct Memory Access (DMA) allowing data movement with high transfer rate. Each PU asserts an interrupt flag on task or transaction completion which is handled by the software drivers to collect results and start a new transaction. The hardware architecture can resize its resource utilization by changing the number of PUs instances, this provides a good tradeoff between area and throughput (see \fig{fig:hw_sbs}). The dedicated PUs for \emph{Spike}, \emph{Conv}, and \emph{FC} use custom floating-point, and logarithmic computation, while the \emph{Pool} uses standard floating-point.
 
 The PUs are written in C using Vivado HLS (High-Level Synthesis) tool. In this publication we focus on the optimizations achieved by using reduced custom floating-point and logarithmic computation in the processing unit dedicated for convolution layers.
 
