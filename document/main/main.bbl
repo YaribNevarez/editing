@@ -61,13 +61,6 @@ D.~Rotermund and K.~R. Pawelzik, ``Back-propagation learning in deep
   spike-by-spike networks,'' \emph{Frontiers in Computational Neuroscience},
   vol.~13, p.~55, 2019.
 
-\bibitem{nevarez2020accelerator}
-Y.~Nevarez, A.~Garcia-Ortiz, D.~Rotermund, and K.~R. Pawelzik, ``Accelerator
-  framework of spike-by-spike neural networks for inference and incremental
-  learning in embedded systems,'' in \emph{2020 9th International Conference on
-  Modern Circuits and Systems Technologies (MOCAST)}.\hskip 1em plus 0.5em
-  minus 0.4em\relax IEEE, 2020, pp. 1--5.
-
 \bibitem{zhang2018survey}
 M.~ZHANG, G.~Zonghua, and P.~Gang, ``A survey of neuromorphic computing based
   on spiking neural networks,'' \emph{Chinese Journal of Electronics}, vol.~27,
@@ -107,6 +100,16 @@ J.~Park, J.~H. Choi, and K.~Roy, ``Dynamic bit-width adaptation in dct: An
 J.~Han and M.~Orshansky, ``Approximate computing: An emerging paradigm for
   energy-efficient design,'' in \emph{2013 18th IEEE European Test Symposium
   (ETS)}.\hskip 1em plus 0.5em minus 0.4em\relax IEEE, 2013, pp. 1--6.
+
+\bibitem{gupta2011impact}
+V.~Gupta, D.~Mohapatra, S.~P. Park, A.~Raghunathan, and K.~Roy, ``Impact:
+  imprecise adders for low-power approximate computing,'' in \emph{IEEE/ACM
+  International Symposium on Low Power Electronics and Design}.\hskip 1em plus
+  0.5em minus 0.4em\relax IEEE, 2011, pp. 409--414.
+
+\bibitem{mittal2016survey}
+S.~Mittal, ``A survey of techniques for approximate computing,'' \emph{ACM
+  Computing Surveys (CSUR)}, vol.~48, no.~4, pp. 1--33, 2016.
 
 \bibitem{bouvier2019spiking}
 M.~Bouvier, A.~Valentian, T.~Mesquida, F.~Rummens, M.~Reyboz, E.~Vianello, and
@@ -235,6 +238,13 @@ O.~Russakovsky, J.~Deng, H.~Su, J.~Krause, S.~Satheesh, S.~Ma, Z.~Huang,
 \bibitem{rotermund2018massively}
 D.~Rotermund and K.~R. Pawelzik, ``Massively parallel {FPGA} hardware for
   spike-by-spike networks,'' \emph{bioRxiv}, 2019.
+
+\bibitem{nevarez2020accelerator}
+Y.~Nevarez, A.~Garcia-Ortiz, D.~Rotermund, and K.~R. Pawelzik, ``Accelerator
+  framework of spike-by-spike neural networks for inference and incremental
+  learning in embedded systems,'' in \emph{2020 9th International Conference on
+  Modern Circuits and Systems Technologies (MOCAST)}.\hskip 1em plus 0.5em
+  minus 0.4em\relax IEEE, 2020, pp. 1--5.
 
 \bibitem{lecun1998mnist}
 Y.~LeCun, ``The mnist database of handwritten digits,'' \emph{http://yann.
