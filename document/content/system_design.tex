@@ -43,10 +43,11 @@ The PU can be reconfigured with different synaptic weight matrix and parameters 
 \subsubsection{Computation mode}
 In this mode of operation, the PU executes a transaction to process a group of IPs using the previously given parameters and synaptic weight matrix. This process operates in six stages as shown in \fig{fig:hw_conv}. In the first two stages, the PU receives $h_\mu\in\mathbb{R}^{N}$, then the PU calculates the firing spike, and stores it in $S^{new}\in\mathbb{N}^{H}$ (output spike vector). From the third to the fifth stage, the PU receives $S_t\in\mathbb{N}^{K\times K}$ (input spike matrix), then it computes the update dynamics, and then it dispatches $h_\mu^{new}\in\mathbb{R}^{N}$ (updated IP). The process repeats from the first to the fifth stage for $H$ number of loops (for each IP of the layer or partition). Finally, the $S^{new}$ is dispatched.
 
-The computation of the update dynamics [see \fig{fig:hw_conv}(d)] operates in two modular stages: \emph{dot-product} and \emph{neuron update}. First, the \emph{dot-product} module calculates $\sum_{j=0}^{N-1}h_{\mu}(j)W(s_t|j)$, while storing each pairwise product as intermediate results. And then, the \emph{neuron update} module calculates \equ{eq:sbs_update} reusing previous intermediate results and parameters.
+The computation of the update dynamics [see \fig{fig:hw_conv}(d)] operates in two modular stages: \emph{dot-product} and \emph{neuron update}. First, the \emph{dot-product} module calculates the sum of pairwise products of $h_{\mu}$ and $W(s_t)$, while storing each pairwise product as intermediate results. And then, the \emph{neuron update} module calculates \equ{eq:sbs_update} reusing previous results and parameters.
 
 
-The computation of the dot-product is the main piece of \equ{eq:sbs_update} and represents a considerable computational cost using standard floating-point in non-quantized network models. In the following section, we focus on an optimized design for this dot-product module to improve performance while preserving inference accuracy.
+The computation of the dot-product is the main piece of \equ{eq:sbs_update} and represents a considerable computational cost using standard floating-point in non-quantized network models. Fortunately, the pairwise product of $h_{\mu}$ and $W(s_t)$ is identified as an approximable factor in the dot-product piece of \equ{eq:sbs_update}. In the following section, we focus on an optimized dot-product hardware design based on approximate computing.
+
 
 \begin{figure}
 	\centering
@@ -56,7 +57,9 @@ The computation of the dot-product is the main piece of \equ{eq:sbs_update} and 
 \end{figure}
 
 \subsection{dot-product hardware module}
-This module is part of an application-specific architecture optimized to calculate dot-product of arbitrary length, see \equ{eq:dot_product}. In this section, we present three pipelined hardware modules using standard floating-point, custom floating-point, and logarithmic computation.
+This module is part of an application-specific architecture optimized to approximate the dot-product of arbitrary length, see \equ{eq:dot_product}. For quality configurability, we parameterized the mantissa bit-width of $W(s_t)$, which provides a tunable knob to trade-off the resource utilization versus QoR. Since the lower-order bits have smaller significance than the higher-order bits, truncating them may have only a minor impact on QoR, we designate this as custom floating-point approximation. Further on, we completely remove the mantissa bits in order to use only the exponent of a floating-point representation. Hence, the worst-case quality becomes a logarithmic representation, consequently leading to meaningful architectural optimizations using only adders and shifters for dot-product approximation in hardware, we designate this as logarithmic approximation.
+
+In this section, we present three pipelined hardware modules using standard floating-point, custom floating-point, and logarithmic approximation.
 
 \begin{eqnarray} \label{eq:dot_product}
 r_{\mu}\left(s_t\right)=\sum_{j=0}^{N-1}h_{\mu}(j)W(s_t|j)
@@ -74,7 +77,6 @@ r_{\mu}\left(s_t\right)=\sum_{j=0}^{N-1}h_{\mu}(j)W(s_t|j)
 In this design, the high level synthesis tool infers computational blocks with considerable latency cost for standard floating-point. In the case of floating-point multiplication [\fig{fig:dot_product_float}(c)], the synthesis infers a hardware block with a latency cost of 5 clock cycles; theoretically, this block would handle exponents addition, mantissas multiplication, and mantissa correction if needed. Moreover, in the case of floating-point addition [\fig{fig:dot_product_float}(d)], the synthesis infers a hardware block with a latency cost of 9 clock cycles; theoretically, this block would handle mantissas alignment, addition, and correction if needed. Therefore, the use of standard floating-point in high-level synthesis results in a high computational cost that can be enhanced by a custom design.
 
 
-
 \begin{figure}[t!]
 	\centering
 	\includegraphics[width=0.5\textwidth]{../figures/dot_product_float.pdf}
@@ -82,12 +84,14 @@ In this design, the high level synthesis tool infers computational blocks with c
 	\label{fig:dot_product_float}
 \end{figure}
 
-\subsubsection{Dot-product using custom floating-point and logarithmic computation}
- The hardware module to calculate dot-product using custom floating-point computation is shown in \fig{fig:dot_product_custom}. In this design, $h_\mu$ uses standard floating-point number representation, and $W(s)$ uses a positive reduced floating-point number representation where the exponent and mantissa bit width are design parameters. A slight modification in this design yields a hardware module which computes the dot-product using logarithmic computation, this is shown in \fig{fig:dot_product_log}. In this design, $W(s)$ uses a logarithmic number representation where the exponent bit width is a design parameter.
+\subsubsection{Dot-product using custom floating-point and logarithmic approximation}
+ The hardware module to calculate dot-product using custom floating-point approximation is shown in \fig{fig:dot_product_custom}. In this design, $h_\mu$ uses standard floating-point number representation, and $W(s)$ uses a positive reduced custom floating-point number representation, where the mantissa bit width is the quality configurability knob, this parameter is tuned by the designer to trade-off between QoR versus resource utilization, thus, energy consumption.
  
- As a quality-configurable approximate computing approach, the mantissa bit width is a parameter that is modulated/tuned by the designer. This parameter leverages the intrinsic error-tolerance of neural networks and performs a trade-off between computation accuracy and synaptic memory footprint. Therefore, based on the noncritical need for fully precise computation, the mantissa bit with is partially or totally truncated, corresponding to the custom floating-point or logarithmic representation, respectively.
+ As the wort-case quality configuration, by completely removing the $W(s)$ mantissa leads to a slightly different hardware architecture using only adders and shifters, which computes the dot-product using logarithmic approximation, this is shown in \fig{fig:dot_product_log}.
  
- The computation of these designs work in three phases: \emph{Computation}, \emph{Threshold-test}, and \emph{Result normalization}.
+Additionally, the exponent bit width of $W(s)$ is a design parameter for efficient resource utilization, and it is defined based on the application or deployment needs.
+ 
+ The custom floating-point and logarithmic approximation designs work in three phases: \emph{Computation}, \emph{Threshold-test}, and \emph{Result normalization}.
  
  \begin{itemize}
  	\item{Phase I, \emph{Computation}}: 

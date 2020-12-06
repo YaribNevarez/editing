@@ -158,7 +158,7 @@ Each \emph{Conv} PU instantiates a BRAM stationary weight matrix of $52,000$ ent
 \end{figure}
 
 
-\subsection{Design exploration for custom floating-point and logarithmic computation}
+\subsection{Design exploration for custom floating-point and logarithmic approximation}
 
 In this section, we address a design exploration to evaluate our approach for SbS neural network simulation using custom floating-point and logarithmic computation. First, we examine each synaptic weight matrix in order to obtain the minimum requirements for numeric representation and memory storage. Second, we implement the proposed dot-product architecture using the minimal floating-point and logarithmic representation as design parameters. Finally, we evaluate overall performance, inference accuracy, noise robustness, resource utilization, and power dissipation.
 
@@ -183,7 +183,7 @@ As a quality-configurable approximate computing approach, the mantissa bit width
 	\caption{$\log_2$-histogram of each synaptic weight matrix showing the percentage of matrix elements with given integer exponent.}\label{fig:log2histogram}
 \end{figure}
 
-\subsubsection{Design exploration for dot-product using custom floating-point computation}
+\subsubsection{Design exploration for dot-product using custom floating-point approximation}
 For this design exploration, we use a custom floating-point representation composed of 4-bit exponent and 1-bit mantissa for the synaptic weight matrix on the proposed dot-product architecture. In this case, each \emph{Conv} PU instantiates a BRAM stationary weight matrix for $52,000$ entries of 5-bit each one, which is enough to store $W\in\mathbb{R}^{5\times 5\times 2\times 32}$ and $W\in\mathbb{R}^{5\times 5\times 32\times 64}$ for \emph{H1\_CONV} and \emph{H3\_CONV}, respectively. The same dot-product architecture is implemented in \emph{FC} processing unit, however, this does not instantiate BRAM stationary synaptic weight matrix. Instead, \emph{FC} receives neuron and synaptic vectors during performance. The hardware mapping and the computation schedule of this deployment are displayed in \Tab{tab:latency_cfp} and \Fig{fig:latency_pu_cfp_cycle}.
 
 With a reduction from 32-bit ot 5-bit in all the synaptic weight matrices, this design exploration achieves a maximum hardware PU latency of $1.309 ms$ according to \equ{eq:time_pu}, and a CPU latency of $1.673 ms$. Therefore, applying \equ{eq:time_spike}, we obtain a latency of $1.673 ms$ per spike cycle as shown in \Fig{fig:latency_pu_cfp_cycle}. In this case, the cyclic bottleneck is in the CPU performance.
@@ -245,7 +245,7 @@ This deployment achieves an accuracy of $98.97\%$ correct classification on the 
 	\label{fig:accuracy_vs_noise_pu_cfp}
 \end{figure}
 
-\subsubsection{Design exploration for dot-product using logarithmic computation}
+\subsubsection{Design exploration for dot-product using logarithmic approximation}
 For this design exploration, we use a 4-bit integer exponent for logarithmic representation of the synaptic weight matrix. In this case, each \emph{Conv} processing unit implements the proposed dot-product architecture and a BRAM stationary weight matrix for $52,000$ entries of 4-bit integer each one to store $W\in\mathbb{N}^{5\times 5\times 2\times 32}$ and $W\in\mathbb{N}^{5\times 5\times 32\times 64}$ for \emph{H1\_CONV} and \emph{H3\_CONV}, respectively. The same dot-product architecture is implemented in \emph{FC} processing unit without stationary synaptic weight matrix. The hardware mapping and the computation schedule of this deployment are displayed in \Tab{tab:latency_log} and \Fig{fig:latency_pu_log_cycle}.
 
 With a reduction from 32-bit ot 4-bit in all the synaptic weight matrices, this design exploration achieves a maximum hardware PU latency of $1.271 ms$ according to \equ{eq:time_pu}, and a CPU latency of $1.673 ms$. Therefore, applying \equ{eq:time_spike}, we obtain a latency of $1.673 ms$ per spike cycle as shown in \Fig{fig:latency_pu_log_cycle}. In this case, the cyclic bottleneck is in the CPU performance.
