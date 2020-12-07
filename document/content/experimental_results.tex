@@ -2,9 +2,9 @@
 \label{sec:experimental_results}
 The proposed architecture is demonstrated on a Xilinx Zynq-7020. This device integrates a dual ARM Cortex-A9 based processing system (PS) and programmable logic (PL) equivalent to Xilinx Artix-7 (FPGA) in a single chip \cite{xilinx2015zynq}. The Zynq-7020 architecture conveniently maps the custom logic and software in the PL and PS respectively as an embedded system.
 
-In this platform, we implement the proposed hardware architecture to deploy an SbS network structure for MNIST classification task as shown in \fig{fig:sbs_network}. The training of the SbS model is performed in Matlab and the resulting synaptic weight matrices are deployed on the embedded system. The SbS network is built as a sequential model using the API from the SbS embedded software framework \cite{nevarez2020accelerator}, where the computation of the network is distributed among the hardware processing units and the CPU.
+In this platform, we implement the proposed hardware architecture to deploy the SbS network structure shown in \fig{fig:sbs_network} for MNIST classification task. The SbS model is trained in Matlab without any quantization method, using standard floating-point. The resulting synaptic weight matrices are deployed on the embedded system, where the SbS network is built as a sequential model using the API from the SbS embedded software framework \cite{nevarez2020accelerator}. This API enables to configure the computational workload of the neural network, which can be distributed among the hardware processing units and the CPU.
 
-For the evaluation of our approach, we elaborate a design exploration reviewing the computational latency, inference accuracy, noise robustness, resource utilization, and power dissipation. First, we benchmark the performance of SbS network simulation using standard floating-point computation on CPU, and then hardware processing units. Afterwards, we evaluate our dot-product architecture addressing a design exploration using custom floating-point, and then logarithmic computation. Finally, we present a comparison table of the given results.
+For the evaluation of our approach, we address a design exploration reviewing the computational latency, inference accuracy, resource utilization, and power dissipation. First, we benchmark the performance of SbS network simulation on CPU, and then on hardware processing units using standard floating-point computation. Afterwards, we evaluate our dot-product architecture addressing a design exploration using custom floating-point, and then logarithmic computation. Finally, we present a discussion of the given results.
 
 \begin{figure}[!h]
 	\includegraphics[width=\columnwidth]{../figures/sbs_network.pdf}
@@ -52,13 +52,13 @@ To benchmark the computation on hardware PUs using standard floating-point, we i
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.5\textwidth]{../figures/sbs_hw_experimental.pdf}
-	\caption{System overview of the proposed architecture with 8 processing units.}
+	\caption{System overview of the top-level architecture with 8 processing units.}
 	\label{fig:hw_sbs_8_pu}
 \end{figure}
 
-In this deployment, it is distributed the computation workload of \emph{H2\_POOL} and \emph{H3\_CONV} among two PUs each one, since these are the heaviest pooling and convolution layers respectively. The output layer \emph{HY\_OUT} is fully processed by the CPU, since it is the lightest one. The hardware mapping and the computation schedule of this deployment are displayed in \Tab{tab:latency_fp} and \fig{fig:latency_pu_fp}.
+The heaviest layers of the neural network are partitioned for asynchronous parallel processing. Hence, it is distributed the computational workload of \emph{H2\_POOL} and \emph{H3\_CONV} among two PUs each one, since these are the heaviest pooling and convolution layers respectively. The output layer \emph{HY\_OUT} is fully processed by the CPU, since it is the lightest one. The hardware mapping and the computation schedule of this deployment are displayed in \Tab{tab:latency_fp} and \fig{fig:latency_pu_fp}.
 
-\begin{table}[!ht]\centering
+\begin{table}[!t]\centering
 	\caption{Performance of processing units using standard floating-point computation.}\label{tab:latency_fp}
 	\scriptsize
 	\begin{tabular}{llrrrrrr}\toprule
@@ -79,14 +79,14 @@ In this deployment, it is distributed the computation workload of \emph{H2\_POOL
 	\end{tabular}
 \end{table}
 
-\begin{figure}[!ht]
+\begin{figure}[!t]
 	\centering
 	\includegraphics[width=1\columnwidth]{../figures/latency_pu_fp.pdf}
 	\caption{Performance of processing units using standard floating-point computation.}
 	\label{fig:latency_pu_fp}
 \end{figure}
 
-In the computation schedule, the following terms are defined: $t_s(n)$ as the start time of the layer (as a computation node) $n\in L$ where $L$ represents the set of layers, $t_{CPU}(n)$ as the CPU preprocessing time, $t_{PU}(n)$ as the PU latency, and $t_f(n)$ as the finish time. The $t_{CPU}(n)$ is the period of time in which the CPU writes a DRAM buffer with $h_\mu$ (neuron vector) of the current processing layer and $S_t$ (spike vector) from its preceding layer, this buffer is streamed to the PU via DMA.
+In the computation schedule, the following terms are defined: $t_s(n)$ as the start time for the processing of the neural network layer (as a computation node) $n\in L$ where $L$ represents the set of layers; $t_{CPU}(n)$ as the CPU preprocessing time; $t_{PU}(n)$ as the PU latency; and $t_f(n)$ as the finish time. For data preparation, the $t_{CPU}(n)$ is the period of time in which the CPU writes a DRAM buffer with $h_\mu$ (neuron vector) of the current processing layer and $S_t$ (spike vector) from its preceding layer, this buffer is streamed to the PU via DMA.
 
 The total execution time of the CPU is defined by \equ{eq:time_cpu}. In a cyclic inference, the execution time of the network computation is the longest path among the processing units including the CPU, this is denoted as the latency of an spike cycle, and it is defined by \equ{eq:time_spike}. The total execution time of the network computation is the latest finish time defined by \equ{eq:time_finish}.
 
@@ -117,11 +117,11 @@ T_{CPU}, & \text{otherwise}
 T_{f} = \max_{n\in L}(t_{f}(n))
 \end{eqnarray}
 
-As the heaviest layer, the computational workload of \emph{H3\_CONV} is evenly partitioned among two PUs: \emph{Conv2} and \emph{Conv3}. However, in the cyclic schedule, \emph{Conv2} causes the performance bottleneck as shown in \fig{fig:latency_pu_fp_cycle}. In this case, the CPU has to await for \emph{Conv2} to finish the computation of the previous cycle in order to start the current computation cycle. Applying \equ{eq:time_spike}, we obtain a latency of 3.183 ms per spike cycle.
+Using standard floating-point represents a high computational cost. As the heaviest layer, the computational workload of \emph{H3\_CONV} is evenly partitioned among two PUs: \emph{Conv2} and \emph{Conv3}. However, in the cyclic schedule, \emph{Conv2} causes the performance bottleneck as shown in \fig{fig:latency_pu_fp_cycle}. In this case, the CPU has to await for \emph{Conv2} to finish the computation of the previous cycle in order to start the current computation cycle. Therefore, applying \equ{eq:time_spike}, we obtain a latency of 3.183 ms per spike cycle.
 
-This deployment achieves an accuracy of $98.98\%$ correct classification on the $10,000$ image test set at $1000$ spikes. Furthermore, as quality metric, the noise robustness report is measured using input patterns with positive additive equidistributed random noise up to $55\%$ of amplitude as shown in \fig{fig:accuracy_vs_noise_pu_fp}. The post-implementation resource utilization and power dissipation are shown in \Tab{tab:resource_fp} and \Tab{tab:power_fp}, respectively.
+This deployment achieves an accuracy of $98.98\%$ correct classification on the $10,000$ image test set at $1000$ spikes. Furthermore, for output quality monitoring, the noise robustness report is measured using input patterns with positive additive equidistributed random noise up to $55\%$ of amplitude as illustrated in \fig{fig:accuracy_vs_noise_pu_fp}. The post-implementation resource utilization and power dissipation are shown in \Tab{tab:resource_fp} and \Tab{tab:power_fp}, respectively.
 
-Each \emph{Conv} PU instantiates a BRAM stationary weight matrix of $52,000$ entries to store $W\in\mathbb{R}^{5\times 5\times 2\times 32}$ and $W\in\mathbb{R}^{5\times 5\times 32\times 64}$ for \emph{H1\_CONV} and \emph{H3\_CONV}, respectively. In order to reduce BRAM utilization, we use a custom floating-point representation composed of 4-exponent and 4-bit mantissa. Each 8-bit entry is promoted to its standard floating-point representation for the dot-product computation. The methodology to find the appropriate bit width parameters for custom floating-point representation is presented in the next section.
+Each \emph{Conv} PU instantiates an on-chip stationary weight matrix of $52,000$ entries to store $W\in\mathbb{R}^{5\times 5\times 2\times 32}$ and $W\in\mathbb{R}^{5\times 5\times 32\times 64}$ for \emph{H1\_CONV} and \emph{H3\_CONV}, respectively. In order to reduce BRAM utilization, we use a custom floating-point representation composed of 4-exponent and 4-bit mantissa. Each 8-bit entry is promoted to its standard floating-point representation for the dot-product computation. The methodology to find the appropriate bit width parameters for custom floating-point representation is presented in the next section.
 
 \begin{table}[!h]\centering
 	\caption{Resource utilization of processing units using standard floating-point.}\label{tab:resource_fp}
@@ -153,18 +153,18 @@ Each \emph{Conv} PU instantiates a BRAM stationary weight matrix of $52,000$ ent
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=1\columnwidth]{../figures/accuracy_vs_noise_pu_fp.pdf}
-	\caption{Benchmark of accuracy and noise robustness of SbS network simulation on hardware PU using standard floating-point computation on 100 images. (a) Illustrates the accuracy vs number of spikes at given noise amplitudes. (b) Illustrates the accuracy vs noise amplitude at given number of spikes.}
+	\caption{Benchmark of noise tolerance for output quality monitoring of the SbS network simulation on hardware PU using standard floating-point computation on 100 images. (a) Illustrates the accuracy vs number of spikes at given noise amplitudes. (b) Illustrates the accuracy vs noise amplitude at given number of spikes.}
 	\label{fig:accuracy_vs_noise_pu_fp}
 \end{figure}
 
 
 \subsection{Design exploration for custom floating-point and logarithmic approximation}
 
-In this section, we address a design exploration to evaluate our approach for SbS neural network simulation using custom floating-point and logarithmic computation. First, we examine each synaptic weight matrix in order to obtain the minimum requirements for numeric representation and memory storage. Second, we implement the proposed dot-product architecture using the minimal floating-point and logarithmic representation as design parameters. Finally, we evaluate overall performance, inference accuracy, noise robustness, resource utilization, and power dissipation.
+In this section, we address a design exploration to evaluate our approach for SbS neural network simulation using custom floating-point and logarithmic approximation. First, we examine the synaptic weight matrix of each SbS network layer in order to determine the minimum requirements for numeric representation and memory storage. Second, we implement the proposed dot-product architecture using the minimal floating-point and logarithmic representation as design parameters. Finally, we evaluate overall performance, inference accuracy, resource utilization, and power dissipation.
 
 \subsubsection{Parameters for numeric representation of synaptic weight matrix}
 
-We obtain the parameters for numeric representation from the $\log_2$-histograms of each synaptic weight matrix as shown in \fig{fig:latency_pu_fp}. Since $0\le W(s_t|j)\le1$ and $\sum_{j=0}^{N-1}W(s_t|j)=1$, the $W$ elements have only negative values in the logarithmic domain; hence, the sign bit is disregarded and the values are stored in its positive version, as stated in Section \ref{Hardware_architecture}. The smallest floating-point entry of $W$ represents the minimum exponent value, as defined by \equ{eq:exp_max}, and the bit width needed for its absolute binary representation is defined by \equ{eq:bits_exp}.
+We obtain the parameters for numeric representation from the $\log_2$-histograms of the synaptic weight matrix of each layer as shown in \fig{fig:latency_pu_fp}. Since $0\le W(s_t|j)\le1$ and $\sum_{j=0}^{N-1}W(s_t|j)=1$, the $W$ elements have only negative values in the logarithmic domain; hence, the sign bit is disregarded and the values are stored in its positive version, as stated in Section \ref{Hardware_architecture}. The smallest floating-point entry of $W$ represents the minimum exponent value, as defined by \equ{eq:exp_max}, and the bit width needed for its absolute binary representation is defined by \equ{eq:bits_exp}.
 
 \begin{eqnarray} \label{eq:exp_max}
 E_{\min}=\log _2(\min_{\forall i}(W(i)))
@@ -174,9 +174,9 @@ E_{\min}=\log _2(\min_{\forall i}(W(i)))
 N_E=\lceil\log_2(|E_{\min}|)\rceil
 \end{eqnarray}
 
-Applying \equ{eq:exp_max} and \equ{eq:bits_exp} to the given SbS network, we obtain $-13$ as the minimum exponent value of the synaptic weights, and 4-bit needed for its absolute binary representation.
+Applying \equ{eq:exp_max} and \equ{eq:bits_exp} to the given SbS network, we obtain $E_{\min}=-13$ and $N_E=4$. Thus, for absolute binary representation of the exponents, it is needed 4-bits.
 
-As a quality-configurable approximate computing approach, the mantissa bit width is a parameter that is modulated/tuned by the designer. This parameter leverages the builtin error-tolerance of neural networks and performs a trade-off between computation accuracy and synaptic memory footprint. In this publication we present a case study with 1-bit mantissa corresponding to the custom floating-point in the next section.
+For quality configurability, the mantissa bit width is a knob parameter that is tuned by the designer. This parameter leverages the builtin error-tolerance of neural networks and performs a trade-off between resource utilization and QoR. In the following subsection, we present a case study with 1-bit mantissa corresponding to the custom floating-point approximation.
 
 \begin{figure}[h!]
 	\includegraphics[width=\columnwidth]{../figures/log2_histogram.pdf}
@@ -184,14 +184,14 @@ As a quality-configurable approximate computing approach, the mantissa bit width
 \end{figure}
 
 \subsubsection{Design exploration for dot-product using custom floating-point approximation}
-For this design exploration, we use a custom floating-point representation composed of 4-bit exponent and 1-bit mantissa for the synaptic weight matrix on the proposed dot-product architecture. In this case, each \emph{Conv} PU instantiates a BRAM stationary weight matrix for $52,000$ entries of 5-bit each one, which is enough to store $W\in\mathbb{R}^{5\times 5\times 2\times 32}$ and $W\in\mathbb{R}^{5\times 5\times 32\times 64}$ for \emph{H1\_CONV} and \emph{H3\_CONV}, respectively. The same dot-product architecture is implemented in \emph{FC} processing unit, however, this does not instantiate BRAM stationary synaptic weight matrix. Instead, \emph{FC} receives neuron and synaptic vectors during performance. The hardware mapping and the computation schedule of this deployment are displayed in \Tab{tab:latency_cfp} and \Fig{fig:latency_pu_cfp_cycle}.
+For this design exploration, we use a custom floating-point representation composed of 4-bit exponent and 1-bit mantissa, this format is used for the synaptic weight vector on the proposed dot-product architecture. In this case, each \emph{Conv} PU instantiates an on-chip stationary weight matrix for $52,000$ entries of 5-bit each one, which is enough to store $W\in\mathbb{R}^{5\times 5\times 2\times 32}$ and $W\in\mathbb{R}^{5\times 5\times 32\times 64}$ for \emph{H1\_CONV} and \emph{H3\_CONV}, respectively. The same dot-product architecture is implemented in \emph{FC} processing unit, however, due to lack of BRAM resources, this PU does not instantiate on-chip stationary synaptic weight matrix. Instead, \emph{FC} receives neuron and synaptic vectors during performance. The hardware mapping and the computation schedule of this deployment are displayed in \Tab{tab:latency_cfp} and \Fig{fig:latency_pu_cfp_cycle}.
 
-With a reduction from 32-bit ot 5-bit in all the synaptic weight matrices, this design exploration achieves a maximum hardware PU latency of $1.309 ms$ according to \equ{eq:time_pu}, and a CPU latency of $1.673 ms$. Therefore, applying \equ{eq:time_spike}, we obtain a latency of $1.673 ms$ per spike cycle as shown in \Fig{fig:latency_pu_cfp_cycle}. In this case, the cyclic bottleneck is in the CPU performance.
+As shown in the computation schedule in \Tab{tab:latency_cfp} and \Fig{fig:latency_pu_cfp_cycle}, this implementation achieves a maximum hardware PU latency of $1.309 ms$ according to \equ{eq:time_pu}, and a CPU latency of $1.673 ms$. Therefore, applying \equ{eq:time_spike}, we obtain a latency of $1.673 ms$ per spike cycle as shown in \Fig{fig:latency_pu_cfp_cycle}. In this case, the cyclic bottleneck is in the performance of the CPU.
 
-This deployment achieves an accuracy of $98.97\%$ correct classification on the $10,000$ image test set at $1000$ spikes. Furthermore, as quality metric, the noise robustness is shown in \fig{fig:accuracy_vs_noise_pu_cfp}, this report illustrates a minor overall impact on the neural network accuracy. The post-implementation resource utilization and power dissipation are shown in \Tab{tab:resource_cfp} and \Tab{tab:power_cfp}, respectively.
+This configuration achieves an accuracy of $98.97\%$ correct classification on the $10,000$ image test set at $1000$ spikes, this indicates an accuracy degradation of $0.33\%$. For output quality monitoring, the noise tolerance is illustrated in \fig{fig:accuracy_vs_noise_pu_cfp}, this report demonstrates a minimal impact on the output quality of the neural network. The post-implementation resource utilization and power dissipation are shown in \Tab{tab:resource_cfp} and \Tab{tab:power_cfp}, respectively.
 
 \begin{table}[t!]\centering
-	\caption{Performance of hardware processing units using custom floating-point computation.}\label{tab:latency_cfp}
+	\caption{Performance of hardware processing units using custom floating-point approximation.}\label{tab:latency_cfp}
 	\scriptsize
 	\begin{tabular}{llrrrrrr}\toprule
 		\multicolumn{2}{c}{\textbf{Hardware mapping}} & &\multicolumn{4}{c}{\textbf{Computation schedule (ms)}} \\\cmidrule{1-2}\cmidrule{4-7}
@@ -209,15 +209,15 @@ This deployment achieves an accuracy of $98.97\%$ correct classification on the 
 	\end{tabular}
 \end{table}
 
-\begin{figure}[h!]
+\begin{figure}[t!]
 	\centering
 	\includegraphics[width=1\columnwidth]{../figures/latency_cfp_cycle.pdf}
-	\caption{Performance on processing units using custom floating-point computation. a) Illustrates computation schedule. b) Illustrates cyclic computation schedule. c) Illustrates the performance of \emph{Conv2} from a previous computation cycle during the preprocessing of \emph{H1\_CONV} on the current computation cycle without bottleneck.}
+	\caption{Performance on processing units using custom floating-point approximation. a) Illustrates computation schedule. b) Illustrates cyclic computation schedule. c) Illustrates the performance of \emph{Conv2} from a previous computation cycle during the preprocessing of \emph{H1\_CONV} on the current computation cycle without bottleneck.}
 	\label{fig:latency_pu_cfp_cycle}
 \end{figure}
 
 \begin{table}[h!]\centering
-	\caption{Resource utilization of processing units using custom floating-point.}\label{tab:resource_cfp}
+	\caption{Resource utilization of processing units using custom floating-point approximation.}\label{tab:resource_cfp}
 	\scriptsize
 	\begin{tabular}{lrrrrrr}\toprule
 		\textbf{PU} & &\textbf{LUT} &\textbf{FF} &\textbf{DSP} &\textbf{BRAM 18K} \\\midrule
@@ -228,7 +228,7 @@ This deployment achieves an accuracy of $98.97\%$ correct classification on the 
 \end{table}
 
 \begin{table}[h!]\centering
-	\caption{Power dissipation of processing units using custom floating-point.}\label{tab:power_cfp}
+	\caption{Power dissipation of processing units using custom floating-point approximation.}\label{tab:power_cfp}
 	\scriptsize
 	\begin{tabular}{lrr}\toprule
 		\textbf{PU} &\textbf{Power (mW)} \\\midrule
@@ -241,19 +241,19 @@ This deployment achieves an accuracy of $98.97\%$ correct classification on the 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=1\columnwidth]{../figures/accuracy_vs_noise_pu_cfp(4-bit-exponent_1-bit-mantissa).pdf}
-	\caption{Accuracy and noise robustness of SbS network simulation on hardware PU using custom floating-point computation on 100 images. (a) Illustrates the accuracy vs number of spikes at given noise amplitudes. (b) Illustrates the accuracy vs noise amplitude at given number of spikes.}
+	\caption{Noise tolerance for output quality monitoring of the SbS network simulation on hardware PU using custom floating-point approximation on 100 images. (a) Illustrates the accuracy vs number of spikes at given noise amplitudes. (b) Illustrates the accuracy vs noise amplitude at given number of spikes.}
 	\label{fig:accuracy_vs_noise_pu_cfp}
 \end{figure}
 
 \subsubsection{Design exploration for dot-product using logarithmic approximation}
-For this design exploration, we use a 4-bit integer exponent for logarithmic representation of the synaptic weight matrix. In this case, each \emph{Conv} processing unit implements the proposed dot-product architecture and a BRAM stationary weight matrix for $52,000$ entries of 4-bit integer each one to store $W\in\mathbb{N}^{5\times 5\times 2\times 32}$ and $W\in\mathbb{N}^{5\times 5\times 32\times 64}$ for \emph{H1\_CONV} and \emph{H3\_CONV}, respectively. The same dot-product architecture is implemented in \emph{FC} processing unit without stationary synaptic weight matrix. The hardware mapping and the computation schedule of this deployment are displayed in \Tab{tab:latency_log} and \Fig{fig:latency_pu_log_cycle}.
+As the worst-case quality configuration, we use a 4-bit integer exponent for logarithmic representation of the synaptic weight matrix. In this case, each \emph{Conv} processing unit implements the proposed dot-product architecture and an on-chip stationary weight matrix for $52,000$ entries of 4-bit integer each one to store $W\in\mathbb{N}^{5\times 5\times 2\times 32}$ and $W\in\mathbb{N}^{5\times 5\times 32\times 64}$ for \emph{H1\_CONV} and \emph{H3\_CONV}, respectively. The same dot-product architecture is implemented in \emph{FC} processing unit without stationary synaptic weight matrix. The hardware mapping and the computation schedule of this deployment are displayed in \Tab{tab:latency_log} and \Fig{fig:latency_pu_log_cycle}.
 
-With a reduction from 32-bit ot 4-bit in all the synaptic weight matrices, this design exploration achieves a maximum hardware PU latency of $1.271 ms$ according to \equ{eq:time_pu}, and a CPU latency of $1.673 ms$. Therefore, applying \equ{eq:time_spike}, we obtain a latency of $1.673 ms$ per spike cycle as shown in \Fig{fig:latency_pu_log_cycle}. In this case, the cyclic bottleneck is in the CPU performance.
+As shown in the computation schedule in \Tab{tab:latency_log} and \Fig{fig:latency_pu_log_cycle}, this implementation achieves a maximum hardware PU latency of $1.271 ms$ according to \equ{eq:time_pu}, and a CPU latency of $1.673 ms$. Therefore, applying \equ{eq:time_spike}, we obtain a latency of $1.673 ms$ per spike cycle as shown in \Fig{fig:latency_pu_log_cycle}. In this case, the cyclic bottleneck is in the CPU performance.
 
-This deployment achieves an accuracy of $98.84\%$ correct classification on the $10,000$ image test set at $1000$ spikes. Furthermore, as quality metric, the noise robustness is shown in \fig{fig:accuracy_vs_noise_pu_log}, this report illustrates a moderated overall impact using logarithmic representation on the synaptic-weight vector. The post-implementation resource utilization and power dissipation are shown in \Tab{tab:resource_cfp} and \Tab{tab:power_cfp}, respectively.
+This quality configuration achieves an accuracy of $98.84\%$ correct classification on the $10,000$ image test set at $1000$ spikes, this indicates an accuracy degradation of $0.46\%$. For output quality monitoring, the noise tolerance is illustrated in \fig{fig:accuracy_vs_noise_pu_log}, this report demonstrates a minor impact on the output quality of the neural network. The post-implementation resource utilization and power dissipation are shown in \Tab{tab:resource_cfp} and \Tab{tab:power_cfp}, respectively.
 
 \begin{table}[t!]\centering
-	\caption{Performance of hardware processing units using logarithmic computation.}\label{tab:latency_log}
+	\caption{Performance of hardware processing units using logarithmic approximation.}\label{tab:latency_log}
 	\scriptsize
 	\begin{tabular}{llrrrrrr}\toprule
 		\multicolumn{2}{c}{\textbf{Hardware mapping}} & &\multicolumn{4}{c}{\textbf{Computation schedule (ms)}} \\\cmidrule{1-2}\cmidrule{4-7}
@@ -274,7 +274,7 @@ This deployment achieves an accuracy of $98.84\%$ correct classification on the 
 \begin{figure}[!t]
 	\centering
 	\includegraphics[width=1\columnwidth]{../figures/latency_log_cycle.pdf}
-	\caption{Performance of processing units using logarithmic computation. a) Illustrates computation schedule. b) Illustrates cyclic computation schedule.}
+	\caption{Performance of processing units using logarithmic approximation. a) Illustrates computation schedule. b) Illustrates cyclic computation schedule.}
 	\label{fig:latency_pu_log_cycle}
 \end{figure}
 
@@ -303,7 +303,7 @@ This deployment achieves an accuracy of $98.84\%$ correct classification on the 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=1\columnwidth]{../figures/accuracy_vs_noise_pu_log.pdf}
-	\caption{Accuracy and noise robustness of SbS network simulation on hardware PU using logarithmic computation on 100 images. (a) Illustrates the accuracy vs number of spikes at given noise amplitudes. (b) Illustrates the accuracy vs noise amplitude at given number of spikes.}
+	\caption{Noise tolerance of the SbS network simulation on hardware PU using logarithmic approximation on 100 images. (a) Illustrates the accuracy vs number of spikes at given noise amplitudes. (b) Illustrates the accuracy vs noise amplitude at given number of spikes.}
 	\label{fig:accuracy_vs_noise_pu_log}
 \end{figure}
 
@@ -311,9 +311,9 @@ This deployment achieves an accuracy of $98.84\%$ correct classification on the 
 \subsection{Results and discussion}
 As a benchmark, the SbS network simulation on CPU using 32-bit standard floating-point achieves an accuracy of $99.3\%$ with a latency of $T_{SC} = 34.279ms$. As a second benchmark, the network simulation on hardware processing units using floating-point (for storage, 4-bit exponent and 4-bit mantissa, and then promoted to standard floating-point for the computation) achieves an accuracy of $98.98\%$ with a latency $T_{SC}=3.183ms$. As the benchmark result, we get a $10.77\times$ latency enhancement and an accuracy degradation of $0.32\%$.
 
-As a demonstration of the proposed dot-product architecture, the SbS network simulation on hardware PUs with synaptic representation using 5-bit custom floating-point (4-bit exponent, 1-bit mantissa) and 4-bit logarithmic (4-bit exponent) achieve $20.49\times$ latency enhancement and accuracy of $98.97\%$ and $98.84\%$, respectively. As a result, we obtain an accuracy degradation of $0.33\%$ and $0.46\%$, respectively. Moreover, adding 50\% of noise amplitude to the input images, the SbS network simulation presents an accuracy degradation of $0.67\%$ and $4.08\%$, respectively. As application-specific quality metric, the resulting noise robustness demonstrates a sufficient QoR for minimal impact on the overall accuracy of the neural network using the proposed approximate computing technique.
+As a demonstration of the proposed dot-product architecture, the SbS network simulation on hardware PUs with synaptic representation using 5-bit custom floating-point (4-bit exponent, 1-bit mantissa) and 4-bit logarithmic (4-bit exponent) achieve $20.49\times$ latency enhancement and accuracy of $98.97\%$ and $98.84\%$, respectively. As a result, we obtain an accuracy degradation of $0.33\%$ and $0.46\%$, respectively. Moreover, adding 50\% of noise amplitude to the input images, the SbS network simulation presents an accuracy degradation of $0.67\%$ and $4.08\%$, respectively. As output quality monitor, the resulting noise tolerance report demonstrates a sufficient QoR for minor impact on the output quality of the neural network using the proposed approximate computing technique.
 
-Regarding resource utilization and power dissipation, the \emph{Conv} processing units present up to $43.24\%$ of BRAM reduction, and $12.35\%$ of energy efficiency improvement over the standard floating-point implementation. The experimental results of the design exploration are summarized in \Tab{tab:results}.
+Regarding resource utilization and power dissipation, the \emph{Conv} processing units reach up to $43.24\%$ of BRAM reduction, and $12.35\%$ of improvement in energy efficiency over the standard floating-point implementation. The experimental results of the design exploration are summarized in \Tab{tab:results}.
 
 \begin{table*}[!t]
 	\begin{threeparttable}
@@ -335,7 +335,7 @@ Regarding resource utilization and power dissipation, the \emph{Conv} processing
 		\end{tabular}
 		\begin{tablenotes}
 			\scriptsize
-			\item[a] Synaptic storage composed of 4-bit exponent and 4-bit mantissa. For dot-product computation, each entry is promoted to its standard floating-point representation.
+			\item[a] Synaptic storage composed of 4-bit exponent and 4-bit mantissa. For computation, each value is promoted to its standard floating-point representation.
 			\item[b] Synaptic storage composed of 4-bit exponent and 1-bit mantissa.
 			\item[c] Synaptic storage composed of 4-bit exponent.
 			\item[d] Latency gain with respect to the CPU computation ($T_{SC} = 34.279 ms$).

@@ -111,6 +111,12 @@ V.~Gupta, D.~Mohapatra, S.~P. Park, A.~Raghunathan, and K.~Roy, ``Impact:
 S.~Mittal, ``A survey of techniques for approximate computing,'' \emph{ACM
   Computing Surveys (CSUR)}, vol.~48, no.~4, pp. 1--33, 2016.
 
+\bibitem{venkataramani2015approximate}
+S.~Venkataramani, S.~T. Chakradhar, K.~Roy, and A.~Raghunathan, ``Approximate
+  computing and the quest for computing efficiency,'' in \emph{2015 52nd
+  ACM/EDAC/IEEE Design Automation Conference (DAC)}.\hskip 1em plus 0.5em minus
+  0.4em\relax IEEE, 2015, pp. 1--6.
+
 \bibitem{bouvier2019spiking}
 M.~Bouvier, A.~Valentian, T.~Mesquida, F.~Rummens, M.~Reyboz, E.~Vianello, and
   E.~Beigne, ``Spiking neural networks hardware implementations and challenges:

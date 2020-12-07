@@ -57,7 +57,7 @@ The computation of the dot-product is the main piece of \equ{eq:sbs_update} and 
 \end{figure}
 
 \subsection{dot-product hardware module}
-This module is part of an application-specific architecture optimized to approximate the dot-product of arbitrary length, see \equ{eq:dot_product}. For quality configurability, we parameterized the mantissa bit-width of $W(s_t)$, which provides a tunable knob to trade-off the resource utilization versus QoR. Since the lower-order bits have smaller significance than the higher-order bits, truncating them may have only a minor impact on QoR, we designate this as custom floating-point approximation. Further on, we completely remove the mantissa bits in order to use only the exponent of a floating-point representation. Hence, the worst-case quality becomes a logarithmic representation, consequently leading to meaningful architectural optimizations using only adders and shifters for dot-product approximation in hardware, we designate this as logarithmic approximation.
+This module is part of an application-specific architecture optimized to approximate the dot-product of arbitrary length, see \equ{eq:dot_product}. For quality configurability, we parameterized the mantissa bit-width of $W(s_t)$, which provides a tunable knob to trade-off the resource utilization versus QoR. Since the lower-order bits have smaller significance than the higher-order bits, truncating them may have only a minor impact on QoR, we designate this as custom floating-point approximation. Further on, we completely remove the mantissa bits in order to use only the exponent of a floating-point representation. Hence, the worst-case quality configuration becomes a logarithmic representation, consequently leading to advantageous architectural optimizations using only adders and shifters for dot-product approximation in hardware, we designate this as logarithmic approximation.
 
 In this section, we present three pipelined hardware modules using standard floating-point, custom floating-point, and logarithmic approximation.
 
@@ -80,7 +80,7 @@ In this design, the high level synthesis tool infers computational blocks with c
 \begin{figure}[t!]
 	\centering
 	\includegraphics[width=0.5\textwidth]{../figures/dot_product_float.pdf}
-	\caption{Dot-product hardware module using standard floating-point computation. (a) Illustrates the iteration interval of 10 clock cycles. (b) Illustrates the iteration latency of 19 clock cycles. (c) Illustrates the pairwise product block in dark-gray. (d) Illustrates the accumulation block in light-gray.}
+	\caption{Dot-product hardware module using standard floating-point computation. (a) Illustrates the initiation interval of 10 clock cycles. (b) Illustrates the iteration latency of 19 clock cycles. (c) Illustrates the pairwise product block in dark-gray. (d) Illustrates the accumulation block in light-gray.}
 	\label{fig:dot_product_float}
 \end{figure}
 
@@ -95,18 +95,18 @@ Additionally, the exponent bit width of $W(s)$ is a design parameter for efficie
  
  \begin{itemize}
  	\item{Phase I, \emph{Computation}}: 
- 	\\In this phase, it is calculated the magnitude of the dot-product in a denormalized representation. This is done in two iterative steps: \emph{pairwise product} and \emph{accumulation}. Where \emph{pairwise product} is executed either in custom floating-point or logarithmic computation described below.
+ 	\\In this phase, it is calculated the magnitude of the dot-product in a denormalized representation. This is done in two iterative steps: \emph{pairwise product} and \emph{accumulation}. Where \emph{pairwise product} is executed either in custom floating-point or logarithmic approximation described below.
  	 \begin{itemize}[label={--}]
  	 	\item{Pairwise product}.
  	 	\begin{itemize} [label={--}]
 	 		\item{Custom floating-point}.
-	 	 	As shown in \fig{fig:dot_product_custom}(c) in dark-gray, the pairwise product is obtained by adding the exponents and multiplying the mantissa of both $W(s|i)$ and $h_\mu(i)$. If the mantissa multiplication results in an overflow, then it is corrected by increasing the  exponent and shifting the resulting mantissa by one position to the right. Then we have $h_\mu(j) W(s_t|j)$ as an intermediate result which is stored for future reuse on the neuron update calculation. In this design the pairwise product has a latency of 5 clock cycles.
+	 	 	As shown in \fig{fig:dot_product_custom}(c) in dark-gray, the pairwise product is approximated by adding exponents and multiplying mantissas of both $W(s|i)$ and $h_\mu(i)$. If the mantissa multiplication results in an overflow, then it is corrected by increasing the  exponent and shifting the resulting mantissa by one position to the right. Then we have $h_\mu(j) W(s_t|j)$ as an intermediate result which is stored for future reuse on the neuron update calculation. In this design the pairwise product has a latency of 5 clock cycles.
 	 	 	\item{Logarithmic}.
-	 	 	As shown in \fig{fig:dot_product_log}(c) in dark-gray, the content values of $W(s)$ are represented in the logarithmic domain, and $h_\mu$ in standard floating-point. Hence, the pairwise product is obtained by adding $W(s|i)$ to the exponent of $h_\mu(i)$. In this design the pairwise product has a latency of one clock cycle.
+	 	 	As shown in \fig{fig:dot_product_log}(c) in dark-gray, the pairwise product is approximated by adding $W(s|i)$ to the exponent of $h_\mu(i)$, since $W(s)$ values are represented in the logarithmic domain and $h_\mu$ in standard floating-point. In this design the pairwise product has a latency of one clock cycle.
  	 	\end{itemize}
  		\item{Accumulation}. As shown in both \fig{fig:dot_product_custom}(d) and \fig{fig:dot_product_log}(d) in light-gray, first, it is obtained the denormalized representation of $h_\mu(j) W(s_t|j)$ by shifting its mantissa using its exponent as shifting parameter (barrel shifter). And then, this denormalized representation is accumulated to obtain the approximated magnitude of the dot-product.
  	 \end{itemize}
- 	The pairwise product and accumulation is an iterative process, the computation latency is given by \equ{eq:dot_standard_custom_float_latency} for custom floating-point, and \equ{eq:dot_log_latency} for logarithmic, where $N$ is the length of the vectors. Both pipelined hardware modules have the same throughput, since both have two clock cycles as initiation interval.
+ 	The process of pairwise product and accumulation iterates for each element of the vectors, the computation latency is given by \equ{eq:dot_standard_custom_float_latency} for custom floating-point, and \equ{eq:dot_log_latency} for logarithmic, where $N$ is the length of the vectors. Both pipelined hardware modules have the same throughput, since both have two clock cycles as initiation interval.
  	
  	\begin{eqnarray} \label{eq:dot_standard_custom_float_latency}
  	L_{custom}=2N+11
@@ -120,27 +120,26 @@ Additionally, the exponent bit width of $W(s)$ is a design parameter for efficie
 	In this phase, the accumulated denormalized magnitude is tested to be above of a predefined threshold, this must be above zero, since the dot-product is a denominator in \equ{eq:sbs_update}.
  	If passing the threshold, then the next phase is executed, otherwise the rest of update dynamics is skipped. The threshold-test takes one clock cycle.
  	\item{Phase III, \emph{Result-normalization}}: \\
- 	In this phase, the dot-product is normalized to obtain the exponent and mantissa in order to build a standard floating-point for later use in the neuron update. The normalization is obtained by shifting the approximated dot-product magnitude in a loop until it is in the form of a normalized mantissa where the iteration count represents the negative exponent of the dot-product, each iteration takes one clock cycle.
+ 	In this phase, the dot-product is normalized to obtain the exponent and mantissa in order to build a standard floating-point for later use in the neuron update. The normalization is obtained by shifting the approximated dot-product magnitude in a loop until it is in the form of a normalized mantissa where the iteration count represents the exponent of the dot-product, each iteration takes one clock cycle.
  	
  \end{itemize}
- 
- 
 
-The total latency of the hardware module using custom floating-point and logarithmic computation is the accumulated latency of the three phases.
 
-The proposed architecture using custom floating-point and logarithmic computation overcomes the performance of the design using standard floating-point. The performance enhancement is achieved by decomposing the floating-point computation into an advantageous handling of exponent and mantissa using intermediate accumulation in denormalized representation and one final normalization.
+The total latency of the hardware module using custom floating-point and logarithmic approximation is the accumulated latency of the three phases.
+
+The proposed architecture using custom floating-point and logarithmic approximation overcomes the performance of the design using standard floating-point. The performance enhancement is achieved by decomposing the floating-point computation into an advantageous handling of exponent and mantissa using intermediate accumulation in a denormalized representation and only one final normalization.
 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.5\textwidth]{../figures/dot_product.pdf}
-	\caption{Dot-product hardware module using custom floating-point computation. (a) Illustrates the iteration interval of 2 clock cycles. (b) Illustrates the iteration latency of 13 clock cycles. (c) Illustrates the pairwise product blocks in dark-gray. (d) Illustrates the accumulation blocks in light-gray.}
+	\caption{Dot-product hardware module using custom floating-point approximation. (a) Illustrates the initiation interval of 2 clock cycles. (b) Illustrates the iteration latency of 13 clock cycles. (c) Illustrates the pairwise product blocks in dark-gray. (d) Illustrates the accumulation blocks in light-gray.}
 	\label{fig:dot_product_custom}
 \end{figure}
 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.5\textwidth]{../figures/dot_product_log.pdf}
-	\caption{Dot-product hardware module using logarithmic computation. (a) Illustrates the iteration interval of 2 clock cycles. (b) Illustrates the iteration latency of 9 clock cycles. (c) Illustrates the pairwise product block in dark-gray. (d) Illustrates the accumulation blocks in light-gray.}
+	\caption{Dot-product hardware module using logarithmic approximation. (a) Illustrates the initiation interval of 2 clock cycles. (b) Illustrates the iteration latency of 9 clock cycles. (c) Illustrates the pairwise product block in dark-gray. (d) Illustrates the accumulation blocks in light-gray.}
 	\label{fig:dot_product_log}
 \end{figure}
 

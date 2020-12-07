@@ -8,11 +8,11 @@ Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: ../content/bibliography.bib.bib
-Repeated entry---line 1045 of file ../content/bibliography.bib.bib
+Repeated entry---line 1063 of file ../content/bibliography.bib.bib
  : @article{lecun1998mnist
  :                        ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 1137 of file ../content/bibliography.bib.bib
+Repeated entry---line 1155 of file ../content/bibliography.bib.bib
  : @article{schmidhuber2015deep
  :                             ,
 I'm skipping whatever remains of this entry
@@ -21,45 +21,45 @@ I'm skipping whatever remains of this entry
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
 
 Done.
-You've used 43 entries,
+You've used 44 entries,
             4087 wiz_defined-function locations,
-            1097 strings with 17442 characters,
-and the built_in function-call counts, 36040 in all, are:
-= -- 2849
-> -- 972
-< -- 309
-+ -- 524
-- -- 173
-* -- 1734
-:= -- 5173
-add.period$ -- 99
-call.type$ -- 43
-change.case$ -- 43
-chr.to.int$ -- 726
-cite$ -- 43
-duplicate$ -- 2559
-empty$ -- 2895
-format.name$ -- 212
-if$ -- 8490
+            1101 strings with 17675 characters,
+and the built_in function-call counts, 36818 in all, are:
+= -- 2906
+> -- 993
+< -- 314
++ -- 534
+- -- 177
+* -- 1771
+:= -- 5285
+add.period$ -- 102
+call.type$ -- 44
+change.case$ -- 44
+chr.to.int$ -- 738
+cite$ -- 44
+duplicate$ -- 2616
+empty$ -- 2970
+format.name$ -- 217
+if$ -- 8676
 int.to.chr$ -- 0
-int.to.str$ -- 43
-missing$ -- 451
-newline$ -- 156
-num.names$ -- 43
-pop$ -- 1076
+int.to.str$ -- 44
+missing$ -- 462
+newline$ -- 159
+num.names$ -- 44
+pop$ -- 1105
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 2766
+skip$ -- 2824
 stack$ -- 0
-substring$ -- 1769
-swap$ -- 2122
-text.length$ -- 67
+substring$ -- 1798
+swap$ -- 2164
+text.length$ -- 68
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 43
+type$ -- 44
 warning$ -- 0
-while$ -- 169
-width$ -- 45
-write$ -- 438
+while$ -- 174
+width$ -- 46
+write$ -- 447
 (There were 2 error messages)
