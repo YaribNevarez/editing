@@ -119,7 +119,7 @@ T_{f} = \max_{n\in L}(t_{f}(n))
 
 Using standard floating-point represents a high computational cost. As the heaviest layer, the computational workload of \emph{H3\_CONV} is evenly partitioned among two PUs: \emph{Conv2} and \emph{Conv3}. However, in the cyclic schedule, \emph{Conv2} causes the performance bottleneck as shown in \fig{fig:latency_pu_fp_cycle}. In this case, the CPU has to await for \emph{Conv2} to finish the computation of the previous cycle in order to start the current computation cycle. Therefore, applying \equ{eq:time_spike}, we obtain a latency of 3.183 ms per spike cycle.
 
-This deployment achieves an accuracy of $98.98\%$ correct classification on the $10,000$ image test set at $1000$ spikes. Furthermore, for output quality monitoring, the noise robustness report is measured using input patterns with positive additive equidistributed random noise up to $55\%$ of amplitude as illustrated in \fig{fig:accuracy_vs_noise_pu_fp}. The post-implementation resource utilization and power dissipation are shown in \Tab{tab:resource_fp} and \Tab{tab:power_fp}, respectively.
+This deployment achieves an accuracy of $98.98\%$ correct classification on the $10,000$ image test set at $1000$ spikes. Further on, we benchmark the noise tolerance report using input patterns with positive additive equidistributed random noise up to $55\%$ of amplitude as illustrated in \fig{fig:accuracy_vs_noise_pu_fp}. The post-implementation resource utilization and power dissipation are shown in \Tab{tab:resource_fp} and \Tab{tab:power_fp}, respectively.
 
 Each \emph{Conv} PU instantiates an on-chip stationary weight matrix of $52,000$ entries to store $W\in\mathbb{R}^{5\times 5\times 2\times 32}$ and $W\in\mathbb{R}^{5\times 5\times 32\times 64}$ for \emph{H1\_CONV} and \emph{H3\_CONV}, respectively. In order to reduce BRAM utilization, we use a custom floating-point representation composed of 4-exponent and 4-bit mantissa. Each 8-bit entry is promoted to its standard floating-point representation for the dot-product computation. The methodology to find the appropriate bit width parameters for custom floating-point representation is presented in the next section.
 
@@ -153,7 +153,7 @@ Each \emph{Conv} PU instantiates an on-chip stationary weight matrix of $52,000$
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=1\columnwidth]{../figures/accuracy_vs_noise_pu_fp.pdf}
-	\caption{Benchmark of noise tolerance for output quality monitoring of the SbS network simulation on hardware PU using standard floating-point computation on 100 images. (a) Illustrates the accuracy vs number of spikes at given noise amplitudes. (b) Illustrates the accuracy vs noise amplitude at given number of spikes.}
+	\caption{Noise tolerance on hardware PU using standard floating-point computation (benchmark). (a) Illustrates the accuracy vs number of spikes at given noise amplitudes. (b) Illustrates the accuracy vs noise amplitude at given number of spikes.}
 	\label{fig:accuracy_vs_noise_pu_fp}
 \end{figure}
 
@@ -188,7 +188,9 @@ For this design exploration, we use a custom floating-point representation compo
 
 As shown in the computation schedule in \Tab{tab:latency_cfp} and \Fig{fig:latency_pu_cfp_cycle}, this implementation achieves a maximum hardware PU latency of $1.309 ms$ according to \equ{eq:time_pu}, and a CPU latency of $1.673 ms$. Therefore, applying \equ{eq:time_spike}, we obtain a latency of $1.673 ms$ per spike cycle as shown in \Fig{fig:latency_pu_cfp_cycle}. In this case, the cyclic bottleneck is in the performance of the CPU.
 
-This configuration achieves an accuracy of $98.97\%$ correct classification on the $10,000$ image test set at $1000$ spikes, this indicates an accuracy degradation of $0.33\%$. For output quality monitoring, the noise tolerance is illustrated in \fig{fig:accuracy_vs_noise_pu_cfp}, this report demonstrates a minimal impact on the output quality of the neural network. The post-implementation resource utilization and power dissipation are shown in \Tab{tab:resource_cfp} and \Tab{tab:power_cfp}, respectively.
+This configuration achieves an accuracy of $98.97\%$ correct classification on the $10,000$ image test set at $1000$ spikes, this indicates an accuracy degradation of $0.33\%$. For output quality monitoring, the noise tolerance is illustrated in \fig{fig:accuracy_vs_noise_pu_cfp}. Only the band of $55\%$ noise amplitude is decaying; hence, this report demonstrates a minimal impact on the neural network accuracy.
+
+The post-implementation resource utilization and power dissipation are shown in \Tab{tab:resource_cfp} and \Tab{tab:power_cfp}, respectively.
 
 \begin{table}[t!]\centering
 	\caption{Performance of hardware processing units using custom floating-point approximation.}\label{tab:latency_cfp}
@@ -241,7 +243,7 @@ This configuration achieves an accuracy of $98.97\%$ correct classification on t
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=1\columnwidth]{../figures/accuracy_vs_noise_pu_cfp(4-bit-exponent_1-bit-mantissa).pdf}
-	\caption{Noise tolerance for output quality monitoring of the SbS network simulation on hardware PU using custom floating-point approximation on 100 images. (a) Illustrates the accuracy vs number of spikes at given noise amplitudes. (b) Illustrates the accuracy vs noise amplitude at given number of spikes.}
+	\caption{Noise tolerance on hardware PU using custom floating-point approximation. (a) Illustrates the accuracy vs number of spikes at given noise amplitudes. (b) Illustrates the accuracy vs noise amplitude at given number of spikes.}
 	\label{fig:accuracy_vs_noise_pu_cfp}
 \end{figure}
 
@@ -250,7 +252,9 @@ As the worst-case quality configuration, we use a 4-bit integer exponent for log
 
 As shown in the computation schedule in \Tab{tab:latency_log} and \Fig{fig:latency_pu_log_cycle}, this implementation achieves a maximum hardware PU latency of $1.271 ms$ according to \equ{eq:time_pu}, and a CPU latency of $1.673 ms$. Therefore, applying \equ{eq:time_spike}, we obtain a latency of $1.673 ms$ per spike cycle as shown in \Fig{fig:latency_pu_log_cycle}. In this case, the cyclic bottleneck is in the CPU performance.
 
-This quality configuration achieves an accuracy of $98.84\%$ correct classification on the $10,000$ image test set at $1000$ spikes, this indicates an accuracy degradation of $0.46\%$. For output quality monitoring, the noise tolerance is illustrated in \fig{fig:accuracy_vs_noise_pu_log}, this report demonstrates a minor impact on the output quality of the neural network. The post-implementation resource utilization and power dissipation are shown in \Tab{tab:resource_cfp} and \Tab{tab:power_cfp}, respectively.
+This quality configuration achieves an accuracy of $98.84\%$ correct classification on the $10,000$ image test set at $1000$ spikes, this indicates an accuracy degradation of $0.46\%$. For output quality monitoring, the noise tolerance is illustrated in \fig{fig:accuracy_vs_noise_pu_log}. The band of $45\%$ noise amplitude is decaying; hence, this report demonstrates a minor impact on the neural network accuracy.
+
+The post-implementation resource utilization and power dissipation are shown in \Tab{tab:resource_cfp} and \Tab{tab:power_cfp}, respectively.
 
 \begin{table}[t!]\centering
 	\caption{Performance of hardware processing units using logarithmic approximation.}\label{tab:latency_log}
@@ -303,7 +307,7 @@ This quality configuration achieves an accuracy of $98.84\%$ correct classificat
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=1\columnwidth]{../figures/accuracy_vs_noise_pu_log.pdf}
-	\caption{Noise tolerance of the SbS network simulation on hardware PU using logarithmic approximation on 100 images. (a) Illustrates the accuracy vs number of spikes at given noise amplitudes. (b) Illustrates the accuracy vs noise amplitude at given number of spikes.}
+	\caption{Noise tolerance on hardware PU using logarithmic approximation. (a) Illustrates the accuracy vs number of spikes at given noise amplitudes. (b) Illustrates the accuracy vs noise amplitude at given number of spikes.}
 	\label{fig:accuracy_vs_noise_pu_log}
 \end{figure}
 

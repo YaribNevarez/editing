@@ -51,12 +51,12 @@
 \citation{nevarez2020accelerator}
 \@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces (a) Performance classification of SbS NN versus equivalent CNN, and (b) Example of the first pattern in the MNIST test data set with different amounts of noise.}}{5}}
 \newlabel{fig:robustnes_sbs}{{1}{5}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces (a) Illustrates an input layer with a massive amount of IPs operating as independent computational entities. (b) Illustrate a hidden layer with an arbitrary amount of IPs as independent computational entities. (c) Illustrates a set of neurons grouped in an IP. }}{5}}
+\@writefile{toc}{\contentsline {section}{\numberline {IV}System Design}{5}}
+\newlabel{sec:system_design}{{IV}{5}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces SbS IPs as independent computational entities. (a) Illustrates an input layer with a massive amount of IPs operating as independent computational entities. (b) Illustrate a hidden layer with an arbitrary amount of IPs as independent computational entities. (c) Illustrates a set of neurons grouped in an IP. }}{5}}
 \newlabel{fig:SbS_layer}{{2}{5}}
 \@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces System-level overview of the software architecture.}}{5}}
 \newlabel{fig:sw_stack}{{3}{5}}
-\@writefile{toc}{\contentsline {section}{\numberline {IV}System Design}{5}}
-\newlabel{sec:system_design}{{IV}{5}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-A}}Hardware architecture}{5}}
 \newlabel{Hardware_architecture}{{\unhbox \voidb@x \hbox {IV-A}}{5}}
 \citation{rotermund2019Backpropagation}
@@ -70,33 +70,33 @@
 \newlabel{fig:hw_conv}{{5}{7}}
 \newlabel{eq:dot_product}{{2}{7}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {IV-C}1}Dot-product using standard floating-point computation}{7}}
+\newlabel{eq:dot_standard_float_latency}{{3}{7}}
 \@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Dot-product hardware module using standard floating-point computation. (a) Illustrates the initiation interval of 10 clock cycles. (b) Illustrates the iteration latency of 19 clock cycles. (c) Illustrates the pairwise product block in dark-gray. (d) Illustrates the accumulation block in light-gray.}}{7}}
 \newlabel{fig:dot_product_float}{{6}{7}}
-\newlabel{eq:dot_standard_float_latency}{{3}{7}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {IV-C}2}Dot-product using custom floating-point and logarithmic approximation}{7}}
 \citation{xilinx2015zynq}
-\citation{nevarez2020accelerator}
 \newlabel{eq:dot_standard_custom_float_latency}{{4}{8}}
 \newlabel{eq:dot_log_latency}{{5}{8}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Dot-product hardware module using custom floating-point approximation. (a) Illustrates the initiation interval of 2 clock cycles. (b) Illustrates the iteration latency of 13 clock cycles. (c) Illustrates the pairwise product blocks in dark-gray. (d) Illustrates the accumulation blocks in light-gray.}}{8}}
+\newlabel{fig:dot_product_custom}{{7}{8}}
 \@writefile{toc}{\contentsline {section}{\numberline {V}Experimental results}{8}}
 \newlabel{sec:experimental_results}{{V}{8}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Dot-product hardware module using custom floating-point approximation. (a) Illustrates the initiation interval of 2 clock cycles. (b) Illustrates the iteration latency of 13 clock cycles. (c) Illustrates the pairwise product blocks in dark-gray. (d) Illustrates the accumulation blocks in light-gray.}}{9}}
-\newlabel{fig:dot_product_custom}{{7}{9}}
+\citation{nevarez2020accelerator}
 \@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Dot-product hardware module using logarithmic approximation. (a) Illustrates the initiation interval of 2 clock cycles. (b) Illustrates the iteration latency of 9 clock cycles. (c) Illustrates the pairwise product block in dark-gray. (d) Illustrates the accumulation blocks in light-gray.}}{9}}
 \newlabel{fig:dot_product_log}{{8}{9}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-A}}Performance benchmark}{9}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {V-A}1}Benchmark on CPU}{9}}
 \@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces SbS network structure for MNIST classification task. Input {\it  X}: Input layer with $28\times 28$ normalization modules for $28\times 28$ input pixel. From this layer spikes are send to layer {\it  H1}. {\it  H1}: Convolution layer {\it  H1} with $24\times 24$ IPs with $32$ neurons each. Every IP processes the spikes from $5\times 5$ spatial patches of the input pattern ($x$ and $y$ stride is $1$). {\it  H2}: $2\times 2$ pooling layer {\it  H2} ($x$ and $y$ stride is $2$) with $12\times 12$ IPs with $32$ neurons each. The weights between {\it  H1} and {\it  H2} are not learned but set to a fixed weight matrix that creates a competition between the {\it  32} features of {\it  H1}. {\it  H3}: $5\times 5$ convolution layer {\it  H3} ($x$ and $y$ stride is $1$) with $8\times 8$ IPs. Similar to {\it  H1} but with $64$ neuron for each IP. {\it  H4}: $2\times 2$ pooling layer {\it  H4} ($x$ and $y$ stride is $2$) with $4\times 4$ IPs with $64$ neurons each. This layer is similar to layer {\it  H2}. {\it  H5}: Fully connected layer {\it  H5}. $1,024$ neurons in one big IP which are fully connected to layer {\it  H4} and output layer {\it  HY}. {\it  HY}: Output layer {\it  HY} with $10$ neurons for the $10$ types of digits. selected.}}{9}}
 \newlabel{fig:sbs_network}{{9}{9}}
 \@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Computation on CPU.}}{9}}
 \newlabel{tab:latency_sw}{{1}{9}}
 \@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Computation on CPU.}}{9}}
 \newlabel{fig:latency_sw}{{10}{9}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {V-A}1}Benchmark on CPU}{9}}
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Performance of processing units using standard floating-point computation.}}{10}}
-\newlabel{tab:latency_fp}{{2}{10}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {V-A}2}Benchmark on processing units using standard floating-point}{10}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {V-A}2}Benchmark on processing units using standard floating-point}{9}}
 \@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces System overview of the top-level architecture with 8 processing units.}}{10}}
 \newlabel{fig:hw_sbs_8_pu}{{11}{10}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Performance of processing units using standard floating-point computation.}}{10}}
+\newlabel{tab:latency_fp}{{2}{10}}
 \@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces Performance of processing units using standard floating-point computation.}}{10}}
 \newlabel{fig:latency_pu_fp}{{12}{10}}
 \@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces Performance bottleneck of cyclic computation on processing units using standard floating-point. a) Illustrates the starting of $t_{PU}$ of {\it  Conv2} on a previous computation cycle. b) Illustrates $t_{CPU}$ of {\it  Conv2} on the current computation cycle. c) Illustrates the CPU waiting time (in gray color) for {\it  Conv2} as a busy resource (awaiting for {\it  Conv2} interruption). d) Illustrates the $t_{f}$ from the previous computation cycle, and the starting of $t_{PU}$ on the current computation cycle ({\it  Conv2} interruption on completion, and start current computation cycle).}}{10}}
@@ -110,38 +110,38 @@
 \@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Power dissipation of processing units using standard floating-point.}}{11}}
 \newlabel{tab:power_fp}{{4}{11}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-B}}Design exploration for custom floating-point and logarithmic approximation}{11}}
-\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces Benchmark of noise tolerance for output quality monitoring of the SbS network simulation on hardware PU using standard floating-point computation on 100 images. (a) Illustrates the accuracy vs number of spikes at given noise amplitudes. (b) Illustrates the accuracy vs noise amplitude at given number of spikes.}}{11}}
-\newlabel{fig:accuracy_vs_noise_pu_fp}{{14}{11}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {V-B}1}Parameters for numeric representation of synaptic weight matrix}{11}}
+\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces Noise tolerance on hardware PU using standard floating-point computation (benchmark). (a) Illustrates the accuracy vs number of spikes at given noise amplitudes. (b) Illustrates the accuracy vs noise amplitude at given number of spikes.}}{11}}
+\newlabel{fig:accuracy_vs_noise_pu_fp}{{14}{11}}
 \newlabel{eq:exp_max}{{10}{11}}
-\newlabel{eq:bits_exp}{{11}{12}}
+\newlabel{eq:bits_exp}{{11}{11}}
 \@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces $\qopname  \relax o{log}_2$-histogram of each synaptic weight matrix showing the percentage of matrix elements with given integer exponent.}}{12}}
 \newlabel{fig:log2histogram}{{15}{12}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {V-B}2}Design exploration for dot-product using custom floating-point approximation}{12}}
 \@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Performance of hardware processing units using custom floating-point approximation.}}{12}}
 \newlabel{tab:latency_cfp}{{5}{12}}
+\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces Performance on processing units using custom floating-point approximation. a) Illustrates computation schedule. b) Illustrates cyclic computation schedule. c) Illustrates the performance of {\it  Conv2} from a previous computation cycle during the preprocessing of {\it  H1\_CONV} on the current computation cycle without bottleneck.}}{12}}
+\newlabel{fig:latency_pu_cfp_cycle}{{16}{12}}
 \@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Resource utilization of processing units using custom floating-point approximation.}}{12}}
 \newlabel{tab:resource_cfp}{{6}{12}}
-\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Power dissipation of processing units using custom floating-point approximation.}}{12}}
-\newlabel{tab:power_cfp}{{7}{12}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {V-B}3}Design exploration for dot-product using logarithmic approximation}{12}}
-\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces Performance on processing units using custom floating-point approximation. a) Illustrates computation schedule. b) Illustrates cyclic computation schedule. c) Illustrates the performance of {\it  Conv2} from a previous computation cycle during the preprocessing of {\it  H1\_CONV} on the current computation cycle without bottleneck.}}{13}}
-\newlabel{fig:latency_pu_cfp_cycle}{{16}{13}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-C}}Results and discussion}{13}}
-\@writefile{lof}{\contentsline {figure}{\numberline {17}{\ignorespaces Noise tolerance for output quality monitoring of the SbS network simulation on hardware PU using custom floating-point approximation on 100 images. (a) Illustrates the accuracy vs number of spikes at given noise amplitudes. (b) Illustrates the accuracy vs noise amplitude at given number of spikes.}}{13}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Power dissipation of processing units using custom floating-point approximation.}}{13}}
+\newlabel{tab:power_cfp}{{7}{13}}
+\@writefile{lof}{\contentsline {figure}{\numberline {17}{\ignorespaces Noise tolerance on hardware PU using custom floating-point approximation. (a) Illustrates the accuracy vs number of spikes at given noise amplitudes. (b) Illustrates the accuracy vs noise amplitude at given number of spikes.}}{13}}
 \newlabel{fig:accuracy_vs_noise_pu_cfp}{{17}{13}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {V-B}3}Design exploration for dot-product using logarithmic approximation}{13}}
 \@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Performance of hardware processing units using logarithmic approximation.}}{13}}
 \newlabel{tab:latency_log}{{8}{13}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Resource utilization of processing units using logarithmic calculation.}}{13}}
+\newlabel{tab:resource_log}{{9}{13}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Power dissipation of processing units using logarithmic calculation.}}{13}}
+\newlabel{tab:power_log}{{10}{13}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-C}}Results and discussion}{13}}
 \@writefile{lof}{\contentsline {figure}{\numberline {18}{\ignorespaces Performance of processing units using logarithmic approximation. a) Illustrates computation schedule. b) Illustrates cyclic computation schedule.}}{14}}
 \newlabel{fig:latency_pu_log_cycle}{{18}{14}}
-\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Resource utilization of processing units using logarithmic calculation.}}{14}}
-\newlabel{tab:resource_log}{{9}{14}}
-\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Power dissipation of processing units using logarithmic calculation.}}{14}}
-\newlabel{tab:power_log}{{10}{14}}
-\@writefile{lof}{\contentsline {figure}{\numberline {19}{\ignorespaces Noise tolerance of the SbS network simulation on hardware PU using logarithmic approximation on 100 images. (a) Illustrates the accuracy vs number of spikes at given noise amplitudes. (b) Illustrates the accuracy vs noise amplitude at given number of spikes.}}{14}}
-\newlabel{fig:accuracy_vs_noise_pu_log}{{19}{14}}
 \@writefile{toc}{\contentsline {section}{\numberline {VI}Conclusions}{14}}
 \newlabel{sec:conclusions}{{VI}{14}}
+\@writefile{lof}{\contentsline {figure}{\numberline {19}{\ignorespaces Noise tolerance on hardware PU using logarithmic approximation. (a) Illustrates the accuracy vs number of spikes at given noise amplitudes. (b) Illustrates the accuracy vs noise amplitude at given number of spikes.}}{14}}
+\newlabel{fig:accuracy_vs_noise_pu_log}{{19}{14}}
 \bibstyle{IEEEtran}
 \bibdata{../content/bibliography.bib}
 \bibcite{schmidhuber2015deep}{1}
@@ -166,15 +166,15 @@
 \bibcite{han2015deep}{20}
 \bibcite{hubara2017quantized}{21}
 \bibcite{rastegari2016xnor}{22}
-\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Experimental results of design exploration.}}{15}}
-\newlabel{tab:results}{{11}{15}}
-\newlabel{sec:Ack}{{VI}{15}}
-\@writefile{toc}{\contentsline {section}{REFERENCES}{15}}
 \bibcite{moons20160}{23}
 \bibcite{whatmough201714}{24}
 \bibcite{sun2018xnor}{25}
 \bibcite{rathi2018stdp}{26}
 \bibcite{sen2017approximate}{27}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Experimental results of design exploration.}}{15}}
+\newlabel{tab:results}{{11}{15}}
+\newlabel{sec:Ack}{{VI}{15}}
+\@writefile{toc}{\contentsline {section}{REFERENCES}{15}}
 \bibcite{srivastava2014dropout}{28}
 \bibcite{wan2013regularization}{29}
 \bibcite{neftci2016stochastic}{30}
