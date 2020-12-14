@@ -148,7 +148,7 @@ The post-implementation resource utilization and power dissipation are shown in 
 	\end{tabular}
 \end{table}
 
-\subsubsection{Benchmark on noise tolerance}
+\subsubsection{Benchmark on noise tolerance plot}
 The noise tolerance plot serves as an intuitive visual model used to provide insights into accuracy degradation under approximate processing effects, this plot revels inherent error resilience, and hence, potential for approximation allowance. By gathering inference accuracy and convergence of spikes, under ascending noise levels into a single chart, this plot offers an effective alternative to estimate the overall quality degradation under applied approximation approaches, since both approximations and noise have qualitatively the same effect\cite{venkataramani2015approximate}.
 
 In order to experimentally obtain the noise tolerance plot, we measure the inference accuracy of the neural network at increasing number of spikes, then we retake such measurements applying uniformly distributed noise on the input images with gradually ascending levels of noise amplitude, until it is detected degradation in the inference accuracy. \fig{fig:accuracy_vs_noise_pu_fp} demonstrates this method using 100 sample images.
