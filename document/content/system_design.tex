@@ -14,7 +14,7 @@ Regarding the software architecture, this is structured as a layered object orie
 \subsection{Hardware architecture} \label{Hardware_architecture}
 As a hardware/software co-design, the system architecture is a CPU+FPGA-based platform, where the acceleration of SbS network computation is based on asynchronous execution of parallel heterogeneous PUs: \emph{Spike} (input layer), \emph{Conv} (convolution), \emph{Pool} (pooling), and \emph{FC} (fully connected). Each PU is connected through an AXI-Lite interface for the operational mode configuration, and AXI-Stream interfaces for data transfer via Direct Memory Access (DMA) allowing data movement with high transfer rate. Each PU asserts an interrupt flag once the task or transaction is complete, this interrupt event is handled by the CPU to collect results and start a new transaction.
 
-The hardware architecture can resize its resource utilization by changing the number of PUs instances, this provides a good tradeoff between area and throughput (see \fig{fig:hw_sbs}). The dedicated PUs for \emph{Conv}, and \emph{FC} implement the proposed approximate dot-product as a system component. The PUs are written in C using Vivado HLS (High-Level Synthesis) tool. In this publication, we illustrate the integration of the approximate dot-product component on the \emph{Conv} processing unit.
+The hardware architecture can resize its resource utilization by changing the number of PUs instances, this provides a good trade-off between area and throughput (see \fig{fig:hw_sbs}). The dedicated PUs for \emph{Conv}, and \emph{FC} implement the proposed approximate dot-product as a system component. The PUs are written in C using Vivado HLS (High-Level Synthesis) tool. In this publication, we illustrate the integration of the approximate dot-product component on the \emph{Conv} processing unit.
 
 \begin{figure}
 	\centering
@@ -57,7 +57,9 @@ The computation of the dot-product is the main piece of \equ{eq:sbs_update} and 
 \end{figure}
 
 \subsection{dot-product hardware module}
-This module is part of an application-specific architecture optimized to approximate the dot-product of arbitrary length, see \equ{eq:dot_product}. For quality configurability, we parameterized the mantissa bit-width of $W(s_t)$, which provides a tunable knob to trade-off the resource utilization versus QoR. Since the lower-order bits have smaller significance than the higher-order bits, truncating them may have only a minor impact on QoR, we designate this as custom floating-point approximation. Further on, we completely remove the mantissa bits in order to use only the exponent of a floating-point representation. Hence, the worst-case quality configuration becomes a logarithmic representation, consequently leading to advantageous architectural optimizations using only adders and shifters for dot-product approximation in hardware, we designate this as logarithmic approximation.
+This module is part of an application-specific architecture optimized to approximate the dot-product of arbitrary length, see \equ{eq:dot_product}. For quality configurability, we parameterized the mantissa bit-width of $W(s_t)$, which provides a tunable knob to trade-off between resource utilization and QoR. Since the lower-order bits have smaller significance than the higher-order bits, removing them may have only a minor impact on QoR, we designate this as custom floating-point approximation.
+
+Further on, we remove completely the mantissa bits in order to use only the exponent of a floating-point representation; hence, the worst-case quality configuration becomes a logarithmic representation, consequently leading to advantageous architectural optimizations using only adders and shifters for dot-product approximation in hardware, we designate this as logarithmic approximation.
 
 In this section, we present three pipelined hardware modules using standard floating-point, custom floating-point, and logarithmic approximation.
 
@@ -85,7 +87,7 @@ In this design, the high level synthesis tool infers computational blocks with c
 \end{figure}
 
 \subsubsection{Dot-product using custom floating-point and logarithmic approximation}
- The hardware module to calculate dot-product using custom floating-point approximation is shown in \fig{fig:dot_product_custom}. In this design, $h_\mu$ uses standard floating-point number representation, and $W(s)$ uses a positive reduced custom floating-point number representation, where the mantissa bit width is the quality configurability knob, this parameter is tuned by the designer to trade-off between QoR versus resource utilization, thus, energy consumption.
+ The hardware module to calculate dot-product using custom floating-point approximation is shown in \fig{fig:dot_product_custom}. In this design, $h_\mu$ uses standard floating-point number representation, and $W(s)$ uses a positive reduced custom floating-point number representation, where the mantissa bit width is the quality configurability knob, this parameter is tuned by the designer to trade-off between QoR and resource utilization, thus, energy consumption.
  
  As the wort-case quality configuration, by completely removing the $W(s)$ mantissa leads to a slightly different hardware architecture using only adders and shifters, which computes the dot-product using logarithmic approximation, this is shown in \fig{fig:dot_product_log}.
  

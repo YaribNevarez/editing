@@ -117,11 +117,9 @@ T_{CPU}, & \text{otherwise}
 T_{f} = \max_{n\in L}(t_{f}(n))
 \end{eqnarray}
 
-Using standard floating-point represents a high computational cost. As the heaviest layer, the computational workload of \emph{H3\_CONV} is evenly partitioned among two PUs: \emph{Conv2} and \emph{Conv3}. However, in the cyclic schedule, \emph{Conv2} causes the performance bottleneck as shown in \fig{fig:latency_pu_fp_cycle}. In this case, the CPU has to await for \emph{Conv2} to finish the computation of the previous cycle in order to start the current computation cycle. Therefore, applying \equ{eq:time_spike}, we obtain a latency of 3.183 ms per spike cycle.
+Using standard floating-point represents a high computational cost. As the heaviest layer, the computational workload of \emph{H3\_CONV} is evenly partitioned among two PUs: \emph{Conv2} and \emph{Conv3}. However, in the cyclic schedule, \emph{Conv2} causes the performance bottleneck as shown in \fig{fig:latency_pu_fp_cycle}. In this case, the CPU has to await for \emph{Conv2} to finish the computation of the previous cycle in order to start the current computation cycle. Therefore, applying \equ{eq:time_spike}, we obtain a latency of 3.183 ms per spike cycle. This deployment achieves an accuracy of $98.98\%$ correct classification on the $10,000$ image test set at $1000$ spikes.
 
-This deployment achieves an accuracy of $98.98\%$ correct classification on the $10,000$ image test set at $1000$ spikes. Further on, we benchmark the noise tolerance report using input patterns with positive additive equidistributed random noise up to $55\%$ of amplitude as illustrated in \fig{fig:accuracy_vs_noise_pu_fp}. The post-implementation resource utilization and power dissipation are shown in \Tab{tab:resource_fp} and \Tab{tab:power_fp}, respectively.
-
-Each \emph{Conv} PU instantiates an on-chip stationary weight matrix of $52,000$ entries to store $W\in\mathbb{R}^{5\times 5\times 2\times 32}$ and $W\in\mathbb{R}^{5\times 5\times 32\times 64}$ for \emph{H1\_CONV} and \emph{H3\_CONV}, respectively. In order to reduce BRAM utilization, we use a custom floating-point representation composed of 4-exponent and 4-bit mantissa. Each 8-bit entry is promoted to its standard floating-point representation for the dot-product computation. The methodology to find the appropriate bit width parameters for custom floating-point representation is presented in the next section.
+The post-implementation resource utilization and power dissipation are shown in \Tab{tab:resource_fp} and \Tab{tab:power_fp}, respectively. Each \emph{Conv} PU instantiates an on-chip stationary weight matrix of $52,000$ entries to store $W\in\mathbb{R}^{5\times 5\times 2\times 32}$ and $W\in\mathbb{R}^{5\times 5\times 32\times 64}$ for \emph{H1\_CONV} and \emph{H3\_CONV}, respectively. In order to reduce BRAM utilization, we use a custom floating-point representation composed of 4-exponent and 4-bit mantissa. Each 8-bit entry is promoted to its standard floating-point representation for the dot-product computation. The methodology to find the appropriate bit width parameters for custom floating-point representation is presented in the next section.
 
 \begin{table}[!h]\centering
 	\caption{Resource utilization of processing units using standard floating-point.}\label{tab:resource_fp}
@@ -150,13 +148,20 @@ Each \emph{Conv} PU instantiates an on-chip stationary weight matrix of $52,000$
 	\end{tabular}
 \end{table}
 
+\subsubsection{Benchmark on noise tolerance}
+The noise tolerance plot serves as an intuitive visual model used to provide insights into accuracy degradation under approximate processing effects, this plot revels inherent error resilience, and hence, potential for approximation allowance. By gathering inference accuracy and convergence of spikes, under ascending noise levels into a single chart, this plot offers an effective alternative to estimate the overall quality degradation under applied approximation approaches, since both approximations and noise have qualitatively the same effect\cite{venkataramani2015approximate}.
+
+In order to experimentally obtain the noise tolerance plot, we measure the inference accuracy of the neural network at increasing number of spikes, then we retake such measurements applying uniformly distributed noise on the input images with gradually ascending levels of noise amplitude, until it is detected degradation in the inference accuracy. \fig{fig:accuracy_vs_noise_pu_fp} demonstrates this method using 100 sample images.
+
+As benchmark, the tolerance plot in \fig{fig:accuracy_vs_noise_pu_fp} revels accuracy degradation after $50\%$ of noise amplitude, and convergence of inference after $400$ spikes. In this case, the particular SbS network deployment proves inherent error resilience, hence, potential for approximation allowance.
+
+
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=1\columnwidth]{../figures/accuracy_vs_noise_pu_fp.pdf}
-	\caption{Noise tolerance on hardware PU using standard floating-point computation (benchmark). (a) Illustrates the accuracy vs number of spikes at given noise amplitudes. (b) Illustrates the accuracy vs noise amplitude at given number of spikes.}
+	\caption{Noise tolerance on hardware PU using standard floating-point computation (benchmark). (a) Illustrates accuracy degradation after $50\%$ of noise amplitude. (b) Illustrates convergence of inference after $400$ spikes.}
 	\label{fig:accuracy_vs_noise_pu_fp}
 \end{figure}
-
 
 \subsection{Design exploration for custom floating-point and logarithmic approximation}
 
@@ -243,7 +248,7 @@ The post-implementation resource utilization and power dissipation are shown in 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=1\columnwidth]{../figures/accuracy_vs_noise_pu_cfp(4-bit-exponent_1-bit-mantissa).pdf}
-	\caption{Noise tolerance on hardware PU using custom floating-point approximation. (a) Illustrates the accuracy vs number of spikes at given noise amplitudes. (b) Illustrates the accuracy vs noise amplitude at given number of spikes.}
+	\caption{Noise tolerance on hardware PU using custom floating-point approximation. (a) Illustrates accuracy degradation after $50\%$ of noise amplitude. (b) Illustrates convergence of inference after $400$ spikes.}
 	\label{fig:accuracy_vs_noise_pu_cfp}
 \end{figure}
 
@@ -307,7 +312,7 @@ The post-implementation resource utilization and power dissipation are shown in 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=1\columnwidth]{../figures/accuracy_vs_noise_pu_log.pdf}
-	\caption{Noise tolerance on hardware PU using logarithmic approximation. (a) Illustrates the accuracy vs number of spikes at given noise amplitudes. (b) Illustrates the accuracy vs noise amplitude at given number of spikes.}
+	\caption{Noise tolerance on hardware PU using logarithmic approximation. (a) Illustrates accuracy degradation after $40\%$ of noise amplitude. (b) Illustrates convergence of inference after $600$ spikes.}
 	\label{fig:accuracy_vs_noise_pu_log}
 \end{figure}
 
