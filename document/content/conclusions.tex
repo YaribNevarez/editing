@@ -1,8 +1,6 @@
 \section{Conclusions}
 \label{sec:conclusions}
-In this publication, we accelerate SbS neural networks with a dot-product functional unit based on approximate computing. This approach reduces computational latency, memory footprint, and power dissipation while preserving inference accuracy.
-
-For output quality monitoring, we introduced a noise tolerance plot to visualize the impact of the approximate computing technique on the accuracy of the neural network.
+In this publication, we accelerate SbS neural networks with a dot-product functional unit based on approximate computing, this approach reduces computational latency, memory footprint, and power dissipation while preserving inference accuracy. For output quality monitoring, we propose the noise tolerance plot as an intuitive visual model to provide insights into the accuracy degradation of SbS networks under approximate processing effects, this plot revels inherent error resilience, hence, potential for approximation allowance.
 
 We demonstrate our approach addressing a design exploration flow on a Xilinx Zynq-7020 with a deployment of NMIST classification task, this implementation achieves up to $20.49\times$ latency enhancement, $8\times$ synaptic memory footprint reduction, less than $0.5\%$ of accuracy degradation, with a $12.35\%$ of energy efficiency improvement over the standard floating-point hardware implementation. Furthermore, with positive additive uniformly distributed noise at $50\%$ of amplitude on the input image, the SbS network simulation presents an accuracy degradation of less than $5\%$. As output quality monitor, the resulting noise-tolerance demonstrates a sufficient QoR for minimal impact on the overall accuracy of the neural network using the proposed approximation technique. These results suggest available room for further and more aggressive approximation approaches.
 
