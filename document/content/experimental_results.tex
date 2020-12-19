@@ -93,7 +93,7 @@ The total execution time of the CPU is defined by \equ{eq:time_cpu}. In a cyclic
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=1\columnwidth]{../figures/latency_fp_cycle.pdf}
-	\caption{Performance bottleneck of cyclic computation on processing units using standard floating-point. a) Illustrates the starting of $t_{PU}$ of \emph{Conv2} on a previous computation cycle. b) Illustrates $t_{CPU}$ of \emph{Conv2} on the current computation cycle. c) Illustrates the CPU waiting time (in gray color) for \emph{Conv2} as a busy resource (awaiting for \emph{Conv2} interruption). d) Illustrates the $t_{f}$ from the previous computation cycle, the starting of $t_{PU}$ on the current computation cycle (\emph{Conv2} interruption on completion, and start current computation cycle).}
+	\caption{Performance bottleneck of cyclic computation on processing units using standard floating-point computation, (a) exhibits the starting of $t_{PU}$ of \emph{Conv2} on a previous computation cycle, (b) presents $t_{CPU}$ of \emph{Conv2} on the current computation cycle, (c) shows the CPU waiting time (in gray color) for \emph{Conv2} as a busy resource (awaiting for \emph{Conv2} interruption), and (d) illustrates the $t_{f}$ from the previous computation cycle, the starting of $t_{PU}$ on the current computation cycle (\emph{Conv2} interruption on completion, and start current computation cycle).}
 	\label{fig:latency_pu_fp_cycle}
 \end{figure}
 
@@ -122,7 +122,7 @@ Using standard floating-point requires a high computational cost. As the largest
 The post-implementation resource utilization and power dissipation are shown in \Tab{tab:resource_fp} and \Tab{tab:power_fp}, respectively. Each \emph{Conv} PU instantiates an on-chip stationary weight matrix of $52,000$ entries to store $W\in\mathbb{R}^{5\times 5\times 2\times 32}$ and $W\in\mathbb{R}^{5\times 5\times 32\times 64}$ for \emph{H1\_CONV} and \emph{H3\_CONV}, respectively. In order to reduce BRAM utilization, we use a custom floating-point representation composed of 4-exponent and 4-bit mantissa. Each 8-bit entry is promoted to its standard floating-point representation for the dot-product computation. The methodology to find the appropriate bit width parameters for custom floating-point representation is presented in the next section.
 
 \begin{table}[!h]\centering
-	\caption{Resource utilization of processing units using standard floating-point.}\label{tab:resource_fp}
+	\caption{Resource utilization of processing units with standard floating-point computation.}\label{tab:resource_fp}
 	\scriptsize
 	\begin{tabular}{lrrrrrr}\toprule
 		\textbf{PU} & &\textbf{LUT} &\textbf{FF} &\textbf{DSP} &\textbf{BRAM 18K} \\\midrule
@@ -159,7 +159,7 @@ As benchmark, the tolerance plot in \fig{fig:accuracy_vs_noise_pu_fp} revels acc
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=1\columnwidth]{../figures/accuracy_vs_noise_pu_fp.pdf}
-	\caption{Noise tolerance on hardware PU using standard floating-point computation (benchmark). (a) Illustrates accuracy degradation after $50\%$ of noise amplitude. (b) Illustrates convergence of inference after $400$ spikes.}
+	\caption{Noise tolerance on hardware PU with standard floating-point computation (benchmark/reference), (a) exhibits accuracy degradation applying $50\%$ of noise amplitude, and (b) illustrates convergence of inference with $400$ spikes.}
 	\label{fig:accuracy_vs_noise_pu_fp}
 \end{figure}
 
@@ -198,7 +198,7 @@ This configuration achieves an accuracy of $98.97\%$ correct classification on t
 The post-implementation resource utilization and power dissipation are shown in \Tab{tab:resource_cfp} and \Tab{tab:power_cfp}, respectively.
 
 \begin{table}[t!]\centering
-	\caption{Performance of hardware processing units using custom floating-point approximation.}\label{tab:latency_cfp}
+	\caption{Performance of hardware processing units with hybrid custom floating-point approximation.}\label{tab:latency_cfp}
 	\scriptsize
 	\begin{tabular}{llrrrrrr}\toprule
 		\multicolumn{2}{c}{\textbf{Hardware mapping}} & &\multicolumn{4}{c}{\textbf{Computation schedule (ms)}} \\\cmidrule{1-2}\cmidrule{4-7}
@@ -219,7 +219,7 @@ The post-implementation resource utilization and power dissipation are shown in 
 \begin{figure}[t!]
 	\centering
 	\includegraphics[width=1\columnwidth]{../figures/latency_cfp_cycle.pdf}
-	\caption{Performance on processing units using custom floating-point approximation. a) Illustrates computation schedule. b) Illustrates cyclic computation schedule. c) Illustrates the performance of \emph{Conv2} from a previous computation cycle during the preprocessing of \emph{H1\_CONV} on the current computation cycle without bottleneck.}
+	\caption{Performance on processing units with hybrid custom floating-point approximation, (a) exhibits computation schedule, (b) presents cyclic computation schedule, and (c) shows the performance of \emph{Conv2} from a previous computation cycle during the preprocessing of \emph{H1\_CONV} on the current computation cycle without bottleneck.}
 	\label{fig:latency_pu_cfp_cycle}
 \end{figure}
 
@@ -248,7 +248,7 @@ The post-implementation resource utilization and power dissipation are shown in 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=1\columnwidth]{../figures/accuracy_vs_noise_pu_cfp(4-bit-exponent_1-bit-mantissa).pdf}
-	\caption{Noise tolerance on hardware PU using custom floating-point approximation. (a) Illustrates accuracy degradation after $50\%$ of noise amplitude. (b) Illustrates convergence of inference after $400$ spikes.}
+	\caption{Noise tolerance on hardware PU using custom floating-point approximation, (a) exhibits accuracy degradation applying $50\%$ of noise amplitude, and (b) illustrates convergence of inference with $400$ spikes.}
 	\label{fig:accuracy_vs_noise_pu_cfp}
 \end{figure}
 
@@ -262,7 +262,7 @@ This quality configuration achieves an accuracy of $98.84\%$ correct classificat
 The post-implementation resource utilization and power dissipation are shown in \Tab{tab:resource_cfp} and \Tab{tab:power_cfp}, respectively.
 
 \begin{table}[t!]\centering
-	\caption{Performance of hardware processing units using logarithmic approximation.}\label{tab:latency_log}
+	\caption{Performance of hardware processing units with hybrid logarithmic approximation.}\label{tab:latency_log}
 	\scriptsize
 	\begin{tabular}{llrrrrrr}\toprule
 		\multicolumn{2}{c}{\textbf{Hardware mapping}} & &\multicolumn{4}{c}{\textbf{Computation schedule (ms)}} \\\cmidrule{1-2}\cmidrule{4-7}
@@ -283,7 +283,7 @@ The post-implementation resource utilization and power dissipation are shown in 
 \begin{figure}[!t]
 	\centering
 	\includegraphics[width=1\columnwidth]{../figures/latency_log_cycle.pdf}
-	\caption{Performance of processing units using logarithmic approximation. a) Illustrates computation schedule. b) Illustrates cyclic computation schedule.}
+	\caption{Performance of processing units with hybrid logarithmic approximation, (a) exhibits computation schedule, and (b) illustrates cyclic computation schedule.}
 	\label{fig:latency_pu_log_cycle}
 \end{figure}
 
@@ -312,7 +312,7 @@ The post-implementation resource utilization and power dissipation are shown in 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=1\columnwidth]{../figures/accuracy_vs_noise_pu_log.pdf}
-	\caption{Noise tolerance on hardware PU using logarithmic approximation. (a) Illustrates accuracy degradation after $40\%$ of noise amplitude. (b) Illustrates convergence of inference after $600$ spikes.}
+	\caption{Noise tolerance on hardware PU with hybrid logarithmic approximation, (a) exhibits accuracy degradation applying $40\%$ of noise amplitude, (b) illustrates convergence of inference with $600$ spikes.}
 	\label{fig:accuracy_vs_noise_pu_log}
 \end{figure}
 

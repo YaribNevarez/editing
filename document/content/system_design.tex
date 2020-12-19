@@ -80,7 +80,7 @@ In this design, the high level synthesis tool infers computational blocks with c
 \begin{figure}[t!]
 	\centering
 	\includegraphics[width=0.5\textwidth]{../figures/dot_product_float.pdf}
-	\caption{Dot-product hardware module using standard floating-point computation. (a) Illustrates the initiation interval of 10 clock cycles. (b) Illustrates the iteration latency of 19 clock cycles. (c) Illustrates the pairwise product block in dark-gray. (d) Illustrates the accumulation block in light-gray.}
+	\caption{Dot-product hardware module with standard floating-point computation, (a) exhibits the initiation interval of 10 clock cycles, (b) presents the iteration latency of 19 clock cycles, (c) shows the pairwise product block in dark-gray, and (d) illustrates the accumulation block in light-gray.}
 	\label{fig:dot_product_float}
 \end{figure}
 
@@ -132,14 +132,14 @@ The proposed architecture using custom floating-point and logarithmic approximat
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.5\textwidth]{../figures/dot_product.pdf}
-	\caption{Dot-product hardware module using custom floating-point approximation. (a) Illustrates the initiation interval of 2 clock cycles. (b) Illustrates the iteration latency of 13 clock cycles. (c) Illustrates the pairwise product blocks in dark-gray. (d) Illustrates the accumulation blocks in light-gray.}
+	\caption{Dot-product hardware module with hybrid custom floating-point approximation, (a) exhibits the initiation interval of 2 clock cycles, (b) presents the iteration latency of 13 clock cycles, (c) shows the pairwise product blocks in dark-gray, and (d) illustrates the accumulation blocks in light-gray.}
 	\label{fig:dot_product_custom}
 \end{figure}
 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.5\textwidth]{../figures/dot_product_log.pdf}
-	\caption{Dot-product hardware module using logarithmic approximation. (a) Illustrates the initiation interval of 2 clock cycles. (b) Illustrates the iteration latency of 9 clock cycles. (c) Illustrates the pairwise product block in dark-gray. (d) Illustrates the accumulation blocks in light-gray.}
+	\caption{Dot-product hardware module with hybrid logarithmic approximation, (a) exhibits the initiation interval of 2 clock cycles, (b) presents the iteration latency of 9 clock cycles, (c) shows the pairwise product block in dark-gray, and (d) illustrates the accumulation blocks in light-gray.}
 	\label{fig:dot_product_log}
 \end{figure}
 
