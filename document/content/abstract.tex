@@ -1,4 +1,4 @@
-\title {Accelerating Spike-by-Spike Neural Networks with Approximate Dot-Product on FPGA}
+\title {Accelerating Spike-by-Spike Neural Networks with Hybrid Custom Floating-Point and Logarithmic Dot-Product Approximation on FPGA}
 
 \author{
 	\uppercase{Yarib Nevarez}\authorrefmark{1},	
@@ -27,7 +27,23 @@
 .
 
 \begin{abstract}
-The Spike-by-Spike (SbS) neural network algorithm is a powerful machine learning (ML) technique for image classification with an exceptional noise robustness. However, deep SbS networks represent an elevated memory footprint and computational cost for profitable implementation in embedded applications. As an alternative, based on the intrinsic error-resilience of neural networks, approximate computing is a promising approach for resource-efficient deployment of neural networks in resource-constrained devices. In this paper, we accelerate SbS neural networks with a dot-product hardware unit based on approximate computing with quality configurable design. This approach reduces computational latency, memory footprint, and power dissipation while preserving accuracy. For output quality monitoring, we propose a noise tolerance plot to intuitively visualize the impact of approximation effects on inference accuracy. To demonstrate our approach, we address a design exploration flow using high-level synthesis and a Xilinx FPGA. As a result, the proposed design achieves up to $20.49\times$ latency enhancement, $8\times$ synaptic memory footprint reduction, and less than $0.5\%$ of accuracy degradation on handwritten digit recognition task.
+  Spiking neural networks (SNNs) represent a promising alternative to
+  conventional neural networks. In particular, the so called
+  Spike-by-Spike (SbS) neural networks provide an exceptional noise
+  robustness and a reduced complexity. However, deep SbS networks
+  require a memory footprint and a computational cost unsuitable for
+  embedded applications. To address this problem, this work exploits
+  the intrinsic error-resilience of neural networks to improve
+  performance and to reduce the hardware complexity. More precisely, we
+  design a dot-product hardware unit based on approximate computing
+  with quality configurable design using hybrid custom floating-point and logarithmic number representation. This approach reduces
+  computational latency, memory footprint, and power dissipation while
+  preserving accuracy. To demonstrate our approach, we address a
+  design exploration flow using high-level synthesis and a Xilinx
+  FPGA. As a result, the proposed design achieves up to $20.49\times$
+  latency enhancement, $8\times$ synaptic memory footprint reduction,
+  and less than $0.5\%$ of accuracy degradation on handwritten digit
+  recognition task.
 	
 \end{abstract}
 

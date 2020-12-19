@@ -1,7 +1,7 @@
 \subsection{Spike-by-Spike Neural Networks}
 \label{sec:sbs}
   
-  As a generative model \cite{ernst2007efficient}, the SbS model iteratively finds an estimate of its input probability distribution $p(s)$ (i.e. the probability of input node $s$ to stochastically send a spike) by its latent variables via $r(s) = \sum_i h(i) W(s|i)$. An inference population sees only the spikes $s_t$ (i.e. the index identifying the input neuron $s$ which generated that spike at time $t$) produced by its input neurons, not the underlying input probability distribution $p(s)$ itself. By counting the spikes arriving at a group of SbS neurons, $p(s)$ is estimated by $\hat{p}(s) = 1/T \sum_t \delta_{s,s^t}$ after $T$ spikes have been observed in total. The goal is to generate an internal representation $r(s)$ from the string of incoming spikes $s_t$ such that the negative logarithm of the likelihood $L = C - \sum_\mu \sum_s \hat{p}_\mu(s) log\left( r_\mu(s) \right)$ is minimized. $C$ is a constant which is independent of the internal representation $r_\mu(s)$ and $\mu$ denotes one input pattern from an ensemble of input patterns. Applying a multiplicative gradient descent method on $L$, an algorithm for iteratively updating $h_\mu(i)$ with every observed input spike $s_t$ could be derived
+  As a generative model \cite{ernst2007efficient}, the SbS model iteratively finds an estimate of its input probability distribution $p(s)$ (i.e. the probability of input node $s$ to stochastically send a spike) by its latent variables via $r(s) = \sum_i h(i) W(s|i)$, where $ h $ is an inference population composed of a group of neurons that complete each other. An inference population sees only the spikes $s_t$ (i.e. the index identifying the input neuron $s$ which generated that spike at time $t$) produced by its input neurons, not the underlying input probability distribution $p(s)$ itself. By counting the spikes arriving at a group of SbS neurons, $p(s)$ is estimated by $\hat{p}(s) = 1/T \sum_t \delta_{s,s^t}$ after $T$ spikes have been observed in total. The goal is to generate an internal representation $r(s)$ from the string of incoming spikes $s_t$ such that the negative logarithm of the likelihood $L = C - \sum_\mu \sum_s \hat{p}_\mu(s) log\left( r_\mu(s) \right)$ is minimized. $C$ is a constant which is independent of the internal representation $r_\mu(s)$ and $\mu$ denotes one input pattern from an ensemble of input patterns. Applying a multiplicative gradient descent method on $L$, an algorithm for iteratively updating $h_\mu(i)$ with every observed input spike $s_t$ could be derived \cite{ernst2007efficient}
   \begin{eqnarray} \label{eq:sbs_update}
   h_\mu^{new}(i) = \frac{1}{1+\epsilon} \left(h_\mu(i) + \epsilon \frac{h_\mu(i) W(s_t|i) }{\sum_j h_\mu(j) W(s_t|j)} \right) 
   \end{eqnarray}
@@ -9,7 +9,7 @@
 
 
 Fundamentally, SbS is a stochastic gradient descent dynamics
-consistent with Non-Negative Matrix Factorization (NNMF) having several advantages. The stochasticity of gradient descent could
+consistent with Non-Negative Matrix Factorization (NNMF). The stochasticity of gradient descent could
 in principle overcome local minima.  Furthermore, it favors sparse
 solutions with little fluctuations (which is the case for overcomplete
 representations). Finally this specific mechanism for inducing
@@ -55,7 +55,7 @@ the fixed point.
 An example of the noise tolerance of SbS is presented in
 \fig{fig:robustnes_sbs}. It compares the classification performance of
 a SbS network and a tensor flow network, with the same amount of
-neurons per layer as well as the same layer structure. We trained on MNIST dataset\cite{lecun1998mnist} without noise (see \cite{rotermund2019Backpropagation} for details). It shows the correctness for the MNIST test set with its 10000 patterns in dependency of the noise level for positive additive
+neurons per layer as well as the same layer structure. We trained on MNIST dataset\cite{lecun1998mnist} without noise (see \cite{rotermund2019Backpropagation} for details). The figure shows the correctness for the MNIST test set with its $10000$ patterns in dependency of the noise level for positive additive
 uniformly distributed noise. The blue curve shows the performance for
 the tensor flow network, while the red curve shows the performance for
 the SbS network with 1200 spikes per inference population. Beginning
