@@ -119,31 +119,17 @@ T_{f} = \max_{n\in L}(t_{f}(n))
 
 Using standard floating-point requires a high computational cost. As the largest layer, the computational workload of \emph{H3\_CONV} is evenly partitioned among two PUs: \emph{Conv2} and \emph{Conv3}. However, in the cyclic schedule, \emph{Conv2} causes the performance bottleneck as shown in \fig{fig:latency_pu_fp_cycle}. In this case, the CPU has to await for \emph{Conv2} to finish the computation of the previous cycle in order to start the current computation cycle. Applying \equ{eq:time_spike}, we obtain a latency of 3.183 ms per spike cycle. This deployment achieves an accuracy of $98.98\%$ correct classification on the $10,000$ image test set at $1000$ spikes.
 
-The post-implementation resource utilization and power dissipation are shown in \Tab{tab:resource_fp} and \Tab{tab:power_fp}, respectively. Each \emph{Conv} PU instantiates an on-chip stationary weight matrix of $52,000$ entries to store $W\in\mathbb{R}^{5\times 5\times 2\times 32}$ and $W\in\mathbb{R}^{5\times 5\times 32\times 64}$ for \emph{H1\_CONV} and \emph{H3\_CONV}, respectively. In order to reduce BRAM utilization, we use a custom floating-point representation composed of 4-exponent and 4-bit mantissa. Each 8-bit entry is promoted to its standard floating-point representation for the dot-product computation. The methodology to find the appropriate bit width parameters for custom floating-point representation is presented in the next section.
+The post-implementation resource utilization and power dissipation are shown in \Tab{tab:resource_fp}. Each \emph{Conv} PU instantiates an on-chip stationary weight matrix of $52,000$ entries to store $W\in\mathbb{R}^{5\times 5\times 2\times 32}$ and $W\in\mathbb{R}^{5\times 5\times 32\times 64}$ for \emph{H1\_CONV} and \emph{H3\_CONV}, respectively. In order to reduce BRAM utilization, we use a custom floating-point representation composed of 4-exponent and 4-bit mantissa. Each 8-bit entry is promoted to its standard floating-point representation for the dot-product computation. The methodology to find the appropriate bit width parameters for custom floating-point representation is presented in the next section.
 
 \begin{table}[!h]\centering
-	\caption{Resource utilization of processing units with standard floating-point computation.}\label{tab:resource_fp}
+	\caption{Resource utilization and power dissipation of processing units with standard floating-point computation.}\label{tab:resource_fp}
 	\scriptsize
-	\begin{tabular}{lrrrrrr}\toprule
-		\textbf{PU} & &\textbf{LUT} &\textbf{FF} &\textbf{DSP} &\textbf{BRAM 18K} \\\midrule
-		Spike & &2,640 &4,903 &2 &2 \\
-		Conv & &2,765 &4,366 &19 &37 \\
-		Pool & &2,273 &3,762 &5 &3 \\
-		FC & &2,649 &4,189 &8 &9 \\
-		\bottomrule
-	\end{tabular}
-\end{table}
-
-\begin{table}[!h]\centering
-	\caption{Power dissipation of processing units using standard floating-point.}\label{tab:power_fp}
-	\scriptsize
-	\begin{tabular}{lrr}\toprule
-		\textbf{PU} &\textbf{Power (mW)} \\\midrule
-		Spike &38 \\
-		Conv &89 \\
-		Pool &59 \\
-		FC &66 \\
-		CPU &520 \\
+	\begin{tabular}{lrrrrrrr}\toprule
+		\textbf{PU} & &\textbf{LUT} &\textbf{FF} &\textbf{DSP} &\textbf{BRAM 18K} &\textbf{Power (mW)} \\\midrule
+		Spike & &2,640 &4,903 &2 &2 &38 \\
+		Conv & &2,765 &4,366 &19 &37 &89 \\
+		Pool & &2,273 &3,762 &5 &3 &59 \\
+		FC & &2,649 &4,189 &8 &9 &66 \\
 		\bottomrule
 	\end{tabular}
 \end{table}
@@ -188,14 +174,14 @@ For quality configurability, the mantissa bit width is a knob parameter that is 
 	\caption{$\log_2$-histogram of each synaptic weight matrix showing the percentage of matrix elements with given integer exponent.}\label{fig:log2histogram}
 \end{figure}
 
-\subsubsection{Design exploration for dot-product using custom floating-point approximation}
+\subsubsection{Design exploration for dot-product with hybrid custom floating-point approximation}
 For this design exploration, we use a custom floating-point representation composed of 4-bit exponent and 1-bit mantissa. This format is used for the synaptic weight vector on the proposed dot-product architecture. Each \emph{Conv} PU instantiates an on-chip stationary weight matrix for $52,000$ entries of 5-bit. The available memory size is large enough to store $W\in\mathbb{R}^{5\times 5\times 2\times 32}$ and $W\in\mathbb{R}^{5\times 5\times 32\times 64}$ for \emph{H1\_CONV} and \emph{H3\_CONV}, respectively. The same dot-product architecture is implemented in the processing unit of the fully connected layer (\emph{FC}). However, due to lack of block RAM (BRAM) resources, this PU can not instantiate on-chip stationary synaptic weight matrix. Instead, \emph{FC} receives the $\vec{W(s_t)}$ (weight vectors) during operation as well as $\vec{h_\mu}$ and $\vec{S_t}$. The hardware mapping and the computation schedule of this implementation are displayed in \Tab{tab:latency_cfp} and \Fig{fig:latency_pu_cfp_cycle}.
 
 As shown in the computation schedule in \Tab{tab:latency_cfp} and \Fig{fig:latency_pu_cfp_cycle}, this implementation achieves a maximum hardware PU latency of $1.309 ms$ according to \equ{eq:time_pu}, and a CPU latency of $1.673 ms$. Therefore, applying \equ{eq:time_spike}, we obtain a latency of $1.673 ms$ per spike cycle as shown in \Fig{fig:latency_pu_cfp_cycle}. In this case, the cyclic bottleneck is in the performance of the CPU.
 
 This configuration achieves an accuracy of $98.97\%$ correct classification on the $10,000$ image test set with $1000$ spikes. This indicates an accuracy degradation of $0.33\%$. For output quality monitoring, the noise tolerance plot in \fig{fig:accuracy_vs_noise_pu_cfp} revels accuracy degradation for noise higher than $50\%$ of amplitude, and convergence of inference after $400$ spikes. Thus, the particular SbS network implementation under approximate processing effects demonstrates a minimal impact on the overall accuracy. This proves an inherent error resilience, and hence, remaining approximation budget.
 
-The post-implementation resource utilization and power dissipation are shown in \Tab{tab:resource_cfp} and \Tab{tab:power_cfp}, respectively.
+The post-implementation resource utilization and power dissipation are shown in \Tab{tab:resource_cfp}.
 
 \begin{table}[t!]\centering
 	\caption{Performance of hardware processing units with hybrid custom floating-point approximation.}\label{tab:latency_cfp}
@@ -224,25 +210,14 @@ The post-implementation resource utilization and power dissipation are shown in 
 \end{figure}
 
 \begin{table}[h!]\centering
-	\caption{Resource utilization of processing units using custom floating-point approximation.}\label{tab:resource_cfp}
+	\caption{Resource utilization and power dissipation of processing units using hybrid custom floating-point approximation.}\label{tab:resource_cfp}
 	\scriptsize
-	\begin{tabular}{lrrrrrr}\toprule
-		\textbf{PU} & &\textbf{LUT} &\textbf{FF} &\textbf{DSP} &\textbf{BRAM 18K} \\\midrule
-		Conv & &3,139 &4,850 &19 &25 \\
-		FC & &3,265 &5,188 &8 &9 \\
-		\bottomrule
-	\end{tabular}
-\end{table}
-
-\begin{table}[h!]\centering
-	\caption{Power dissipation of processing units using custom floating-point approximation.}\label{tab:power_cfp}
-	\scriptsize
-	\begin{tabular}{lrr}\toprule
-		\textbf{PU} &\textbf{Power (mW)} \\\midrule
-		Conv &82 \\
-		FC &66 \\
-		\bottomrule
-	\end{tabular}
+\begin{tabular}{lrrrrrrr}\toprule
+	\textbf{PU} & &\textbf{LUT} &\textbf{FF} &\textbf{DSP} &\textbf{BRAM 18K} &\textbf{Power (mW)} \\\midrule
+	Conv & &3,139 &4,850 &19 &25 &82 \\
+	FC & &3,265 &5,188 &8 &9 &66 \\
+	\bottomrule
+\end{tabular}
 \end{table}
 
 \begin{figure}[h!]
@@ -252,14 +227,14 @@ The post-implementation resource utilization and power dissipation are shown in 
 	\label{fig:accuracy_vs_noise_pu_cfp}
 \end{figure}
 
-\subsubsection{Design exploration for dot-product using logarithmic approximation}
+\subsubsection{Design exploration for dot-product whit hybrid logarithmic approximation}
 As the worst-case quality configuration, we use a 4-bit integer exponent for logarithmic representation of the synaptic weight matrix. Each \emph{Conv} processing unit implements the proposed dot-product architecture including an on-chip stationary weight matrix for $52,000$ entries of 4-bit integer each one to store $W\in\mathbb{N}^{5\times 5\times 2\times 32}$ and $W\in\mathbb{N}^{5\times 5\times 32\times 64}$ for \emph{H1\_CONV} and \emph{H3\_CONV}, respectively. The same dot-product architecture is implemented in the \emph{FC} processing unit without stationary synaptic weight matrix. The hardware mapping and the computation schedule of this implementation are displayed in \Tab{tab:latency_log} and \Fig{fig:latency_pu_log_cycle}.
 
 As shown in the computation schedule in \Tab{tab:latency_log} and \Fig{fig:latency_pu_log_cycle}, this implementation achieves a maximum hardware PU latency of $1.271 ms$ according to \equ{eq:time_pu}, and a CPU latency of $1.673 ms$. Therefore, applying \equ{eq:time_spike}, we obtain a latency of $1.673 ms$ per spike cycle as shown in \Fig{fig:latency_pu_log_cycle}. In this case, the cyclic bottleneck is in the CPU performance.
 
 This quality configuration achieves an accuracy of $98.84\%$ correct classification on the $10,000$ image test set with $1000$ spikes. This indicates an accuracy degradation of $0.46\%$. For output quality monitoring, the noise tolerance plot in \fig{fig:accuracy_vs_noise_pu_log} revels accuracy degradation for noise higher than $40\%$ of amplitude, and convergence of inference after $600$ spikes. The particular SbS network implementation under approximate processing demonstrates a minor impact on the overall accuracy. This exhibits remaining budget for further approximate processing approaches.
 
-The post-implementation resource utilization and power dissipation are shown in \Tab{tab:resource_cfp} and \Tab{tab:power_cfp}, respectively.
+The post-implementation resource utilization and power dissipation are shown in \Tab{tab:resource_log}.
 
 \begin{table}[t!]\centering
 	\caption{Performance of hardware processing units with hybrid logarithmic approximation.}\label{tab:latency_log}
@@ -288,25 +263,14 @@ The post-implementation resource utilization and power dissipation are shown in 
 \end{figure}
 
 \begin{table}[!h]\centering
-	\caption{Resource utilization of processing units using logarithmic calculation.}\label{tab:resource_log}
+	\caption{Resource utilization and power dissipation of processing units with hybrid logarithmic approximation.}\label{tab:resource_log}
 	\scriptsize
-	\begin{tabular}{lrrrrrr}\toprule
-		\textbf{PU} & &\textbf{LUT} &\textbf{FF} &\textbf{DSP} &\textbf{BRAM 18K} \\\midrule
-		Conv & &3,086 &4,804 &19 &21 \\
-		FC & &3,046 &4,873 &8 &8 \\
-		\bottomrule
-	\end{tabular}
-\end{table}
-
-\begin{table}[!h]\centering
-	\caption{Power dissipation of processing units using logarithmic calculation.}\label{tab:power_log}
-	\scriptsize
-	\begin{tabular}{lrr}\toprule
-		\textbf{PU} &\textbf{Power (W)} \\\midrule
-		Conv &78 \\
-		FC &66 \\
-		\bottomrule
-	\end{tabular}
+\begin{tabular}{lrrrrrrr}\toprule
+	\textbf{PU} & &\textbf{LUT} &\textbf{FF} &\textbf{DSP} &\textbf{BRAM 18K} &\textbf{Power (mW)} \\\midrule
+	Conv & &3,086 &4,804 &19 &21 &78 \\
+	FC & &3,046 &4,873 &8 &8 &66 \\
+	\bottomrule
+\end{tabular}
 \end{table}
 
 \begin{figure}[h!]
@@ -329,25 +293,25 @@ Regarding resource utilization and power dissipation, the \emph{Conv} processing
 		\centering
 		\caption{Experimental results of design exploration.}\label{tab:results}
 		\scriptsize
-		\begin{tabular}{lrrrrrrrrrrrrrrr}\toprule
-			\multirow{2}{*}{\textbf{Implementation}} &\multirow{2}{*}{\textbf{PU}} &\multicolumn{4}{c}{\textbf{Post-implementation resource utilization}} & &\multirow{2}{*}{\textbf{Power (mW)}} & &\multicolumn{2}{c}{\textbf{Latency}} & &\multicolumn{3}{c}{\textbf{Accuracy (\%)\tnote{e}}} \\\cmidrule{3-6}\cmidrule{10-11}\cmidrule{13-15}
-			& &\textbf{LUT} &\textbf{FF} &\textbf{DSP} &\textbf{BRAM 18K} & & & &$T_{SC}$ (ms) &\textbf{Gain\tnote{d}} & &\textbf{Noise 0\%} &\textbf{25\%} &\textbf{50\%} \\\midrule
-			\multirow{2}{*}{Standard floating-point\tnote{a}} &Conv &2,765 &4,366 &19 &37 & &89 & &\multirow{2}{*}{3.183} &\multirow{2}{*}{10.77x} & &\multirow{2}{*}{98.98} &\multirow{2}{*}{98.96} &\multirow{2}{*}{98.63} \\
-			&FC &2,649 &4,189 &8 &9 & &66 & & & & & & & \\
-			& & & & & & & & & & & & & & \\
-			\multirow{2}{*}{Custom floating-point\tnote{b}} &Conv &3,139 &4,850 &19 &25 & &82 & &\multirow{2}{*}{1.673} &\multirow{2}{*}{20.49x} & &\multirow{2}{*}{98.97} &\multirow{2}{*}{98.94} &\multirow{2}{*}{98.47} \\
-			&FC &3,265 &5,188 &8 &9 & &66 & & & & & & & \\
-			& & & & & & & & & & & & & & \\
-			\multirow{2}{*}{Logarithmic\tnote{c}} &Conv &3,086 &4,804 &19 &21 & &78 & &\multirow{2}{*}{1.673} &\multirow{2}{*}{20.49x} & &\multirow{2}{*}{98.84} &\multirow{2}{*}{98.83} &\multirow{2}{*}{95.22} \\
-			&FC &3,046 &4,873 &8 &8 & &66 & & & & & & & \\
+		\begin{tabular}{lrrrrrrrrrrrrrr}\toprule
+			\multirow{2}{*}{\textbf{Dot-product implementation}} &\multirow{2}{*}{\textbf{PU}} &\multicolumn{4}{c}{\textbf{Post-implementation resource utilization}} & &\multirow{2}{*}{\textbf{Power (mW)}} & &\multicolumn{2}{c}{\textbf{Latency}} & &\multicolumn{2}{c}{\textbf{Accuracy (\%)\tnote{e}}} \\\cmidrule{3-6}\cmidrule{10-11}\cmidrule{13-14}
+			& &\textbf{LUT} &\textbf{FF} &\textbf{DSP} &\textbf{BRAM 18K} & & & &$T_{SC}$ (ms) &\textbf{Gain\tnote{d}} & &\textbf{Noise 0\%} &\textbf{50\%} \\\midrule
+			\multirow{2}{*}{Standard floating-point computation\tnote{a}} &Conv &2,765 &4,366 &19 &37 & &89 & &\multirow{2}{*}{3.18} &\multirow{2}{*}{10.77x} & &\multirow{2}{*}{98.98} &\multirow{2}{*}{98.63} \\
+			&FC &2,649 &4,189 &8 &9 & &66 & & & & & & \\
+			& & & & & & & & & & & & & \\
+			\multirow{2}{*}{Hybrid custom floating-point approx\tnote{b}} &Conv &3,139 &4,850 &19 &25 & &82 & &\multirow{2}{*}{1.67} &\multirow{2}{*}{20.49x} & &\multirow{2}{*}{98.97} &\multirow{2}{*}{98.47} \\
+			&FC &3,265 &5,188 &8 &9 & &66 & & & & & & \\
+			& & & & & & & & & & & & & \\
+			\multirow{2}{*}{Hybrid logarithmic approximation\tnote{c}} &Conv &3,086 &4,804 &19 &21 & &78 & &\multirow{2}{*}{1.67} &\multirow{2}{*}{20.49x} & &\multirow{2}{*}{98.84} &\multirow{2}{*}{95.22} \\
+			&FC &3,046 &4,873 &8 &8 & &66 & & & & & & \\
 			\bottomrule
 		\end{tabular}
 		\begin{tablenotes}
 			\scriptsize
-			\item[a] Synaptic storage composed of 4-bit exponent and 4-bit mantissa. For computation, each value is promoted to its standard floating-point representation.
-			\item[b] Synaptic storage composed of 4-bit exponent and 1-bit mantissa.
-			\item[c] Synaptic storage composed of 4-bit exponent.
-			\item[d] Latency gain with respect to the CPU computation ($T_{SC} = 34.279 ms$).
+			\item[a] Benchmark/reference.
+			\item[b] Weight format composed of 4-bit exponent and 1-bit mantissa.
+			\item[c] Weight format composed of 4-bit exponent.
+			\item[d] Acceleration with respect to the computation on embedded CPU (ARM Cortex-A9 at 666 MHz) with latency $T_{SC} = 34.28 ms$.
 			\item[e] Accuracy on 10,000 image test set at 1000 spikes.
 		\end{tablenotes}
 	\end{threeparttable}
