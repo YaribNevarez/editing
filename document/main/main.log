@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.8.18)  21 DEC 2020 08:37
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.8.18)  21 DEC 2020 17:04
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1486,10 +1486,8 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 []
  []
 
-[17
-
- <../biography/yarib_300_375.jpg> <../biography/Rotermund_David.jpg> <../biogra
-phy/klaus.png> <../biography/alberto.png>] (./main.aux)
+[17 <../biography/yarib_300_375.jpg> <../biography/Rotermund_David.jpg> <../bio
+graphy/klaus.png> <../biography/alberto.png>] (./main.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
@@ -1501,7 +1499,7 @@ Here is how much of TeX's memory you used:
  9284 multiletter control sequences out of 15000+600000
  115493 words of font info for 141 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,18n,53p,1588b,480s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 41i,18n,53p,1614b,480s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/cmextra/cmex7.pfb></usr/share/texlive/texmf-
@@ -1519,7 +1517,7 @@ ist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/ty
 pe1/urw/helvetic/uhvro8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/tim
 es/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><
 /usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (17 pages, 3259380 bytes).
+Output written on main.pdf (17 pages, 3260607 bytes).
 PDF statistics:
  1090 PDF objects out of 1200 (max. 8388607)
  888 compressed objects within 9 object streams
