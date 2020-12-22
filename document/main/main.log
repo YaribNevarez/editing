@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.8.18)  21 DEC 2020 17:04
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.8.18)  22 DEC 2020 13:42
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -679,7 +679,7 @@ Package xcolor Warning: Incompatible color definition on input line 20.
 
 File: notaglinelogo.png Graphic file (type png)
 <use notaglinelogo.png>
-Package pdftex.def Info: notaglinelogo.png  used on input line 37.
+Package pdftex.def Info: notaglinelogo.png  used on input line 35.
 (pdftex.def)             Requested size: 91.32pt x 23.1352pt.
 
 Overfull \hbox (505.12177pt too wide) has occurred while \output is active
@@ -1444,23 +1444,23 @@ File: ../biography/Rotermund_David.jpg Graphic file (type jpg)
 Package pdftex.def Info: ../biography/Rotermund_David.jpg  used on input line 7
 .
 (pdftex.def)             Requested size: 64.61536pt x 90.32735pt.
-<../biography/klaus.png, id=1019, 72.27pt x 90.3375pt>
-File: ../biography/klaus.png Graphic file (type png)
-<use ../biography/klaus.png>
-Package pdftex.def Info: ../biography/klaus.png  used on input line 10.
-(pdftex.def)             Requested size: 72.2709pt x 90.33864pt.
-File: ../biography/klaus.png Graphic file (type png)
-<use ../biography/klaus.png>
-Package pdftex.def Info: ../biography/klaus.png  used on input line 10.
-(pdftex.def)             Requested size: 72.2709pt x 90.33864pt.
+<../biography/Klaus.jpg, id=1019, 262.9825pt x 386.44376pt>
+File: ../biography/Klaus.jpg Graphic file (type jpg)
+<use ../biography/Klaus.jpg>
+Package pdftex.def Info: ../biography/Klaus.jpg  used on input line 10.
+(pdftex.def)             Requested size: 61.47585pt x 90.33665pt.
+File: ../biography/Klaus.jpg Graphic file (type jpg)
+<use ../biography/Klaus.jpg>
+Package pdftex.def Info: ../biography/Klaus.jpg  used on input line 10.
+(pdftex.def)             Requested size: 61.47585pt x 90.33665pt.
 <../biography/alberto.png, id=1022, 72.27pt x 90.3375pt>
 File: ../biography/alberto.png Graphic file (type png)
 <use ../biography/alberto.png>
-Package pdftex.def Info: ../biography/alberto.png  used on input line 13.
+Package pdftex.def Info: ../biography/alberto.png  used on input line 26.
 (pdftex.def)             Requested size: 72.2709pt x 90.33864pt.
 File: ../biography/alberto.png Graphic file (type png)
 <use ../biography/alberto.png>
-Package pdftex.def Info: ../biography/alberto.png  used on input line 13.
+Package pdftex.def Info: ../biography/alberto.png  used on input line 26.
 (pdftex.def)             Requested size: 72.2709pt x 90.33864pt.
 )
 File: bullet.png Graphic file (type png)
@@ -1487,7 +1487,7 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  []
 
 [17 <../biography/yarib_300_375.jpg> <../biography/Rotermund_David.jpg> <../bio
-graphy/klaus.png> <../biography/alberto.png>] (./main.aux)
+graphy/Klaus.jpg> <../biography/alberto.png>] (./main.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
@@ -1499,7 +1499,7 @@ Here is how much of TeX's memory you used:
  9284 multiletter control sequences out of 15000+600000
  115493 words of font info for 141 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,18n,53p,1614b,480s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 41i,18n,53p,1622b,480s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/cmextra/cmex7.pfb></usr/share/texlive/texmf-
@@ -1517,7 +1517,7 @@ ist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/ty
 pe1/urw/helvetic/uhvro8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/tim
 es/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><
 /usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (17 pages, 3260607 bytes).
+Output written on main.pdf (17 pages, 3230090 bytes).
 PDF statistics:
  1090 PDF objects out of 1200 (max. 8388607)
  888 compressed objects within 9 object streams
