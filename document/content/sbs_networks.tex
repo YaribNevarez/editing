@@ -1,7 +1,7 @@
 \subsection{Spike-by-Spike Neural Networks}
 \label{sec:sbs}
   
-  As a generative model \cite{ernst2007efficient}, the SbS model iteratively finds an estimate of its input probability distribution $p(s)$ (i.e. the probability of input node $s$ to stochastically send a spike) by its latent variables via $r(s) = \sum_i h(i) W(s|i)$, where $ h $ is an inference population composed of a group of neurons that complete each other. An inference population sees only the spikes $s_t$ (i.e. the index identifying the input neuron $s$ which generated that spike at time $t$) produced by its input neurons, not the underlying input probability distribution $p(s)$ itself. By counting the spikes arriving at a group of SbS neurons, $p(s)$ is estimated by $\hat{p}(s) = 1/T \sum_t \delta_{s,s^t}$ after $T$ spikes have been observed in total. The goal is to generate an internal representation $r(s)$ from the string of incoming spikes $s_t$ such that the negative logarithm of the likelihood $L = C - \sum_\mu \sum_s \hat{p}_\mu(s) log\left( r_\mu(s) \right)$ is minimized. $C$ is a constant which is independent of the internal representation $r_\mu(s)$ and $\mu$ denotes one input pattern from an ensemble of input patterns. Applying a multiplicative gradient descent method on $L$, an algorithm for iteratively updating $h_\mu(i)$ with every observed input spike $s_t$ could be derived \cite{ernst2007efficient}
+  As a generative model \cite{ernst2007efficient}, the SbS model iteratively finds an estimate of its input probability distribution $p(s)$ (i.e. the probability of input node $s$ to stochastically send a spike) by its latent variables via $r(s) = \sum_i h(i) W(s|i)$, where $ h $ is an inference population composed of a group of neurons that compete with each other. An inference population sees only the spikes $s_t$ (i.e. the index identifying the input neuron $s$ which generated that spike at time $t$) produced by its input neurons, not the underlying input probability distribution $p(s)$ itself. By counting the spikes arriving at a group of SbS neurons, $p(s)$ is estimated by $\hat{p}(s) = 1/T \sum_t \delta_{s,s^t}$ after $T$ spikes have been observed in total. The goal is to generate an internal representation $r(s)$ from the string of incoming spikes $s_t$ such that the negative logarithm of the likelihood $L = C - \sum_\mu \sum_s \hat{p}_\mu(s) log\left( r_\mu(s) \right)$ is minimized. $C$ is a constant which is independent of the internal representation $r_\mu(s)$ and $\mu$ denotes one input pattern from an ensemble of input patterns. Applying a multiplicative gradient descent method on $L$, an algorithm for iteratively updating $h_\mu(i)$ with every observed input spike $s_t$ could be derived \cite{ernst2007efficient}
   \begin{eqnarray} \label{eq:sbs_update}
   h_\mu^{new}(i) = \frac{1}{1+\epsilon} \left(h_\mu(i) + \epsilon \frac{h_\mu(i) W(s_t|i) }{\sum_j h_\mu(j) W(s_t|j)} \right) 
   \end{eqnarray}
@@ -22,11 +22,11 @@ given h-state (i.e. $\Delta h^{s_t}_i 	\propto \left<
 $i \in (1,...,N)$ is exactly the same we would have in a low pass
 version of NNMF ($\Delta h_i
 = \sum_s \frac{p(s) p(s | i) h_i}{\sum_j p(s | j) h_j} - 1$). Then,
-for each given h-state h, the changes of h induced by SbS consist of the
+for each given h-state, the changes of h induced by SbS consist of the
 expected vector $\Delta h$ plus fluctuations $\eta_i(s_t)$ with
 $<\eta_i(s_t)>p(s_t) = 0$
 (i.e. $\Delta h^{s_t}_i = \sum_s \frac{p(s) p(s | i) h_i}{\sum_j p(s | j) h_j} + \eta_i(s_t)$).
-Thus, SbS performs a random walk with mean $\Delta h$ and some variance and we have a stochastic process in h-space with the correct
+Thus, SbS performs a random walk with mean $\Delta h$ and some variance, where we have a stochastic process in h-space with the correct
 drift ($\Delta h$) and diffusion. Such processes drift towards states where the drift vanishes except for
 remaining fluctuations. Thus, it produces a Brownian motion
 finally leading to a probability density for h-states centered around
@@ -72,6 +72,6 @@ The SbS network algorithm is highly suitable for parallelization. SbS network mo
 \begin{figure}
 	\centering
 	\includegraphics[width=0.5\textwidth]{../figures/SbS_layer.pdf}
-	\caption{SbS IPs as independent computational entities. (a) Illustrates an input layer with a massive amount of IPs operating as independent computational entities. (b) Illustrate a hidden layer with an arbitrary amount of IPs as independent computational entities. (c) Illustrates a set of neurons grouped in an IP. }
+	\caption{SbS IPs as independent computational entities, (a) illustrates an input layer with a massive amount of IPs operating as independent computational entities, (b) shows a hidden layer with an arbitrary amount of IPs as independent computational entities, (c) exhibits a set of neurons grouped in an IP. }
 	\label{fig:SbS_layer}
 \end{figure}
