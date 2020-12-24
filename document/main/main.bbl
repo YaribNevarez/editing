@@ -61,11 +61,6 @@ D.~Rotermund and K.~R. Pawelzik, ``Back-propagation learning in deep
   spike-by-spike networks,'' \emph{Frontiers in Computational Neuroscience},
   vol.~13, p.~55, 2019.
 
-\bibitem{zhang2018survey}
-M.~ZHANG, G.~Zonghua, and P.~Gang, ``A survey of neuromorphic computing based
-  on spiking neural networks,'' \emph{Chinese Journal of Electronics}, vol.~27,
-  no.~4, pp. 667--674, 2018.
-
 \bibitem{lotrivc2012applicability}
 U.~Lotri{\v{c}} and P.~Buli{\'c}, ``Applicability of approximate multipliers in
   hardware neural networks,'' \emph{Neurocomputing}, vol.~96, pp. 57--65, 2012.
@@ -164,6 +159,33 @@ X.~Sun, S.~Yin, X.~Peng, R.~Liu, J.-s. Seo, and S.~Yu, ``Xnor-rram: A scalable
   \emph{2018 Design, Automation \& Test in Europe Conference \& Exhibition
   (DATE)}.\hskip 1em plus 0.5em minus 0.4em\relax IEEE, 2018, pp. 1423--1428.
 
+\bibitem{lecun1989optimal}
+Y.~LeCun, J.~Denker, and S.~Solla, ``Optimal brain damage,'' \emph{Advances in
+  neural information processing systems}, vol.~2, pp. 598--605, 1989.
+
+\bibitem{hassibi1992second}
+B.~Hassibi and D.~Stork, ``Second order derivatives for network pruning:
+  Optimal brain surgeon,'' \emph{Advances in neural information processing
+  systems}, vol.~5, pp. 164--171, 1992.
+
+\bibitem{han2015learning}
+S.~Han, J.~Pool, J.~Tran, and W.~Dally, ``Learning both weights and connections
+  for efficient neural network,'' \emph{Advances in neural information
+  processing systems}, vol.~28, pp. 1135--1143, 2015.
+
+\bibitem{molchanov2016pruning}
+P.~Molchanov, S.~Tyree, T.~Karras, T.~Aila, and J.~Kautz, ``Pruning
+  convolutional neural networks for resource efficient inference,'' \emph{arXiv
+  preprint arXiv:1611.06440}, 2016.
+
+\bibitem{li2016pruning}
+H.~Li, A.~Kadav, I.~Durdanovic, H.~Samet, and H.~P. Graf, ``Pruning filters for
+  efficient convnets,'' \emph{arXiv preprint arXiv:1608.08710}, 2016.
+
+\bibitem{liu2018rethinking}
+Z.~Liu, M.~Sun, T.~Zhou, G.~Huang, and T.~Darrell, ``Rethinking the value of
+  network pruning,'' \emph{arXiv preprint arXiv:1810.05270}, 2018.
+
 \bibitem{rathi2018stdp}
 N.~Rathi, P.~Panda, and K.~Roy, ``Stdp-based pruning of connections and weight
   quantization in spiking neural networks for energy-efficient recognition,''
@@ -223,6 +245,11 @@ M.~Jerry, A.~Parihar, B.~Grisafe, A.~Raychowdhury, and S.~Datta, ``Ultra-low
   power probabilistic imt neurons for stochastic sampling machines,'' in
   \emph{2017 Symposium on VLSI Circuits}.\hskip 1em plus 0.5em minus
   0.4em\relax IEEE, 2017, pp. T186--T187.
+
+\bibitem{zhang2018survey}
+M.~ZHANG, G.~Zonghua, and P.~Gang, ``A survey of neuromorphic computing based
+  on spiking neural networks,'' \emph{Chinese Journal of Electronics}, vol.~27,
+  no.~4, pp. 667--674, 2018.
 
 \bibitem{kim2013energy}
 Y.~Kim, Y.~Zhang, and P.~Li, ``An energy efficient approximate adder with carry

@@ -1,4 +1,4 @@
-\title {Accelerating Spike-by-Spike Neural Networks with Hybrid Custom Floating-Point and Logarithmic Dot-Product Approximation on FPGA}
+\title {Accelerating Spike-by-Spike Neural Networks \added{on FPGA} with Hybrid Custom Floating-Point and Logarithmic Dot-Product Approximation \deleted{on FPGA}}
 
 \author{
 	\uppercase{Yarib Nevarez}\authorrefmark{1},	
@@ -24,7 +24,6 @@
 {Author \headeretal: Preparation of Papers for IEEE TRANSACTIONS and JOURNALS}
 
 \corresp{Corresponding author: Yarib Nevarez (e-mail: nevarez@item.uni-bremen.de).}
-.
 
 \begin{abstract}
   Spiking neural networks (SNNs) represent a promising alternative to
@@ -34,15 +33,19 @@
   require a memory footprint and a computational cost unsuitable for
   embedded applications. To address this problem, this work exploits
   the intrinsic error-resilience of neural networks to improve
-  performance and to reduce the hardware complexity. More precisely, we
-  design a dot-product hardware unit based on approximate computing
-  with quality configurable design using hybrid custom floating-point and logarithmic number representation. This approach reduces
-  computational latency, memory footprint, and power dissipation while
-  preserving inference accuracy. To demonstrate our approach, we address a
-  design exploration flow using high-level synthesis and a Xilinx SoC-FPGA.
-  As a result, the proposed design achieves $20.5\times$
-  latency enhancement, $8\times$ weight memory footprint reduction,
-  and less than $0.5\%$ of accuracy degradation on handwritten digit
+  performance and to reduce the hardware complexity. More precisely,
+  we design a dot-product hardware unit based on approximate computing
+  with \replaced{configurable quality}{quality configurable design}
+  using hybrid custom floating-point and logarithmic number
+  representation. This approach reduces computational latency, memory
+  footprint, and power dissipation while preserving inference
+  accuracy. To demonstrate our approach, we address a design
+  exploration flow using high-level synthesis and a Xilinx SoC-FPGA.
+  \replaced{The}{As a result, the} proposed design \replaced{reduces
+    $20.5\times$ computational latency and $8\times$ weight memory
+    footprint, with}{ achieves $20.5\times$ latency enhancement,
+    $8\times$ weight memory footprint reduction, and} less than
+  $0.5\%$ of accuracy degradation on \added{a} handwritten digit
   recognition task.
 	
 \end{abstract}
