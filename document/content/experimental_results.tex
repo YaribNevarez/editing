@@ -46,7 +46,7 @@ The SbS network computation on the CPU achieves a latency of $34.28 ms$ per spik
 	\label{fig:latency_sw}
 \end{figure}
 
-\subsubsection{Benchmark on processing units with standard floating-point computation}
+\subsubsection{Benchmark on processing units with standard floating-point (IEEE 754) computation}
 To benchmark the computation on hardware PUs with standard floating-point, we implement the system architecture shown in \fig{fig:hw_sbs_8_pu}. In this case, the embedded software builds the SbS network as a sequential model mapping the network computation to the hardware processing units at 200 MHz as clock frequency.
 
 \begin{figure}[t!]
@@ -59,7 +59,7 @@ To benchmark the computation on hardware PUs with standard floating-point, we im
 The layers of the neural network with the most neurons are partitioned for asynchronous parallel processing. Since \emph{H2\_POOL} and \emph{H3\_CONV} are the layers with the most neurons, the computational workload is distributed between two PUs for each one of these layers. The output layer \emph{HY\_OUT} is fully processed by the CPU, since it is the layer with fewest neurons. The hardware mapping and the computation schedule of this deployment are displayed in \Tab{tab:latency_fp} and \fig{fig:latency_pu_fp}.
 
 \begin{table}[!t]\centering
-	\caption{Performance of processing units with standard floating-point computation.}\label{tab:latency_fp}
+	\caption{Performance of processing units with standard floating-point (IEEE 754) computation.}\label{tab:latency_fp}
 	\scriptsize
 	\begin{tabular}{llrrrrrr}\toprule
 		\multicolumn{2}{c}{\textbf{Hardware mapping}} & &\multicolumn{4}{c}{\textbf{Computation schedule (ms)}} \\\cmidrule{1-2}\cmidrule{4-7}
@@ -82,18 +82,18 @@ The layers of the neural network with the most neurons are partitioned for async
 \begin{figure}[!t]
 	\centering
 	\includegraphics[width=1\columnwidth]{../figures/latency_pu_fp.pdf}
-	\caption{Performance of processing units with standard floating-point computation.}
+	\caption{Performance of processing units with standard floating-point (IEEE 754) computation.}
 	\label{fig:latency_pu_fp}
 \end{figure}
 
-In the computation schedule, the following terms are defined as follows: $t_s(n)$ as the start time for the processing of the neural network layer (as a compute node) $n\in L$ where $L$ represents the set of layers; $t_{CPU}(n)$ as the CPU preprocessing time; $t_{PU}(n)$ as the PU latency; and $t_f(n)$ as the finish time. For data preparation, the $t_{CPU}(n)$ is the duration in which the CPU writes a DRAM buffer with $\vec{h_\mu}$ (vector of neuron latent variables) of the current processing layer and $S_t$ (input spike matrix) from its preceding layer. This buffer is streamed to the PU via DMA.
+In the computation schedule, the following terms are defined as follows: $t_s(n)$ as the start time for the processing of the neural network layer (as a compute node) $n\in L$ where $L$ represents the set of layers; $t_{CPU}(n)$ as the CPU preprocessing time; $t_{PU}(n)$ as the PU latency; and $t_f(n)$ as the finish time. For data preparation, the $t_{CPU}(n)$ is the duration in which the CPU writes a DRAM buffer with $\vec{h}_\mu$ (vector of neuron latent variables) of the current processing layer and $S_t$ (input spike matrix) from its preceding layer. This buffer is streamed to the PU via DMA.
 
 The total execution time of the CPU is defined by \equ{eq:time_cpu}. In a cyclic spiking inference, the execution time of the network computation is the longest path among the processing units including the CPU. This is denoted as the latency of an spike cycle and it is defined by \equ{eq:time_spike}. The total execution time of the network computation is the last finish time ($t_f$) in the schedule defined by \equ{eq:time_finish}.
 
 \begin{figure}[t!]
 	\centering
 	\includegraphics[width=1\columnwidth]{../figures/latency_fp_cycle.pdf}
-	\caption{Performance bottleneck of cyclic computation on processing units with standard floating-point computation, (a) exhibits the starting of $t_{PU}$ of \emph{Conv2} on a previous computation cycle, (b) presents $t_{CPU}$ of \emph{Conv2} on the current computation cycle, (c) shows the CPU waiting time (in gray color) for \emph{Conv2} as a busy resource (awaiting for \emph{Conv2} interruption), and (d) illustrates the $t_{f}$ from the previous computation cycle, the starting of $t_{PU}$ on the current computation cycle (\emph{Conv2} interruption on completion, and start current computation cycle).}
+	\caption{Performance bottleneck of cyclic computation on processing units with standard floating-point (IEEE 754) arithmetic, (a) exhibits the starting of $t_{PU}$ of \emph{Conv2} on a previous computation cycle, (b) presents $t_{CPU}$ of \emph{Conv2} on the current computation cycle, (c) shows the CPU waiting time (in gray color) for \emph{Conv2} as a busy resource (awaiting for \emph{Conv2} interruption), and (d) illustrates the $t_{f}$ from the previous computation cycle, the starting of $t_{PU}$ on the current computation cycle (\emph{Conv2} interruption on completion, and start current computation cycle).}
 	\label{fig:latency_pu_fp_cycle}
 \end{figure}
 
@@ -122,7 +122,7 @@ Using standard floating-point requires a high computational cost. As the largest
 The post-implementation resource utilization and power dissipation are shown in \Tab{tab:resource_fp}. Each \emph{Conv} PU instantiates an on-chip stationary weight matrix of $52,000$ entries, wish is sufficient to store $W\in\mathbb{R}^{5\times 5\times 2\times 32}$ and $W\in\mathbb{R}^{5\times 5\times 32\times 64}$ for \emph{H1\_CONV} and \emph{H3\_CONV}, respectively. In order to reduce BRAM utilization, we use a custom floating-point representation composed of 4-exponent and 4-bit mantissa. Each 8-bit entry is promoted to its standard floating-point representation for the dot-product computation. The methodology to find the appropriate bit width parameters for custom floating-point representation is presented in Section~\ref{sec:parameters}.
 
 \begin{table}[!h]\centering
-	\caption{Resource utilization and power dissipation of processing units with standard floating-point computation.}\label{tab:resource_fp}
+	\caption{Resource utilization and power dissipation of processing units with standard floating-point (IEEE 754) computation.}\label{tab:resource_fp}
 	\scriptsize
 	\begin{tabular}{lrrrrrrr}\toprule
 		\textbf{PU} & &\textbf{LUT} &\textbf{FF} &\textbf{DSP} &\textbf{BRAM 18K} &\textbf{Power (mW)} \\\midrule
@@ -145,7 +145,7 @@ As benchmark, the tolerance plot in \fig{fig:accuracy_vs_noise_pu_fp} revels acc
 \begin{figure}[t!]
 	\centering
 	\includegraphics[width=1\columnwidth]{../figures/accuracy_vs_noise_pu_fp.pdf}
-	\caption{Noise tolerance on hardware PU with standard floating-point computation (benchmark/reference), (a) exhibits accuracy degradation applying $50\%$ of noise amplitude, and (b) illustrates convergence of inference with $400$ spikes.}
+	\caption{Noise tolerance on hardware PU with standard floating-point (IEEE 754) computation (benchmark/reference), (a) exhibits accuracy degradation applying $50\%$ of noise amplitude, and (b) illustrates convergence of inference with $400$ spikes.}
 	\label{fig:accuracy_vs_noise_pu_fp}
 \end{figure}
 
@@ -176,7 +176,7 @@ For quality configurability, the mantissa bit width is a knob parameter that is 
 \end{figure}
 
 \subsubsection{Design exploration for dot-product with hybrid custom floating-point approximation}
-For this design exploration, we use a custom floating-point representation composed of 4-bit exponent and 1-bit mantissa. This format is used for the synaptic weight vector on the proposed dot-product architecture. Each \emph{Conv} PU instantiates an on-chip stationary weight matrix for $52,000$ entries of 5-bit. The available memory size is large enough to store $W\in\mathbb{R}^{5\times 5\times 2\times 32}$ and $W\in\mathbb{R}^{5\times 5\times 32\times 64}$ for \emph{H1\_CONV} and \emph{H3\_CONV}, respectively. The same dot-product architecture is implemented in the processing unit of the fully connected layer (\emph{FC}). However, due to lack of BRAM resources, this PU can not instantiate on-chip stationary synaptic weight matrix. Instead, \emph{FC} receives the $\vec{W(s_t)}$ (weight vectors) during operation as well as $\vec{h_\mu}$ and $S_t$. The hardware mapping and the computation schedule of this implementation are displayed in \Tab{tab:latency_cfp} and \Fig{fig:latency_pu_cfp_cycle}.
+For this design exploration, we use a custom floating-point representation composed of 4-bit exponent and 1-bit mantissa. This format is used for the synaptic weight vector on the proposed dot-product architecture. Each \emph{Conv} PU instantiates an on-chip stationary weight matrix for $52,000$ entries of 5-bit. The available memory size is large enough to store $W\in\mathbb{R}^{5\times 5\times 2\times 32}$ and $W\in\mathbb{R}^{5\times 5\times 32\times 64}$ for \emph{H1\_CONV} and \emph{H3\_CONV}, respectively. The same dot-product architecture is implemented in the processing unit of the fully connected layer (\emph{FC}). However, due to lack of BRAM resources, this PU can not instantiate on-chip stationary synaptic weight matrix. Instead, \emph{FC} receives the $\vec{W}(s_t)$ (weight vectors) during operation as well as $\vec{h}_\mu$ and $S_t$. The hardware mapping and the computation schedule of this implementation are displayed in \Tab{tab:latency_cfp} and \Fig{fig:latency_pu_cfp_cycle}.
 
 As shown in the computation schedule in \Tab{tab:latency_cfp} and \Fig{fig:latency_pu_cfp_cycle}, this implementation achieves a maximum hardware PU latency of $1.30 ms$ according to \equ{eq:time_pu}, and a CPU latency of $1.67 ms$. Therefore, applying \equ{eq:time_spike}, we obtain a latency of $1.67 ms$ per spike cycle as shown in \Fig{fig:latency_pu_cfp_cycle}. In this case, the cyclic bottleneck is in the performance of the CPU.
 

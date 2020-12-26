@@ -48,7 +48,7 @@ the fixed point.
 
 \begin{figure}
   \includegraphics[width=\columnwidth]{../figures/sbs_robustnes.pdf}
-  \caption{(a) Performance classification of SbS NN versus equivalent CNN, and (b) Example of the first pattern in the MNIST test data set with different amounts of noise.}
+  \caption{(a) Performance classification of SbS NN versus equivalent CNN, and (b) example of the first pattern in the MNIST test data set with different amounts of noise.}
   \label{fig:robustnes_sbs}
 \end{figure}
 
@@ -67,7 +67,7 @@ improve the performance under noise even more.
 
 %%%% This is added by Yarib, please review it
 %%%%\subsection{Parallelization in SbS networks}
-The SbS network algorithm is highly suitable for parallelization. SbS network models are constructed in sequential layered structures, each layer consists of many IPs which can be simulated independently while the communication between the IPs is organized by a low bandwidth signal -- the spikes \cite{Rotermund500280}. Technically, each IP is an independent computational entity (see \fig{fig:SbS_layer}). This allows to design specialized hardware architectures that can be massively parallelized.
+The SbS network algorithm is highly suitable for parallelization. SbS network models are constructed in sequential layered structures, each layer consists of many inference populations (IPs) which can be simulated independently while the communication between the IPs is organized by a low bandwidth signal -- the spikes \cite{Rotermund500280}. Technically, each IP is an independent computational entity (see \fig{fig:SbS_layer}). This allows to design specialized hardware architectures that can be massively parallelized.
 
 \begin{figure}
 	\centering
