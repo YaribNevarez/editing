@@ -67,7 +67,7 @@ Further on, we remove the mantissa bits completely in order to use only the expo
 
 In this section, we will present three pipelined hardware modules with standard floating-point (IEEE 754) computation, hybrid custom floating-point approximation, and hybrid logarithmic approximation.
 
-\subsubsection{Dot-product with standard floating-point (IEEE 754) computation}
+\subsubsection{Dot-product with standard floating-point computation}
  The hardware module to calculate the dot-product with standard floating-point computation is shown in \fig{fig:dot_product_float}. This diagram presents the hardware blocks and their clock cycle schedule. This module loads both $h_\mu(j)$ and $W(s|j)$ from BRAM, then the PU executes the pairwise product (\fig{fig:dot_product_float}(c)) and accumulation (\fig{fig:dot_product_float}(d)). The intermediate results of $h_\mu(j) W(s_t|j)$ are stored in BRAM for reuse in the neuron update. The latency in clock cycles of this hardware module is defined by \equ{eq:dot_standard_float_latency}, where $N$ is the dot-product length. This latency equation is obtained from the general pipelined hardware latency formula: $L=\left(N-1\right)II+IL$, where $II$ is the initiation interval (\fig{fig:dot_product_float}(a)), and $IL$ is the iteration latency (\fig{fig:dot_product_float}(b)). Both $II$ and $IL$ are obtained from the high-level synthesis analysis. The equation for the latency with standard 32-bit floating-point is:
  \begin{eqnarray} \label{eq:dot_standard_float_latency}
  L_{f32}=10N+9
