@@ -168,11 +168,6 @@ B.~Hassibi and D.~Stork, ``Second order derivatives for network pruning:
   Optimal brain surgeon,'' \emph{Advances in neural information processing
   systems}, vol.~5, pp. 164--171, 1992.
 
-\bibitem{han2015learning}
-S.~Han, J.~Pool, J.~Tran, and W.~Dally, ``Learning both weights and connections
-  for efficient neural network,'' \emph{Advances in neural information
-  processing systems}, vol.~28, pp. 1135--1143, 2015.
-
 \bibitem{molchanov2016pruning}
 P.~Molchanov, S.~Tyree, T.~Karras, T.~Aila, and J.~Kautz, ``Pruning
   convolutional neural networks for resource efficient inference,'' \emph{arXiv
