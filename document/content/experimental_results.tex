@@ -121,7 +121,7 @@ Using standard floating-point requires a high computational cost. As the largest
 
 Applying \equ{eq:time_spike}, we obtain a latency of $3.18 ms$ per spike cycle. This deployment achieves an accuracy of $98.98\%$ correct classification on the $10,000$ image test set with $1000$ spikes.
 
-The post-implementation resource utilization and power dissipation are shown in \Tab{tab:resource_fp}. Each \emph{Conv} PU instantiates an on-chip stationary weight matrix of $52,000$ entries, wish is sufficient to store $W\in\mathbb{R}^{5\times 5\times 2\times 32}$ and $W\in\mathbb{R}^{5\times 5\times 32\times 64}$ for \emph{H1\_CONV} and \emph{H3\_CONV}, respectively. In order to reduce BRAM utilization, we use a custom floating-point representation composed of 4-bit exponent and 4-bit mantissa. Each 8-bit entry is promoted to its standard floating-point representation for the dot-product computation. The methodology to find the appropriate bit width parameters for custom floating-point representation is presented in Section~\ref{sec:parameters}.
+The post-implementation resource utilization and power dissipation are shown in \Tab{tab:resource_fp}. \REVIEW{The power dissipation breakdown of \emph{Conv} and \emph{FC} are presented in {\fig{fig:power_dissipation_breakdown_float_32}}, which exhibits data as the major component of power dissipation in \emph{Conv}.} Each \emph{Conv} PU instantiates an on-chip stationary weight matrix of $52,000$ entries, wish is sufficient to store $W\in\mathbb{R}^{5\times 5\times 2\times 32}$ and $W\in\mathbb{R}^{5\times 5\times 32\times 64}$ for \emph{H1\_CONV} and \emph{H3\_CONV}, respectively. In order to reduce BRAM utilization, we use a custom floating-point representation composed of 4-bit exponent and 4-bit mantissa. Each 8-bit entry is promoted to its standard floating-point representation for the dot-product computation. The methodology to find the appropriate bit width parameters for custom floating-point representation is presented in Section~\ref{sec:parameters}.
 
 \begin{table}[!h]\centering
 	\caption{Resource utilization and power dissipation of processing units with standard floating-point (IEEE 754) computation.}\label{tab:resource_fp}
@@ -135,6 +135,13 @@ The post-implementation resource utilization and power dissipation are shown in 
 		\bottomrule
 	\end{tabular}
 \end{table}
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=1\columnwidth]{../figures/power_dissipation_breakdown_float-32.pdf}
+	\caption{Power dissipation breakdown of processing units with standard floating-point (IEEE 754), (a) \emph{Conv}, and (b) \emph{FC}.}
+	\label{fig:power_dissipation_breakdown_float_32}
+\end{figure}
 
 \subsubsection{Benchmark on noise tolerance plot}
 The noise tolerance plot serves as an intuitive visual model used to provide insights into accuracy degradation under approximate processing effects. This plot \REVIEW{reveals} inherent error-resilience, and hence, approximation-resilience. As an application-specific quality metric, this plot offers an effective method to estimate the overall quality degradation of the SbS network under different approximate processing effects, since both approximations and noise have qualitatively the same effect\cite{venkataramani2015approximate}.
@@ -175,7 +182,7 @@ As shown in the computation schedule in \Tab{tab:latency_cfp} and \Fig{fig:laten
 
 This configuration achieves an accuracy of $98.97\%$ correct classification on the $10,000$ image test set with $1000$ spikes. This indicates an accuracy degradation of $0.33\%$. For output quality monitoring, the noise tolerance plot in \fig{fig:accuracy_vs_noise_pu_cfp} revels accuracy degradation for noise higher than $50\%$ on the input images, and convergence of inference with $400$ spikes. Thus, the particular SbS network implementation under approximate processing effects demonstrates a minimal impact on the overall accuracy. This proves an inherent error resilience, and hence, remaining approximation budget.
 
-The post-implementation resource utilization and power dissipation are shown in \Tab{tab:resource_cfp}.
+The post-implementation resource utilization and power dissipation \REVIEW{breakdown} are shown in \Tab{tab:resource_cfp} \REVIEW{and {\fig{fig:power_dissipation_breakdown_float_5}}, respectively.}
 
 \begin{table}[h!]\centering
 	\caption{Resource utilization and power dissipation of processing units with hybrid custom floating-point approximation.}\label{tab:resource_cfp}
@@ -187,6 +194,14 @@ The post-implementation resource utilization and power dissipation are shown in 
 		\bottomrule
 	\end{tabular}
 \end{table}
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=1\columnwidth]{../figures/power_dissipation_breakdown_float-5.pdf}
+	\caption{Power dissipation breakdown of processing units with hybrid custom floating-point approximation, (a) \emph{Conv}, and (b) \emph{FC}.}
+	\label{fig:power_dissipation_breakdown_float_5}
+\end{figure}
+
 
 \begin{table}[t!]\centering
 	\caption{Performance of hardware processing units with hybrid custom floating-point approximation.}\label{tab:latency_cfp}
@@ -228,7 +243,7 @@ As shown in the computation schedule in \Tab{tab:latency_log} and \Fig{fig:laten
 
 This quality configuration achieves an accuracy of $98.84\%$ correct classification on the $10,000$ image test set with $1000$ spikes. This indicates an accuracy degradation of $0.46\%$. For output quality monitoring, the noise tolerance plot in \fig{fig:accuracy_vs_noise_pu_log} revels accuracy degradation having $40\%$ noise on the input images, and convergence of inference with $600$ spikes. The particular SbS network implementation under approximate processing demonstrates a minor impact on the overall accuracy. This exhibits remaining budget for further approximate processing approaches.
 
-The post-implementation resource utilization and power dissipation are shown in \Tab{tab:resource_log}.
+The post-implementation resource utilization and power dissipation \REVIEW{breakdown} are shown in \Tab{tab:resource_log} \REVIEW{and {\fig{fig:power_dissipation_breakdown_log_4}}, respectively.}
 
 \begin{table}[t!]\centering
 	\caption{Performance of hardware processing units with hybrid logarithmic approximation.}\label{tab:latency_log}
@@ -266,6 +281,15 @@ The post-implementation resource utilization and power dissipation are shown in 
 	\bottomrule
 \end{tabular}
 \end{table}
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=1\columnwidth]{../figures/power_dissipation_breakdown_log-4.pdf}
+	\caption{Power dissipation breakdown of processing units with hybrid logarithmic approximation, (a) \emph{Conv}, and (b) \emph{FC}.}
+	\label{fig:power_dissipation_breakdown_log_4}
+\end{figure}
+
+
 
 \begin{figure}[t!]
 	\centering
