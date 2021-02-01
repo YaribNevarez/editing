@@ -289,4 +289,8 @@ D.~Rotermund and K.~R. Pawelzik, ``Massively parallel fpga hardware for
 U.~Xilinx, ``Zynq-7000 all programmable soc: Technical reference manual,''
   2015.
 
+\bibitem{hrica2012floating}
+J.~Hrica, ``Floating-point design with vivado hls,'' \emph{Xilinx Application
+  Note}, 2012.
+
 \end{thebibliography}

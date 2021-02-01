@@ -143,6 +143,19 @@ The post-implementation resource utilization and power dissipation are shown in 
 	\label{fig:power_dissipation_breakdown_float_32}
 \end{figure}
 
+\REVIEW{The implementation of dot-product with standard floating-point arithmetic (IEEE 754) utilizes proprietary multiplier and adder floating-point operator cores. Vivado HLS accomplishes floating-point arithmetic operations by mapping them onto Xilinx LogiCORE IP cores, these floating-point operator cores are instantiated in the resultant RTL\mbox{\cite{hrica2012floating}}. In this case, the implementation of dot-product with standard floating-point computation reuses the already instantiated multiplier and adder cores used in previous computational sections of {\emph{Conv}} and {\emph{FC}} processing units. The post-implementation resource utilization and power dissipation of the floating-point operator cores are shown in {\Tab{tab:LogiCORE}}.}
+
+\begin{table}[!h]\centering
+	\caption{Resource utilization and power dissipation of multiplier and adder floating-point (IEEE 754) operator cores.}\label{tab:LogiCORE}
+	\scriptsize
+	\begin{tabular}{lrrrrrr}\toprule
+		\textbf{Core operation} &\textbf{DSP} &\textbf{FF} &\textbf{LUT} &\textbf{Latency (clk)} &\textbf{Power (mW)} \\\midrule
+		Multiplier &3 &151 &325 &4 &7 \\
+		Adder &2 &324 &424 &8 &6 \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
 \subsubsection{Benchmark on noise tolerance plot}
 The noise tolerance plot serves as an intuitive visual model used to provide insights into accuracy degradation under approximate processing effects. This plot \REVIEW{reveals} inherent error-resilience, and hence, approximation-resilience. As an application-specific quality metric, this plot offers an effective method to estimate the overall quality degradation of the SbS network under different approximate processing effects, since both approximations and noise have qualitatively the same effect\cite{venkataramani2015approximate}.
 
@@ -302,9 +315,9 @@ The post-implementation resource utilization and power dissipation \REVIEW{break
 \subsection{Results and discussion}
 As a reference, the SbS network simulation on embedded CPU using standard 32-bit floating-point achieves an accuracy of $99.3\%$ with a latency of $T_{SC} = 34.28ms$. As a second reference point, the network simulation on hardware processing units with standard floating-point achieves an accuracy of $98.98\%$ with a latency $T_{SC}=3.18ms$. As result we get a $10.7\times$ latency enhancement and an accuracy degradation of $0.32\%$. The tolerance plot in \fig{fig:accuracy_vs_noise_pu_fp} \replaced{reveals}{revels} accuracy degradation having $50\%$ noise on the input images, and convergence of inference with $400$ spikes. In this case, the SbS network deployment with precise computing proves extraordinary inherent error resilience, and hence, this represents a great potential for approximate processing.
 
-As a demonstration of the proposed dot-product architecture, the SbS network simulation on hardware PUs with synaptic representation using 5-bit custom floating-point (4-bit exponent, 1-bit mantissa) and 4-bit logarithmic (4-bit exponent) achieve $20.5\times$ latency enhancement and accuracy of $98.97\%$ and $98.84\%$, respectively. This results in an accuracy degradation of $0.33\%$ and $0.46\%$, respectively. For output quality monitoring, the noise tolerance plot in \fig{fig:accuracy_vs_noise_pu_cfp} and \fig{fig:accuracy_vs_noise_pu_log} revel accuracy degradation when having $50\%$ and $40\%$ noise on the input images, and convergence of inference with $400$ and $600$ spikes, respectively. Therefore, the design exploration under the proposed approximate computing approach indicates sufficient inherent error resilience for further and more aggressive approximate processing approaches.
+As a demonstration of the proposed dot-product architecture, the SbS network simulation on hardware PUs with synaptic representation using 5-bit custom floating-point (4-bit exponent, 1-bit mantissa) and 4-bit logarithmic (4-bit exponent) achieve $20.5\times$ latency enhancement and accuracy of $98.97\%$ and $98.84\%$, respectively. This results in an accuracy degradation of $0.33\%$ and $0.46\%$, respectively. For output quality monitoring, the noise tolerance plot in \fig{fig:accuracy_vs_noise_pu_cfp} and \fig{fig:accuracy_vs_noise_pu_log} reveal accuracy degradation when having $50\%$ and $40\%$ noise on the input images, and convergence of inference with $400$ and $600$ spikes, respectively. Therefore, the design exploration under the proposed approximate computing approach indicates sufficient inherent error resilience for further and more aggressive approximate processing approaches.
 
-Regarding resource utilization and power dissipation with the proposed approach, the \emph{Conv} processing units have a $43.24\%$ reduction of BRAM, and a $12.35\%$ of improvement in energy efficiency over the standard floating-point implementation. The experimental results of the design exploration are summarized in \Tab{tab:results}.
+Regarding resource utilization and power dissipation with the proposed approach, the \emph{Conv} processing units have a $43.24\%$ reduction of BRAM, and a $12.35\%$ of improvement in energy efficiency over the standard floating-point implementation. \REVIEW{However, the proposed approach does not reuse floating-point operator cores (see {\Tab{tab:LogiCORE}}). Hence, the required logic for the dot-product has to be implemented, which needs additional resource utilization of LUT and FF.} The experimental results of the design exploration are summarized in \Tab{tab:results}.
 
 \begin{table*}[!t]
 	\begin{threeparttable}
