@@ -2,7 +2,7 @@
 \label{sec:system_design}
 
 \REVIEW{
-	In this section, we extend the system design of \mbox{\cite{nevarez2020accelerator}}, where we presented a scalable hardware architecture composed of generic homogeneous accelerator units (AUs) with standard floating-point computation. In this publication, we present an enhanced hardware architecture composed of specialized heterogeneous processing units (PUs) with hybrid custom floating-point and logarithmic dot-product approximation. The proposed approach reduces memory footprint, which allows to implement stationary synaptic weight matrix in hardware. Altogether, these innovations improve computational latency, hardware utilization, and power dissipation.
+	In this section, we extend the system design of \mbox{\cite{nevarez2020accelerator}}, where we presented a scalable hardware architecture composed of generic homogeneous accelerator units (AUs) with standard floating-point computation. In this publication, we present an enhanced hardware architecture composed of specialized heterogeneous processing units (PUs) with hybrid custom floating-point and logarithmic dot-product approximation. The proposed approach reduces memory footprint, which allows to implement stationary synaptic weight matrix in hardware. Altogether, these innovations improve computational latency, resource utilization, and power dissipation.
 	}
 
 Regarding the software architecture, it is structured as a
@@ -70,7 +70,7 @@ r_{\mu}\left(s_t\right)=\sum_{j=0}^{N-1}h_{\mu}(j)W(s_t|j)
 Further on, we remove the mantissa bits completely in order to use only the exponent of a floating-point representation. Hence, the worst-case quality and yet the most efficient configuration becomes a logarithmic representation. Consequently, this structure leads to advantageous architectural optimizations using only adders and barrel shifters for dot-product approximation in hardware. We designate this as hybrid logarithmic approximation \REVIEW{(see {\fig{fig:product_unit_bitwidth}}(b))}.
 
 \REVIEW{
-In order to obtain the required bit width for the number representation, we use {\equ{eq:exp_max}}, {\equ{eq:bits_exp}}, and {\equ{eq:bits_bitwidth}}. Where {\equ{eq:exp_max}} obtains the smallest entry value from the synaptic weight matrix, {\equ{eq:bits_exp}} obtains the bit width to represent the integer exponent of the smallest synaptic weight value, and {\equ{eq:bits_bitwidth}} obtains the total bit width required for the number representation of the input synaptic weight vector $\vec{W}(s_t)$ (see {\fig{fig:product_unit_bitwidth}}). $N_M$ denotes the mantissa bit width, this is a knob parameter that is tuned by the designer to trade-off between resource utilization and QoR.
+In order to obtain the required bit width for the number representation, we use {\equ{eq:exp_max}}, {\equ{eq:bits_exp}}, and {\equ{eq:bits_bitwidth}}. Where {\equ{eq:exp_max}} obtains the smallest entry value from the synaptic weight matrix, {\equ{eq:bits_exp}} obtains the bit width to represent the integer exponent of the smallest synaptic weight value, and {\equ{eq:bits_bitwidth}} obtains the total bit width required for the number representation of the input synaptic weight vector $\vec{W}(s_t)$, which incorporates exponent and mantissa bit widths (see {\fig{fig:product_unit_bitwidth}}). $N_M$ denotes the mantissa bit width, this is a knob parameter that is tuned by the designer to trade-off between resource utilization and QoR.
 }
 
 \begin{eqnarray} \label{eq:exp_max}
