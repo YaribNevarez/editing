@@ -2,7 +2,9 @@
 \label{sec:system_design}
 
 \REVIEW{
-	In this section, we extend the system design of \mbox{\cite{nevarez2020accelerator}}, where we presented a scalable hardware architecture composed of generic homogeneous accelerator units (AUs) with standard floating-point computation. In this publication, we present an enhanced hardware architecture composed of specialized heterogeneous processing units (PUs) with hybrid custom floating-point and logarithmic dot-product approximation. The proposed approach reduces memory footprint, which allows to implement stationary synaptic weight matrix in hardware. Altogether, these innovations improve computational latency, resource utilization, and power dissipation.
+	In this section, we extend the system design of \mbox{\cite{nevarez2020accelerator}}, where we presented a scalable hardware architecture composed of generic homogeneous accelerator units (AUs) using standard floating-point arithmetic (IEEE 754) with elevated memory footprint and computational cost, which represents an overhead for error-resilient applications. Furthermore, this architecture does not implement on-chip memory for stationary synaptic weight matrix, resulting in high data movement and longer computational latency.
+	
+	In this publication, we present an enhanced hardware architecture composed of specialized heterogeneous processing units (PUs) using hybrid custom floating-point and logarithmic dot-product approximation with reduced computational latency. Furthermore, the proposed approach reduces the memory footprint, allowing the implementation of stationary synaptic weight matrix in hardware.
 	}
 
 Regarding the software architecture, it is structured as a
