@@ -108,6 +108,13 @@
 \@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces System overview of the top-level architecture with 8 processing units.}}{9}}
 \newlabel{fig:hw_sbs_8_pu}{{13}{9}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {V-A}2}Benchmark on processing units with standard floating-point computation}{9}}
+\citation{hrica2012floating}
+\citation{hrica2012floating}
+\citation{hrica2012floating}
+\citation{hrica2012floating}
+\citation{hrica2012floating}
+\citation{hrica2012floating}
+\citation{hrica2012floating}
 \@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Performance of processing units with standard floating-point (IEEE 754) computation.}}{10}}
 \newlabel{tab:latency_fp}{{2}{10}}
 \@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces Performance of processing units with standard floating-point (IEEE 754) computation.}}{10}}
@@ -118,57 +125,57 @@
 \newlabel{fig:latency_pu_fp_cycle}{{15}{10}}
 \newlabel{eq:time_spike}{{11}{10}}
 \newlabel{eq:time_finish}{{12}{10}}
-\citation{hrica2012floating}
-\citation{hrica2012floating}
-\citation{hrica2012floating}
-\citation{hrica2012floating}
-\citation{hrica2012floating}
-\citation{hrica2012floating}
-\citation{hrica2012floating}
 \citation{venkataramani2015approximate}
 \@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Resource utilization and power dissipation of processing units with standard floating-point (IEEE 754) computation.}}{11}}
 \newlabel{tab:resource_fp}{{3}{11}}
-\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces Power dissipation breakdown of processing units with standard floating-point (IEEE 754), (a) {\it  Conv}, and (b) {\it  FC}.}}{11}}
-\newlabel{fig:power_dissipation_breakdown_float_32}{{16}{11}}
 \@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Resource utilization and power dissipation of multiplier and adder floating-point (IEEE 754) operator cores.}}{11}}
 \newlabel{tab:LogiCORE}{{4}{11}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {V-A}3}Benchmark on noise tolerance plot}{11}}
-\@writefile{lof}{\contentsline {figure}{\numberline {17}{\ignorespaces Noise tolerance on hardware PU with standard floating-point (IEEE 754) computation (benchmark/reference), (a) exhibits accuracy degradation applying $50\%$ of noise amplitude, and (b) illustrates convergence of inference with $400$ spikes.}}{11}}
-\newlabel{fig:accuracy_vs_noise_pu_fp}{{17}{11}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-B}}Design exploration with hybrid custom floating-point and logarithmic approximation}{11}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {V-B}1}Parameters for numeric representation of synaptic weight matrix}{12}}
-\newlabel{sec:parameters}{{\unhbox \voidb@x \hbox {V-B}1}{12}}
+\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces Noise tolerance on hardware PU with standard floating-point (IEEE 754) computation (benchmark/reference), (a) exhibits accuracy degradation applying $50\%$ of noise amplitude, and (b) illustrates convergence of inference with $400$ spikes.}}{11}}
+\newlabel{fig:accuracy_vs_noise_pu_fp}{{16}{11}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {V-B}1}Parameters for numeric representation of synaptic weight matrix}{11}}
+\newlabel{sec:parameters}{{\unhbox \voidb@x \hbox {V-B}1}{11}}
+\@writefile{lof}{\contentsline {figure}{\numberline {17}{\ignorespaces $\qopname  \relax o{log}_2$-histogram of each synaptic weight matrix showing the percentage of matrix elements with given integer exponent.}}{12}}
+\newlabel{fig:log2histogram}{{17}{12}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {V-B}2}Design exploration for dot-product with hybrid custom floating-point approximation}{12}}
-\@writefile{lof}{\contentsline {figure}{\numberline {18}{\ignorespaces $\qopname  \relax o{log}_2$-histogram of each synaptic weight matrix showing the percentage of matrix elements with given integer exponent.}}{12}}
-\newlabel{fig:log2histogram}{{18}{12}}
 \@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Resource utilization and power dissipation of processing units with hybrid custom floating-point approximation.}}{12}}
 \newlabel{tab:resource_cfp}{{5}{12}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {V-B}3}Design exploration for dot-product whit hybrid logarithmic approximation}{12}}
-\@writefile{lof}{\contentsline {figure}{\numberline {19}{\ignorespaces Power dissipation breakdown of processing units with hybrid custom floating-point approximation, (a) {\it  Conv}, and (b) {\it  FC}.}}{13}}
-\newlabel{fig:power_dissipation_breakdown_float_5}{{19}{13}}
 \@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Performance of hardware processing units with hybrid custom floating-point approximation.}}{13}}
 \newlabel{tab:latency_cfp}{{6}{13}}
-\@writefile{lof}{\contentsline {figure}{\numberline {20}{\ignorespaces Performance on processing units with hybrid custom floating-point approximation, (a) exhibits computation schedule, (b) presents cyclic computation schedule, and (c) shows the performance of {\it  Conv2} from a previous computation cycle during the preprocessing of {\it  H1\_CONV} on the current computation cycle without bottleneck.}}{13}}
-\newlabel{fig:latency_pu_cfp_cycle}{{20}{13}}
-\@writefile{lof}{\contentsline {figure}{\numberline {21}{\ignorespaces Noise tolerance on hardware PU with custom floating-point approximation, (a) exhibits accuracy degradation applying $50\%$ of noise amplitude, and (b) illustrates convergence of inference with $400$ spikes.}}{13}}
-\newlabel{fig:accuracy_vs_noise_pu_cfp}{{21}{13}}
-\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Performance of hardware processing units with hybrid logarithmic approximation.}}{14}}
-\newlabel{tab:latency_log}{{7}{14}}
-\@writefile{lof}{\contentsline {figure}{\numberline {22}{\ignorespaces Performance of processing units with hybrid logarithmic approximation, (a) exhibits computation schedule, and (b) illustrates cyclic computation schedule.}}{14}}
-\newlabel{fig:latency_pu_log_cycle}{{22}{14}}
+\@writefile{lof}{\contentsline {figure}{\numberline {18}{\ignorespaces Performance on processing units with hybrid custom floating-point approximation, (a) exhibits computation schedule, (b) presents cyclic computation schedule, and (c) shows the performance of {\it  Conv2} from a previous computation cycle during the preprocessing of {\it  H1\_CONV} on the current computation cycle without bottleneck.}}{13}}
+\newlabel{fig:latency_pu_cfp_cycle}{{18}{13}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-C}}Results and discussion}{13}}
+\@writefile{lof}{\contentsline {figure}{\numberline {19}{\ignorespaces Noise tolerance on hardware PU with custom floating-point approximation, (a) exhibits accuracy degradation applying $50\%$ of noise amplitude, and (b) illustrates convergence of inference with $400$ spikes.}}{13}}
+\newlabel{fig:accuracy_vs_noise_pu_cfp}{{19}{13}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Performance of hardware processing units with hybrid logarithmic approximation.}}{13}}
+\newlabel{tab:latency_log}{{7}{13}}
+\citation{nevarez2020accelerator}
+\citation{nevarez2020accelerator}
+\citation{nevarez2020accelerator}
+\@writefile{lof}{\contentsline {figure}{\numberline {20}{\ignorespaces Performance of processing units with hybrid logarithmic approximation, (a) exhibits computation schedule, and (b) illustrates cyclic computation schedule.}}{14}}
+\newlabel{fig:latency_pu_log_cycle}{{20}{14}}
 \@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Resource utilization and power dissipation of processing units with hybrid logarithmic approximation.}}{14}}
 \newlabel{tab:resource_log}{{8}{14}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-C}}Results and discussion}{14}}
-\@writefile{lof}{\contentsline {figure}{\numberline {23}{\ignorespaces Power dissipation breakdown of processing units with hybrid logarithmic approximation, (a) {\it  Conv}, and (b) {\it  FC}.}}{14}}
-\newlabel{fig:power_dissipation_breakdown_log_4}{{23}{14}}
-\@writefile{lof}{\contentsline {figure}{\numberline {24}{\ignorespaces Noise tolerance on hardware PU with hybrid logarithmic approximation, (a) exhibits accuracy degradation applying $40\%$ of noise amplitude, (b) illustrates convergence of inference with $600$ spikes.}}{14}}
-\newlabel{fig:accuracy_vs_noise_pu_log}{{24}{14}}
+\@writefile{lof}{\contentsline {figure}{\numberline {21}{\ignorespaces Noise tolerance on hardware PU with hybrid logarithmic approximation, (a) exhibits accuracy degradation applying $40\%$ of noise amplitude, (b) illustrates convergence of inference with $600$ spikes.}}{14}}
+\newlabel{fig:accuracy_vs_noise_pu_log}{{21}{14}}
+\@writefile{toc}{\contentsline {section}{\numberline {VI}Conclusions}{14}}
+\newlabel{sec:conclusions}{{VI}{14}}
 \bibstyle{IEEEtran}
 \bibdata{../content/bibliography.bib}
 \bibcite{schmidhuber2015deep}{1}
 \bibcite{Taigman_2014_CVPR}{2}
 \bibcite{Design_Exploration_SbS_Trans20}{3}
 \bibcite{Spinnaker_Trans13}{4}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Experimental results.}}{15}}
+\newlabel{tab:results}{{9}{15}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Platform implementations.}}{15}}
+\newlabel{tab:platform_comparison}{{10}{15}}
+\@writefile{lof}{\contentsline {figure}{\numberline {22}{\ignorespaces Power dissipation breakdown of platform implementations, (a) Ref. \cite  {nevarez2020accelerator} architecture with homogeneous AUs using standard floating-point arithmetic (IEEE 754), (b) reference architecture with specialized heterogeneous PUs using standard floating-point arithmetic (IEEE 754), (c) proposed architecture with hybrid custom floating-point approximation, and (d) proposed architecture with hybrid logarithmic approximation.}}{15}}
+\newlabel{fig:platform_power_dissipation_breakdown}{{22}{15}}
+\newlabel{sec:Ack}{{VI}{15}}
+\@writefile{toc}{\contentsline {section}{REFERENCES}{15}}
 \bibcite{ernst2007efficient}{5}
 \bibcite{SNN_Survey_Trans19}{6}
 \bibcite{rotermund2019Backpropagation}{7}
@@ -184,10 +191,6 @@
 \bibcite{bouvier2019spiking}{17}
 \bibcite{courbariaux2015binaryconnect}{18}
 \bibcite{han2015deep}{19}
-\@writefile{toc}{\contentsline {section}{\numberline {VI}Conclusions}{15}}
-\newlabel{sec:conclusions}{{VI}{15}}
-\newlabel{sec:Ack}{{VI}{15}}
-\@writefile{toc}{\contentsline {section}{REFERENCES}{15}}
 \bibcite{hubara2017quantized}{20}
 \bibcite{rastegari2016xnor}{21}
 \bibcite{moons20160}{22}
@@ -219,8 +222,6 @@
 \bibcite{Rotermund500280}{48}
 \bibcite{xilinx2015zynq}{49}
 \bibcite{hrica2012floating}{50}
-\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Experimental results.}}{16}}
-\newlabel{tab:results}{{9}{16}}
 \@writefile{toc}{\contentsline {subsection}{Yarib Nevarez}{17}}
 \@writefile{toc}{\contentsline {subsection}{David Rotermund}{17}}
 \@writefile{toc}{\contentsline {subsection}{Klaus R. Pawelzik}{17}}

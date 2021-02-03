@@ -17,7 +17,7 @@ For the evaluation of our approach, we address a design exploration by reviewing
 \subsection{Performance benchmark}
 \subsubsection{Benchmark on embedded CPU}
 
-We examine the performance of the CPU for SbS network simulation with no hardware coprocessing. In this case, the embedded software builds the SbS network as a sequential model mapping the entire computation to the CPU (ARM Cortex-A9) at 666 MHz and a power dissipation of $520 mW$.
+We examine the performance of the CPU for SbS network simulation with no hardware coprocessing. In this case, the embedded software builds the SbS network as a sequential model mapping the entire computation to the CPU (ARM Cortex-A9) at 666 MHz and a power dissipation of $1.658 W$.
 
 The SbS network computation on the CPU achieves a latency of $34.28 ms$ per spike with an accuracy of 99.3\% correct classification on the $10,000$ image test set with $1000$ spikes. The latency and schedule of the SbS network computation are displayed in \Tab{tab:latency_sw} and \fig{fig:latency_sw} respectively.
 
@@ -121,7 +121,9 @@ Using standard floating-point requires a high computational cost. As the largest
 
 Applying \equ{eq:time_spike}, we obtain a latency of $3.18 ms$ per spike cycle. This deployment achieves an accuracy of $98.98\%$ correct classification on the $10,000$ image test set with $1000$ spikes.
 
-The post-implementation resource utilization and power dissipation are shown in \Tab{tab:resource_fp}. \REVIEW{The power dissipation breakdown of \emph{Conv} and \emph{FC} are presented in {\fig{fig:power_dissipation_breakdown_float_32}}, which exhibits data as the major component of power dissipation in \emph{Conv}.} Each \emph{Conv} PU instantiates an on-chip stationary weight matrix of $52,000$ entries, wish is sufficient to store $W\in\mathbb{R}^{5\times 5\times 2\times 32}$ and $W\in\mathbb{R}^{5\times 5\times 32\times 64}$ for \emph{H1\_CONV} and \emph{H3\_CONV}, respectively. In order to reduce BRAM utilization, we use a custom floating-point representation composed of 4-bit exponent and 4-bit mantissa. Each 8-bit entry is promoted to its standard floating-point representation for the dot-product computation. The methodology to find the appropriate bit width parameters for custom floating-point representation is presented in Section~\ref{sec:parameters}.
+The post-implementation resource utilization and power dissipation are shown in \Tab{tab:resource_fp}.
+%\REVIEW{The power dissipation breakdown of \emph{Conv} and \emph{FC} %are presented in {\fig{fig:power_dissipation_breakdown_float_32}}, %which exhibits data as the major component of power dissipation in %\emph{Conv}.}
+Each \emph{Conv} PU instantiates an on-chip stationary weight matrix of $52,000$ entries, wish is sufficient to store $W\in\mathbb{R}^{5\times 5\times 2\times 32}$ and $W\in\mathbb{R}^{5\times 5\times 32\times 64}$ for \emph{H1\_CONV} and \emph{H3\_CONV}, respectively. In order to reduce BRAM utilization, we use a custom floating-point representation composed of 4-bit exponent and 4-bit mantissa. Each 8-bit entry is promoted to its standard floating-point representation for the dot-product computation. The methodology to find the appropriate bit width parameters for custom floating-point representation is presented in Section~\ref{sec:parameters}.
 
 \begin{table}[!h]\centering
 	\caption{Resource utilization and power dissipation of processing units with standard floating-point (IEEE 754) computation.}\label{tab:resource_fp}
@@ -136,12 +138,12 @@ The post-implementation resource utilization and power dissipation are shown in 
 	\end{tabular}
 \end{table}
 
-\begin{figure}[!h]
-	\centering
-	\includegraphics[width=1\columnwidth]{../figures/power_dissipation_breakdown_float-32.pdf}
-	\caption{Power dissipation breakdown of processing units with standard floating-point (IEEE 754), (a) \emph{Conv}, and (b) \emph{FC}.}
-	\label{fig:power_dissipation_breakdown_float_32}
-\end{figure}
+%\begin{figure}[!h]
+%	\centering
+%	\includegraphics[width=1\columnwidth]{../figures/power_dissipation_breakdown_float-32.pdf}
+%	\caption{Power dissipation breakdown of processing units with standard floating-point (IEEE 754), (a) \emph{Conv}, and (b) \emph{FC}.}
+%	\label{fig:power_dissipation_breakdown_float_32}
+%\end{figure}
 
 \REVIEW{The implementation of dot-product with standard floating-point arithmetic (IEEE 754) utilizes proprietary multiplier and adder floating-point operator cores. Vivado HLS accomplishes floating-point arithmetic operations by mapping them onto Xilinx LogiCORE IP cores, these floating-point operator cores are instantiated in the resultant RTL\mbox{\cite{hrica2012floating}}. In this case, the implementation of the dot-product with the standard floating-point computation reuses the multiplier and adder cores already instantiated and used in other computation sections of {\emph{Conv}} and {\emph{FC}} processing units. The post-implementation resource utilization and power dissipation of the floating-point operator cores are shown in {\Tab{tab:LogiCORE}}.}
 
@@ -195,7 +197,11 @@ As shown in the computation schedule in \Tab{tab:latency_cfp} and \Fig{fig:laten
 
 This configuration achieves an accuracy of $98.97\%$ correct classification on the $10,000$ image test set with $1000$ spikes. This indicates an accuracy degradation of $0.33\%$. For output quality monitoring, the noise tolerance plot in \fig{fig:accuracy_vs_noise_pu_cfp} revels accuracy degradation for noise higher than $50\%$ on the input images, and convergence of inference with $400$ spikes. Thus, the particular SbS network implementation under approximate processing effects demonstrates a minimal impact on the overall accuracy. This proves an inherent error resilience, and hence, remaining approximation budget.
 
-The post-implementation resource utilization and power dissipation \REVIEW{breakdown} are shown in \Tab{tab:resource_cfp} \REVIEW{and {\fig{fig:power_dissipation_breakdown_float_5}}, respectively.}
+The post-implementation resource utilization and power dissipation
+%\REVIEW{breakdown}
+are shown in \Tab{tab:resource_cfp}
+%\REVIEW{and {\fig{fig:power_dissipation_breakdown_float_5}}, respectively}
+.
 
 \begin{table}[h!]\centering
 	\caption{Resource utilization and power dissipation of processing units with hybrid custom floating-point approximation.}\label{tab:resource_cfp}
@@ -208,12 +214,12 @@ The post-implementation resource utilization and power dissipation \REVIEW{break
 	\end{tabular}
 \end{table}
 
-\begin{figure}[!h]
-	\centering
-	\includegraphics[width=1\columnwidth]{../figures/power_dissipation_breakdown_float-5.pdf}
-	\caption{Power dissipation breakdown of processing units with hybrid custom floating-point approximation, (a) \emph{Conv}, and (b) \emph{FC}.}
-	\label{fig:power_dissipation_breakdown_float_5}
-\end{figure}
+%\begin{figure}[!h]
+%	\centering
+%	\includegraphics[width=1\columnwidth]{../figures/power_dissipation_breakdown_float-5.pdf}
+%	\caption{Power dissipation breakdown of processing units with hybrid custom floating-point approximation, (a) \emph{Conv}, and (b) \emph{FC}.}
+%	\label{fig:power_dissipation_breakdown_float_5}
+%\end{figure}
 
 
 \begin{table}[t!]\centering
@@ -256,7 +262,11 @@ As shown in the computation schedule in \Tab{tab:latency_log} and \Fig{fig:laten
 
 This quality configuration achieves an accuracy of $98.84\%$ correct classification on the $10,000$ image test set with $1000$ spikes. This indicates an accuracy degradation of $0.46\%$. For output quality monitoring, the noise tolerance plot in \fig{fig:accuracy_vs_noise_pu_log} revels accuracy degradation having $40\%$ noise on the input images, and convergence of inference with $600$ spikes. The particular SbS network implementation under approximate processing demonstrates a minor impact on the overall accuracy. This exhibits remaining budget for further approximate processing approaches.
 
-The post-implementation resource utilization and power dissipation \REVIEW{breakdown} are shown in \Tab{tab:resource_log} \REVIEW{and {\fig{fig:power_dissipation_breakdown_log_4}}, respectively.}
+The post-implementation resource utilization and power dissipation
+%\REVIEW{breakdown}
+are shown in \Tab{tab:resource_log}
+%\REVIEW{and {\fig{fig:power_dissipation_breakdown_log_4}}, respectively}
+.
 
 \begin{table}[t!]\centering
 	\caption{Performance of hardware processing units with hybrid logarithmic approximation.}\label{tab:latency_log}
@@ -295,12 +305,12 @@ The post-implementation resource utilization and power dissipation \REVIEW{break
 \end{tabular}
 \end{table}
 
-\begin{figure}[!h]
-	\centering
-	\includegraphics[width=1\columnwidth]{../figures/power_dissipation_breakdown_log-4.pdf}
-	\caption{Power dissipation breakdown of processing units with hybrid logarithmic approximation, (a) \emph{Conv}, and (b) \emph{FC}.}
-	\label{fig:power_dissipation_breakdown_log_4}
-\end{figure}
+%\begin{figure}[!h]
+%	\centering
+%	\includegraphics[width=1\columnwidth]{../figures/power_dissipation_breakdown_log-4.pdf}
+%	\caption{Power dissipation breakdown of processing units with hybrid logarithmic approximation, (a) \emph{Conv}, and (b) \emph{FC}.}
+%	\label{fig:power_dissipation_breakdown_log_4}
+%\end{figure}
 
 
 
@@ -317,7 +327,7 @@ As a reference, the SbS network simulation on embedded CPU using standard 32-bit
 
 As a demonstration of the proposed dot-product architecture, the SbS network simulation on hardware PUs with synaptic representation using 5-bit custom floating-point (4-bit exponent, 1-bit mantissa) and 4-bit logarithmic (4-bit exponent) achieve $20.5\times$ latency enhancement and accuracy of $98.97\%$ and $98.84\%$, respectively. This results in an accuracy degradation of $0.33\%$ and $0.46\%$, respectively. For output quality monitoring, the noise tolerance plot in \fig{fig:accuracy_vs_noise_pu_cfp} and \fig{fig:accuracy_vs_noise_pu_log} reveal accuracy degradation when having $50\%$ and $40\%$ noise on the input images, and convergence of inference with $400$ and $600$ spikes, respectively. Therefore, the design exploration under the proposed approximate computing approach indicates sufficient inherent error resilience for further and more aggressive approximate processing approaches.
 
-Regarding resource utilization and power dissipation with the proposed approach, the \emph{Conv} processing units have a $43.24\%$ reduction of BRAM, and a $12.35\%$ of improvement in energy efficiency over the standard floating-point implementation. \REVIEW{However, the proposed approach does not reuse the available floating-point operator cores instantiated from other computational sections (see {\Tab{tab:LogiCORE}}). Therefore, the logic required for the dot-product must be implemented, which is reflected as additional utilization of LUT and FF resources.} The experimental results of the design exploration are summarized in \Tab{tab:results}.
+Regarding resource utilization and power dissipation with the proposed approach, the \emph{Conv} processing units have a $43.24\%$ reduction of BRAM, and a $12.35\%$ of improvement in energy efficiency over the standard floating-point implementation. \REVIEW{However, the proposed approach does not reuse the available floating-point operator cores instantiated from other computational sections (see {\Tab{tab:LogiCORE}}). Therefore, the logic required for the dot-product must be implemented, which is reflected as additional utilization of LUT and FF resources.} The experimental results of the design exploration are summarized in \Tab{tab:results}. \REVIEW{The platform implementations are summarized in \mbox{\Tab{tab:platform_comparison}}, and their power dissipation breakdowns are presented in {\fig{fig:platform_power_dissipation_breakdown}}.}
 
 \begin{table*}[!t]
 	\begin{threeparttable}
@@ -347,3 +357,36 @@ Regarding resource utilization and power dissipation with the proposed approach,
 		\end{tablenotes}
 	\end{threeparttable}
 \end{table*}
+
+\begin{table*}[!t]
+	\begin{threeparttable}
+		\centering
+		\caption{Platform implementations.}\label{tab:platform_comparison}
+		\scriptsize
+		\begin{tabular}{lrrrrrrrrrrrrr}\toprule
+			\multirow{2}{*}{\textbf{Platform implementation}} & &\multicolumn{4}{c}{\textbf{Post-implementation resource utilization}} & &\multirow{2}{*}{\textbf{Power (W)}} & &\multicolumn{2}{c}{\textbf{Latency}} & &\multirow{2}{*}{\textbf{Accuracy (\%)\tnote{f}}} \\\cmidrule{3-6}\cmidrule{10-11}
+			& &\textbf{LUT} &\textbf{FF} &\textbf{DSP} &\textbf{BRAM 18K} & & & &$T_{SC}$ (ms) &\textbf{Gain\tnote{e}} & & \\\midrule
+			Ref. \cite{nevarez2020accelerator}\tnote{a} & &42,740 &57,118 &49 &92 & &2.519 & &4.65 &7.4x & &99.00 \\
+			Standard floating-point computation\tnote{b} & &39,514 &56,036 &82 &180 & &2.420 & &3.18 &10.7x & &98.98 \\
+			Hybrid custom floating-point approximation\tnote{c} & &42,021 &58,759 &82 &156 & &2.369 & &1.67 &20.5x & &98.97 \\
+			Hybrid logarithmic approximation\tnote{d} & &41,060 &57,862 &82 &148 & &2.324 & &1.67 &20.5x & &98.84 \\
+			\bottomrule
+		\end{tabular}
+		\begin{tablenotes}
+			\scriptsize
+			\item[a] Reference architecture with homogeneous AUs using standard floating-point arithmetic (IEEE 754).
+			\item[b] Reference architecture with specialized heterogeneous PUs using standard floating-point arithmetic (IEEE 754).
+			\item[c] Proposed architecture with specialized heterogeneous PUs using synaptic weight with number representation composed of 4-bit exponent and 1-bit mantissa.
+			\item[d] Proposed architecture with specialized heterogeneous PUs using synaptic weight with number representation composed of 4-bit exponent.
+			\item[e] Acceleration with respect to the computation on embedded CPU (ARM Cortex-A9 at 666 MHz) with latency $T_{SC} = 34.28 ms$.
+			\item[f] Accuracy on 10,000 image test set with 1000 spikes.
+		\end{tablenotes}
+	\end{threeparttable}
+\end{table*}
+
+\begin{figure*}[!h]
+	\centering
+	\includegraphics{../figures/platform_power_dissipation_breakdown.pdf}
+	\caption{Power dissipation breakdown of platform implementations, (a) Ref. \cite{nevarez2020accelerator} architecture with homogeneous AUs using standard floating-point arithmetic (IEEE 754), (b) reference architecture with specialized heterogeneous PUs using standard floating-point arithmetic (IEEE 754), (c) proposed architecture with hybrid custom floating-point approximation, and (d) proposed architecture with hybrid logarithmic approximation.}
+	\label{fig:platform_power_dissipation_breakdown}
+\end{figure*}
