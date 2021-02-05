@@ -39,9 +39,9 @@ Additionally, the processing unit also stores in on-chip memory (BRAM) the synap
 
 \begin{itemize}
 	\item{Custom floating-point representation}.
-	In this case, $W$ is deployed with a reduced floating-point representation using the user defined bit width for the exponent and for the mantissa. For example, 4-bit exponent, 1-bit mantissa; as a result: 5-bit custom floating-point.
+	In this case, $W$ is deployed with a reduced floating-point representation using the user defined bit-width for the exponent and for the mantissa. For example, 4-bit exponent, 1-bit mantissa; as a result: 5-bit custom floating-point.
 	\item{Logarithmic representation}.
-	In this case, the synaptic weight matrix is $W\in\mathbb{N}^{K\times K\times M\times N}$ with positive natural numbers. Since $0\le W(s_t|j)\le1$ and $\sum_{j=0}^{N-1}W(s_t|j)=1$, $W$ has only negative values in the logarithmic domain. Hence, the sign bit is omitted, and the values are represented in its positive form. Therefore, $W$ is deployed with a representation using the necessary bit width for the exponent according to the given application. For example, 4-bit exponent.
+	In this case, the synaptic weight matrix is $W\in\mathbb{N}^{K\times K\times M\times N}$ with positive natural numbers. Since $0\le W(s_t|j)\le1$ and $\sum_{j=0}^{N-1}W(s_t|j)=1$, $W$ has only negative values in the logarithmic domain. Hence, the sign bit is omitted, and the values are represented in its positive form. Therefore, $W$ is deployed with a representation using the necessary bit-width for the exponent according to the given application. For example, 4-bit exponent.
 \end{itemize}
 
 In order to deploy different SbS network models, the \emph{Conv} processing units can be configured with different synaptic weight matrices and parameters as required through the embedded software.
@@ -72,7 +72,7 @@ r_{\mu}\left(s_t\right)=\sum_{j=0}^{N-1}h_{\mu}(j)W(s_t|j)
 Further on, we remove the mantissa bits completely in order to use only the exponent of a floating-point representation. Hence, the worst-case quality and yet the most efficient configuration becomes a logarithmic representation. Consequently, this structure leads to advantageous architectural optimizations using only adders and barrel shifters for dot-product approximation in hardware. We designate this as hybrid logarithmic approximation \REVIEW{(see {\fig{fig:product_unit_bitwidth}}(b))}.
 
 \REVIEW{
-In order to determine the required bit width for the number representation, we use {\equ{eq:exp_max}}, {\equ{eq:bits_exp}}, and {\equ{eq:bits_bitwidth}}. Where {\equ{eq:exp_max}} obtains the smallest entry value from the synaptic weight matrix, {\equ{eq:bits_exp}} obtains the bit width to represent the integer exponent of the smallest synaptic weight value, and {\equ{eq:bits_bitwidth}} obtains the total bit width required for the number representation of the input synaptic weight vector $\vec{W}(s_t)$. The total bit width incorporates both exponent and mantissa bit widths (see {\fig{fig:product_unit_bitwidth}}). $N_M$ denotes the mantissa bit width, this is a knob parameter that is tuned by the designer to trade-off between resource utilization and QoR.
+In order to determine the required bit-width for the number representation, we use {\equ{eq:exp_max}}, {\equ{eq:bits_exp}}, and {\equ{eq:bits_bitwidth}}. Where {\equ{eq:exp_max}} obtains the smallest entry value from the synaptic weight matrix, {\equ{eq:bits_exp}} obtains the bit-width to represent the integer exponent of the smallest synaptic weight value, and {\equ{eq:bits_bitwidth}} obtains the total bit-width required for the number representation of the input synaptic weight vector $\vec{W}(s_t)$. The total bit-width incorporates both exponent and mantissa bit-widths (see {\fig{fig:product_unit_bitwidth}}). $N_M$ denotes the mantissa bit-width, this is a knob parameter that is tuned by the designer to trade-off between resource utilization and QoR.
 }
 
 \begin{eqnarray} \label{eq:exp_max}
@@ -116,7 +116,7 @@ In this design, the high level synthesis tool infers computational blocks with c
  
  As the most efficient setup and yet the worst-case quality configuration, by completely truncating the mantissa of $W(s|j)$ leads to a slightly different hardware architecture using only adders and shifters, which computes the dot-product with hybrid logarithmic approximation. This is shown in \fig{fig:dot_product_log}.
  
-Additionally, the exponent bit width of $W(s|j)$ is a design parameter for efficient resource utilization and it is defined based on the application or deployment needs.
+Additionally, the exponent bit-width of $W(s|j)$ is a design parameter for efficient resource utilization and it is defined based on the application or deployment needs.
  
  The hybrid custom floating-point and logarithmic approximation designs work in three phases: \emph{Computation}, \emph{Threshold-test}, and \emph{Result normalization}.
  
