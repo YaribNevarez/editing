@@ -336,7 +336,7 @@ Regarding resource utilization and power dissipation with the proposed approach,
 		\scriptsize
 		\begin{tabular}{lrrrrrrrrrrrrrr}\toprule
 			\multirow{2}{*}{\textbf{Dot-product implementation}} &\multirow{2}{*}{\textbf{PU}} &\multicolumn{4}{c}{\textbf{Post-implementation resource utilization}} & &\multirow{2}{*}{\textbf{Power (mW)}} & &\multicolumn{2}{c}{\textbf{Latency}} & &\multicolumn{2}{c}{\textbf{Accuracy (\%)\tnote{e}}} \\\cmidrule{3-6}\cmidrule{10-11}\cmidrule{13-14}
-			& &\textbf{LUT} &\textbf{FF} &\textbf{DSP} &\textbf{BRAM 18K} & & & &$T_{SC}$ (ms) &\textbf{Gain\tnote{d}} & &\textbf{Noise 0\%} &\textbf{50\%} \\\midrule
+			& &\textbf{LUT} &\textbf{FF} &\textbf{DSP} &\textbf{BRAM 18K} & & & &$T_{SC}$ \textbf{(ms)} &\textbf{Gain\tnote{d}} & &\textbf{Noise 0\%} &\textbf{50\%} \\\midrule
 			\multirow{2}{*}{Standard floating-point computation\tnote{a}} &Conv &2,765 &4,366 &19 &37 & &89 & &\multirow{2}{*}{3.18} &\multirow{2}{*}{10.7x} & &\multirow{2}{*}{98.98} &\multirow{2}{*}{98.63} \\
 			&FC &2,649 &4,189 &8 &9 & &66 & & & & & & \\
 			& & & & & & & & & & & & & \\
@@ -363,13 +363,13 @@ Regarding resource utilization and power dissipation with the proposed approach,
 		\centering
 		\caption{Platform implementations.}\label{tab:platform_comparison}
 		\scriptsize
-		\begin{tabular}{lrrrrrrrrrrrrr}\toprule
-			\multirow{2}{*}{\textbf{Platform implementation}} & &\multicolumn{4}{c}{\textbf{Post-implementation resource utilization}} & &\multirow{2}{*}{\textbf{Power (W)}} & &\multicolumn{2}{c}{\textbf{Latency}} & &\multirow{2}{*}{\textbf{Accuracy (\%)\tnote{f}}} \\\cmidrule{3-6}\cmidrule{10-11}
-			& &\textbf{LUT} &\textbf{FF} &\textbf{DSP} &\textbf{BRAM 18K} & & & &$T_{SC}$ (ms) &\textbf{Gain\tnote{e}} & & \\\midrule
-			Ref. \cite{nevarez2020accelerator}\tnote{a} & &42,740 &57,118 &49 &92 & &2.519 & &4.65 &7.4x & &99.00 \\
-			This work (standard floating-point computation)\tnote{b} & &39,514 &56,036 &82 &180 & &2.420 & &3.18 &10.7x & &98.98 \\
-			This work (hybrid custom floating-point approx)\tnote{c} & &42,021 &58,759 &82 &156 & &2.369 & &1.67 &20.5x & &98.97 \\
-			This work (hybrid logarithmic approximation)\tnote{d} & &41,060 &57,862 &82 &148 & &2.324 & &1.67 &20.5x & &98.84 \\
+		\begin{tabular}{lrrrrrrrrrr}\toprule
+			\multirow{2}{*}{\textbf{Platform implementation}} &\multicolumn{4}{c}{\textbf{Post-implementation resource utilization}} &\multirow{2}{*}{\textbf{Power (W)}} &\multirow{2}{*}{\textbf{Clock (MHz)}} &\multicolumn{2}{c}{\textbf{Latency}} &\multirow{2}{*}{\textbf{Accuracy (\%)\tnote{f}}} \\\cmidrule{2-5}\cmidrule{8-9}
+			&\textbf{LUT} &\textbf{FF} &\textbf{DSP} &\textbf{BRAM 18K} & & &$T_{SC}$ \textbf{(ms)} &\textbf{Gain\tnote{e}} & \\\midrule
+			Ref. \cite{nevarez2020accelerator}\tnote{a} &42,740 &57,118 &49 &92 &2.519 &250 &4.65 &7.4x &99.02 \\
+			This work (standard floating-point computation)\tnote{b} &39,514 &56,036 &82 &180 &2.420 &200 &3.18 &10.7x &98.98 \\
+			This work (hybrid custom floating-point approx)\tnote{c} &42,021 &58,759 &82 &156 &2.369 &200 &1.67 &20.5x &98.97 \\
+			This work (hybrid logarithmic approximation)\tnote{d} &41,060 &57,862 &82 &148 &2.324 &200 &1.67 &20.5x &98.84 \\
 			\bottomrule
 		\end{tabular}
 		\begin{tablenotes}
