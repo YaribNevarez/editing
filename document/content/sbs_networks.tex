@@ -32,11 +32,11 @@ every observed input spike $s_t$ could be derived
   \REVIEW{ From a practical point of view, SbS provides a mechanism to obtain a sparse representation of input patterns. Given a set of
     training samples $\{x_\eta\}$ it learns weights, W, that allow
     to express the input patterns as a linear sparse non-negative combination
-    of features.  During inference, it provides a mechanism express
+    of features.  During inference, it provides a mechanism for expressing
     each the test input $x_\mu$ as $x_\mu \approx W\, h_\mu$ where all
     entries are non-negative.
 
-    The inference procure consist in generating indices $s_t$
+    The inference procedure consists in generating indices $s_t$
     distributed according to a categorical distribution of the input pattern
     $s_t \sim \mathrm{Categorical}(x_{\mu}(0), x_{\mu}(1), ..,
     x_{\mu}(N-1))$. Starting with a random $h$ and executing
