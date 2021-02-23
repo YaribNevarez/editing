@@ -56,10 +56,86 @@ M.~Bouvier, A.~Valentian, T.~Mesquida, F.~Rummens, M.~Reyboz, E.~Vianello, and
   2019. [Online]. Available: \url{https://doi.org/10.1145/3304103}
 \BIBentrySTDinterwordspacing
 
+\bibitem{mcdonnell2011benefits}
+M.~D. McDonnell and L.~M. Ward, ``The benefits of noise in neural systems:
+  bridging theory and experiment,'' \emph{Nature Reviews Neuroscience},
+  vol.~12, no.~7, pp. 415--425, 2011.
+
+\bibitem{Dapello2020.06.16.154542}
+J.~Dapello, T.~Marques, M.~Schrimpf, F.~Geiger, D.~D. Cox, and J.~J. DiCarlo,
+  ``Simulating a primary visual cortex at the front of cnns improves robustness
+  to image perturbations,'' \emph{bioRxiv}, 2020.
+
+\bibitem{davies2018loihi}
+M.~Davies, N.~Srinivasa, T.-H. Lin, G.~Chinya, Y.~Cao, S.~H. Choday, G.~Dimou,
+  P.~Joshi, N.~Imam, S.~Jain \emph{et~al.}, ``Loihi: A neuromorphic manycore
+  processor with on-chip learning,'' \emph{IEEE Micro}, vol.~38, no.~1, pp.
+  82--99, 2018.
+
+\bibitem{TrueNorth_Trans15}
+F.~{Akopyan}, J.~{Sawada}, A.~{Cassidy}, R.~{Alvarez-Icaza}, J.~{Arthur},
+  P.~{Merolla}, N.~{Imam}, Y.~{Nakamura}, P.~{Datta}, G.~{Nam}, B.~{Taba},
+  M.~{Beakes}, B.~{Brezzo}, J.~B. {Kuang}, R.~{Manohar}, W.~P. {Risk},
+  B.~{Jackson}, and D.~S. {Modha}, ``Truenorth: Design and tool flow of a 65 mw
+  1 million neuron programmable neurosynaptic chip,'' \emph{IEEE Trans. on
+  Computer-Aided Design of Integrated Circuits and Systems}, vol.~34, no.~10,
+  pp. 1537--1557, Oct 2015.
+
+\bibitem{pfeiffer2018deep}
+M.~Pfeiffer and T.~Pfeil, ``Deep learning with spiking neurons: Opportunities
+  and challenges,'' \emph{Frontiers in neuroscience}, vol.~12, 2018.
+
+\bibitem{izhikevich2004model}
+E.~M. Izhikevich, ``Which model to use for cortical spiking neurons?''
+  \emph{IEEE transactions on neural networks}, vol.~15, no.~5, pp. 1063--1070,
+  2004.
+
+\bibitem{amunts2019human}
+K.~Amunts, A.~C. Knoll, T.~Lippert, C.~M. Pennartz, P.~Ryvlin, A.~Destexhe,
+  V.~K. Jirsa, E.~D’Angelo, and J.~G. Bjaalie, ``The human brain project --
+  synergy between neuroscience, computing, informatics, and brain-inspired
+  technologies,'' \emph{PLoS biology}, vol.~17, no.~7, p. e3000344, 2019.
+
 \bibitem{rotermund2019Backpropagation}
 D.~Rotermund and K.~R. Pawelzik, ``Back-propagation learning in deep
   spike-by-spike networks,'' \emph{Frontiers in Computational Neuroscience},
   vol.~13, p.~55, 2019.
+
+\bibitem{nevarez2020accelerator}
+Y.~Nevarez, A.~Garcia-Ortiz, D.~Rotermund, and K.~R. Pawelzik, ``Accelerator
+  framework of spike-by-spike neural networks for inference and incremental
+  learning in embedded systems,'' in \emph{2020 9th International Conference on
+  Modern Circuits and Systems Technologies (MOCAST)}.\hskip 1em plus 0.5em
+  minus 0.4em\relax IEEE, 2020, pp. 1--5.
+
+\bibitem{rotermund2018massively}
+D.~Rotermund and K.~R. Pawelzik, ``Massively parallel {FPGA} hardware for
+  spike-by-spike networks,'' \emph{bioRxiv}, 2019.
+
+\bibitem{roy2019towards}
+K.~Roy, A.~Jaiswal, and P.~Panda, ``Towards spike-based machine intelligence
+  with neuromorphic computing,'' \emph{Nature}, vol. 575, no. 7784, pp.
+  607--617, 2019.
+
+\bibitem{bouvier2019spiking}
+M.~Bouvier, A.~Valentian, T.~Mesquida, F.~Rummens, M.~Reyboz, E.~Vianello, and
+  E.~Beigne, ``Spiking neural networks hardware implementations and challenges:
+  A survey,'' \emph{ACM Journal on Emerging Technologies in Computing Systems
+  (JETC)}, vol.~15, no.~2, pp. 1--35, 2019.
+
+\bibitem{young2019review}
+A.~R. Young, M.~E. Dean, J.~S. Plank, and G.~S. Rose, ``A review of spiking
+  neuromorphic hardware communication systems,'' \emph{IEEE Access}, vol.~7,
+  pp. 135\,606--135\,620, 2019.
+
+\bibitem{rotermund2019recurrentsbs}
+D.~Rotermund and K.~R. Pawelzik, ``Biologically plausible learning in a deep
+  recurrent spiking network,'' \emph{bioRxiv}, 2019.
+
+\bibitem{zhang2018survey}
+M.~ZHANG, G.~Zonghua, and P.~Gang, ``A survey of neuromorphic computing based
+  on spiking neural networks,'' \emph{Chinese Journal of Electronics}, vol.~27,
+  no.~4, pp. 667--674, 2018.
 
 \bibitem{lotrivc2012applicability}
 U.~Lotri{\v{c}} and P.~Buli{\'c}, ``Applicability of approximate multipliers in
@@ -111,12 +187,6 @@ S.~Venkataramani, S.~T. Chakradhar, K.~Roy, and A.~Raghunathan, ``Approximate
   computing and the quest for computing efficiency,'' in \emph{2015 52nd
   ACM/EDAC/IEEE Design Automation Conference (DAC)}.\hskip 1em plus 0.5em minus
   0.4em\relax IEEE, 2015, pp. 1--6.
-
-\bibitem{bouvier2019spiking}
-M.~Bouvier, A.~Valentian, T.~Mesquida, F.~Rummens, M.~Reyboz, E.~Vianello, and
-  E.~Beigne, ``Spiking neural networks hardware implementations and challenges:
-  A survey,'' \emph{ACM Journal on Emerging Technologies in Computing Systems
-  (JETC)}, vol.~15, no.~2, pp. 1--35, 2019.
 
 \bibitem{courbariaux2015binaryconnect}
 M.~Courbariaux, Y.~Bengio, and J.-P. David, ``Binaryconnect: Training deep
@@ -241,11 +311,6 @@ M.~Jerry, A.~Parihar, B.~Grisafe, A.~Raychowdhury, and S.~Datta, ``Ultra-low
   \emph{2017 Symposium on VLSI Circuits}.\hskip 1em plus 0.5em minus
   0.4em\relax IEEE, 2017, pp. T186--T187.
 
-\bibitem{zhang2018survey}
-M.~ZHANG, G.~Zonghua, and P.~Gang, ``A survey of neuromorphic computing based
-  on spiking neural networks,'' \emph{Chinese Journal of Electronics}, vol.~27,
-  no.~4, pp. 667--674, 2018.
-
 \bibitem{kim2013energy}
 Y.~Kim, Y.~Zhang, and P.~Li, ``An energy efficient approximate adder with carry
   skip for error resilient neuromorphic vlsi systems,'' in \emph{2013 IEEE/ACM
@@ -263,27 +328,9 @@ O.~Russakovsky, J.~Deng, H.~Su, J.~Krause, S.~Satheesh, S.~Ma, Z.~Huang,
   visual recognition challenge,'' \emph{International journal of computer
   vision}, vol. 115, no.~3, pp. 211--252, 2015.
 
-\bibitem{rotermund2018massively}
-D.~Rotermund and K.~R. Pawelzik, ``Massively parallel {FPGA} hardware for
-  spike-by-spike networks,'' \emph{bioRxiv}, 2019.
-
-\bibitem{nevarez2020accelerator}
-Y.~Nevarez, A.~Garcia-Ortiz, D.~Rotermund, and K.~R. Pawelzik, ``Accelerator
-  framework of spike-by-spike neural networks for inference and incremental
-  learning in embedded systems,'' in \emph{2020 9th International Conference on
-  Modern Circuits and Systems Technologies (MOCAST)}.\hskip 1em plus 0.5em
-  minus 0.4em\relax IEEE, 2020, pp. 1--5.
-
 \bibitem{lecun1998mnist}
 Y.~LeCun, ``The mnist database of handwritten digits,'' \emph{http://yann.
   lecun. com/exdb/mnist/}, 1998.
-
-\bibitem{Rotermund500280}
-\BIBentryALTinterwordspacing
-D.~Rotermund and K.~R. Pawelzik, ``Massively parallel fpga hardware for
-  spike-by-spike networks,'' \emph{bioRxiv}, 2019. [Online]. Available:
-  \url{https://www.biorxiv.org/content/early/2019/06/14/500280}
-\BIBentrySTDinterwordspacing
 
 \bibitem{xilinx2015zynq}
 U.~Xilinx, ``Zynq-7000 all programmable soc: Technical reference manual,''

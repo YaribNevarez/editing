@@ -8,49 +8,51 @@ Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: ../content/bibliography.bib.bib
+Warning--I didn't find a database entry for "Spinnaker_TransSolid_13"
 -- IEEEtran.bst version 1.14 (2015/08/26) by Michael Shell.
 -- http://www.michaelshell.org/tex/ieeetran/bibtex/
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
 
 Done.
-You've used 50 entries,
+You've used 59 entries,
             4087 wiz_defined-function locations,
-            1127 strings with 18518 characters,
-and the built_in function-call counts, 40405 in all, are:
-= -- 3191
-> -- 1098
-< -- 334
-+ -- 588
-- -- 198
-* -- 1935
-:= -- 5852
-add.period$ -- 114
-call.type$ -- 50
-change.case$ -- 50
-chr.to.int$ -- 786
-cite$ -- 50
-duplicate$ -- 2895
-empty$ -- 3258
-format.name$ -- 243
-if$ -- 9499
+            1179 strings with 20672 characters,
+and the built_in function-call counts, 48938 in all, are:
+= -- 3873
+> -- 1384
+< -- 410
++ -- 748
+- -- 260
+* -- 2355
+:= -- 7048
+add.period$ -- 132
+call.type$ -- 59
+change.case$ -- 59
+chr.to.int$ -- 951
+cite$ -- 59
+duplicate$ -- 3495
+empty$ -- 3853
+format.name$ -- 307
+if$ -- 11495
 int.to.chr$ -- 0
-int.to.str$ -- 50
-missing$ -- 511
-newline$ -- 177
-num.names$ -- 50
-pop$ -- 1231
+int.to.str$ -- 59
+missing$ -- 624
+newline$ -- 202
+num.names$ -- 59
+pop$ -- 1483
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 3097
+skip$ -- 3748
 stack$ -- 0
-substring$ -- 1916
-swap$ -- 2363
-text.length$ -- 72
+substring$ -- 2342
+swap$ -- 2902
+text.length$ -- 93
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 50
+type$ -- 59
 warning$ -- 0
-while$ -- 188
-width$ -- 52
-write$ -- 499
+while$ -- 221
+width$ -- 61
+write$ -- 589
+(There was 1 warning)

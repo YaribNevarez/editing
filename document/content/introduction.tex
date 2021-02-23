@@ -2,14 +2,47 @@
 \section{Introduction}
 \label{sec:introduction}
 %%% General intro
-\PARstart{T}{he} exponential improvement in computing performance and the availability of large amounts of data are boosting the use of artificial intelligence (AI) applications in our daily lives. Among the various algorithms developed over the years, neural networks (NNs) have demonstrated remarkable performance in a variety of image, video, audio, and text analytics tasks \cite{schmidhuber2015deep,Taigman_2014_CVPR}. Historically, artificial neural networks (ANNs) can be classified into three different generations \cite{Design_Exploration_SbS_Trans20}: the first one is represented by the classical McCulloch and Pitts neuron model using discrete binary values as outputs; the second one is represented by more complex architectures as multi-layer perceptrons (MLPs) and convolutional neural networks (CNNs) using continuous activation functions; while the third generation is represented by spiking neural networks using spikes as means for information exchange between groups of neurons. Although the AI research is currently dominated by deep neural networks (DNNs) from the second generation, \deleted{nowadays} the SNNs belonging to the third generation are receiving considerable attention \cite{Spinnaker_Trans13,ernst2007efficient,Design_Exploration_SbS_Trans20, SNN_Survey_Trans19}. SNNs offer advantageous robustness and the potential to achieve a power efficiency closer to that of the human brain (see Section~\ref{sec:sbs} for more details).
+\PARstart{T}{he} exponential improvement in computing performance and the availability of large amounts of data are boosting the use of artificial intelligence (AI) applications in our daily lives. Among the various algorithms developed over the years, neural networks (NNs) have demonstrated remarkable performance in a variety of image, video, audio, and text analytics tasks \cite{schmidhuber2015deep,Taigman_2014_CVPR}. Historically, artificial neural networks (ANNs) can be classified into three different generations \cite{Design_Exploration_SbS_Trans20}: the first one is represented by the classical McCulloch and Pitts neuron model using discrete binary values as outputs; the second one is represented by more complex architectures as multi-layer perceptrons (MLPs) and convolutional neural networks (CNNs) using continuous activation functions; while the third generation is represented by spiking neural networks using spikes as means for information exchange between groups of neurons. Although the AI research is currently dominated by deep neural networks (DNNs) from the second generation, \deleted{nowadays} the SNNs belonging to the third generation are receiving considerable attention \cite{Spinnaker_Trans13,ernst2007efficient,Design_Exploration_SbS_Trans20, SNN_Survey_Trans19}.
+
+SNNs offer advantageous robustness and the potential to achieve a power efficiency closer to that of the human brain.
+%%%
+\REVIEW{SNNs operate reliably using stochastic elements that are inherently non-reliable mechanisms \mbox{\cite{mcdonnell2011benefits}}.
+This provides superior resistance against adversary attacks
+	\mbox{\cite{ernst2007efficient, Dapello2020.06.16.154542}}. Beside
+robustness, SNNs have further advantages like the possibility of a more efficient asynchronous parallelization and higher
+energy efficiency than DNNs. For
+example, Loihi \mbox{\cite{davies2018loihi}}, a SNN developed by Intel, can
+solve LASSO optimization problems with an over three orders of
+magnitude better energy-delay product than conventional
+approaches. These advantages are motivating large research programs by
+major companies (e.g. Intel \mbox{\cite{davies2018loihi}} and IBM
+\mbox{\cite{TrueNorth_Trans15}}) as well as pan-european projects in the
+domain of spiking networks \mbox{\cite{Spinnaker_Trans13}}, and
+attempts to transfer features from SNNs to standard DNNs
+\mbox{\cite{pfeiffer2018deep}}.
+}
+
+\REVIEW{SNNs emulate the real behavior of neurons in different levels of detail. The more detailed the biological part is emulated, the greater the computational complexity \mbox{\cite{izhikevich2004model,amunts2019human}}. Most of today's SNNs use a very detailed model. In contrast, Spike-By-Spike (SbS) neural networks are on the less realistic side of the biological realism scale \mbox{\cite{rotermund2019Backpropagation,ernst2007efficient}}. In spite of that, SbS still uses stochastic spikes as a means of transmitting information between populations of neurons, and thus retains the robustness advantages of SNNs. Correspondingly, the hardware complexity of the approach is greatly reduced
+  \mbox{\cite{nevarez2020accelerator,rotermund2018massively}}.
+}
+
 
 %%% SbS intro
-Among the family of SNNs, the SbS neural network \cite{ernst2007efficient} \replaced{is remarkable. Inspired}{is inspired} by the natural information processing of the mammalian brain, \replaced{it is}{being} a biologically plausible approach although with less complexity than other SNNs. The SbS model differs fundamentally from conventional ANNs since (a) the building blocks of the network are inference populations (IP) which are an optimized generative representation with non-negative values, (b) time progresses from one spike to the next, preserving the property of stochastically firing neurons, and (c) a network has only a small number of parameters, which is an advantageous noise-robust stochastic version of Non-Negative Matrix Factorization (NNMF). These properties place the SbS network in between non-spiking NN and stochastically spiking NN\added{, offering advantages from both structures} \cite{rotermund2019Backpropagation}.
+%SbS neural networks \cite{rotermund2019back,ernst2007efficient} are inspired by the %natural information processing of the mammalian brain.
+The conceptual model in SbS (see \mbox{\sect{sec:sbs}} for a short review) differs fundamentally from conventional ANNs since (a) the building blocks of the network are inference populations (IP) which are an optimized generative representation with non-negative values, (b) time progresses from one spike to the next, preserving the property of stochastically firing neurons, and (c) a network has only a small number of parameters, which is an advantageous noise-robust stochastic version of Non-Negative Matrix Factorization (NNMF). \REVIEW{As discussed in \mbox{\sect{sec:sbs}}, SbS incorporates the inherent robustness of SNNs and the regular flow of information from CNNs.} These properties place the SbS network in between non-spiking NN and stochastically spiking NN, offering advantages from both worlds \cite{rotermund2019Backpropagation}.  
 
 
 %%%%%%% Problem statement
-Although SbS networks provide numerous advantages over traditional ANNs and CNNs, deep SbS networks are highly compute and data intensive, representing a challenge for efficient deployment in resource-limited devices. %As an emerging SNN algorithm, most SbS models use floating-point numerical representation, which imposes high complexity of the required circuits for the floating-point operations. Model quantization has the potential to improve computational performance; however, this solution is often accompanied by quantization-aware training methods that, in some cases, are problematic or even inaccessible, particularly in deep SNN algorithms\cite{zhang2018survey}. 
+\REVIEW{The computational demands of ANNs, and in particular SNNs, must be addressed by specialized hardware architectures. A significant research effort has been performed in SNN accelerators, see e.g.
+  \mbox{\Refs{roy2019towards,bouvier2019spiking,
+      young2019review,TrueNorth_Trans15,Spinnaker_Trans13,davies2018loihi}}.
+  However, hardware accelerators that focus on SbS have only been partially investigated so far \mbox{\cite{nevarez2020accelerator,rotermund2018massively}}.
+  Enhanced SbS accelerators will have a double impact. From an engineering point of view, they will contribute to the deployment of robust neural networks in small embedded systems \mbox{\cite{nevarez2020accelerator}}; from a scientific point of view, they will facilitate experimentation with SbS methods for neuroscience
+  \mbox{\cite{ernst2007efficient,rotermund2019recurrentsbs}}.}
+
+A fundamental point that can be optimized in current SbS accelerators
+is the use of appximation techniques. 
+Most SbS models use floating-point numerical representation, which imposes high complexity of the required circuits for the floating-point operations. Model quantization has the potential to improve computational performance; however, this solution is often accompanied by quantization-aware training methods that, in some cases, are problematic or even inaccessible, particularly in deep SNN algorithms\cite{zhang2018survey}. 
 As an alternative, based on the relaxed need for fully precise or deterministic computation of neural networks, approximate computing techniques allow substantial enhancement in processing efficiency with moderated accuracy degradation. Some research \replaced{papers}{papers} have shown the feasibility of applying approximate computing to the inference stage of neural networks \cite{lotrivc2012applicability, sarwar2016multiplier, mrazek2016design, du2014leveraging}. Such techniques usually demonstrated small inference accuracy degradation, but significant enhancement in computational performance, resource utilization, and energy consumption. Hence, by taking advantage of the intrinsic error-tolerance of neural networks, approximate computing is positioned as a promising approach for inference on resource-limited devices.
 
 %%%%%%% Contributions
