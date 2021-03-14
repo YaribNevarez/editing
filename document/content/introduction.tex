@@ -41,7 +41,7 @@ The conceptual model in SbS (see \mbox{\sect{sec:sbs}} for a short review) diffe
   \mbox{\cite{ernst2007efficient,rotermund2019recurrentsbs}}.}
 
 A fundamental point that can be optimized in current SbS accelerators
-is the use of appximation techniques. 
+is the use of approximation techniques. 
 Most SbS models use floating-point numerical representation, which imposes high complexity of the required circuits for the floating-point operations. Model quantization has the potential to improve computational performance; however, this solution is often accompanied by quantization-aware training methods that, in some cases, are problematic or even inaccessible, particularly in deep SNN algorithms\cite{zhang2018survey}. 
 As an alternative, based on the relaxed need for fully precise or deterministic computation of neural networks, approximate computing techniques allow substantial enhancement in processing efficiency with moderated accuracy degradation. Some research \replaced{papers}{papers} have shown the feasibility of applying approximate computing to the inference stage of neural networks \cite{lotrivc2012applicability, sarwar2016multiplier, mrazek2016design, du2014leveraging}. Such techniques usually demonstrated small inference accuracy degradation, but significant enhancement in computational performance, resource utilization, and energy consumption. Hence, by taking advantage of the intrinsic error-tolerance of neural networks, approximate computing is positioned as a promising approach for inference on resource-limited devices.
 
