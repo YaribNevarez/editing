@@ -3,4 +3,59 @@
 \input{../content/sbs_networks.tex}
 
 
+\begin{algorithm}
+\caption{SbS layer update.}
+
+\begin{algorithmic}[1]
+	\SetAlgoLined
+	\renewcommand{\algorithmicrequire}{\textbf{input:}}
+	\renewcommand{\algorithmicensure}{\textbf{output:}}
+	\REQUIRE $L\in\mathbb{R}^{L_W \times L_H \times N}$, $S_t^{in}\in\mathbb{N}^{ L_W \times L_H}$, $N$, $\epsilon$
+	\ENSURE $L^{new}\in\mathbb{R}^{L_W\times L_H \times N}$, $S_t^{out} \in\mathbb{N}^{L_W\times L_H}$
+	
+	\textit{Update layer} :
+	\FOR {$L_X \leftarrow 0, L_Y \leftarrow 0$ \textbf{to} $L_W - K - 1,L_H - K - 1$}
+		\textit{Generate spike} :
+		
+		\STATE $th \leftarrow MT19937PseudoRandom()$
+		\STATE $acu \leftarrow 0$
+		\FOR {$idx \leftarrow 0$ \textbf{to} $N-1$}
+			\IF {$th \leq acu$ \textbf{or} $idx = N-1$}
+				\STATE $S_t^{out}(L_X,L_Y) \leftarrow idx$
+				\STATE \textbf{goto} \emph{Update IP}
+			\ENDIF
+			\STATE $acu \leftarrow acu + \vec{h}_{\mu}(idx)$
+		\ENDFOR
+
+		\textit{Update IP} :
+		\STATE $\vec{h}_\mu \leftarrow L(L_X,L_Y)$ 
+		\FOR {$K_X \leftarrow 0, K_Y \leftarrow 0$ \textbf{to} $K - 1,K - 1$}
+		
+			\STATE $s_t \leftarrow S_t^{in}(L_X+K_X,L_Y+K_Y)$
+			\STATE $\vec{w} \leftarrow W(K_X,K_Y,s_t)$
+			\STATE $\vec{p} \leftarrow 0$
+			
+			\textit{Dot-product} :
+			\STATE $r_{\mu} \leftarrow 0$
+			\FOR {$j \leftarrow 0$ \textbf{to} $N-1$}
+				\STATE $\vec{p}(j) \leftarrow \vec{h}_{\mu}(j)\vec{w}(j)$
+				\STATE $r_{\mu} \leftarrow r_{\mu} + \vec{p}(j)$
+			\ENDFOR
+			
+			
+			\IF {$r_{\mu}(s_t) \ne 0$}
+				\textit{Update IP vector} :
+				\FOR {$i \leftarrow0$ \textbf{to} $N-1$}
+				\STATE
+				$  h_\mu^{new}(i) \leftarrow \frac{1}{1+\epsilon} \left(h_\mu(i) + \epsilon \frac{\vec{p}(i) }{r_{\mu}} \right) $
+				\ENDFOR
+
+				\textit{Set the new IP vector on the layer} :
+				\STATE $L^{new}(L_X,L_Y) \leftarrow \vec{h}_\mu^{new}$
+			\ENDIF
+		\ENDFOR
+	\ENDFOR
+	
+\end{algorithmic} 
+\end{algorithm}
 
