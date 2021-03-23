@@ -10,11 +10,24 @@
 	\SetAlgoLined
 	\renewcommand{\algorithmicrequire}{\textbf{input:}}
 	\renewcommand{\algorithmicensure}{\textbf{output:}}
-	\REQUIRE $L\in\mathbb{R}^{L_W \times L_H \times N}$, $S_t^{in}\in\mathbb{N}^{ L_W \times L_H}$, $N$, $\epsilon$
-	\ENSURE $L^{new}\in\mathbb{R}^{L_W\times L_H \times N}$, $S_t^{out} \in\mathbb{N}^{L_W\times L_H}$
+	\REQUIRE Layer as $L\in\mathbb{R}^{L_W \times L_H \times N}$, where\\
+	$L_W$ is the layer width,\\
+	$L_H$ is the layer height\\
+	$N$ is length of IP vectors.
+	\REQUIRE Synaptic matrix as $W\in\mathbb{R}^{K\times K\times M\times N}$, where\\
+	$K \times K$ is the size of the convolution kernel, \\
+	$M$ is the length of IP vectors from a previous layer,\\
+	$N$ is the length of IP vectors of the self layer.  
+	\REQUIRE Input spikes from a previous layer as $S_t^{in}\in\mathbb{N}^{ L_{W_{in}} \times L_{H_{in}}}$, where\\
+	$L_{W_{in}}$ is the width of the previous layer,\\
+	$L_{H_{in}}$ is the height of the previous layer
 	
+	\REQUIRE Epsilon as $\epsilon\in\mathbb{R}$
+	\ENSURE Updated self layer as $L^{new}\in\mathbb{R}^{L_W\times L_H \times N}$\\
+	\ENSURE Output spikes from self layer as $S_t^{out} \in\mathbb{N}^{L_W\times L_H}$
+	\\
 	\textit{Update layer} :
-	\FOR {$L_X \leftarrow 0, L_Y \leftarrow 0$ \textbf{to} $L_W - K - 1,L_H - K - 1$}
+	\FOR {$L_X \leftarrow 0, L_Y \leftarrow 0$ \textbf{to} $L_{W} - 1,L_{H} - 1$}
 		\textit{Generate spike} :
 		
 		\STATE $th \leftarrow MT19937PseudoRandom()$
@@ -43,7 +56,7 @@
 			\ENDFOR
 			
 			
-			\IF {$r_{\mu}(s_t) \ne 0$}
+			\IF {$r_{\mu} \ne 0$}
 				\textit{Update IP vector} :
 				\FOR {$i \leftarrow0$ \textbf{to} $N-1$}
 				\STATE

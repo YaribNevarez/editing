@@ -140,31 +140,31 @@
 \@writefile{toc}{\contentsline {section}{\numberline {IV}System Design}{5}}
 \newlabel{sec:system_design}{{IV}{5}}
 \@writefile{loa}{\contentsline {algocf}{\numberline {1}{\ignorespaces SbS layer update.}}{5}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-A}}Hardware architecture}{5}}
-\newlabel{Hardware_architecture}{{\unhbox \voidb@x \hbox {IV-A}}{5}}
 \citation{rotermund2019Backpropagation}
 \@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces System-level overview of the embedded software architecture.}}{6}}
 \newlabel{fig:sw_stack}{{4}{6}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces System-level hardware architecture with scalable number of heterogeneous PUs: {\it  Spike}, {\it  Conv}, {\it  Pool}, and {\it  FC}}}{6}}
-\newlabel{fig:hw_sbs}{{5}{6}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-A}}Hardware architecture}{6}}
+\newlabel{Hardware_architecture}{{\unhbox \voidb@x \hbox {IV-A}}{6}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-B}}Conv processing unit}{6}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {IV-B}1}Configuration mode}{6}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces System-level hardware architecture with scalable number of heterogeneous PUs: {\it  Spike}, {\it  Conv}, {\it  Pool}, and {\it  FC}}}{6}}
+\newlabel{fig:hw_sbs}{{5}{6}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {IV-B}2}Computation mode}{6}}
 \@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces The {\it  Conv} processing unit and its six stages: (a) receive IP vector, (b) spike firing, (c) receive spike kernel, (d) update dynamics, (e) dispatch new IP vector, (f) dispatch output spike matrix.}}{7}}
 \newlabel{fig:hw_conv}{{6}{7}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-C}}dot-product hardware module}{7}}
 \newlabel{sec:dot-product_hardware_module}{{\unhbox \voidb@x \hbox {IV-C}}{7}}
-\newlabel{eq:dot_product}{{2}{7}}
 \@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Dot-product hardware module with (a) hybrid custom floating-point approximation, and (b) hybrid logarithmic approximation.}}{7}}
 \newlabel{fig:product_unit_bitwidth}{{7}{7}}
+\newlabel{eq:dot_product}{{2}{7}}
 \newlabel{eq:exp_max}{{3}{7}}
 \newlabel{eq:bits_exp}{{4}{7}}
 \newlabel{eq:bits_bitwidth}{{5}{7}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {IV-C}1}Dot-product with standard floating-point computation}{7}}
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Dot-product hardware module with standard floating-point (IEEE 754) computation, (a) exhibits the initiation interval of 10 clock cycles, (b) presents the iteration latency of 19 clock cycles, (c) shows the pairwise product block in dark-gray, and (d) illustrates the accumulation block in light-gray.}}{8}}
-\newlabel{fig:dot_product_float}{{8}{8}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {IV-C}1}Dot-product with standard floating-point computation}{8}}
 \newlabel{eq:dot_standard_float_latency}{{6}{8}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {IV-C}2}Dot-product with hybrid custom floating-point and logarithmic approximation}{8}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Dot-product hardware module with standard floating-point (IEEE 754) computation, (a) exhibits the initiation interval of 10 clock cycles, (b) presents the iteration latency of 19 clock cycles, (c) shows the pairwise product block in dark-gray, and (d) illustrates the accumulation block in light-gray.}}{8}}
+\newlabel{fig:dot_product_float}{{8}{8}}
 \citation{xilinx2015zynq}
 \citation{nevarez2020accelerator}
 \newlabel{eq:dot_standard_custom_float_latency}{{7}{9}}
@@ -175,12 +175,12 @@
 \newlabel{fig:dot_product_custom}{{9}{9}}
 \@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Dot-product hardware module with hybrid logarithmic approximation, (a) exhibits the initiation interval of 2 clock cycles, (b) presents the iteration latency of 9 clock cycles, (c) shows the pairwise product block in dark-gray, and (d) illustrates the accumulation blocks in light-gray.}}{9}}
 \newlabel{fig:dot_product_log}{{10}{9}}
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Computation on embedded CPU.}}{10}}
-\newlabel{tab:latency_sw}{{1}{10}}
 \@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces SbS network structure for MNIST classification task. Input {\it  X}: Input layer with $28\times 28$ normalization modules for $28\times 28$ input pixel. From this layer spikes are send to layer {\it  H1}. {\it  H1}: Convolution layer {\it  H1} with $24\times 24$ IPs with $32$ neurons each. Every IP processes the spikes from $5\times 5$ spatial patches of the input pattern ($x$ and $y$ stride is $1$). {\it  H2}: $2\times 2$ pooling layer {\it  H2} ($x$ and $y$ stride is $2$) with $12\times 12$ IPs with $32$ neurons each. The weights between {\it  H1} and {\it  H2} are not learned but set to a fixed weight matrix that creates a competition between the {\it  32} features of {\it  H1}. {\it  H3}: $5\times 5$ convolution layer {\it  H3} ($x$ and $y$ stride is $1$) with $8\times 8$ IPs. Similar to {\it  H1} but with $64$ neuron for each IP. {\it  H4}: $2\times 2$ pooling layer {\it  H4} ($x$ and $y$ stride is $2$) with $4\times 4$ IPs with $64$ neurons each. This layer is similar to layer {\it  H2}. {\it  H5}: Fully connected layer {\it  H5}. $1,024$ neurons in one big IP which are fully connected to layer {\it  H4} and output layer {\it  HY}. {\it  HY}: Output layer {\it  HY} with $10$ neurons for the $10$ types of digits. selected.}}{10}}
 \newlabel{fig:sbs_network}{{11}{10}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-A}}Performance benchmark}{10}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {V-A}1}Benchmark on embedded CPU}{10}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Computation on embedded CPU.}}{10}}
+\newlabel{tab:latency_sw}{{1}{10}}
 \@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces Computation on embedded CPU.}}{10}}
 \newlabel{fig:latency_sw}{{12}{10}}
 \@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces System overview of the top-level architecture with 8 processing units.}}{10}}
@@ -197,51 +197,58 @@
 \newlabel{tab:latency_fp}{{2}{11}}
 \@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces Performance of processing units with standard floating-point (IEEE 754) computation.}}{11}}
 \newlabel{fig:latency_pu_fp}{{14}{11}}
-\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces Performance bottleneck of cyclic computation on processing units with standard floating-point (IEEE 754) arithmetic, (a) exhibits the starting of $t_{PU}$ of {\it  Conv2} on a previous computation cycle, (b) presents $t_{CPU}$ of {\it  Conv2} on the current computation cycle, (c) shows the CPU waiting time (in gray color) for {\it  Conv2} as a busy resource (awaiting for {\it  Conv2} interruption), and (d) illustrates the $t_{f}$ from the previous computation cycle, the starting of $t_{PU}$ on the current computation cycle ({\it  Conv2} interruption on completion, and start current computation cycle).}}{11}}
-\newlabel{fig:latency_pu_fp_cycle}{{15}{11}}
 \newlabel{eq:time_cpu}{{9}{11}}
 \newlabel{eq:time_pu}{{10}{11}}
+\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces Performance bottleneck of cyclic computation on processing units with standard floating-point (IEEE 754) arithmetic, (a) exhibits the starting of $t_{PU}$ of {\it  Conv2} on a previous computation cycle, (b) presents $t_{CPU}$ of {\it  Conv2} on the current computation cycle, (c) shows the CPU waiting time (in gray color) for {\it  Conv2} as a busy resource (awaiting for {\it  Conv2} interruption), and (d) illustrates the $t_{f}$ from the previous computation cycle, the starting of $t_{PU}$ on the current computation cycle ({\it  Conv2} interruption on completion, and start current computation cycle).}}{11}}
+\newlabel{fig:latency_pu_fp_cycle}{{15}{11}}
 \newlabel{eq:time_spike}{{11}{11}}
 \newlabel{eq:time_finish}{{12}{11}}
-\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Resource utilization and power dissipation of processing units with standard floating-point (IEEE 754) computation.}}{11}}
-\newlabel{tab:resource_fp}{{3}{11}}
 \citation{venkataramani2015approximate}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Resource utilization and power dissipation of processing units with standard floating-point (IEEE 754) computation.}}{12}}
+\newlabel{tab:resource_fp}{{3}{12}}
 \@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Resource utilization and power dissipation of multiplier and adder floating-point (IEEE 754) operator cores.}}{12}}
 \newlabel{tab:LogiCORE}{{4}{12}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {V-A}3}Benchmark on noise tolerance plot}{12}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-B}}Design exploration with hybrid custom floating-point and logarithmic approximation}{12}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {V-B}1}Parameters for numeric representation of synaptic weight matrix}{12}}
-\newlabel{sec:parameters}{{\unhbox \voidb@x \hbox {V-B}1}{12}}
 \@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces Noise tolerance on hardware PU with standard floating-point (IEEE 754) computation (benchmark/reference), (a) exhibits accuracy degradation applying $50\%$ of noise amplitude, and (b) illustrates convergence of inference with $400$ spikes.}}{12}}
 \newlabel{fig:accuracy_vs_noise_pu_fp}{{16}{12}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {V-B}2}Design exploration for dot-product with hybrid custom floating-point approximation}{12}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-B}}Design exploration with hybrid custom floating-point and logarithmic approximation}{12}}
 \@writefile{lof}{\contentsline {figure}{\numberline {17}{\ignorespaces $\qopname  \relax o{log}_2$-histogram of each synaptic weight matrix showing the percentage of matrix elements with given integer exponent.}}{13}}
 \newlabel{fig:log2histogram}{{17}{13}}
-\@writefile{lof}{\contentsline {figure}{\numberline {18}{\ignorespaces Performance on processing units with hybrid custom floating-point approximation, (a) exhibits computation schedule, (b) presents cyclic computation schedule, and (c) shows the performance of {\it  Conv2} from a previous computation cycle during the preprocessing of {\it  H1\_CONV} on the current computation cycle without bottleneck.}}{13}}
-\newlabel{fig:latency_pu_cfp_cycle}{{18}{13}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {V-B}1}Parameters for numeric representation of synaptic weight matrix}{13}}
+\newlabel{sec:parameters}{{\unhbox \voidb@x \hbox {V-B}1}{13}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {V-B}2}Design exploration for dot-product with hybrid custom floating-point approximation}{13}}
 \@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Resource utilization and power dissipation of processing units with hybrid custom floating-point approximation.}}{13}}
 \newlabel{tab:resource_cfp}{{5}{13}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {V-B}3}Design exploration for dot-product whit hybrid logarithmic approximation}{13}}
 \@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Performance of hardware processing units with hybrid custom floating-point approximation.}}{14}}
 \newlabel{tab:latency_cfp}{{6}{14}}
+\@writefile{lof}{\contentsline {figure}{\numberline {18}{\ignorespaces Performance on processing units with hybrid custom floating-point approximation, (a) exhibits computation schedule, (b) presents cyclic computation schedule, and (c) shows the performance of {\it  Conv2} from a previous computation cycle during the preprocessing of {\it  H1\_CONV} on the current computation cycle without bottleneck.}}{14}}
+\newlabel{fig:latency_pu_cfp_cycle}{{18}{14}}
 \@writefile{lof}{\contentsline {figure}{\numberline {19}{\ignorespaces Noise tolerance on hardware PU with custom floating-point approximation, (a) exhibits accuracy degradation applying $50\%$ of noise amplitude, and (b) illustrates convergence of inference with $400$ spikes.}}{14}}
 \newlabel{fig:accuracy_vs_noise_pu_cfp}{{19}{14}}
 \@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Performance of hardware processing units with hybrid logarithmic approximation.}}{14}}
 \newlabel{tab:latency_log}{{7}{14}}
-\@writefile{lof}{\contentsline {figure}{\numberline {20}{\ignorespaces Performance of processing units with hybrid logarithmic approximation, (a) exhibits computation schedule, and (b) illustrates cyclic computation schedule.}}{14}}
-\newlabel{fig:latency_pu_log_cycle}{{20}{14}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-C}}Results and discussion}{14}}
 \citation{nevarez2020accelerator}
 \citation{nevarez2020accelerator}
 \citation{nevarez2020accelerator}
+\@writefile{lof}{\contentsline {figure}{\numberline {20}{\ignorespaces Performance of processing units with hybrid logarithmic approximation, (a) exhibits computation schedule, and (b) illustrates cyclic computation schedule.}}{15}}
+\newlabel{fig:latency_pu_log_cycle}{{20}{15}}
 \@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Resource utilization and power dissipation of processing units with hybrid logarithmic approximation.}}{15}}
 \newlabel{tab:resource_log}{{8}{15}}
 \@writefile{lof}{\contentsline {figure}{\numberline {21}{\ignorespaces Noise tolerance on hardware PU with hybrid logarithmic approximation, (a) exhibits accuracy degradation applying $40\%$ of noise amplitude, (b) illustrates convergence of inference with $600$ spikes.}}{15}}
 \newlabel{fig:accuracy_vs_noise_pu_log}{{21}{15}}
-\@writefile{toc}{\contentsline {section}{\numberline {VI}Conclusions}{15}}
-\newlabel{sec:conclusions}{{VI}{15}}
 \bibstyle{IEEEtran}
 \bibdata{../content/bibliography.bib}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Experimental results.}}{16}}
+\newlabel{tab:results}{{9}{16}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Platform implementations.}}{16}}
+\newlabel{tab:platform_comparison}{{10}{16}}
+\@writefile{lof}{\contentsline {figure}{\numberline {22}{\ignorespaces Power dissipation breakdown of platform implementations, (a) Ref. \cite  {nevarez2020accelerator} architecture with homogeneous AUs using standard floating-point arithmetic (IEEE 754), (b) reference architecture with specialized heterogeneous PUs using standard floating-point arithmetic (IEEE 754), (c) proposed architecture with hybrid custom floating-point approximation, and (d) proposed architecture with hybrid logarithmic approximation.}}{16}}
+\newlabel{fig:platform_power_dissipation_breakdown}{{22}{16}}
+\@writefile{toc}{\contentsline {section}{\numberline {VI}Conclusions}{16}}
+\newlabel{sec:conclusions}{{VI}{16}}
+\newlabel{sec:Ack}{{VI}{16}}
 \bibcite{schmidhuber2015deep}{1}
 \bibcite{Taigman_2014_CVPR}{2}
 \bibcite{Design_Exploration_SbS_Trans20}{3}
@@ -252,14 +259,6 @@
 \bibcite{Dapello2020.06.16.154542}{8}
 \bibcite{davies2018loihi}{9}
 \bibcite{TrueNorth_Trans15}{10}
-\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Experimental results.}}{16}}
-\newlabel{tab:results}{{9}{16}}
-\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Platform implementations.}}{16}}
-\newlabel{tab:platform_comparison}{{10}{16}}
-\@writefile{lof}{\contentsline {figure}{\numberline {22}{\ignorespaces Power dissipation breakdown of platform implementations, (a) Ref. \cite  {nevarez2020accelerator} architecture with homogeneous AUs using standard floating-point arithmetic (IEEE 754), (b) reference architecture with specialized heterogeneous PUs using standard floating-point arithmetic (IEEE 754), (c) proposed architecture with hybrid custom floating-point approximation, and (d) proposed architecture with hybrid logarithmic approximation.}}{16}}
-\newlabel{fig:platform_power_dissipation_breakdown}{{22}{16}}
-\newlabel{sec:Ack}{{VI}{16}}
-\@writefile{toc}{\contentsline {section}{REFERENCES}{16}}
 \bibcite{pfeiffer2018deep}{11}
 \bibcite{izhikevich2004model}{12}
 \bibcite{amunts2019human}{13}
@@ -293,6 +292,7 @@
 \bibcite{li2016pruning}{41}
 \bibcite{liu2018rethinking}{42}
 \bibcite{rathi2018stdp}{43}
+\@writefile{toc}{\contentsline {section}{REFERENCES}{17}}
 \bibcite{sen2017approximate}{44}
 \bibcite{srivastava2014dropout}{45}
 \bibcite{wan2013regularization}{46}
@@ -312,4 +312,4 @@
 \@writefile{toc}{\contentsline {subsection}{Yarib Nevarez}{18}}
 \@writefile{toc}{\contentsline {subsection}{David Rotermund}{18}}
 \@writefile{toc}{\contentsline {subsection}{Klaus R. Pawelzik}{18}}
-\@writefile{toc}{\contentsline {subsection}{Alberto Garcia-Ortiz}{18}}
+\@writefile{toc}{\contentsline {subsection}{Alberto Garcia-Ortiz}{19}}
