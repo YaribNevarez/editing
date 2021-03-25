@@ -30,10 +30,10 @@ every observed input spike $s_t$ could be derived
   where $\epsilon$ is a parameter that also controls the strength of sparseness of the distribution of latent variables $h_\mu(i)$. Furthermore, $L$ can also be used to derive online and batch learning rules for optimizing the weights $W(s|i)$. The interested reader is referred to \cite{ernst2007efficient} for a more detailed exposition.
 
   \REVIEW{ From a practical point of view, SbS provides a mechanism to obtain a sparse representation of input patterns. Given a set of
-    training samples $\{x_\eta\}$ it learns weights, W, that allow
+    training samples $\{x_\eta\}$, it learns weights ($W$), that allow
     to express the input patterns as a linear sparse non-negative combination
     of features.  During inference, it provides a mechanism for expressing
-    each the test input $x_\mu$ as $x_\mu \approx W\, h_\mu$ where all
+    each test input $x_\mu$ as $x_\mu \approx W\, h_\mu$ where all
     entries are non-negative.
 
     The inference procedure consists in generating indices $s_t$
@@ -47,7 +47,35 @@ every observed input spike $s_t$ could be derived
 
 %%%% This is added by Yarib, please review it
 %%%%\subsection{Parallelization in SbS networks}
-Further on,  SbS network models can be constructed in sequential layered structures \cite{rotermund2019Backpropagation}, where each layer consists of many inference populations (IPs), which can be simulated independently while the communication between the IPs is organized by a low bandwidth signal -- the spikes. Technically, each IP is an independent computational entity (see \fig{fig:SbS_layer}). This allows to design specialized hardware architectures that can be massively parallelized.
+\subsection{\REVIEW{Basic Network Overview}}
+
+\begin{figure}[!t]
+	\includegraphics[width=\columnwidth]{../figures/sbs_network.pdf}
+	\caption{SbS network architecture for hand written classification task.}
+	\label{fig:sbs_network}
+\end{figure}
+
+
+\begin{table}[!t]\centering
+	\caption{SbS network architecture for hand written classification task.}
+	\label{tab:sbs_network}
+	\scriptsize
+	\begin{tabular}{lrrrrrrr}\toprule
+		&\multicolumn{3}{c}{\textbf{Layer size}} & &\multicolumn{2}{c}{\textbf{Kernel size}} \\\cmidrule{2-4}\cmidrule{6-7}
+		\textbf{Layer} ($H^l$) &$N_X$ &$N_Y$ &$N_H$ & &$K_X$ &$K_X$ \\\midrule
+		Input ($HX$) &28 &28 &2 & &- &- \\
+		Convolution ($H1$) &24 &24 &32 & &5 &5 \\
+		Pooling ($H2$) &12 &12 &32 & &2 &2 \\
+		Convolution ($H3$) &8 &8 &64 & &5 &5 \\
+		Pooling ($H4$) &4 &4 &64 & &2 &2 \\
+		Fully connected ($H5$) &1 &1 &1024 & &4 &4 \\
+		Output ($HY$) &1 &1 &10 & &1 &1 \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+
+SbS network models can be constructed in sequential layered structures \cite{rotermund2019Backpropagation}. Each layer consists of many inference populations or IPs \REVIEW{(represented by \mbox{$\vec{h}$})}, while the communication between them is organized by a low bandwidth signal -- the spikes. \REVIEW{ A basic SbS network architecture for hand written digit classification is shown in \mbox{\fig{fig:sbs_network}} and \mbox{\Tab{tab:sbs_network}}. The SbS network inference is described in Algorithm\mbox{~\ref{alg:inference}}, while spike generation and layer update are described in Algorithm\mbox{~\ref{alg:spike}} and \mbox{~\ref{alg:update}}, respectably.} Each IP is an independent computational entity, this allows to design specialized hardware architectures that can be massively parallelized (see \fig{fig:SbS_layer}).
 
 \begin{figure}
 	\centering
@@ -101,16 +129,18 @@ Further on,  SbS network models can be constructed in sequential layered structu
   \label{fig:robustnes_sbs}
 \end{figure}
 
+\subsection{\REVIEW{Noise robustness comparison}}
+
 To illustrate the advantages of SbS, an example of the noise tolerance of SbS is presented in
 \fig{fig:robustnes_sbs}. It compares the classification performance of
 a SbS network and a standard convolutional network, with the same amount of
 neurons per layer as well as the same layer structure. We trained on MNIST dataset\cite{lecun1998mnist} without noise (see \cite{rotermund2019Backpropagation} for details). The figure shows the correctness for the MNIST test set with its $10000$ patterns in dependency of the noise level for positive additive
 uniformly distributed noise. The blue curve shows the performance for
-the tensor flow network, while the red curve shows the performance for
+the \REVIEW{CNN}, while the red curve shows the performance for
 the SbS network with 1200 spikes per inference population. Beginning
 with a noise level of 0.1, the respective performances are different
 with a p - level of at least $10^{-6}$ (tested with the Fisher exact
 test). Increasing the number of spikes per SbS population to 6000
-(performance values shown as black stars), shows that more spike can
+(performance values shown as black stars), shows that more spikes can
 improve the performance under noise even more.
 
