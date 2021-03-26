@@ -1,0 +1,155 @@
+\appendix
+
+\section{\REVIEW{SbS network algorithm}}
+\label{sec:appendix_sbs_algorithm}
+
+\REVIEW{The SbS network inference is described in Algorithm\mbox{~\ref{alg:inference}}, while spike generation and layer update are described in Algorithm\mbox{~\ref{alg:spike}} and \mbox{~\ref{alg:update}}, respectably.}
+
+\begin{algorithm}[h!]
+	\label{alg:inference}
+	\caption{SbS network inference.}
+	
+	\begin{algorithmic}[1]
+		\SetAlgoLined
+		\renewcommand{\algorithmicrequire}{\textbf{input:}}
+		\renewcommand{\algorithmicensure}{\textbf{output:}}
+		\REQUIRE Layers of the network as $H^l$, where\\
+		$l$ is the layer index.
+		\REQUIRE $N_{L}$ as the number of layers.
+		\REQUIRE $N^l_{X}, N^l_{Y}$ as the size of layers.
+		\REQUIRE $N_{S}$ as the number of spikes for inference.
+		\ENSURE $H^l$.
+		\FOR {$t = 0$ \textbf{to} $N_{S}-1$}
+		\textit{Initialization of $H^l(i_X,i_Y,:)$} :
+		
+		\IF {$t == 0$}
+		\FOR {$l = 0$ \textbf{to} $N_{L}-1$}
+		\FOR {$i_X = 0, i_Y = 0$ \textbf{to} $N^l_{X}-1, N^l_{Y}-1$}
+		\FOR {$i_{H} = 0$ \textbf{to} $N^l_H-1$}
+		\STATE $H^l(i_X,i_Y,i_{H}) = 1/N^l_H$
+		\ENDFOR
+		\ENDFOR
+		\ENDFOR
+		\ENDIF
+		
+		\textit{Production of spikes} :
+		
+		\FOR {$l = 0$ \textbf{to} $N_{L}-1$}
+		\IF {$l == 0$}
+		\STATE Draw spikes from input \tcp{(Algorithm~\ref{alg:spike})}
+		\ELSE
+		\STATE Draw spikes from $H^l$ \tcp{(Algorithm~\ref{alg:spike})}
+		\ENDIF
+		
+		\ENDFOR
+		
+		\textit{Update layers} :
+		\FOR {$l = 0$ \textbf{to} $N_L - 1$}
+		\STATE Update $H^l$ \tcp{(Algorithm~\ref{alg:update})}
+		\ENDFOR
+		
+		\ENDFOR
+	\end{algorithmic} 
+\end{algorithm}
+
+
+\begin{algorithm}[h!]
+	\label{alg:spike}
+	\caption{Spike production.}
+	
+	\begin{algorithmic}[1]
+		\SetAlgoLined
+		\renewcommand{\algorithmicrequire}{\textbf{input:}}
+		\renewcommand{\algorithmicensure}{\textbf{output:}}
+		\REQUIRE Layer as $H_t\in\mathbb{R}^{N_X \times N_Y \times N_H}$, where\\
+		$N_X$ is the layer width,\\
+		$N_Y$ is the layer height\\
+		$N_H$ is the length of $\vec{h}$ (IP vector).
+		\ENSURE Output spikes as $S_t^{out} \in\mathbb{N}^{N_X \times N_Y}$
+		
+		\FOR {$i_X = 0$, $i_Y = 0$ \textbf{to} $N_X-1$, $N_Y-1$}
+		
+		
+		\textit{Generate spike} :
+		
+		\STATE $th = MT19937PseudoRandom()/(2^{32}-1)$
+		\STATE $acu = 0$
+		\FOR {$i_{H} = 0$ \textbf{to} $N_H-1$}
+		\STATE $acu = acu + H_t(i_X,i_Y,i_{H})$
+		\IF {$th \leq acu$ \textbf{or} $i_{H} == N-1$}
+		\STATE $S_t^{out}(i_X,i_Y) = i_{H}$
+		\ENDIF
+		\ENDFOR
+		\ENDFOR
+	\end{algorithmic} 
+\end{algorithm}
+
+
+
+
+
+\begin{algorithm}[h!]
+	\label{alg:update}
+	\caption{SbS layer update.}
+	
+	\begin{algorithmic}[1]
+		\SetAlgoLined
+		\renewcommand{\algorithmicrequire}{\textbf{input:}}
+		\renewcommand{\algorithmicensure}{\textbf{output:}}
+		\REQUIRE Layer as $H\in\mathbb{R}^{N_X \times N_Y \times N_H}$, where\\
+		$N_X$ is the layer width,\\
+		$N_Y$ is the layer height\\
+		$N_H$ is the length of $\vec{h}$ (IP vector).
+		\REQUIRE Synaptic matrix as $W\in\mathbb{R}^{K_X \times K_Y \times M_H\times N_H}$, where\\
+		$K_X \times K_Y$ is the size of the convolution/pooling kernel, \\
+		$M_H$ is the length of $\vec{h}$ from previous layer,\\
+		$N_H$ is the length of $\vec{h}$ from this layer.  
+		\REQUIRE Input spike matrix from previous layer as $S_t^{in} \in\mathbb{N}^{N_{Xin} \times N_{Yin}}$, where\\
+		$N_{Xin}$ is the width of the previous layer,\\
+		$N_{Yin}$ is the height of the previous layer.
+		\REQUIRE Strides of X and Y as $stride_{X}$ and $stride_{Y}$, respectively.
+		
+		\REQUIRE Epsilon as $\epsilon\in\mathbb{R}$.
+		\ENSURE Updated layer as $H^{new}\in\mathbb{R}^{N_X \times N_Y \times N_H}$.
+		\\
+		\textit{Update layer} :
+		\STATE $z_{X} = 0$ \tcp{X and Y index for $S_t^{in}$}
+		\STATE $z_{Y} = 0$
+		\FOR {$i_Y = 0$ \textbf{to} $N_Y - 1$}
+		\FOR {$i_X = 0$ \textbf{to} $N_X-1$}
+		\STATE $\vec{h} = H(i_X, i_Y,:)$\\
+		
+		\textit{Update IP} :
+		\FOR {$j_X = 0, j_Y = 0$ \textbf{to} $K_X - 1,K_Y - 1$}
+		
+		\STATE $s_t = S_t^{in}(z_{X}+j_X,z_{Y}+j_Y)$
+		\STATE $\vec{w} = W(j_X,j_Y,s_t,:)$
+		\STATE $\vec{p} = 0$
+		
+		\textit{Dot-product} :
+		\STATE $r = 0$
+		\FOR {$j_H = 0$ \textbf{to} $N_H-1$}
+		\STATE $\vec{p}(j_H) = \vec{h}_(j_H)\vec{w}(j_H)$
+		\STATE $r = r + \vec{p}(j_H)$
+		\ENDFOR
+		
+		
+		\IF {$r \ne 0$}
+		\textit{Update IP vector} :
+		\FOR {$i_H =$ \textbf{to} $N_H-1$}
+		\STATE
+		$  h^{new}(i_H) = \frac{1}{1+\epsilon} \left(h(i_H) + \epsilon \frac{\vec{p}(i_H) }{r} \right) $
+		\ENDFOR
+		
+		\textit{Set the new $H$ vector for the layer} :
+		\STATE $H^{new}(i_X,i_Y,:) = \vec{h}^{new}$
+		\ENDIF
+		\ENDFOR
+		\STATE $z_{X} = z_{X} + stride_{X}$
+		\ENDFOR
+		\STATE $z_{Y} = z_{Y} + stride_{Y}$
+		\ENDFOR
+		
+	\end{algorithmic} 
+\end{algorithm}
+

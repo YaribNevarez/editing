@@ -43,7 +43,7 @@ every observed input spike $s_t$ could be derived
     iteratively \mbox{\Equ{eq:sbs_update}} the SbS algorithms finds
     $h_{\mu}$. The fundamental concept of SbS can be extended from vector to matrix
     inputs. In this case, the linear operation $W\, h_\mu$ can be replaced by a
-    convolution to obtain a convolutional SbS layer.}
+    convolution to obtain a convolutional SbS layer. The SbS algorithm is summarized in Algorithm~\mbox{\ref{alg:sbs}}, and described in detail in the Appendix~\mbox{\ref{sec:appendix_sbs_algorithm}}.}
 
 %%%% This is added by Yarib, please review it
 %%%%\subsection{Parallelization in SbS networks}
@@ -74,8 +74,49 @@ every observed input spike $s_t$ could be derived
 	\end{tabular}
 \end{table}
 
+\begin{algorithm}[h!]
+	\label{alg:sbs}
+	\caption{SbS algorithm.}
+	
+	\begin{algorithmic}[1]
+%		\renewcommand{\algorithmicrequire}{\textbf{input:}}
+%		\renewcommand{\algorithmicensure}{\textbf{output:}}
+%		\REQUIRE Layer as $H\in\mathbb{R}^{N_X \times N_Y \times N_H}$, where\\
+%		$N_X$ is the layer width,\\
+%		$N_Y$ is the layer height\\
+%		$N_H$ is the length of $\vec{h}$ (IP vector).
+%		\REQUIRE Synaptic matrix as $W\in\mathbb{R}^{K_X \times K_Y \times M_H\times N_H}$, where\\
+%		$K_X \times K_Y$ is the size of the convolution/pooling kernel, \\
+%		$M_H$ is the length of $\vec{h}$ from previous layer,\\
+%		$N_H$ is the length of $\vec{h}$ from this layer.  
+%		\REQUIRE Input spike matrix from previous layer as $S_t^{in} \in\mathbb{N}^{N_{Xin} \times N_{Yin}}$, where\\
+%		$N_{Xin}$ is the width of the previous layer,\\
+%		$N_{Yin}$ is the height of the previous layer.	
+%		\REQUIRE Epsilon as $\epsilon\in\mathbb{R}$.
+%		\ENSURE Updated layer as $H^{new}\in\mathbb{R}^{N_X \times N_Y \times N_H}$.
+%		\ENSURE Output spike matrix from current layer as $S_t^{out} \in\mathbb{N}^{N_{X} \times N_{Y}}$, where\\
+%		$N_{X}$ is the width of the current layer,\\
+%		$N_{Y}$ is the height of the current layer.
+		\FOR {$x \leftarrow 0, y \leftarrow 0$ \textbf{to} $N_X-1, N_Y - 1$}
+			\STATE $S^{out}_t(x, y) \sim Categorical( H^{}(x, y, :) ) $
+			\FOR {$\Delta_X \leftarrow 0, \Delta_Y \leftarrow 0$ \textbf{to} $K_X - 1,K_Y - 1$}
+				\STATE $spk \leftarrow S^{in}_t(x + \Delta_X , y + \Delta_Y)$
+				\FOR {$i \leftarrow 0$ \textbf{to} $N_H-1$}
+					\STATE $\Delta h(i)
+					\leftarrow H^{}(x, y,  i) \cdot W^{}(\Delta_X, \Delta_Y, spk, i)$
+					\STATE $r \leftarrow r + \Delta h(i)$
+				\ENDFOR
+				
+				\FOR {$i \leftarrow 0$ \textbf{to} $N_H-1$}
+					\STATE $H^{new}(x, y, i) \leftarrow \frac{1}{1+\epsilon} \left( H^{}(x, y, i) + \frac{\epsilon}{r} \Delta h(i) \right) $              
+				\ENDFOR
+			\ENDFOR
+		\ENDFOR
+	\end{algorithmic} 
+\end{algorithm}
 
-SbS network models can be constructed in sequential layered structures \cite{rotermund2019Backpropagation}. Each layer consists of many inference populations or IPs \REVIEW{(represented by \mbox{$\vec{h}$})}, while the communication between them is organized by a low bandwidth signal -- the spikes. \REVIEW{ A basic SbS network architecture for hand written digit classification is shown in \mbox{\fig{fig:sbs_network}} and \mbox{\Tab{tab:sbs_network}}. The SbS network inference is described in Algorithm\mbox{~\ref{alg:inference}}, while spike generation and layer update are described in Algorithm\mbox{~\ref{alg:spike}} and \mbox{~\ref{alg:update}}, respectably.} Each IP is an independent computational entity, this allows to design specialized hardware architectures that can be massively parallelized (see \fig{fig:SbS_layer}).
+
+SbS network models can be constructed in sequential layered structures \cite{rotermund2019Backpropagation}. Each layer consists of many inference populations or IPs \REVIEW{(represented by \mbox{$\vec{h}$})}, while the communication between them is organized by a low bandwidth signal -- the spikes. \REVIEW{ A basic SbS network architecture for hand written digit classification is shown in \mbox{\fig{fig:sbs_network}} and \mbox{\Tab{tab:sbs_network}}.} Each IP is an independent computational entity, this allows to design specialized hardware architectures that can be massively parallelized (see \fig{fig:SbS_layer}).
 
 \begin{figure}
 	\centering
@@ -123,12 +164,6 @@ SbS network models can be constructed in sequential layered structures \cite{rot
 % the sparse solutions that have the smallest fluctuations. This is the
 % famous tornado in the example in the 2008 paper.
 
-\begin{figure}
-  \includegraphics[width=\columnwidth]{../figures/sbs_robustnes.pdf}
-  \caption{(a) Performance classification of SbS NN versus equivalent CNN, and (b) example of the first pattern in the MNIST test data set with different amounts of noise.}
-  \label{fig:robustnes_sbs}
-\end{figure}
-
 \subsection{\REVIEW{Noise robustness comparison}}
 
 To illustrate the advantages of SbS, an example of the noise tolerance of SbS is presented in
@@ -143,4 +178,10 @@ with a p - level of at least $10^{-6}$ (tested with the Fisher exact
 test). Increasing the number of spikes per SbS population to 6000
 (performance values shown as black stars), shows that more spikes can
 improve the performance under noise even more.
+
+\begin{figure}[t!]
+	\includegraphics[width=\columnwidth]{../figures/sbs_robustnes.pdf}
+	\caption{(a) Performance classification of SbS NN versus equivalent CNN, and (b) example of the first pattern in the MNIST test data set with different amounts of noise.}
+	\label{fig:robustnes_sbs}
+\end{figure}
 
