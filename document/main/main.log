@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.8.18)  26 MAR 2021 22:13
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.8.18)  27 MAR 2021 02:13
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -942,6 +942,9 @@ Package xcolor Warning: Incompatible color definition on input line 16.
 
 Package xcolor Warning: Incompatible color definition on input line 20.
 
+
+Underfull \vbox (badness 2781) has occurred while \output is active []
+
 File: notaglinelogo.png Graphic file (type png)
 <use notaglinelogo.png>
 Package pdftex.def Info: notaglinelogo.png  used on input line 22.
@@ -1037,12 +1040,16 @@ Underfull \hbox (badness 1852) in paragraph at lines 67--68
 \T1/ptm/n/n/10 specific ar-chi-tec-ture op-ti-mized to ap-prox-i-mate the dot-
  []
 
+
+Underfull \vbox (badness 4353) has occurred while \output is active []
+
 <../figures/dot-product_unit_bitwidth.pdf, id=673, 252.91655pt x 169.80605pt>
 File: ../figures/dot-product_unit_bitwidth.pdf Graphic file (type pdf)
 <use ../figures/dot-product_unit_bitwidth.pdf>
 Package pdftex.def Info: ../figures/dot-product_unit_bitwidth.pdf  used on inpu
 t line 95.
 (pdftex.def)             Requested size: 242.67355pt x 162.9342pt.
+
 
 Package xcolor Warning: Incompatible color definition on input line 96.
 
@@ -1054,7 +1061,7 @@ Package xcolor Warning: Incompatible color definition on input line 102.
 
 File: notaglinelogo.png Graphic file (type png)
 <use notaglinelogo.png>
-Package pdftex.def Info: notaglinelogo.png  used on input line 104.
+Package pdftex.def Info: notaglinelogo.png  used on input line 102.
 (pdftex.def)             Requested size: 91.32pt x 23.1352pt.
 
 Overfull \hbox (505.12177pt too wide) has occurred while \output is active
@@ -1537,7 +1544,7 @@ Package xcolor Warning: Incompatible color definition on input line 11.
 ) (../content/appendix.tex
 File: notaglinelogo.png Graphic file (type png)
 <use notaglinelogo.png>
-Package pdftex.def Info: notaglinelogo.png  used on input line 3.
+Package pdftex.def Info: notaglinelogo.png  used on input line 1.
 (pdftex.def)             Requested size: 91.32pt x 23.1352pt.
 
 Overfull \hbox (505.12177pt too wide) has occurred while \output is active
@@ -1556,13 +1563,16 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 
 [15 <../figures/accuracy_vs_noise_pu_log.pdf>]
 
-Package xcolor Warning: Incompatible color definition on input line 3.
+Package xcolor Warning: Incompatible color definition on input line 1.
 
-LaTeX Font Info:    Try loading font information for T1+pcr on input line 39.
+
+Package xcolor Warning: Incompatible color definition on input line 2.
+
+LaTeX Font Info:    Try loading font information for T1+pcr on input line 38.
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 )
-Overfull \hbox (10.0pt too wide) detected at line 53
+Overfull \hbox (10.0pt too wide) detected at line 52
 [][] 
  []
 
@@ -1570,7 +1580,7 @@ Overfull \hbox (10.0pt too wide) detected at line 53
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
-Overfull \hbox (10.0pt too wide) detected at line 85
+Overfull \hbox (10.0pt too wide) detected at line 84
 [][] 
  []
 
@@ -1578,7 +1588,7 @@ Overfull \hbox (10.0pt too wide) detected at line 85
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
-Overfull \hbox (10.0pt too wide) detected at line 154
+Overfull \hbox (10.0pt too wide) detected at line 153
 [][] 
  []
 
@@ -1609,14 +1619,9 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  []
 
 [16 <../figures/platform_power_dissipation_breakdown.pdf>]
-Underfull \hbox (badness 1917) in paragraph at lines 100--103
-[]\T1/ptm/m/n/7.61 D. Roter-mund and K. R. Pawelzik, ``Back-propagation learn-i
-ng in
- []
-
 File: notaglinelogo.png Graphic file (type png)
 <use notaglinelogo.png>
-Package pdftex.def Info: notaglinelogo.png  used on input line 103.
+Package pdftex.def Info: notaglinelogo.png  used on input line 98.
 (pdftex.def)             Requested size: 91.32pt x 23.1352pt.
 
 Overfull \hbox (505.12177pt too wide) has occurred while \output is active
@@ -1634,6 +1639,12 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  []
 
 [17]
+Underfull \hbox (badness 1917) in paragraph at lines 100--103
+[]\T1/ptm/m/n/7.61 D. Roter-mund and K. R. Pawelzik, ``Back-propagation learn-i
+ng in
+ []
+
+
 Underfull \hbox (badness 1460) in paragraph at lines 121--125
 []\T1/ptm/m/n/7.61 M. Bou-vier, A. Valen-tian, T. Mesquida, F. Rum-mens, M. Rey
 -boz,
@@ -1645,10 +1656,9 @@ Underfull \hbox (badness 1642) in paragraph at lines 171--174
 emerg-ing
  []
 
-) (../biography/biography.tex
 File: notaglinelogo.png Graphic file (type png)
 <use notaglinelogo.png>
-Package pdftex.def Info: notaglinelogo.png  used on input line 1.
+Package pdftex.def Info: notaglinelogo.png  used on input line 343.
 (pdftex.def)             Requested size: 91.32pt x 23.1352pt.
 
 Overfull \hbox (505.12177pt too wide) has occurred while \output is active
@@ -1665,7 +1675,7 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 []
  []
 
-[18]
+[18]) (../biography/biography.tex
 <../biography/yarib_300_375.jpg, id=1195, 301.125pt x 376.40625pt>
 File: ../biography/yarib_300_375.jpg Graphic file (type jpg)
 <use ../biography/yarib_300_375.jpg>
@@ -1750,13 +1760,13 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  ) 
 Here is how much of TeX's memory you used:
- 7412 strings out of 492982
- 113549 string characters out of 6134896
- 262184 words of memory out of 5000000
- 10717 multiletter control sequences out of 15000+600000
- 118754 words of font info for 156 fonts, out of 8000000 for 9000
+ 7413 strings out of 492982
+ 113561 string characters out of 6134896
+ 262193 words of memory out of 5000000
+ 10718 multiletter control sequences out of 15000+600000
+ 120398 words of font info for 157 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,18n,53p,1627b,843s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 41i,18n,53p,1627b,839s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist
@@ -1774,7 +1784,7 @@ ype1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/hel
 vetic/uhvro8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.p
 fb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/
 texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (19 pages, 3671932 bytes).
+Output written on main.pdf (19 pages, 3672218 bytes).
 PDF statistics:
  1273 PDF objects out of 1440 (max. 8388607)
  982 compressed objects within 10 object streams

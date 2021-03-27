@@ -43,7 +43,7 @@ every observed input spike $s_t$ could be derived
     iteratively \mbox{\Equ{eq:sbs_update}} the SbS algorithms finds
     $h_{\mu}$. The fundamental concept of SbS can be extended from vector to matrix
     inputs. In this case, the linear operation $W\, h_\mu$ can be replaced by a
-    convolution to obtain a convolutional SbS layer. The SbS algorithm is summarized in Algorithm~\mbox{\ref{alg:sbs}}, and described in detail in the Appendix~\mbox{\ref{sec:appendix_sbs_algorithm}}.}
+    convolution to obtain a convolutional SbS layer. A detailed description of the SbS algorithm is presented in the supplementary material of this paper.}
 
 %%%% This is added by Yarib, please review it
 %%%%\subsection{Parallelization in SbS networks}
@@ -51,18 +51,18 @@ every observed input spike $s_t$ could be derived
 
 \begin{figure}[!t]
 	\includegraphics[width=\columnwidth]{../figures/sbs_network.pdf}
-	\caption{SbS network architecture for hand written classification task.}
+	\caption{SbS network architecture for handwritten digit classification task.}
 	\label{fig:sbs_network}
 \end{figure}
 
 
 \begin{table}[!t]\centering
-	\caption{SbS network architecture for hand written classification task.}
+	\caption{SbS network architecture for handwritten digit classification task.}
 	\label{tab:sbs_network}
 	\scriptsize
 	\begin{tabular}{lrrrrrrr}\toprule
 		&\multicolumn{3}{c}{\textbf{Layer size}} & &\multicolumn{2}{c}{\textbf{Kernel size}} \\\cmidrule{2-4}\cmidrule{6-7}
-		\textbf{Layer} ($H^l$) &$N_X$ &$N_Y$ &$N_H$ & &$K_X$ &$K_X$ \\\midrule
+		\textbf{Layer} ($H^l$) &$N_X$ &$N_Y$ &$N_H$ & &$K_X$ &$K_Y$ \\\midrule
 		Input ($HX$) &28 &28 &2 & &- &- \\
 		Convolution ($H1$) &24 &24 &32 & &5 &5 \\
 		Pooling ($H2$) &12 &12 &32 & &2 &2 \\
@@ -116,7 +116,7 @@ every observed input spike $s_t$ could be derived
 \end{algorithm}
 
 
-SbS network models can be constructed in sequential layered structures \cite{rotermund2019Backpropagation}. Each layer consists of many inference populations or IPs \REVIEW{(represented by \mbox{$\vec{h}$})}, while the communication between them is organized by a low bandwidth signal -- the spikes. \REVIEW{ A basic SbS network architecture for hand written digit classification is shown in \mbox{\fig{fig:sbs_network}} and \mbox{\Tab{tab:sbs_network}}.} Each IP is an independent computational entity, this allows to design specialized hardware architectures that can be massively parallelized (see \fig{fig:SbS_layer}).
+SbS network models can be constructed in sequential layered structures \cite{rotermund2019Backpropagation}. Each layer consists of many inference populations or IPs \REVIEW{(represented by \mbox{$\vec{h}$})}, while the communication between them is organized by a low bandwidth signal -- the spikes. \REVIEW{ A basic SbS network architecture for handwritten digit classification is shown in \mbox{\fig{fig:sbs_network}} and \mbox{\Tab{tab:sbs_network}}. The SbS algorithm is summarized in Algorithm~\mbox{\ref{alg:sbs}}.} Each IP is an independent computational entity, this allows to design specialized hardware architectures that can be massively parallelized (see \fig{fig:SbS_layer}).
 
 \begin{figure}
 	\centering
