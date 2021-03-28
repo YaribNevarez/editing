@@ -17,12 +17,10 @@ magnitude better energy-delay product than conventional
 approaches. These advantages are motivating large research programs by
 major companies (e.g. Intel \mbox{\cite{davies2018loihi}} and IBM
 \mbox{\cite{TrueNorth_Trans15}}) as well as pan-european projects in the
-domain of spiking networks \mbox{\cite{Spinnaker_Trans13}}, and
-attempts to transfer features from SNNs to standard DNNs
-\mbox{\cite{pfeiffer2018deep}}.
+domain of spiking networks \mbox{\cite{Spinnaker_Trans13}}.
 }
 
-\REVIEW{SNNs emulate the real behavior of neurons in different levels of detail. The more detailed the biological part is emulated, the greater the computational complexity \mbox{\cite{izhikevich2004model,amunts2019human}}. Most of today's SNNs use a very detailed model. In contrast, Spike-By-Spike (SbS) neural networks are on the less realistic side of the biological realism scale \mbox{\cite{rotermund2019Backpropagation,ernst2007efficient}}. In spite of that, SbS still uses stochastic spikes as a means of transmitting information between populations of neurons, and thus retains the robustness advantages of SNNs. Correspondingly, the hardware complexity of the approach is greatly reduced
+\REVIEW{SNNs emulate the real behavior of neurons in different levels of detail. The more detailed the biological part is emulated, the greater the computational complexity \mbox{\cite{izhikevich2004model,amunts2019human}}. Most of today's SNNs use a very detailed model. In contrast, Spike-By-Spike (SbS) neural networks are on the less realistic side of the biological realism scale \mbox{\cite{rotermund2019Backpropagation,ernst2007efficient}}. In spite of that, SbS still uses stochastic spikes as a means of transmitting information between populations of neurons, and thus retains the advantageous robustness of SNNs. Correspondingly, the hardware complexity of SbS networks is greatly reduced
   \mbox{\cite{nevarez2020accelerator,rotermund2018massively}}.
 }
 
@@ -33,15 +31,15 @@ The conceptual model in SbS (see \mbox{\sect{sec:sbs}} for a short review) diffe
 
 
 %%%%%%% Problem statement
-\REVIEW{The computational demands of ANNs, and in particular SNNs, must be addressed by specialized hardware architectures. A significant research effort has been performed in SNN accelerators, see e.g.
+\REVIEW{As computational demanding algorithms, ANNs and SNNs in particular, must be addressed by specialized hardware architectures. A significant research effort has been performed in SNN accelerators, see e.g.
   \mbox{\Refs{roy2019towards,bouvier2019spiking,
       young2019review,TrueNorth_Trans15,Spinnaker_Trans13,davies2018loihi}}.
   However, hardware accelerators that focus on SbS have only been partially investigated so far \mbox{\cite{nevarez2020accelerator,rotermund2018massively}}.
   Enhanced SbS accelerators will have a double impact. From an engineering point of view, they will contribute to the deployment of robust neural networks in small embedded systems \mbox{\cite{nevarez2020accelerator}}; from a scientific point of view, they will facilitate experimentation with SbS methods for neuroscience
   \mbox{\cite{ernst2007efficient,rotermund2019recurrentsbs}}.}
 
-A fundamental point that can be optimized in current SbS accelerators
-is the use of approximation techniques. 
+\REVIEW{A fundamental point that can be optimized in current SbS accelerators
+is the use of approximation techniques.} 
 Most SbS models use floating-point numerical representation, which imposes high complexity of the required circuits for the floating-point operations. Model quantization has the potential to improve computational performance; however, this solution is often accompanied by quantization-aware training methods that, in some cases, are problematic or even inaccessible, particularly in deep SNN algorithms\cite{zhang2018survey}. 
 As an alternative, based on the relaxed need for fully precise or deterministic computation of neural networks, approximate computing techniques allow substantial enhancement in processing efficiency with moderated accuracy degradation. Some research \replaced{papers}{papers} have shown the feasibility of applying approximate computing to the inference stage of neural networks \cite{lotrivc2012applicability, sarwar2016multiplier, mrazek2016design, du2014leveraging}. Such techniques usually demonstrated small inference accuracy degradation, but significant enhancement in computational performance, resource utilization, and energy consumption. Hence, by taking advantage of the intrinsic error-tolerance of neural networks, approximate computing is positioned as a promising approach for inference on resource-limited devices.
 
