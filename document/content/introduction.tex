@@ -15,14 +15,13 @@ example, Loihi \mbox{\cite{davies2018loihi}}, a SNN developed by Intel, can
 solve LASSO optimization problems with an over three orders of
 magnitude better energy-delay product than conventional
 approaches. These advantages are motivating large research programs by
-major companies (e.g. Intel \mbox{\cite{davies2018loihi}} and IBM
+major companies (e.g., Intel \mbox{\cite{davies2018loihi}} and IBM
 \mbox{\cite{TrueNorth_Trans15}}) as well as pan-european projects in the
 domain of spiking networks \mbox{\cite{Spinnaker_Trans13}}.
 }
 
-\REVIEW{SNNs emulate the real behavior of neurons in different levels of detail. The more detailed the biological part is emulated, the greater the computational complexity \mbox{\cite{izhikevich2004model,amunts2019human}}. Most of today's SNNs use a very detailed model. In contrast, Spike-By-Spike (SbS) neural networks are on the less realistic side of the biological realism scale \mbox{\cite{rotermund2019Backpropagation,ernst2007efficient}}. In spite of that, SbS still uses stochastic spikes as a means of transmitting information between populations of neurons, and thus retains the advantageous robustness of SNNs. Correspondingly, the hardware complexity of SbS networks is greatly reduced
-  \mbox{\cite{nevarez2020accelerator,rotermund2018massively}}.
-}
+\REVIEW{SNNs emulate the real behavior of neurons in different levels of detail. The more detailed the biological part is emulated, the greater the computational complexity \mbox{\cite{izhikevich2004model,amunts2019human}}. Most of today's SNNs use a very detailed model (e.g., Leaky Integrate-and-Fire (LIF)). In contrast, Spike-By-Spike (SbS) neural networks are on the less realistic side of the biological realism scale \mbox{\cite{rotermund2019Backpropagation,ernst2007efficient}}. Consequently, the hardware complexity of SbS networks is greatly reduced
+\mbox{\cite{nevarez2020accelerator,rotermund2018massively}}.In spite of that, SbS still uses stochastic spikes as a means of transmitting information between populations of neurons, and thus it retains the advantageous robustness of SNNs.}
 
 
 %%% SbS intro

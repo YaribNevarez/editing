@@ -152,7 +152,7 @@ Each \emph{Conv} PU instantiates an on-chip stationary weight matrix of $52,000$
 \end{table}
 
 \subsubsection{Benchmark on noise tolerance plot}
-The noise tolerance plot serves as an intuitive visual model used to provide insights into accuracy degradation under approximate processing effects. This plot \REVIEW{reveals} inherent error-resilience, and hence, approximation-resilience. As an application-specific quality metric, this plot offers an effective method to estimate the overall quality degradation of the SbS network under different approximate processing effects, since both approximations and noise have qualitatively the same effect\cite{venkataramani2015approximate}.
+The noise tolerance plot serves as an intuitive visual model used to provide insights into accuracy degradation under approximate processing effects. This plot \REVIEW{reveals} inherent error resilience, and hence, approximation resilience. As an application-specific quality metric, this plot offers an effective method to estimate the overall quality degradation of the SbS network under different approximate processing effects, since both approximations and noise have qualitatively the same effect\cite{venkataramani2015approximate}.
 
 In order to experimentally obtain the noise tolerance plot, we measure the inference accuracy of the neural network with increasing number of spikes. Then we repeat the measurements with uniformly distributed noise applied on the input images. We gradually ascend the levels of the noise amplitude, until accuracy degradation is detected. \fig{fig:accuracy_vs_noise_pu_fp} demonstrates this method using 100 sample images.
 

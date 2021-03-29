@@ -97,18 +97,20 @@ every observed input spike $s_t$ could be derived
 %		\ENSURE Output spike matrix from current layer as $S_t^{out} \in\mathbb{N}^{N_{X} \times N_{Y}}$, where\\
 %		$N_{X}$ is the width of the current layer,\\
 %		$N_{Y}$ is the height of the current layer.
-		\FOR {$x \leftarrow 0, y \leftarrow 0$ \textbf{to} $N_X-1, N_Y - 1$}
-			\STATE $S^{out}_t(x, y) \sim Categorical( H^{}(x, y, :) ) $
-			\FOR {$\Delta_X \leftarrow 0, \Delta_Y \leftarrow 0$ \textbf{to} $K_X - 1,K_Y - 1$}
-				\STATE $spk \leftarrow S^{in}_t(x + \Delta_X , y + \Delta_Y)$
-				\FOR {$i \leftarrow 0$ \textbf{to} $N_H-1$}
-					\STATE $\Delta h(i)
-					\leftarrow H^{}(x, y,  i) \cdot W^{}(\Delta_X, \Delta_Y, spk, i)$
-					\STATE $r \leftarrow r + \Delta h(i)$
-				\ENDFOR
-				
-				\FOR {$i \leftarrow 0$ \textbf{to} $N_H-1$}
-					\STATE $H^{new}(x, y, i) \leftarrow \frac{1}{1+\epsilon} \left( H^{}(x, y, i) + \frac{\epsilon}{r} \Delta h(i) \right) $              
+		\FOR {$t \leftarrow 0$ \textbf{to} $N_{Spk}-1$}
+			\FOR {$x \leftarrow 0, y \leftarrow 0$ \textbf{to} $N_X-1, N_Y - 1$}
+				\STATE $S^{out}_t(x, y) \sim Categorical( H^{}(x, y, :) ) $
+				\FOR {$\Delta_X \leftarrow 0, \Delta_Y \leftarrow 0$ \textbf{to} $K_X - 1,K_Y - 1$}
+					\STATE $spk \leftarrow S^{in}_t(x + \Delta_X , y + \Delta_Y)$
+					\FOR {$i \leftarrow 0$ \textbf{to} $N_H-1$}
+						\STATE $\Delta h(i)
+						\leftarrow H^{}(x, y,  i) \cdot W^{}(\Delta_X, \Delta_Y, spk, i)$
+						\STATE $r \leftarrow r + \Delta h(i)$
+					\ENDFOR
+					
+					\FOR {$i \leftarrow 0$ \textbf{to} $N_H-1$}
+						\STATE $H^{new}(x, y, i) \leftarrow \frac{1}{1+\epsilon} \left( H^{}(x, y, i) + \frac{\epsilon}{r} \Delta h(i) \right) $              
+					\ENDFOR
 				\ENDFOR
 			\ENDFOR
 		\ENDFOR
@@ -116,12 +118,18 @@ every observed input spike $s_t$ could be derived
 \end{algorithm}
 
 
-SbS network models can be constructed in sequential layered structures \cite{rotermund2019Backpropagation}. Each layer consists of many inference populations or IPs \REVIEW{(represented by \mbox{$\vec{h}$})}, while the communication between them is organized by a low bandwidth signal -- the spikes. \REVIEW{ A basic SbS network architecture for handwritten digit classification is shown in \mbox{\fig{fig:sbs_network}} and \mbox{\Tab{tab:sbs_network}}. The SbS algorithm is summarized in Algorithm~\mbox{\ref{alg:sbs}}.} Each IP is an independent computational entity, this allows to design specialized hardware architectures that can be massively parallelized (see \fig{fig:SbS_layer}).
+SbS network models can be constructed in sequential layered structures \cite{rotermund2019Backpropagation}. Each layer consists of many inference populations or IPs \REVIEW{(represented by \mbox{$\vec{h}$})}, while the communication between them is organized by a low bandwidth signal -- the spikes.
+
+\REVIEW{A basic SbS network architecture for handwritten digit classification is shown in \mbox{\fig{fig:sbs_network}} and \mbox{\Tab{tab:sbs_network}}.} Each IP is an independent computational entity, this allows to design specialized hardware architectures that can be massively parallelized (see \fig{fig:SbS_layer}).
+
+\subsection{\REVIEW{Computational cost}}
+
+\REVIEW{The SbS algorithm is summarized in Algorithm~\mbox{\ref{alg:sbs}}. The number of multiply-accumulate (MAC) operations required for inference of an SbS layer is defined by \mbox{$N_{Spk} N_X N_Y K_X K_Y (3 N_H + 2)$}, where $N_{Spk}$ is the number of spikes, $N_X N_Y$ defines the size of the layer, $K_X K_Y$ defines the size of the kernel for convolution/pooling, and $N_H$ is the length of $\vec{h}$. The complexity of the SbS algorithm and required MAC operations are higher than CNN and reduced compared to LIF models \mbox{\cite{dayan2001theoretical}}.}
 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.5\textwidth]{../figures/SbS_layer.pdf}
-	\caption{SbS IPs as independent computational entities, (a) illustrates an input layer with a massive amount of IPs operating as independent computational entities, (b) shows a hidden layer with an arbitrary amount of IPs as independent computational entities, (c) exhibits a set of neurons grouped in an IP. }
+	\caption{SbS IPs as independent computational entities, (a) illustrates an input layer with a massive amount of IPs operating as independent computational entities, (b) shows a hidden layer with an arbitrary amount of IPs as independent computational entities, (c) exhibits a set of neurons grouped in an IP.}
 	\label{fig:SbS_layer}
 \end{figure}
 
@@ -164,12 +172,10 @@ SbS network models can be constructed in sequential layered structures \cite{rot
 % the sparse solutions that have the smallest fluctuations. This is the
 % famous tornado in the example in the 2008 paper.
 
-\subsection{\REVIEW{Noise robustness comparison}}
+\subsection{\REVIEW{Error resilience}}
 
-To illustrate the advantages of SbS, an example of the noise tolerance of SbS is presented in
-\fig{fig:robustnes_sbs}. It compares the classification performance of
-a SbS network and a standard convolutional network, with the same amount of
-neurons per layer as well as the same layer structure. We trained on MNIST dataset\cite{lecun1998mnist} without noise (see \cite{rotermund2019Backpropagation} for details). The figure shows the correctness for the MNIST test set with its $10000$ patterns in dependency of the noise level for positive additive
+\REVIEW{To illustrate the error resilience of SbS networks, we present a classification performance under positive additive uniformly distributed noise as external disturbance.} \fig{fig:robustnes_sbs} presents a comparison of the classification performance of an SbS network and a standard \REVIEW{CNN}, with the same amount of
+neurons per layer as well as the same layer structure. We trained both neural networks for handwritten digit classification on MNIST dataset\cite{lecun1998mnist} (see \cite{rotermund2019Backpropagation} for details). The figure shows the correctness for the MNIST test set with its $10000$ patterns in dependency of the noise level for positive additive
 uniformly distributed noise. The blue curve shows the performance for
 the \REVIEW{CNN}, while the red curve shows the performance for
 the SbS network with 1200 spikes per inference population. Beginning
@@ -181,7 +187,7 @@ improve the performance under noise even more.
 
 \begin{figure}[t!]
 	\includegraphics[width=\columnwidth]{../figures/sbs_robustnes.pdf}
-	\caption{(a) Performance classification of SbS NN versus equivalent CNN, and (b) example of the first pattern in the MNIST test data set with different amounts of noise.}
+	\caption{(a) Performance classification of SbS NN versus equivalent CNN, and (b) example of the first pattern in the MNIST test data set with different amounts of \REVIEW{positive additive uniformly distributed noise}.}
 	\label{fig:robustnes_sbs}
 \end{figure}
 
