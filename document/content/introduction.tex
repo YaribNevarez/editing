@@ -22,7 +22,7 @@ domain of spiking networks \mbox{\cite{Spinnaker_Trans13}}.
 
 \REVIEW{SNNs emulate the real behavior of neurons in different levels of detail. The more detailed the biological part is emulated, the greater the computational complexity \mbox{\cite{izhikevich2004model,amunts2019human}}. Most of today's SNNs use a very detailed model (e.g., Leaky Integrate-and-Fire (LIF)).
 	
-	In contrast, the Spike-by-Spike (SbS) neural network is a remarkable model for its reduced complexity, which is on the less realistic side of the SNN scale of biological realism\mbox{\cite{rotermund2019Backpropagation,ernst2007efficient}}. Consequently, the hardware complexity of SbS network implementations is greatly reduced
+	Alternatively, the Spike-by-Spike (SbS) neural network is a remarkable model for its reduced complexity, which is on the less realistic side of the SNN scale of biological realism\mbox{\cite{rotermund2019Backpropagation,ernst2007efficient}}. Consequently, the hardware complexity of SbS network implementations is greatly reduced
 	\mbox{\cite{nevarez2020accelerator,rotermund2018massively}}. In spite of this, SbS still uses stochastic spikes as a means of transmitting information between populations of neurons and thus retains the advantageous robustness of SNNs.}
 
 
@@ -37,7 +37,7 @@ The conceptual model in SbS (see \mbox{\sect{sec:sbs}} for a short review) diffe
       young2019review,TrueNorth_Trans15,Spinnaker_Trans13,davies2018loihi}}.
   However, hardware accelerators that focus on SbS have only been partially investigated so far \mbox{\cite{nevarez2020accelerator,rotermund2018massively}}.
   Enhanced SbS accelerators will have a double impact. From an engineering point of view, they will contribute to the deployment of robust neural networks in small embedded systems \mbox{\cite{nevarez2020accelerator}}; from a scientific point of view, they will facilitate fundamental research for neuroscience
-  \mbox{\cite{ernst2007efficient,rotermund2019recurrentsbs}}.}
+  \mbox{\cite{ernst2007efficient,rotermund2019recurrentsbs, dayan2001theoretical}}.}
 
 \REVIEW{A central point that can be optimized in current SbS accelerators
 is the use of approximation techniques.} 
@@ -57,7 +57,7 @@ Our main contributions are as follows:
 
 \begin{itemize}
 	\item We develop a hardware component for dot-product approximation. To perform the sum of pairwise products of two vectors, this hardware module has the following three design features: (1) the pairwise product is approximated by adding integer exponents and multiplying truncated mantissas, and the sum of products is done by accumulating denormalized integer products with barrel shifters, which increases computational throughput; (2) the synaptic weight vector uses either reduced custom floating-point or logarithmic representation, which reduces memory footprint; and (3) the neuron vector uses either standard or custom floating-point representation, which preserves QoR and overall inference accuracy.
-	\item We address a design exploration with the proposed dot-product approximation using synaptic weight vectors with custom floating-point and logarithmic representation as shown in \fig{fig:dot_product_unit}. We evaluate inference latency, accuracy degradation, resource utilization and power dissipation. Experimental results demonstrate $20.5\times$ latency enhancement versus embedded CPU (ARM Cortex-A9 at 666MHz), and less than $0.5\%$ of accuracy degradation on a handwritten digit recognition task.
+	\item We address a design exploration with the proposed dot-product approximation using synaptic weight vectors with custom floating-point and logarithmic representation as shown in \fig{fig:dot_product_unit}. We evaluate inference latency, accuracy degradation, resource utilization and power dissipation. Experimental results demonstrate $20.5\times$ latency enhancement versus embedded CPU (ARM Cortex-A9 at $666$MHz), and less than $0.5\%$ of accuracy degradation on a handwritten digit recognition task. \REVIEW{The machine learning task simply provides a proof of concept to demonstrate the feasibility of our hardware optimization approach for SbS neural network accelerators.}
 	\item We propose a noise tolerance plot as quality monitor, which serves as an intuitive visual model to provide insights into the accuracy degradation of SbS networks under approximate processing effects.
 	\item Our proposed design for dot-product approximation is adaptable as a building block for other error resilient applications (e.g., image/video processing).
 \end{itemize}
