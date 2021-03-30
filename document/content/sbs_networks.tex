@@ -124,7 +124,8 @@ SbS network models can be constructed in sequential layered structures \cite{rot
 
 \subsection{\REVIEW{Computational cost}}
 
-\REVIEW{The SbS algorithm is summarized in Algorithm~\mbox{\ref{alg:sbs}}. The number of multiply-accumulate (MAC) operations required for inference of an SbS layer is defined by \mbox{$N_{Spk} N_X N_Y K_X K_Y (3 N_H + 2)$}, where $N_{Spk}$ is the number of spikes, $N_X N_Y$ is the size of the layer, $K_X K_Y$ is the size of the kernel for convolution/pooling, and $N_H$ is the length of $\vec{h}$. The computational cost of SbS network models is higher compared to equivalent CNN models and lower compared to regular SNN models (e.g., LIF) \mbox{\cite{dayan2001theoretical}}.}
+\REVIEW{The SbS algorithm is summarized in Algorithm~\mbox{\ref{alg:sbs}}. The number of multiply-accumulate (MAC) operations required for inference of an SbS layer is defined by \mbox{$NOPS_{MAC}=N_{Spk} N_X N_Y K_X K_Y (3 N_H + 2)$}, where $N_{Spk}$ is the number of spikes, $N_X N_Y$ is the size of the layer, $K_X K_Y$ is the size of the kernel for convolution/pooling, and $N_H$ is the length of $\vec{h}$. The computational cost of SbS network models is higher compared to equivalent CNN models and lower compared to regular SNN models (e.g., LIF) \mbox{\cite{dayan2001theoretical}}.}
+
 
 \begin{figure}
 	\centering
