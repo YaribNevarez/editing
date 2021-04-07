@@ -120,11 +120,11 @@ every observed input spike $s_t$ could be derived
 
 SbS network models can be constructed in sequential layered structures \cite{rotermund2019Backpropagation}. Each layer consists of many inference populations or IPs \REVIEW{(represented by \mbox{$\vec{h}$})}, while the communication between them is organized by a low bandwidth signal -- the spikes.
 
-\REVIEW{A basic SbS network architecture for handwritten digit classification is shown in \mbox{\fig{fig:sbs_network}} and \mbox{\Tab{tab:sbs_network}}.} Each IP is an independent computational entity, this allows to design specialized hardware architectures that can be massively parallelized (see \fig{fig:SbS_layer}).
+\REVIEW{A basic SbS network architecture for handwritten digit classification (MNIST) is shown in \mbox{\fig{fig:sbs_network}} and \mbox{\Tab{tab:sbs_network}}.} Each IP is an independent computational entity, this allows to design specialized hardware architectures that can be massively parallelized (see \fig{fig:SbS_layer}).
 
 \subsection{\REVIEW{Computational cost}}
 
-\REVIEW{The SbS algorithm is summarized in Algorithm~\mbox{\ref{alg:sbs}}. The number of multiply-accumulate (MAC) operations required for inference of an SbS layer is defined by \mbox{$NOPS_{MAC}=N_{Spk} N_X N_Y K_X K_Y (3 N_H + 2)$}, where $N_{Spk}$ is the number of spikes, $N_X N_Y$ is the size of the layer, $K_X K_Y$ is the size of the kernel for convolution/pooling, and $N_H$ is the length of $\vec{h}$. The computational cost of SbS network models is higher compared to equivalent CNN models and lower compared to regular SNN models (e.g., LIF) \mbox{\cite{dayan2001theoretical}}.}
+\REVIEW{The SbS algorithm is summarized in Algorithm~\mbox{\ref{alg:sbs}}. The number of multiply-accumulate (MAC) operations required for inference of an SbS layer is defined by \mbox{$NOPS_{MAC}=N_{Spk} N_X N_Y K_X K_Y (3 N_H + 2)$}, where $N_{Spk}$ is the number of spikes, $N_X N_Y$ is the size of the layer, $K_X K_Y$ is the size of the kernel for convolution/pooling, and $N_H$ is the length of $\vec{h}$. The computational cost of SbS network models is higher compared to equivalent CNN models and lower compared to regular SNN models (e.g., LIF) \mbox{\cite{izhikevich2004model}}.}
 
 
 \begin{figure}

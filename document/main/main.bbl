@@ -128,6 +128,11 @@ A.~R. Young, M.~E. Dean, J.~S. Plank, and G.~S. Rose, ``A review of spiking
 D.~Rotermund and K.~R. Pawelzik, ``Biologically plausible learning in a deep
   recurrent spiking network,'' \emph{bioRxiv}, 2019.
 
+\bibitem{dayan2001theoretical}
+P.~Dayan and L.~F. Abbott, \emph{Theoretical neuroscience: computational and
+  mathematical modeling of neural systems}.\hskip 1em plus 0.5em minus
+  0.4em\relax Computational Neuroscience Series, 2001.
+
 \bibitem{zhang2018survey}
 M.~ZHANG, G.~Zonghua, and P.~Gang, ``A survey of neuromorphic computing based
   on spiking neural networks,'' \emph{Chinese Journal of Electronics}, vol.~27,
@@ -323,11 +328,6 @@ O.~Russakovsky, J.~Deng, H.~Su, J.~Krause, S.~Satheesh, S.~Ma, Z.~Huang,
   A.~Karpathy, A.~Khosla, M.~Bernstein \emph{et~al.}, ``Imagenet large scale
   visual recognition challenge,'' \emph{International journal of computer
   vision}, vol. 115, no.~3, pp. 211--252, 2015.
-
-\bibitem{dayan2001theoretical}
-P.~Dayan and L.~F. Abbott, \emph{Theoretical neuroscience: computational and
-  mathematical modeling of neural systems}.\hskip 1em plus 0.5em minus
-  0.4em\relax Computational Neuroscience Series, 2001.
 
 \bibitem{lecun1998mnist}
 Y.~LeCun, ``The mnist database of handwritten digits,'' \emph{http://yann.
