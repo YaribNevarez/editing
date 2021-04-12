@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2021.4.1)  8 APR 2021 20:40
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2021.4.1)  12 APR 2021 16:06
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -883,7 +883,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 File: notaglinelogo.png Graphic file (type png)
 <use notaglinelogo.png>
-Package pdftex.def Info: notaglinelogo.png  used on input line 124.
+Package pdftex.def Info: notaglinelogo.png  used on input line 122.
 (pdftex.def)             Requested size: 91.32pt x 23.1352pt.
 
 Overfull \hbox (505.12177pt too wide) has occurred while \output is active
@@ -1112,7 +1112,7 @@ Package xcolor Warning: Incompatible color definition on input line 96.
 
 File: notaglinelogo.png Graphic file (type png)
 <use notaglinelogo.png>
-Package pdftex.def Info: notaglinelogo.png  used on input line 101.
+Package pdftex.def Info: notaglinelogo.png  used on input line 98.
 (pdftex.def)             Requested size: 91.32pt x 23.1352pt.
 
 Overfull \hbox (505.12177pt too wide) has occurred while \output is active
@@ -1264,9 +1264,6 @@ Package xcolor Warning: Incompatible color definition on input line 38.
 
 
 Package xcolor Warning: Incompatible color definition on input line 42.
-
-
-Underfull \vbox (badness 2538) has occurred while \output is active []
 
 
 
@@ -1832,7 +1829,7 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 Here is how much of TeX's memory you used:
  7412 strings out of 492982
  113553 string characters out of 6134897
- 272562 words of memory out of 5000000
+ 288892 words of memory out of 5000000
  10717 multiletter control sequences out of 15000+600000
  118754 words of font info for 156 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1854,7 +1851,7 @@ ype1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/hel
 vetic/uhvro8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.p
 fb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/
 texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (20 pages, 3680370 bytes).
+Output written on main.pdf (20 pages, 3682497 bytes).
 PDF statistics:
  1276 PDF objects out of 1440 (max. 8388607)
  984 compressed objects within 10 object streams
