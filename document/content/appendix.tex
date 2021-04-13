@@ -2,7 +2,7 @@
 \subsection{\REVIEW{SbS algorithm}}
 \label{sec:appendix_sbs_algorithm}
 
-\REVIEW{The SbS network inference is described in Algorithm\mbox{~\ref{alg:inference}}, while spike production and layer update are described in Algorithm\mbox{~\ref{alg:spike}} and \mbox{~\ref{alg:update}}, respectably.}
+\REVIEW{The SbS network inference is described in \mbox{\Algo{alg:inference}}, while spike production and layer update are described in \mbox{\Algo{alg:spike}} and \mbox{\Algo{alg:update}}, respectably.}
 
 \begin{algorithm}[h!]
 	\label{alg:inference}
@@ -16,7 +16,7 @@
 		$l$ is the layer index.
 		\REQUIRE $N_{L}$ as the number of layers.
 		\REQUIRE $N^l_{X}, N^l_{Y}$ as the size of layers.
-		\REQUIRE $N_{Spk}$ as the number of spikes for inference.
+		\REQUIRE $N_{Spk}$ as the number of spikes for inference (iterations).
 		\ENSURE $H^l$.
 		\FOR {$t = 0$ \textbf{to} $N_{Spk}-1$}
 		\textit{Initialization of $H^l(i_X,i_Y,:)$} :

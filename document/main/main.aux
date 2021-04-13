@@ -115,21 +115,20 @@
 \citation{ernst2007efficient}
 \citation{ernst2007efficient}
 \citation{rotermund2019Backpropagation}
+\citation{izhikevich2004model}
+\citation{izhikevich2004model}
+\citation{izhikevich2004model}
+\citation{izhikevich2004model}
+\citation{izhikevich2004model}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {II-A}2}Classical approximate computing}{4}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {II-B}}Spike-by-Spike neural networks accelerators}{4}}
 \@writefile{toc}{\contentsline {section}{\numberline {III}Background}{4}}
 \newlabel{sec:background}{{III}{4}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-A}}Spike-by-Spike Neural Networks}{4}}
 \newlabel{sec:sbs}{{\unhbox \voidb@x \hbox {III-A}}{4}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces SbS network architecture for handwritten digit classification task.}}{4}}
-\newlabel{fig:sbs_network}{{2}{4}}
 \newlabel{eq:sbs_update}{{1}{4}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-B}}\texthl  {Basic Network Overview}}{4}}
-\citation{izhikevich2004model}
-\citation{izhikevich2004model}
-\citation{izhikevich2004model}
-\citation{izhikevich2004model}
-\citation{izhikevich2004model}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-C}}\texthl  {Computational cost}}{4}}
 \citation{lecun1998mnist}
 \citation{rotermund2019Backpropagation}
 \citation{nevarez2020accelerator}
@@ -137,11 +136,12 @@
 \citation{nevarez2020accelerator}
 \citation{nevarez2020accelerator}
 \citation{nevarez2020accelerator}
+\newlabel{alg:sbs}{{1}{5}}
+\@writefile{loa}{\contentsline {algocf}{\numberline {1}{\ignorespaces SbS layer update.}}{5}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces SbS network architecture for handwritten digit classification task.}}{5}}
+\newlabel{fig:sbs_network}{{2}{5}}
 \@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces SbS network architecture for handwritten digit classification task.}}{5}}
 \newlabel{tab:sbs_network}{{1}{5}}
-\newlabel{alg:sbs}{{1}{5}}
-\@writefile{loa}{\contentsline {algocf}{\numberline {1}{\ignorespaces SbS algorithm.}}{5}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-C}}\texthl  {Computational cost}}{5}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-D}}\texthl  {Error resilience}}{5}}
 \@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces SbS IPs as independent computational entities, (a) illustrates an input layer with a massive amount of IPs operating as independent computational entities, (b) shows a hidden layer with an arbitrary amount of IPs as independent computational entities, (c) exhibits a set of neurons grouped in an IP.}}{5}}
 \newlabel{fig:SbS_layer}{{3}{5}}
@@ -161,9 +161,9 @@
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {IV-B}2}Computation mode}{7}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-C}}dot-product hardware module}{7}}
 \newlabel{sec:dot-product_hardware_module}{{\unhbox \voidb@x \hbox {IV-C}}{7}}
-\newlabel{eq:dot_product}{{2}{7}}
 \@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces The {\it  Conv} processing unit and its six stages: (a) receive IP vector, (b) spike firing, (c) receive spike kernel, (d) update dynamics, (e) dispatch new IP vector, (f) dispatch output spike matrix.}}{7}}
 \newlabel{fig:hw_conv}{{7}{7}}
+\newlabel{eq:dot_product}{{2}{7}}
 \newlabel{eq:exp_max}{{3}{7}}
 \newlabel{eq:bits_exp}{{4}{7}}
 \newlabel{eq:bits_bitwidth}{{5}{7}}
@@ -175,13 +175,13 @@
 \newlabel{fig:dot_product_float}{{9}{8}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {IV-C}2}Dot-product with hybrid custom floating-point and logarithmic approximation}{8}}
 \citation{xilinx2015zynq}
-\citation{nevarez2020accelerator}
 \newlabel{eq:dot_standard_custom_float_latency}{{7}{9}}
 \newlabel{eq:dot_log_latency}{{8}{9}}
 \@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Dot-product hardware module with hybrid custom floating-point approximation, (a) exhibits the initiation interval of 2 clock cycles, (b) presents the iteration latency of 13 clock cycles, (c) shows the pairwise product blocks in dark-gray, and (d) illustrates the accumulation blocks in light-gray.}}{9}}
 \newlabel{fig:dot_product_custom}{{10}{9}}
 \@writefile{toc}{\contentsline {section}{\numberline {V}Experimental results}{9}}
 \newlabel{sec:experimental_results}{{V}{9}}
+\citation{nevarez2020accelerator}
 \@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Dot-product hardware module with hybrid logarithmic approximation, (a) exhibits the initiation interval of 2 clock cycles, (b) presents the iteration latency of 9 clock cycles, (c) shows the pairwise product block in dark-gray, and (d) illustrates the accumulation blocks in light-gray.}}{10}}
 \newlabel{fig:dot_product_log}{{11}{10}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-A}}Performance benchmark}{10}}
@@ -206,71 +206,62 @@
 \newlabel{fig:latency_pu_fp}{{14}{11}}
 \newlabel{eq:time_cpu}{{9}{11}}
 \newlabel{eq:time_pu}{{10}{11}}
-\newlabel{eq:time_spike}{{11}{11}}
-\newlabel{eq:time_finish}{{12}{11}}
 \@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces Performance bottleneck of cyclic computation on processing units with standard floating-point (IEEE 754) arithmetic, (a) exhibits the starting of $t_{PU}$ of {\it  Conv2} on a previous computation cycle, (b) presents $t_{CPU}$ of {\it  Conv2} on the current computation cycle, (c) shows the CPU waiting time (in gray color) for {\it  Conv2} as a busy resource (awaiting for {\it  Conv2} interruption), and (d) illustrates the $t_{f}$ from the previous computation cycle, the starting of $t_{PU}$ on the current computation cycle ({\it  Conv2} interruption on completion, and start current computation cycle).}}{11}}
 \newlabel{fig:latency_pu_fp_cycle}{{15}{11}}
-\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Resource utilization and power dissipation of processing units with standard floating-point (IEEE 754) computation.}}{11}}
-\newlabel{tab:resource_fp}{{4}{11}}
+\newlabel{eq:time_spike}{{11}{11}}
+\newlabel{eq:time_finish}{{12}{11}}
 \citation{venkataramani2015approximate}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Resource utilization and power dissipation of processing units with standard floating-point (IEEE 754) computation.}}{12}}
+\newlabel{tab:resource_fp}{{4}{12}}
 \@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Resource utilization and power dissipation of multiplier and adder floating-point (IEEE 754) operator cores.}}{12}}
 \newlabel{tab:LogiCORE}{{5}{12}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {V-A}3}Benchmark on noise tolerance plot}{12}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-B}}Design exploration with hybrid custom floating-point and logarithmic approximation}{12}}
 \@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces Noise tolerance on hardware PU with standard floating-point (IEEE 754) computation (benchmark/reference), (a) exhibits accuracy degradation applying $50\%$ of noise amplitude, and (b) illustrates convergence of inference with $400$ spikes.}}{12}}
 \newlabel{fig:accuracy_vs_noise_pu_fp}{{16}{12}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {V-B}1}Parameters for numeric representation of synaptic weight matrix}{12}}
-\newlabel{sec:parameters}{{\unhbox \voidb@x \hbox {V-B}1}{12}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-B}}Design exploration with hybrid custom floating-point and logarithmic approximation}{12}}
 \@writefile{lof}{\contentsline {figure}{\numberline {17}{\ignorespaces $\qopname  \relax o{log}_2$-histogram of each synaptic weight matrix showing the percentage of matrix elements with given integer exponent.}}{13}}
 \newlabel{fig:log2histogram}{{17}{13}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {V-B}1}Parameters for numeric representation of synaptic weight matrix}{13}}
+\newlabel{sec:parameters}{{\unhbox \voidb@x \hbox {V-B}1}{13}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {V-B}2}Design exploration for dot-product with hybrid custom floating-point approximation}{13}}
-\@writefile{lof}{\contentsline {figure}{\numberline {18}{\ignorespaces Performance on processing units with hybrid custom floating-point approximation, (a) exhibits computation schedule, (b) presents cyclic computation schedule, and (c) shows the performance of {\it  Conv2} from a previous computation cycle during the preprocessing of {\it  H1\_CONV} on the current computation cycle without bottleneck.}}{13}}
-\newlabel{fig:latency_pu_cfp_cycle}{{18}{13}}
 \@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Resource utilization and power dissipation of processing units with hybrid custom floating-point approximation.}}{13}}
 \newlabel{tab:resource_cfp}{{6}{13}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {V-B}3}Design exploration for dot-product whit hybrid logarithmic approximation}{13}}
 \@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Performance of hardware processing units with hybrid custom floating-point approximation.}}{14}}
 \newlabel{tab:latency_cfp}{{7}{14}}
+\@writefile{lof}{\contentsline {figure}{\numberline {18}{\ignorespaces Performance on processing units with hybrid custom floating-point approximation, (a) exhibits computation schedule, (b) presents cyclic computation schedule, and (c) shows the performance of {\it  Conv2} from a previous computation cycle during the preprocessing of {\it  H1\_CONV} on the current computation cycle without bottleneck.}}{14}}
+\newlabel{fig:latency_pu_cfp_cycle}{{18}{14}}
 \@writefile{lof}{\contentsline {figure}{\numberline {19}{\ignorespaces Noise tolerance on hardware PU with custom floating-point approximation, (a) exhibits accuracy degradation applying $50\%$ of noise amplitude, and (b) illustrates convergence of inference with $400$ spikes.}}{14}}
 \newlabel{fig:accuracy_vs_noise_pu_cfp}{{19}{14}}
 \@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Performance of hardware processing units with hybrid logarithmic approximation.}}{14}}
 \newlabel{tab:latency_log}{{8}{14}}
-\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Resource utilization and power dissipation of processing units with hybrid logarithmic approximation.}}{14}}
-\newlabel{tab:resource_log}{{9}{14}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-C}}Results and discussion}{14}}
 \citation{nevarez2020accelerator}
 \citation{nevarez2020accelerator}
 \citation{nevarez2020accelerator}
 \@writefile{lof}{\contentsline {figure}{\numberline {20}{\ignorespaces Performance of processing units with hybrid logarithmic approximation, (a) exhibits computation schedule, and (b) illustrates cyclic computation schedule.}}{15}}
 \newlabel{fig:latency_pu_log_cycle}{{20}{15}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Resource utilization and power dissipation of processing units with hybrid logarithmic approximation.}}{15}}
+\newlabel{tab:resource_log}{{9}{15}}
 \@writefile{lof}{\contentsline {figure}{\numberline {21}{\ignorespaces Noise tolerance on hardware PU with hybrid logarithmic approximation, (a) exhibits accuracy degradation applying $40\%$ of noise amplitude, (b) illustrates convergence of inference with $600$ spikes.}}{15}}
 \newlabel{fig:accuracy_vs_noise_pu_log}{{21}{15}}
-\@writefile{toc}{\contentsline {section}{\numberline {VI}Conclusions}{15}}
-\newlabel{sec:conclusions}{{VI}{15}}
-\bibstyle{IEEEtran}
-\bibdata{../content/bibliography.bib}
-\bibcite{schmidhuber2015deep}{1}
-\bibcite{Taigman_2014_CVPR}{2}
-\bibcite{Design_Exploration_SbS_Trans20}{3}
 \@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Experimental results.}}{16}}
 \newlabel{tab:results}{{10}{16}}
 \@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Platform implementations.}}{16}}
 \newlabel{tab:platform_comparison}{{11}{16}}
 \@writefile{lof}{\contentsline {figure}{\numberline {22}{\ignorespaces Power dissipation breakdown of platform implementations, (a) {\fontencoding  {T1}\fontseries  {b}\selectfont  {R}ef.}\nobreakspace  {}\cite  {nevarez2020accelerator} architecture with homogeneous AUs using standard floating-point arithmetic (IEEE 754), (b) reference architecture with specialized heterogeneous PUs using standard floating-point arithmetic (IEEE 754), (c) proposed architecture with hybrid custom floating-point approximation, and (d) proposed architecture with hybrid logarithmic approximation.}}{16}}
 \newlabel{fig:platform_power_dissipation_breakdown}{{22}{16}}
+\@writefile{toc}{\contentsline {section}{\numberline {VI}Conclusions}{16}}
+\newlabel{sec:conclusions}{{VI}{16}}
 \newlabel{sec:Ack}{{VI}{16}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {VI-A}}\texthl  {SbS algorithm}}{16}}
-\newlabel{sec:appendix_sbs_algorithm}{{\unhbox \voidb@x \hbox {VI-A}}{16}}
-\@writefile{toc}{\contentsline {section}{REFERENCES}{16}}
+\bibstyle{IEEEtran}
+\bibdata{../content/bibliography.bib}
+\bibcite{schmidhuber2015deep}{1}
+\bibcite{Taigman_2014_CVPR}{2}
+\bibcite{Design_Exploration_SbS_Trans20}{3}
 \bibcite{Spinnaker_Trans13}{4}
 \bibcite{ernst2007efficient}{5}
 \bibcite{SNN_Survey_Trans19}{6}
-\newlabel{alg:inference}{{2}{17}}
-\@writefile{loa}{\contentsline {algocf}{\numberline {2}{\ignorespaces SbS network inference.}}{17}}
-\newlabel{alg:spike}{{3}{17}}
-\@writefile{loa}{\contentsline {algocf}{\numberline {3}{\ignorespaces Spike production.}}{17}}
-\newlabel{alg:update}{{4}{17}}
-\@writefile{loa}{\contentsline {algocf}{\numberline {4}{\ignorespaces SbS layer update.}}{17}}
 \bibcite{mcdonnell2011benefits}{7}
 \bibcite{Dapello2020.06.16.154542}{8}
 \bibcite{davies2018loihi}{9}
@@ -283,6 +274,13 @@
 \bibcite{roy2019towards}{16}
 \bibcite{bouvier2019spiking}{17}
 \bibcite{young2019review}{18}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {VI-A}}\texthl  {SbS algorithm}}{17}}
+\newlabel{sec:appendix_sbs_algorithm}{{\unhbox \voidb@x \hbox {VI-A}}{17}}
+\newlabel{alg:inference}{{2}{17}}
+\@writefile{loa}{\contentsline {algocf}{\numberline {2}{\ignorespaces SbS network inference.}}{17}}
+\@writefile{toc}{\contentsline {section}{REFERENCES}{17}}
+\newlabel{alg:spike}{{3}{17}}
+\@writefile{loa}{\contentsline {algocf}{\numberline {3}{\ignorespaces Spike production.}}{17}}
 \bibcite{rotermund2019recurrentsbs}{19}
 \bibcite{dayan2001theoretical}{20}
 \bibcite{zhang2018survey}{21}
@@ -308,6 +306,8 @@
 \bibcite{li2016pruning}{41}
 \bibcite{liu2018rethinking}{42}
 \bibcite{rathi2018stdp}{43}
+\newlabel{alg:update}{{4}{18}}
+\@writefile{loa}{\contentsline {algocf}{\numberline {4}{\ignorespaces SbS layer update.}}{18}}
 \bibcite{sen2017approximate}{44}
 \bibcite{srivastava2014dropout}{45}
 \bibcite{wan2013regularization}{46}
