@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2021.4.1)  13 APR 2021 03:24
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2021.4.1)  13 APR 2021 14:26
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -751,28 +751,22 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 
  <./logo.png> <./bullet.png>]
 Underfull \hbox (badness 2564) in paragraph at lines 40--41
-[][]\T1/ptm/n/n/10 As[] [][][]com[]-[]pu[]-[]ta[]-[]tional[] [][][]de[]-[]mand[
-]-[]ing[] [][][]al[]-[]go[]-[]rithms,[] [][][]ANNs[] [][][]and[]
+[]\T1/ptm/n/n/10 As com-pu-ta-tional de-mand-ing al-go-rithms, ANNs and
  []
 
 
 Underfull \hbox (badness 7186) in paragraph at lines 40--41
-[][][]\T1/ptm/n/n/10 SNNs[] [][][]in[] [][][]par[]-[]tic[]-[]u[]-[]lar,[] [][][
-]must[] [][][]be[] [][][]ad[]-[]dressed[] [][][]by[] [][][]spe[]-[]cial[]-
+\T1/ptm/n/n/10 SNNs in par-tic-u-lar, must be ad-dressed by spe-cial-
  []
 
 
-Underfull \hbox (badness 2781) in paragraph at lines 40--41
-[]\T1/ptm/n/n/10 ized[] [][][]hard[]-[]ware[] [][][]ar[]-[]chi[]-[]tec[]-[]ture
-s.[] [][][]A[] [][][]sig[]-[]nif[]-[]i[]-[]cant[] [][][]re[]-[]search[] [][][]e
-f[]-
+Underfull \hbox (badness 2707) in paragraph at lines 40--41
+\T1/ptm/n/n/10 ized hard-ware ar-chi-tec-tures. A sig-nif-i-cant re-search ef-
  []
 
 
 Underfull \hbox (badness 1430) in paragraph at lines 40--41
-[]\T1/ptm/n/n/10 fort[] [][][]has[] [][][]been[] [][][]per[]-[]formed[] [][][]i
-n[] [][][]SNN[] [][][]ac[]-[]cel[]-[]er[]-[]a[]-[]tors,[] [][][]see[] [][][]e.g
-.[]
+\T1/ptm/n/n/10 fort has been per-formed in SNN ac-cel-er-a-tors, see e.g.
  []
 
 <../figures/dot-product_unit.pdf, id=18, 252.91655pt x 252.91655pt>
@@ -882,15 +876,12 @@ Package xcolor Warning: Incompatible color definition on input line 110.
 
 
 Underfull \hbox (badness 2617) in paragraph at lines 112--113
-[]\T1/ptm/n/n/10 The[] [][][]num[]-[]ber[] [][][]of[] [][][]mul[]-[]ti[]-[]ply[
-]-[]ac[]-[]cu[]-[]mu[]-[]late[] [][][](MAC)[] [][][]op[]-[]er[]-[]a[]-[]tions[]
-
+\T1/ptm/n/n/10 The num-ber of multiply-accumulate (MAC) op-er-a-tions
  []
 
 
-Underfull \hbox (badness 7451) in paragraph at lines 112--113
-[][][]\T1/ptm/n/n/10 re[]-[]quired[] [][][]for[] [][][]in[]-[]fer[]-[]ence[] []
-[][]of[] [][][]an[] [][][]SbS[] [][][]layer[] [][][]is[] [][][]de[]-[]fined[]
+Underfull \hbox (badness 2229) in paragraph at lines 112--113
+\T1/ptm/n/n/10 re-quired for in-fer-ence of an SbS layer is de-fined by
  []
 
 File: notaglinelogo.png Graphic file (type png)
@@ -1834,7 +1825,7 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 Here is how much of TeX's memory you used:
  7411 strings out of 492982
  113495 string characters out of 6134897
- 290665 words of memory out of 5000000
+ 209364 words of memory out of 5000000
  10719 multiletter control sequences out of 15000+600000
  118754 words of font info for 156 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1856,7 +1847,7 @@ ype1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/hel
 vetic/uhvro8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.p
 fb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/
 texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (20 pages, 3684674 bytes).
+Output written on main.pdf (20 pages, 3634144 bytes).
 PDF statistics:
  1276 PDF objects out of 1440 (max. 8388607)
  984 compressed objects within 10 object streams
