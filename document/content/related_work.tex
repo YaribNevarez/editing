@@ -1,8 +1,8 @@
 \section{Related work}
 \label{sec:related_work}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Approximate computing in neural networks}
-Approximate computing has been used in a wide range of applications to increase the computational efficiency in hardware\cite{han2013approximate}. For neural network applications, two main approximation strategies are used, namely network compression and classical approximate computing\cite{bouvier2019spiking}.
+\subsection{Efficient computing in neural networks}
+For efficient neural network computation, two main optimization strategies are used, namely network compression and classical approximate computing\cite{bouvier2019spiking}.
 
 \subsubsection{Network compression}
 Researchers focusing on embedded applications started lowering the precision of weights and activation maps to shrink the memory footprint of the large number of parameters representing ANNs, a method known as network compression or quantization. This practice takes advantage of the intrinsic error-tolerance of neural networks, as well as their ability to compensate for approximation while training. In this way, reduced bit precision causes a small accuracy loss \cite{courbariaux2015binaryconnect, han2015deep, hubara2017quantized, rastegari2016xnor}.
@@ -16,7 +16,7 @@ These methods can be used for SNNs as well. In \cite{rathi2018stdp}, Rathi et al
 Quantization is therefore a powerful technique to improve energy efficiency and memory requirements of ANN and SNN accelerators, with small accuracy degradation. However, this approach requires quantization-aware training methods that, in some cases, are problematic or even inaccessible, particularly in emerging deep SNN algorithms\cite{zhang2018survey}.
 
 \subsubsection{Classical approximate computing}
-This approach consists of designing processing elements that approximate their computation by employing modified algorithmic logic units \cite{han2013approximate}. In \cite{kim2013energy}, Kim et al. have shown SNNs using carry skip adders achieving $2.4\times$ latency enhancement and $43\%$ more energy efficiency, with an accuracy degradation of 0.97\% on a handwritten digit classification task \REVIEW{(MNIST)}. Therefore, approximate computing provides important enhancement in energy efficiency and processing speed.
+Approximate computing has been used in a wide range of applications to increase the computational efficiency in hardware\cite{han2013approximate}. This approach consists of designing processing elements that approximate their computation by employing modified algorithmic logic units \cite{han2013approximate}. In \cite{kim2013energy}, Kim et al. have shown SNNs using carry skip adders achieving $2.4\times$ latency enhancement and $43\%$ more energy efficiency, with an accuracy degradation of 0.97\% on a handwritten digit classification task \REVIEW{(MNIST)}. Therefore, approximate computing provides important enhancement in energy efficiency and processing speed.
 
 However, as the complexity of the dataset increases, as well as the depth of the network topology, such as ResNet \cite{he2016deep} on ImageNet \cite{russakovsky2015imagenet}, the accuracy degradation becomes more important and may not be negligible anymore \cite{rastegari2016xnor}, especially for critical applications such as autonomous driving. Therefore, it is not certain that network compression techniques and approximate computing are suitable for \replaced{all}{some} applications.
 

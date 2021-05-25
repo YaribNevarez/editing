@@ -20,7 +20,7 @@ major companies (e.g., Intel \mbox{\cite{davies2018loihi}} and IBM
 domain of spiking networks \mbox{\cite{Spinnaker_Trans13}}.
 }
 
-\REVIEW{SNNs emulate the real behavior of neurons in different levels of detail. The more detailed the biological part is emulated, the greater the computational complexity \mbox{\cite{izhikevich2004model,amunts2019human}}. Most of today's SNNs use a very detailed model (e.g., Leaky Integrate-and-Fire (LIF)).
+\REVIEW{SNNs emulate the real behavior of neurons in different levels of detail. The more detailed the biological part is emulated, the greater the computational complexity \mbox{\cite{izhikevich2004model,amunts2019human}}. For example, Leaky Integrate-and-Fire (LIF) is a widely used model; however, this model is relatively complex for emulation in practical embedded applications with hardware and energy constraints.
 	
 	Alternatively, the Spike-by-Spike (SbS) neural network is a remarkable model for its reduced complexity, which is on the less realistic side of the SNN scale of biological realism\mbox{\cite{rotermund2019Backpropagation,ernst2007efficient}}. Consequently, the hardware complexity of SbS network implementations is greatly reduced
 	\mbox{\cite{nevarez2020accelerator,rotermund2018massively}}. In spite of this, SbS still uses stochastic spikes as a means of transmitting information between populations of neurons and thus retains the advantageous robustness of SNNs.}
@@ -66,5 +66,5 @@ Our main contributions are as follows:
 The rest of the paper is organized as follows. Section~\ref{sec:related_work} covers the related work; Section~\ref{sec:background} introduces the background to SbS networks; Section~\ref{sec:system_design} describes the system design and the approximate dot-product hardware module; Section~\ref{sec:experimental_results} presents the experimental results thorough a design exploration flow; Section~\ref{sec:conclusions} concludes the paper.
 
 
-To promote the research on SbS networks, our design exploration framework is made available to the public as an open-source project at http://www.ids.uni-bremen.de/sbs-framework.html
+To promote the research on SbS networks, our design exploration framework is made available to the public as an open-source project at https://github.com/YaribNevarez/sbs-framework.git
 
