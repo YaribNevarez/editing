@@ -1,28 +1,8 @@
 \begin{abstract}
-Spiking neural networks (SNNs) represent a promising alternative to
-conventional neural networks. In particular, the so-called
-Spike-by-Spike (SbS) neural networks provide exceptional noise
-robustness and reduced complexity. However, deep SbS networks
-require a memory footprint and a computational cost unsuitable for
-embedded applications. To address this problem, this work exploits
-the intrinsic error resilience of neural networks to improve
-performance and to reduce hardware complexity. More precisely,
-we design a vector dot-product hardware unit based on approximate computing
-with \replaced{configurable quality}{quality configurable design}
-using hybrid custom floating-point and logarithmic number
-representation. This approach reduces computational latency, memory
-footprint, and power dissipation while preserving inference
-accuracy. To demonstrate our approach, we address a design
-exploration flow using high-level synthesis and a Xilinx SoC-FPGA.
-\replaced{The}{As a result, the} proposed design \replaced{reduces
-	$20.5\times$ computational latency and $8\times$ weight memory
-	footprint, with}{ achieves $20.5\times$ latency enhancement,
-	$8\times$ weight memory footprint reduction, and} less than
-$0.5\%$ of accuracy degradation on \added{a} handwritten digit
-recognition task.
-	
+Convolutional neural networks (CNNs) have become ubiquitous in the field of computer vision and image processing. Given the elevated computational demands of CNNs, dedicated hardware accelerators have been developed to enhance performance and energy efficiency. However, most of commercial deep learning processing units (DPUs) are not targeting compatibility for resource-limited FPGAs.
+In this publication, we present a dedicated hardware accelerator for TensorFlow (TF) Lite on embedded FPGA for CNN and depthwise CNN. This accelerator fully incorporates the support for TF Lite quantization for fixed-point and floating-point representations. The proposed hardware optimization decomposes floating-point calculation for the convolution dot-product in order to accelerate floating-point computation, reduce energy consumption and resource utilization. To demonstrate potential of the proposed architecture, we address a design exploration with custom-built CNNs with fixed-point quantization, floating-point single precision, half-precision, brain floating point, NVidia's TensorFloat, and customized reduced formats for approximate computing including logarithmic representation. A single accelerator instance on a Xilinx Zynq-7020 achieves a peak runtime acceleration of $45\times$ on convolution operators compared to the embedded CPU, and $5\times$ compared with the standard Xilinx floating-point LogiCORE IP on MAC operations. With regards to throughput and power efficiency, a single accelerator at $150$ MHz yields $152$ MFLOP/s and $1.1$ TFLOPS/watt, respectively. The entire hardware design and the implemented TF Lite delegate extensions are available as open source project.
 \end{abstract}
 
 \begin{IEEEkeywords}
-Artificial intelligence, spiking neural networks, approximate computing, logarithmic, parameterisable floating-point, optimization, hardware accelerator, embedded systems, FPGA
+Artificial intelligence, convolutional neural networks, hardware accelerator, embedded systems, FPGA, custom floating-point, logarithmic, approximate computing
 \end{IEEEkeywords}
