@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2021.5.10)  12 SEP 2021 12:06
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2021.5.10)  14 SEP 2021 23:36
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -646,78 +646,85 @@ e
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 (../content/authors.tex)
-LaTeX Font Info:    Calculating math sizes for size <11> on input line 53.
-LaTeX Font Info:    Try loading font information for U+msa on input line 53.
+LaTeX Font Info:    Calculating math sizes for size <11> on input line 55.
+LaTeX Font Info:    Try loading font information for U+msa on input line 55.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 53.
+LaTeX Font Info:    Try loading font information for U+msb on input line 55.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-(../content/abstract.tex) (../content/introduction.tex)
-(../content/related_work.tex) (../content/background.tex)
-(../content/system_design.tex
-<../figures/workflow.pdf, id=1, 252.945pt x 144.54pt>
+(../content/abstract.tex) (../content/introduction.tex
+<../figures/workflow.pdf, id=1, 252.945pt x 108.405pt>
 File: ../figures/workflow.pdf Graphic file (type pdf)
 
 <use ../figures/workflow.pdf>
-Package pdftex.def Info: ../figures/workflow.pdf used on input line 6.
-(pdftex.def)             Requested size: 261.76535pt x 149.5836pt.
+Package pdftex.def Info: ../figures/workflow.pdf used on input line 11.
+(pdftex.def)             Requested size: 261.76535pt x 112.1877pt.
 
-Overfull \hbox (6.0pt too wide) in paragraph at lines 6--7
+Overfull \hbox (6.0pt too wide) in paragraph at lines 11--12
  [][] 
  []
 
-<../figures/system_design.pdf, id=2, 252.945pt x 144.54pt>
+
+Underfull \vbox (badness 2698) has occurred while \output is active []
+
+ [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
+
+
+ <../figures/workflow.pdf>])
+(../content/related_work.tex) (../content/background.tex)
+(../content/system_design.tex
+<../figures/system_design.pdf, id=29, 252.945pt x 144.54pt>
 File: ../figures/system_design.pdf Graphic file (type pdf)
 
 <use ../figures/system_design.pdf>
-Package pdftex.def Info: ../figures/system_design.pdf used on input line 13.
+Package pdftex.def Info: ../figures/system_design.pdf used on input line 8.
 (pdftex.def)             Requested size: 261.76535pt x 149.5836pt.
 
-Overfull \hbox (6.0pt too wide) in paragraph at lines 13--14
+Overfull \hbox (6.0pt too wide) in paragraph at lines 8--9
  [][] 
  []
 
-<../figures/accelerator.pdf, id=3, 252.945pt x 252.945pt>
+<../figures/accelerator.pdf, id=30, 252.945pt x 252.945pt>
 File: ../figures/accelerator.pdf Graphic file (type pdf)
 
 <use ../figures/accelerator.pdf>
-Package pdftex.def Info: ../figures/accelerator.pdf used on input line 20.
+Package pdftex.def Info: ../figures/accelerator.pdf used on input line 15.
 (pdftex.def)             Requested size: 261.76535pt x 261.77133pt.
 
-Overfull \hbox (6.0pt too wide) in paragraph at lines 20--21
+Overfull \hbox (6.0pt too wide) in paragraph at lines 15--16
  [][] 
  []
 
-<../figures/dot-product_unit.pdf, id=4, 252.945pt x 361.35pt>
+<../figures/dot-product_unit.pdf, id=31, 252.945pt x 361.35pt>
 File: ../figures/dot-product_unit.pdf Graphic file (type pdf)
 
 <use ../figures/dot-product_unit.pdf>
-Package pdftex.def Info: ../figures/dot-product_unit.pdf used on input line 27.
+Package pdftex.def Info: ../figures/dot-product_unit.pdf used on input line 22.
 
 (pdftex.def)             Requested size: 261.76535pt x 373.95906pt.
 
-Overfull \hbox (6.0pt too wide) in paragraph at lines 27--28
+Overfull \hbox (6.0pt too wide) in paragraph at lines 22--23
  [][] 
  []
 
-<../figures/sw_stack.pdf, id=5, 252.945pt x 166.22101pt>
+<../figures/sw_stack.pdf, id=32, 252.945pt x 166.22101pt>
 File: ../figures/sw_stack.pdf Graphic file (type pdf)
 
 <use ../figures/sw_stack.pdf>
-Package pdftex.def Info: ../figures/sw_stack.pdf used on input line 34.
+Package pdftex.def Info: ../figures/sw_stack.pdf used on input line 29.
 (pdftex.def)             Requested size: 261.76535pt x 172.02115pt.
 
-Overfull \hbox (6.0pt too wide) in paragraph at lines 34--35
+Overfull \hbox (6.0pt too wide) in paragraph at lines 29--30
  [][] 
  []
 
 ) (../content/experimental_results.tex) (../content/conclusions.tex)
-No file main.bbl.
+(./main.bbl)
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -732,39 +739,34 @@ Before submitting the final camera ready copy, remember to:
 \Changes@OutFile=\write3
 \openout3 = `main.soc'.
 
-[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
+[2 <../figures/system_design.pdf> <../figures/accelerator.pdf
 
+pdfTeX warning: /usr/bin/pdflatex (file ../figures/accelerator.pdf): PDF inclus
+ion: multiple pdfs with page group included in a single page
+>] [3
 
- <../figures/workflow.pdf> <../figures/system_design.pdf
-
-pdfTeX warning: /usr/bin/pdflatex (file ../figures/system_design.pdf): PDF incl
-usion: multiple pdfs with page group included in a single page
->] [2 <../figures/accelerator.pdf> <../figures/dot-product_unit.pdf
-
-pdfTeX warning: /usr/bin/pdflatex (file ../figures/dot-product_unit.pdf): PDF i
-nclusion: multiple pdfs with page group included in a single page
-> <../figures/sw_stack.pdf
+ <../figures/dot-product_unit.pdf> <../figures/sw_stack.pdf
 
 pdfTeX warning: /usr/bin/pdflatex (file ../figures/sw_stack.pdf): PDF inclusion
 : multiple pdfs with page group included in a single page
 >] (./main.aux) ) 
 Here is how much of TeX's memory you used:
- 7077 strings out of 494953
- 106590 string characters out of 6180977
- 195369 words of memory out of 5000000
- 10191 multiletter control sequences out of 15000+600000
- 38758 words of font info for 81 fonts, out of 8000000 for 9000
+ 7093 strings out of 494953
+ 106844 string characters out of 6180977
+ 194381 words of memory out of 5000000
+ 10202 multiletter control sequences out of 15000+600000
+ 43146 words of font info for 86 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 38i,11n,35p,794b,306s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 38i,11n,35p,1375b,306s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</u
 sr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texliv
 e/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texlive/texmf-dist/f
 onts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/
 times/utmri8a.pfb>
-Output written on main.pdf (2 pages, 272373 bytes).
+Output written on main.pdf (3 pages, 255153 bytes).
 PDF statistics:
- 108 PDF objects out of 1000 (max. 8388607)
- 61 compressed objects within 1 object stream
+ 112 PDF objects out of 1000 (max. 8388607)
+ 64 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  26 words of extra memory for PDF output out of 10000 (max. 10000000)
 
