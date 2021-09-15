@@ -15,6 +15,11 @@ In this paper, we present a hardware/software co-design framework to accelerate 
 
 To operate the proposed accelerator framework, we train a CNN model on TensorFlow or Keras, then this is converted into a TensorFlow Lite model with either float32 or int8 quantization, then the model is stored in a micro SD card along with the software and the FPGA configuration bitstream for deployment. See \Fig{fig:workflow}.
 
-To demonstrate the potential of the proposed framework, we address a design exploration with two custom-built CNN architectures for CIFAR-10 image classification. We demonstrate the performance of the Conv2D and DepthwiseConv2D operator engines with fixed-pint quantization, floating-point with Xilinx LogiCORE IP, decomposed floating-point with single precision, half-precision, brain floating-point, TensorFloat, and custom reduced formats for approximate processing, including logarithmic computation. We present a detailed runtime computation schedule and an exhaustive accuracy performance using custom reduced floating-point formats.
+Our main contributions are as follows:
+\begin{itemize}
+	\item We develop a dedicated hardware accelerator for TensorFlow Lite on embedded FPGA emulating an Edge TPU coprocessor to delegate Conv2D and DepthwiseConv2D tensor operations.
+	\item We develop a hardware/software co-design framework ideal for low-power and resource-constrained AI applications. The parameterized design of the proposed hardware accelerator enables exploring various architecture configurations for different target applications.
+	\item We demonstrate the potential of the proposed framework addressing a design exploration with two custom-built CNN architectures trained for CIFAR-10 image classification. We demonstrate the performance of the Conv2D and DepthwiseConv2D operation engines with fixed-pint quantization, floating-point with Xilinx LogiCORE IP, decomposed floating-point with single precision, half-precision, brain floating-point, TensorFloat, and custom reduced formats for approximate processing, including logarithmic computation. We present a detailed runtime schedule and an exhaustive accuracy performance.
+\end{itemize}
 
-A single accelerator running at 150 MHz on a Xilinx Zynq-7020 achieves 45X runtime acceleration on Conv2D tensor operation compared with ARM Cortex-A9 at 666MHz, and 5X compared with the equivalent standard floating-point implementation in HLS with Xilinx LogiCORE IP. This accelerator yields a peak performance of 1.6 TFLOPS/watt and 152 MFLOP/s. The entire hardware design and the implemented TF Lite software extensions are available as an open-source project.
+To promote the research in this field, our entire work is made available to the public as an open-source project at .

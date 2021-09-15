@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2021.5.10)  14 SEP 2021 23:36
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2021.5.10)  15 SEP 2021 09:44
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -682,10 +682,10 @@ Underfull \vbox (badness 2698) has occurred while \output is active []
 File: ../figures/system_design.pdf Graphic file (type pdf)
 
 <use ../figures/system_design.pdf>
-Package pdftex.def Info: ../figures/system_design.pdf used on input line 8.
+Package pdftex.def Info: ../figures/system_design.pdf used on input line 15.
 (pdftex.def)             Requested size: 261.76535pt x 149.5836pt.
 
-Overfull \hbox (6.0pt too wide) in paragraph at lines 8--9
+Overfull \hbox (6.0pt too wide) in paragraph at lines 15--16
  [][] 
  []
 
@@ -693,10 +693,10 @@ Overfull \hbox (6.0pt too wide) in paragraph at lines 8--9
 File: ../figures/accelerator.pdf Graphic file (type pdf)
 
 <use ../figures/accelerator.pdf>
-Package pdftex.def Info: ../figures/accelerator.pdf used on input line 15.
+Package pdftex.def Info: ../figures/accelerator.pdf used on input line 22.
 (pdftex.def)             Requested size: 261.76535pt x 261.77133pt.
 
-Overfull \hbox (6.0pt too wide) in paragraph at lines 15--16
+Overfull \hbox (6.0pt too wide) in paragraph at lines 22--23
  [][] 
  []
 
@@ -704,11 +704,11 @@ Overfull \hbox (6.0pt too wide) in paragraph at lines 15--16
 File: ../figures/dot-product_unit.pdf Graphic file (type pdf)
 
 <use ../figures/dot-product_unit.pdf>
-Package pdftex.def Info: ../figures/dot-product_unit.pdf used on input line 22.
+Package pdftex.def Info: ../figures/dot-product_unit.pdf used on input line 29.
 
 (pdftex.def)             Requested size: 261.76535pt x 373.95906pt.
 
-Overfull \hbox (6.0pt too wide) in paragraph at lines 22--23
+Overfull \hbox (6.0pt too wide) in paragraph at lines 29--30
  [][] 
  []
 
@@ -716,15 +716,47 @@ Overfull \hbox (6.0pt too wide) in paragraph at lines 22--23
 File: ../figures/sw_stack.pdf Graphic file (type pdf)
 
 <use ../figures/sw_stack.pdf>
-Package pdftex.def Info: ../figures/sw_stack.pdf used on input line 29.
+Package pdftex.def Info: ../figures/sw_stack.pdf used on input line 36.
 (pdftex.def)             Requested size: 261.76535pt x 172.02115pt.
 
-Overfull \hbox (6.0pt too wide) in paragraph at lines 29--30
+Overfull \hbox (6.0pt too wide) in paragraph at lines 36--37
  [][] 
  []
 
-) (../content/experimental_results.tex) (../content/conclusions.tex)
-(./main.bbl)
+) (../content/experimental_results.tex) (../content/conclusions.tex) [2 <../fig
+ures/system_design.pdf> <../figures/accelerator.pdf
+
+pdfTeX warning: /usr/bin/pdflatex (file ../figures/accelerator.pdf): PDF inclus
+ion: multiple pdfs with page group included in a single page
+>]
+Overfull \vbox (2.32336pt too high) has occurred while \output is active []
+
+
+(./main.bbl
+Missing character: There is no ‚ in font ptmr7t!
+Missing character: There is no Ä in font ptmr7t!
+Missing character: There is no ú in font ptmr7t!
+Missing character: There is no ‚ in font ptmr7t!
+Missing character: There is no Ä in font ptmr7t!
+Missing character: There is no ù in font ptmr7t!
+Missing character: There is no ‚ in font ptmr7t!
+Missing character: There is no Ä in font ptmr7t!
+Missing character: There is no ú in font ptmr7t!
+Missing character: There is no ‚ in font ptmr7t!
+Missing character: There is no Ä in font ptmr7t!
+Missing character: There is no ù in font ptmr7t!
+
+Underfull \hbox (badness 10000) in paragraph at lines 56--59
+[]\OT1/ptm/m/n/8 ``Coral. ten-sor-flow mod-els on the edge tpu.,''
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 56--59
+\OT1/ptm/m/n/8 https://coral.ai/docs/edgetpu/models-intro/., ac-cessed Septem-b
+er 15,
+ []
+
+)
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -739,34 +771,29 @@ Before submitting the final camera ready copy, remember to:
 \Changes@OutFile=\write3
 \openout3 = `main.soc'.
 
-[2 <../figures/system_design.pdf> <../figures/accelerator.pdf
-
-pdfTeX warning: /usr/bin/pdflatex (file ../figures/accelerator.pdf): PDF inclus
-ion: multiple pdfs with page group included in a single page
->] [3
-
- <../figures/dot-product_unit.pdf> <../figures/sw_stack.pdf
+[3 <../figures/dot-product_unit.pdf> <../figures/sw_stack.pdf
 
 pdfTeX warning: /usr/bin/pdflatex (file ../figures/sw_stack.pdf): PDF inclusion
 : multiple pdfs with page group included in a single page
 >] (./main.aux) ) 
 Here is how much of TeX's memory you used:
- 7093 strings out of 494953
- 106844 string characters out of 6180977
- 194381 words of memory out of 5000000
- 10202 multiletter control sequences out of 15000+600000
- 43146 words of font info for 86 fonts, out of 8000000 for 9000
+ 7111 strings out of 494953
+ 107118 string characters out of 6180977
+ 194396 words of memory out of 5000000
+ 10220 multiletter control sequences out of 15000+600000
+ 44845 words of font info for 94 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  38i,11n,35p,1375b,306s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</u
-sr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texliv
-e/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texlive/texmf-dist/f
-onts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/
-times/utmri8a.pfb>
-Output written on main.pdf (3 pages, 255153 bytes).
+sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf
+-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texlive/texmf-dist/fonts/ty
+pe1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/u
+tmri8a.pfb>
+Output written on main.pdf (3 pages, 265696 bytes).
 PDF statistics:
- 112 PDF objects out of 1000 (max. 8388607)
- 64 compressed objects within 1 object stream
+ 116 PDF objects out of 1000 (max. 8388607)
+ 67 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  26 words of extra memory for PDF output out of 10000 (max. 10000000)
 
