@@ -5,26 +5,45 @@
 \citation{abdelouahab2018accelerating}
 \@writefile{toc}{\contentsline {section}{\numberline {I}Introduction}{1}}
 \newlabel{sec:introduction}{{I}{1}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Deployment workflow.}}{1}}
-\newlabel{fig:workflow}{{1}{1}}
 \citation{yazdanbakhsh2021evaluation}
 \citation{coral2021Datasheet}
 \citation{coral2021Compatibility}
 \citation{coral2021Datasheet}
 \citation{cass2019taking}
 \citation{nevarez2021accelerating}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Deployment workflow.}}{2}}
+\newlabel{fig:workflow}{{1}{2}}
 \@writefile{toc}{\contentsline {section}{\numberline {II}Related work}{2}}
 \newlabel{sec:related_work}{{II}{2}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {II-A}}TensorFlow models on the Google's Edge TPU}{2}}
 \@writefile{toc}{\contentsline {section}{\numberline {III}Background}{2}}
 \newlabel{sec:background}{{III}{2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-A}}Conv2D tensor operation}{2}}
+\newlabel{eq:Conv2D}{{1}{2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces System-level architecture of the proposed embedded platform.}}{2}}
+\newlabel{fig:system_architecture}{{2}{2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-B}}DepthwiseConv2D tensor operation}{2}}
+\newlabel{eq:DepthwiseConv2D}{{2}{2}}
 \@writefile{toc}{\contentsline {section}{\numberline {IV}System Design}{2}}
 \newlabel{sec:system_design}{{IV}{2}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-A}}Embedded system architecture}{2}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces System-level architecture of the proposed embedded platform.}}{2}}
-\newlabel{fig:system_architecture}{{2}{2}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Hardware architecture of the proposed accelerator.}}{2}}
-\newlabel{fig:accelerator}{{3}{2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-B}}Tensor accelerator}{2}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {IV-B}1}Setup mode}{2}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {IV-B}2}Computation mode}{2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-C}}Compatibility}{2}}
+\citation{TensorFlowLibrary}
+\citation{xilinx2015zynq}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Hardware architecture of the proposed accelerator.}}{3}}
+\newlabel{fig:accelerator}{{3}{3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-D}}Dot-product computation}{3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-E}}Embedded software architecture}{3}}
+\@writefile{toc}{\contentsline {section}{\numberline {V}Experimental results}{3}}
+\newlabel{sec:experimental_results}{{V}{3}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Hardware alternatives for vector dot-product.}}{3}}
+\newlabel{fig:dot_product}{{4}{3}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces System-level overview of the embedded software architecture.}}{3}}
+\newlabel{fig:sw_stack}{{5}{3}}
+\citation{nevarez2020accelerator}
 \bibstyle{IEEEtran}
 \bibdata{../content/bibliography.bib}
 \bibcite{hassaballah2020deep}{1}
@@ -36,13 +55,17 @@
 \bibcite{coral2021Compatibility}{7}
 \bibcite{cass2019taking}{8}
 \bibcite{nevarez2021accelerating}{9}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Proposed hardware modules for vector dot-product.}}{3}}
-\newlabel{fig:dot_product}{{4}{3}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces System-level overview of the embedded software architecture.}}{3}}
-\newlabel{fig:sw_stack}{{5}{3}}
-\@writefile{toc}{\contentsline {section}{\numberline {V}Experimental results}{3}}
-\newlabel{sec:experimental_results}{{V}{3}}
-\@writefile{toc}{\contentsline {section}{\numberline {VI}Conclusions}{3}}
-\newlabel{sec:conclusions}{{VI}{3}}
-\newlabel{sec:Ack}{{VI}{3}}
-\@writefile{toc}{\contentsline {section}{References}{3}}
+\bibcite{TensorFlowLibrary}{10}
+\bibcite{xilinx2015zynq}{11}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Accuracy performance of depthwise separable CNN architecture with custom floating-point approximation.}}{4}}
+\newlabel{fig:acc_custom}{{6}{4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-A}}Computational performance}{4}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {V-A}1}Conv2D operator}{4}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {V-A}2}DepthwiseConv2D operator}{4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-B}}Accuracy performance}{4}}
+\@writefile{toc}{\contentsline {section}{\numberline {VI}Conclusions}{4}}
+\newlabel{sec:conclusions}{{VI}{4}}
+\newlabel{sec:Ack}{{VI}{4}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Accuracy performance of depthwise separable CNN architecture with standard floating-point formats.}}{4}}
+\newlabel{fig:acc_standard}{{7}{4}}
+\@writefile{toc}{\contentsline {section}{References}{4}}

@@ -1,2 +1,13 @@
 \section{Background}
 \label{sec:background}
+\subsection{Conv2D tensor operation}
+
+ 	\begin{eqnarray} \label{eq:Conv2D}
+ 	Conv2D\left(W,y\right)=\sum_{k,l,m}^{K,L,M}W_{(k,l,m)} \cdot y_{(i+k,j+l,m)}
+ 	\end{eqnarray} 	
+ 	
+\subsection{DepthwiseConv2D tensor operation}
+
+ 	\begin{eqnarray} \label{eq:DepthwiseConv2D}
+ 	DepthwiseConv2D\left(W,y\right)=\sum_{k,l}^{K,L}W_{(k,l)} \odot y_{(i+k,j+l)}
+ 	\end{eqnarray}
