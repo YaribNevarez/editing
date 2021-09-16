@@ -1,6 +1,6 @@
 \section{Experimental results}
 \label{sec:experimental_results}
-The proposed hardware/software framework is demonstrated on a Xilinx Zynq-7020 SoC (Zybo-Z7 development board). We deploy TFLite micro on the processing system (PS), and we implement the proposed hardware architecture on the programmable logic (PL). We address a design exploration by building and training custom CNN models in TF, and evaluating their computational and accuracy performance on the proposed hardware architecture.
+The proposed hardware/software framework is demonstrated on a Xilinx Zynq-7020 SoC (Zybo-Z7 development board). We deploy TFLite micro on the processing system (PS), and we implement the proposed hardware architecture on the programmable logic (PL). We address a design exploration by building and training custom CNN models in TF, and we evaluating their computational and accuracy performance on the proposed hardware architecture.
 
 build and train two CNN-based models for CIFAR-10 dataset classification
 
@@ -12,6 +12,12 @@ For the evaluation of our approach, we address a design exploration by reviewing
 
 \subsection{Computational performance}
 \subsubsection{Conv2D operator}
+\begin{figure}[t!]
+	\centering
+	\includegraphics[width=0.5\textwidth]{../figures/performance_fixed_point_small.pdf}
+	\caption{Accuracy performance of depthwise separable CNN architecture with custom floating-point approximation.}
+	\label{fig:fixed_point}
+\end{figure}
 \subsubsection{DepthwiseConv2D operator}
 \subsection{Accuracy performance}
 
