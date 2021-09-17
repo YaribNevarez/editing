@@ -11,7 +11,71 @@ In this platform, we implement the proposed hardware/software solution to deploy
 For the evaluation of our approach, we address a design exploration by reviewing the computational latency, inference accuracy, resource utilization, and power dissipation. First, we benchmark the performance of SbS network simulation on the embedded CPU, and then repeat the measurements on hardware processing units with standard floating-point computation. Afterwards, we evaluate our dot-product architecture, addressing a design exploration with hybrid custom floating-point approximation, as well as the hybrid logarithmic approximation. Finally, we present a discussion of the presented results.
 
 \subsection{Computational performance}
-\subsubsection{Conv2D operator}
+\subsubsection{Fixed-point}
+\begin{table}[!htp]\centering
+	\caption{Compute performance on fixed-point implementation}\label{tab:performance_fixed_point }
+	\scriptsize
+	\begin{tabular}{lrrrrrrr}\toprule
+		\multicolumn{2}{c}{\textbf{Tensor operation}} &\textbf{CPU} &\multicolumn{3}{c}{\textbf{Accelerator (8-bit fixed-point)}} &\multirow{2}{*}{\textbf{Gain}} \\\cmidrule{1-6}
+		\textbf{Operation} &\textbf{MOP} &\textbf{RT (ms)} &\textbf{RT (ms)} &\textbf{MOP/s} &\textbf{GOP/Watt} & \\\midrule
+		\multicolumn{2}{c}{Model A} & & & & & \\
+		Conv &1.769 &700.22 &55.19 &32.06 &2.09 &\textbf{12.69} \\
+		Conv &37.748 &12,666.91 &297.08 &127.06 &8.30 &\textbf{42.64} \\
+		Conv &18.874 &6,081.01 &142.99 &131.99 &8.60 &\textbf{42.53} \\
+		Conv &18.874 &5,543.77 &122.58 &153.97 &10.06 &\textbf{45.23} \\
+		\multicolumn{2}{c}{Model B} & & & & & \\
+		DConv &0.027 &13.43 &0.63 &43.74 &2.85 &\textbf{21.25} \\
+		Conv &0.196 &129.95 &11.57 &16.98 &1.11 &\textbf{11.23} \\
+		DConv &0.147 &69.18 &3.33 &44.26 &2.89 &\textbf{20.77} \\
+		Conv &1.048 &378.78 &9.96 &105.25 &6.87 &\textbf{38.02} \\
+		Conv &2.359 &694.60 &16.46 &143.22 &9.36 &\textbf{42.20} \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+\subsubsection{Floating-point}
+\begin{table}[!htp]\centering
+	\caption{Compute performance on floating-point implementation with Xilinx LogiCORE IP}\label{tab:performace_float_logicore }
+	\scriptsize
+	\begin{tabular}{lrrrrrrr}\toprule
+		\multicolumn{2}{c}{\textbf{Tensor operation}} &\textbf{CPU} &\multicolumn{3}{c}{\textbf{Accelerator (LogiCORE IP)}} &\multirow{2}{*}{\textbf{Gain}} \\\cmidrule{1-6}
+		\textbf{Operation} &\textbf{MOP} &\textbf{RT (ms)} &\textbf{RT (ms)} &\textbf{MOP/s} &\textbf{GOP/Watt} & \\\midrule
+		\multicolumn{2}{c}{Model A} & & & & & \\
+		Conv &1.769 &670.95 &120.07 &14.73 &0.21 &\textbf{59.59} \\
+		Conv &37.748 &12,722.13 &1,328.08 &28.42 &0.40 &\textbf{9.58} \\
+		Conv &18.874 &6,094.85 &636.53 &29.65 &0.42 &\textbf{9.58} \\
+		Conv &18.874 &5,564.79 &569.30 &33.15 &0.47 &\textbf{9.77} \\
+		\multicolumn{2}{c}{Model B} & & & & & \\
+		DConv &0.027 &11.51 &1.557 &17.75 &0.25 &\textbf{7.39} \\
+		Conv &0.196 &94.82 &20.487 &9.59 &0.13 &\textbf{4.62} \\
+		DConv &0.147 &58.84 &8.355 &17.64 &0.25 &\textbf{7.04} \\
+		Conv &1.048 &368.66 &40.271 &26.03 &0.37 &\textbf{9.15} \\
+		Conv &2.359 &697.08 &72.981 &32.32 &0.46 &\textbf{9.55} \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+\begin{table}[!htp]\centering
+	\caption{Compute performance with hybrid custom floating-point implementation}\label{tab:performace_float_hybrid }
+	\scriptsize
+	\begin{tabular}{lrrrrrrr}\toprule
+		\multicolumn{2}{c}{\textbf{Tensor operation}} &\textbf{CPU} &\multicolumn{3}{c}{\textbf{Accelerator (Hybrid floating-point)}} &\multirow{2}{*}{\textbf{Gain}} \\\cmidrule{1-6}
+		\textbf{Operation} &\textbf{MOP} &\textbf{RT (ms)} &\textbf{RT (ms)} &\textbf{MOP/s} &\textbf{GOP/Watt} & \\\midrule
+		\multicolumn{2}{c}{Model A} & & & & & \\
+		Conv &1.769 &670.95 &68.50 &25.83 &0.38 &\textbf{9.8} \\
+		Conv &37.748 &12,722.13 &307.83 &122.63 &1.80 &\textbf{41.33} \\
+		Conv &18.874 &6,094.85 &147.97 &127.55 &1.87 &\textbf{41.19} \\
+		Conv &18.874 &5,564.79 &124.03 &152.17 &2.23 &\textbf{44.87} \\
+		\multicolumn{2}{c}{Model B} & & & & & \\
+		DConv &0.027 &11.51 &1.41 &19.63 &0.29 &\textbf{8.17} \\
+		Conv &0.196 &94.82 &20.34 &9.43 &0.14 &\textbf{4.66} \\
+		DConv &0.147 &58.84 &6.58 &22.41 &0.33 &\textbf{8.94} \\
+		Conv &1.048 &368.66 &12.75 &82.23 &1.21 &\textbf{28.91} \\
+		Conv &2.359 &697.08 &17.14 &137.68 &2.02 &\textbf{40.68} \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
 \begin{figure}[t!]
 	\centering
 	\includegraphics[width=0.5\textwidth]{../figures/inference_schedule.pdf}
