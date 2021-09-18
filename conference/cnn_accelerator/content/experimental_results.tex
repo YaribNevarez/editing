@@ -11,86 +11,108 @@ In this platform, we implement the proposed hardware/software solution to deploy
 \begin{figure}[t!]
 	\centering
 	\includegraphics[width=0.5\textwidth]{../figures/models.pdf}
-	\caption{Accuracy performance of depthwise separable CNN architecture with custom floating-point approximation.}
-	\label{fig:acc_custom}
+	\caption{CNN-based models for case study.}
+	\label{fig:models}
 \end{figure}
 
 For the evaluation of our approach, we address a design exploration by reviewing the computational latency, inference accuracy, resource utilization, and power dissipation. First, we benchmark the performance of SbS network simulation on the embedded CPU, and then repeat the measurements on hardware processing units with standard floating-point computation. Afterwards, we evaluate our dot-product architecture, addressing a design exploration with hybrid custom floating-point approximation, as well as the hybrid logarithmic approximation. Finally, we present a discussion of the presented results.
 
 \subsection{Computational performance}
 \subsubsection{Fixed-point}
+
+\begin{figure}[t!]
+	\centering
+	\includegraphics[width=0.5\textwidth]{../figures/sched_A_fixed_point.pdf}
+	\caption{Compute performance with fixed-point on model A.}
+	\label{fig:sched_model_a_fixed}
+\end{figure}
+
+
 \begin{table}[!htp]\centering
-	\caption{Compute performance on fixed-point implementation}\label{tab:performance_fixed_point }
+	\caption{Compute performance with fixed-point on model A and B.}\label{tab:performance_fixed_point }
 	\scriptsize
-	\begin{tabular}{lrrrrrrr}\toprule
-		\multicolumn{2}{c}{\textbf{Tensor operation}} &\textbf{CPU} &\multicolumn{3}{c}{\textbf{HW (8-bit fixed-point)}} &\multirow{2}{*}{\textbf{Gain}} \\\cmidrule{1-6}
-		\textbf{Operation} &\textbf{MOP} &\textbf{t (ms)} &\textbf{t (ms)} &\textbf{MOP/s} &\textbf{GOP/W} & \\\midrule
-		\multicolumn{2}{c}{Model A} & & & & & \\
-		Conv &1.769 &700.22 &55.19 &32.06 &0.23 &\textbf{12.69} \\
-		Conv &37.748 &12,666.91 &297.08 &127.06 &0.93 &\textbf{42.64} \\
-		Conv &18.874 &6,081.01 &142.99 &131.99 &0.97 &\textbf{42.53} \\
-		Conv &18.874 &5,543.77 &122.58 &153.97 &1.13 &\textbf{45.23} \\
-		\multicolumn{2}{c}{Model B} & & & & & \\
-		DConv &0.027 &13.43 &0.63 &43.74 &0.25 &\textbf{21.25} \\
-		Conv &0.196 &129.95 &11.57 &16.98 &0.12 &\textbf{11.23} \\
-		DConv &0.147 &69.18 &3.33 &44.26 &0.25 &\textbf{20.77} \\
-		Conv &1.048 &378.78 &9.96 &105.25 &0.77 &\textbf{38.02} \\
-		Conv &2.359 &694.60 &16.46 &143.22 &1.05 &\textbf{42.20} \\
-		\bottomrule
-	\end{tabular}
+\begin{tabular}{lrrrrrrr}\toprule
+	\multicolumn{2}{c}{\textbf{Tensor operation}} &\textbf{CPU} &\multicolumn{3}{c}{\textbf{TP (fixed-point)}} &\multirow{2}{*}{\textbf{Accel.}} \\\cmidrule{1-6}
+	\textbf{Operation} &\textbf{MOP} &\textbf{t (ms)} &\textbf{t (ms)} &\textbf{MOP/s} &\textbf{GOP/W} & \\\midrule
+	\multicolumn{2}{c}{\textbf{Model A}} & & & & & \\
+	(1A) Conv &1.769 &700.22 &55.19 &32.06 &0.23 &\textbf{12.69} \\
+	(2A) Conv &37.748 &12,666.91 &297.08 &127.06 &0.93 &\textbf{42.64} \\
+	(3A) Conv &18.874 &6,081.01 &142.99 &131.99 &0.97 &\textbf{42.53} \\
+	(4A) Conv &18.874 &5,543.77 &122.58 &153.97 &1.13 &\textbf{45.23} & \\\midrule
+	\multicolumn{2}{c}{\textbf{Model B}} & & & & & \\
+	(1B) DConv &0.027 &13.43 &0.63 &43.74 &0.25 &\textbf{21.25} \\
+	(2B) Conv &0.196 &129.95 &11.57 &16.98 &0.12 &\textbf{11.23} \\
+	(3B) DConv &0.147 &69.18 &3.33 &44.26 &0.25 &\textbf{20.77} \\
+	(4B) Conv &1.048 &378.78 &9.96 &105.25 &0.77 &\textbf{38.02} \\
+	(5B) Conv &2.359 &694.60 &16.46 &143.22 &1.05 &\textbf{42.20} \\
+	\bottomrule
+\end{tabular}
 \end{table}
 
 
 
 \subsubsection{Floating-point}
+
+\begin{figure*}[t!]
+	\centering
+	\includegraphics[width=\textwidth]{../figures/sched_A_float_all.pdf}
+	\caption{Compute performance with the proposed floating-point solutions on model A.}
+	\label{fig:sched_model_a_float}
+\end{figure*}
+
 \begin{table}[!htp]\centering
-	\caption{Compute performance on floating-point implementation with Xilinx LogiCORE IP}\label{tab:performace_float_logicore }
+	\caption{Compute performance with floating-point LogiCORE on model A and B.}\label{tab:performace_float_logicore }
 	\scriptsize
 	\begin{tabular}{lrrrrrrr}\toprule
-		\multicolumn{2}{c}{\textbf{Tensor operation}} &\textbf{CPU} &\multicolumn{3}{c}{\textbf{HW (LogiCORE IP)}} &\multirow{2}{*}{\textbf{Gain}} \\\cmidrule{1-6}
+		\multicolumn{2}{c}{\textbf{Tensor operation}} &\textbf{CPU} &\multicolumn{3}{c}{\textbf{TP (floating-point LogiCORE)}} &\multirow{2}{*}{\textbf{Accel.}} \\\cmidrule{1-6}
 		\textbf{Operation} &\textbf{MOP} &\textbf{t (ms)} &\textbf{t (ms)} &\textbf{MOP/s} &\textbf{GOP/W} & \\\midrule
-		\multicolumn{2}{c}{Model A} & & & & & \\
-		Conv &1.769 &670.95 &120.07 &14.73 &0.21 &\textbf{5.59} \\
-		Conv &37.748 &12,722.13 &1,328.08 &28.42 &0.40 &\textbf{9.58} \\
-		Conv &18.874 &6,094.85 &636.53 &29.65 &0.42 &\textbf{9.58} \\
-		Conv &18.874 &5,564.79 &569.30 &33.15 &0.47 &\textbf{9.77} \\
-		\multicolumn{2}{c}{Model B} & & & & & \\
-		DConv &0.027 &11.51 &1.557 &17.75 &0.23 &\textbf{7.39} \\
-		Conv &0.196 &94.82 &20.487 &9.59 &0.13 &\textbf{4.62} \\
-		DConv &0.147 &58.84 &8.355 &17.64 &0.23 &\textbf{7.04} \\
-		Conv &1.048 &368.66 &40.271 &26.03 &0.37 &\textbf{9.15} \\
-		Conv &2.359 &697.08 &72.981 &32.32 &0.46 &\textbf{9.55} \\
+		\multicolumn{2}{c}{\textbf{Model A}} & & & & & \\
+		(1A) Conv &1.769 &670.95 &120.07 &14.73 &0.21 &\textbf{5.59} \\
+		(2A) Conv &37.748 &12,722.13 &1,328.08 &28.42 &0.40 &\textbf{9.58} \\
+		(3A) Conv &18.874 &6,094.85 &636.53 &29.65 &0.42 &\textbf{9.58} \\
+		(4A) Conv &18.874 &5,564.79 &569.30 &33.15 &0.47 &\textbf{9.77} & \\\midrule
+		\multicolumn{2}{c}{\textbf{Model B}} & & & & & \\
+		(1B) DConv &0.027 &11.51 &1.557 &17.75 &0.23 &\textbf{7.39} \\
+		(2B) Conv &0.196 &94.82 &20.487 &9.59 &0.13 &\textbf{4.62} \\
+		(3B) DConv &0.147 &58.84 &8.355 &17.64 &0.23 &\textbf{7.04} \\
+		(4B) Conv &1.048 &368.66 &40.271 &26.03 &0.37 &\textbf{9.15} \\
+		(5B) Conv &2.359 &697.08 &72.981 &32.32 &0.46 &\textbf{9.55} \\
 		\bottomrule
 	\end{tabular}
 \end{table}
 
 \begin{table}[!htp]\centering
-	\caption{Compute performance on hybrid custom floating-point implementation}\label{tab:performace_float_hybrid }
+	\caption{Compute performance with hybrid custom floating-point approximation on model A and B.}\label{tab:performace_float_hybrid }
 	\scriptsize
 \begin{tabular}{lrrrrrrr}\toprule
-	\multicolumn{2}{c}{\textbf{Tensor operation}} &\textbf{CPU} &\multicolumn{3}{c}{\textbf{HW (Hybrid floating-point)}} &\multirow{2}{*}{\textbf{Gain}} \\\cmidrule{1-6}
-	\textbf{Operation} &\textbf{MOP} &\textbf{t (ms)} &\textbf{t (ms)} &\textbf{MOP/s} &\textbf{GOP/Watt} & \\\midrule
-	\multicolumn{2}{c}{Model A} & & & & & \\
-	Conv &1.769 &670.95 &68.50 &25.83 &0.39 &\textbf{9.8} \\
-	Conv &37.748 &12,722.13 &307.83 &122.63 &1.85 &\textbf{41.33} \\
-	Conv &18.874 &6,094.85 &147.97 &127.55 &1.93 &\textbf{41.19} \\
-	Conv &18.874 &5,564.79 &124.03 &152.17 &2.30 &\textbf{44.87} \\
-	\multicolumn{2}{c}{Model B} & & & & & \\
-	DConv &0.027 &11.51 &1.41 &19.63 &0.27 &\textbf{8.17} \\
-	Conv &0.196 &94.82 &20.34 &9.43 &0.14 &\textbf{4.66} \\
-	DConv &0.147 &58.84 &6.58 &22.41 &0.31 &\textbf{8.94} \\
-	Conv &1.048 &368.66 &12.75 &82.23 &1.24 &\textbf{28.91} \\
-	Conv &2.359 &697.08 &17.14 &137.68 &2.08 &\textbf{40.68} \\
+	\multicolumn{2}{c}{\textbf{Tensor operation}} &\textbf{CPU} &\multicolumn{3}{c}{\textbf{TP (hybrid custom floating-point)}} &\multirow{2}{*}{\textbf{Accel.}} \\\cmidrule{1-6}
+	\textbf{Operation} &\textbf{MOP} &\textbf{t (ms)} &\textbf{t (ms)} &\textbf{MOP/s} &\textbf{GOP/W} & \\\midrule
+	\multicolumn{2}{c}{\textbf{Model A}} & & & & & \\
+	(1A) Conv &1.769 &670.95 &68.50 &25.83 &0.39 &\textbf{9.8} \\
+	(2A) Conv &37.748 &12,722.13 &307.83 &122.63 &1.85 &\textbf{41.33} \\
+	(3A) Conv &18.874 &6,094.85 &147.97 &127.55 &1.93 &\textbf{41.19} \\
+	(4A) Conv &18.874 &5,564.79 &124.03 &152.17 &2.30 &\textbf{44.87} & \\\midrule
+	\multicolumn{2}{c}{\textbf{Model B}} & & & & & \\
+	(1B) DConv &0.027 &11.51 &1.41 &19.63 &0.27 &\textbf{8.17} \\
+	(2B) Conv &0.196 &94.82 &20.34 &9.43 &0.14 &\textbf{4.66} \\
+	(3B) DConv &0.147 &58.84 &6.58 &22.41 &0.31 &\textbf{8.94} \\
+	(4B) Conv &1.048 &368.66 &12.75 &82.23 &1.24 &\textbf{28.91} \\
+	(5B) Conv &2.359 &697.08 &17.14 &137.68 &2.08 &\textbf{40.68} \\
 	\bottomrule
 \end{tabular}
 \end{table}
 
-\begin{figure*}[t!]
+
+
+
+
+\begin{figure}[t!]
 	\centering
-	\includegraphics[width=\textwidth]{../figures/inference_schedule_wide.pdf}
-	\caption{Accuracy performance of depthwise separable CNN architecture with custom floating-point approximation.}
-	\label{fig:fixed_point}
-\end{figure*}
+	\includegraphics[width=0.5\textwidth]{../figures/sched_B_float.pdf}
+	\caption{Compute performance on model B (floating-point).}
+	\label{fig:sched_model_b_float}
+\end{figure}
+
 \subsubsection{DepthwiseConv2D operator}
 \subsection{Accuracy performance}
 
@@ -98,42 +120,40 @@ For the evaluation of our approach, we address a design exploration by reviewing
 \begin{figure}[t!]
 	\centering
 	\includegraphics[width=0.5\textwidth]{../figures/all_models_accuracy.pdf}
-	\caption{Accuracy performance of depthwise separable CNN architecture with custom floating-point approximation.}
-	\label{fig:acc_custom}
+	\caption{Accuracy performance using hybrid custom floating-point approximation with various formats.}
+	\label{fig:accuracy}
 \end{figure}
 
 \subsection{Resource utilization and power dissipation}
 \begin{table}[!htp]\centering
-	\caption{Resource utilization and power dissipation of the proposed accelerator.}\label{tab: }
+	\caption{Resource utilization and power dissipation of the proposed TP engines.}\label{tab: }
 	\scriptsize
-\begin{tabular}{lrrrrrrr}\toprule
-	\multirow{2}{*}{\textbf{HW}} &\textbf{} &\multicolumn{4}{c}{\textbf{Post-implementation resource utilization}} &\multirow{2}{*}{\textbf{Power (W)}} \\\cmidrule{3-6}
-	&\textbf{Operators} &\textbf{LUT} &\textbf{FF} &\textbf{DSP} &\textbf{BRAM 18K} & \\\midrule
-	\multirow{3}{*}{a)} &Conv &5,677 &4,238 &78 &70 &0.136 \\
-	&DConv &7,232 &5,565 &106 &70 &0.171 \\
-	&Conv + DConv &12,684 &8,015 &160 &70 &0.248 \\
-	\multirow{3}{*}{b)} &Conv &4,670 &3,909 &59 &266 &0.070 \\
-	&DConv &6,263 &5,264 &82 &266 &0.075 \\
-	&Conv + DConv &10,871 &7,726 &123 &266 &0.119 \\
-	\multirow{3}{*}{c)} &Conv &6,787 &4,349 &56 &74 &0.066 \\
-	&DConv &8,209 &5,592 &79 &74 &0.072 \\
-	&Conv + DConv &14,590 &8,494 &117 &74 &0.108 \\
-	\multirow{3}{*}{d)} &Conv &6,662 &4,242 &54 &58 &0.060 \\
-	&DConv &8,110 &5,380 &77 &58 &0.066 \\
-	&Conv + DConv &14,370 &8,175 &113 &58 &0.105 \\
+\begin{tabular}{lrrrrrr}\toprule
+	\textbf{} &\multicolumn{4}{c}{\textbf{Post-implementation resource utilization}} &\multirow{2}{*}{\textbf{Power (W)}} \\\cmidrule{2-5}
+	\textbf{TP engine} &\textbf{LUT} &\textbf{FF} &\textbf{DSP} &\textbf{BRAM 18K} & \\\midrule
+	\multicolumn{6}{l}{\textbf{Fixed-point}} \\
+	Conv &5,677 &4,238 &78 &70 &0.136 \\
+	DConv &7,232 &5,565 &106 &70 &0.171 \\
+	Conv + DConv &12,684 &8,015 &160 &70 &0.248 & \\\midrule
+	\multicolumn{6}{l}{\textbf{Floating-point LogiCore}} \\
+	Conv &4,670 &3,909 &59 &266 &0.070 \\
+	DConv &6,263 &5,264 &82 &266 &0.075 \\
+	Conv + DConv &10,871 &7,726 &123 &266 &0.119 \\\midrule
+	\multicolumn{6}{l}{\textbf{Hybrid custom floating-point}} \\
+	Conv &6,787 &4,349 &56 &74 &0.066 \\
+	DConv &8,209 &5,592 &79 &74 &0.072 \\
+	Conv + DConv &14,590 &8,494 &117 &74 &0.108 & \\\midrule
+	\multicolumn{6}{l}{\textbf{Hybrid logarithmic}} \\
+	Conv &6,662 &4,242 &54 &58 &0.060 \\
+	DConv &8,110 &5,380 &77 &58 &0.066 \\
+	Conv + DConv &14,370 &8,175 &113 &58 &0.105 \\
 	\bottomrule
 \end{tabular}
-	\begin{tablenotes}
-		\item a) 8-bit fixed-point.
-		\item b) Floating-point with Xilinx LogiCORE IP.
-		\item c) Hybrid custom floating-point.
-		\item c) Hybrid logarithmic.
-	\end{tablenotes}
 \end{table}
 
 \begin{figure}[t!]
 	\centering
 	\includegraphics[width=0.5\textwidth]{../figures/power_breackdown.pdf}
-	\caption{Accuracy performance of depthwise separable CNN architecture with custom floating-point approximation.}
-	\label{fig:acc_custom}
+	\caption{Estimate of power dissipation on the Zynq-7020 SoC with different TP engine.}
+	\label{fig:power}
 \end{figure}

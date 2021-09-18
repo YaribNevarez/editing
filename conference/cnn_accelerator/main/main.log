@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2021.5.10)  18 SEP 2021 00:29
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2021.5.10)  18 SEP 2021 08:17
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -530,11 +530,7 @@ Package: truncate 2001/08/20  ver 3.6
 \@Trunc@RestHyph=\toks31
 )
 \Changes@Len@summ=\skip73
-) (./main.aux
-
-LaTeX Warning: Label `fig:acc_custom' multiply defined.
-
-)
+) (./main.aux)
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 48.
@@ -551,7 +547,8 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 48.
 LaTeX Font Info:    ... okay on input line 48.
 LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 48.
 LaTeX Font Info:    Try loading font information for TS1+cmr on input line 48.
- (/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    ... okay on input line 48.
@@ -761,44 +758,81 @@ Overfull \hbox (6.0pt too wide) in paragraph at lines 13--14
  [][] 
  []
 
-<../figures/inference_schedule_wide.pdf, id=105, 505.89pt x 361.35pt>
-File: ../figures/inference_schedule_wide.pdf Graphic file (type pdf)
+<../figures/sched_A_fixed_point.pdf, id=105, 252.945pt x 180.675pt>
+File: ../figures/sched_A_fixed_point.pdf Graphic file (type pdf)
 
-<use ../figures/inference_schedule_wide.pdf>
-Package pdftex.def Info: ../figures/inference_schedule_wide.pdf used on input l
-ine 90.
-(pdftex.def)             Requested size: 523.5307pt x 373.95906pt.
+<use ../figures/sched_A_fixed_point.pdf>
+Package pdftex.def Info: ../figures/sched_A_fixed_point.pdf used on input line 
+25.
+(pdftex.def)             Requested size: 261.76535pt x 186.9795pt.
 
-<../figures/all_models_accuracy.pdf, id=106, 602.25pt x 372.39125pt>
+Overfull \hbox (6.0pt too wide) in paragraph at lines 25--26
+ [][] 
+ []
+
+
+Overfull \hbox (5.1469pt too wide) in paragraph at lines 34--50
+ [][] 
+ []
+
+<../figures/sched_A_float_all.pdf, id=106, 505.89pt x 166.22101pt>
+File: ../figures/sched_A_float_all.pdf Graphic file (type pdf)
+
+<use ../figures/sched_A_float_all.pdf>
+Package pdftex.def Info: ../figures/sched_A_float_all.pdf used on input line 58
+.
+(pdftex.def)             Requested size: 523.5307pt x 172.02115pt.
+
+Overfull \hbox (10.3969pt too wide) in paragraph at lines 66--82
+ [][] 
+ []
+
+
+Overfull \hbox (20.22734pt too wide) in paragraph at lines 87--103
+ [][] 
+ []
+
+<../figures/sched_B_float.pdf, id=107, 252.945pt x 187.902pt>
+File: ../figures/sched_B_float.pdf Graphic file (type pdf)
+
+<use ../figures/sched_B_float.pdf>
+Package pdftex.def Info: ../figures/sched_B_float.pdf used on input line 111.
+(pdftex.def)             Requested size: 261.76535pt x 194.4587pt.
+
+Overfull \hbox (6.0pt too wide) in paragraph at lines 111--112
+ [][] 
+ []
+
+<../figures/all_models_accuracy.pdf, id=108, 252.945pt x 108.405pt>
 File: ../figures/all_models_accuracy.pdf Graphic file (type pdf)
 
 <use ../figures/all_models_accuracy.pdf>
 Package pdftex.def Info: ../figures/all_models_accuracy.pdf used on input line 
-100.
-(pdftex.def)             Requested size: 261.76535pt x 161.86388pt.
+122.
+(pdftex.def)             Requested size: 261.76535pt x 112.1877pt.
 
-Overfull \hbox (6.0pt too wide) in paragraph at lines 100--101
+Overfull \hbox (6.0pt too wide) in paragraph at lines 122--123
  [][] 
  []
 
-
-Overfull \hbox (4.54994pt too wide) in paragraph at lines 109--127
- [][] 
- []
-
-<../figures/power_breackdown.pdf, id=107, 252.945pt x 252.945pt>
+<../figures/power_breackdown.pdf, id=109, 252.945pt x 252.945pt>
 File: ../figures/power_breackdown.pdf Graphic file (type pdf)
 
 <use ../figures/power_breackdown.pdf>
-Package pdftex.def Info: ../figures/power_breackdown.pdf used on input line 136
+Package pdftex.def Info: ../figures/power_breackdown.pdf used on input line 156
 .
 (pdftex.def)             Requested size: 261.76535pt x 261.77133pt.
 
-Overfull \hbox (6.0pt too wide) in paragraph at lines 136--137
+Overfull \hbox (6.0pt too wide) in paragraph at lines 156--157
  [][] 
  []
 
-) (../content/conclusions.tex) (./main.bbl
+) (../content/conclusions.tex) (./main.bbl [4 <../figures/models.pdf> <../figur
+es/sched_A_fixed_point.pdf
+
+pdfTeX warning: /usr/bin/pdflatex (file ../figures/sched_A_fixed_point.pdf): PD
+F inclusion: multiple pdfs with page group included in a single page
+>]
 Underfull \hbox (badness 10000) in paragraph at lines 46--49
 []\OT1/ptm/m/n/8 A. Yaz-dan-bakhsh, K. Se-shadri, B. Akin, J. Laudon, and
  []
@@ -815,7 +849,15 @@ Missing character: There is no ú in font ptmr7t!
 Missing character: There is no ‚ in font ptmr7t!
 Missing character: There is no Ä in font ptmr7t!
 Missing character: There is no ù in font ptmr7t!
-[4 <../figures/models.pdf>]
+[5 <../figures/sched_A_float_all.pdf> <../figures/sched_B_float.pdf
+
+pdfTeX warning: /usr/bin/pdflatex (file ../figures/sched_B_float.pdf): PDF incl
+usion: multiple pdfs with page group included in a single page
+> <../figures/all_models_accuracy.pdf
+
+pdfTeX warning: /usr/bin/pdflatex (file ../figures/all_models_accuracy.pdf): PD
+F inclusion: multiple pdfs with page group included in a single page
+>]
 Missing character: There is no ‚ in font ptmr7t!
 Missing character: There is no Ä in font ptmr7t!
 Missing character: There is no ú in font ptmr7t!
@@ -833,12 +875,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 56--59
 er 15,
  []
 
-[5 <../figures/inference_schedule_wide.pdf> <../figures/all_models_accuracy.pdf
-
-
-pdfTeX warning: /usr/bin/pdflatex (file ../figures/all_models_accuracy.pdf): PD
-F inclusion: multiple pdfs with page group included in a single page
->]
 Missing character: There is no ‚ in font ptmr7t!
 Missing character: There is no Ä in font ptmr7t!
 Missing character: There is no ú in font ptmr7t!
@@ -872,15 +908,12 @@ Before submitting the final camera ready copy, remember to:
 
 LaTeX Warning: There were undefined references.
 
-
-LaTeX Warning: There were multiply-defined labels.
-
  ) 
 Here is how much of TeX's memory you used:
- 7151 strings out of 494953
- 108108 string characters out of 6180977
- 211511 words of memory out of 5000000
- 10254 multiletter control sequences out of 15000+600000
+ 7165 strings out of 494953
+ 108483 string characters out of 6180977
+ 212506 words of memory out of 5000000
+ 10266 multiletter control sequences out of 15000+600000
  48754 words of font info for 98 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  38i,11n,35p,1304b,306s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -895,10 +928,10 @@ sfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
 /usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/tex
 live/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist
 /fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (6 pages, 511777 bytes).
+Output written on main.pdf (6 pages, 487384 bytes).
 PDF statistics:
- 193 PDF objects out of 1000 (max. 8388607)
- 118 compressed objects within 2 object streams
+ 215 PDF objects out of 1000 (max. 8388607)
+ 130 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 46 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 56 words of extra memory for PDF output out of 10000 (max. 10000000)
 
