@@ -82,6 +82,9 @@ A.~Yazdanbakhsh, K.~Seshadri, B.~Akin, J.~Laudon, and R.~Narayanaswami, ``An
 S.~Cass, ``Taking ai to the edge: Google's tpu now comes in a maker-friendly
   package,'' \emph{IEEE Spectrum}, vol.~56, no.~5, pp. 16--17, 2019.
 
+\bibitem{xilinxDPU}
+P.~Xilinx, ``Zynq dpu v3.1, product guide,'' 2019.
+
 \bibitem{goodfellow2016deep}
 I.~Goodfellow, Y.~Bengio, and A.~Courville, \emph{Deep learning}.\hskip 1em
   plus 0.5em minus 0.4em\relax MIT press, 2016.
