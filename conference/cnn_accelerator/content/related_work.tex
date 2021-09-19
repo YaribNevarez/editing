@@ -4,11 +4,8 @@
 
 The Edge Tensor Processing Unit (TPU) is an ASIC designed by Google that provides high performance machine learning (ML) inference for TensorFlow Lite models\cite{yazdanbakhsh2021evaluation}. This implementation uses PCIe and I2C/GPIO to interface with an iMX 8M system-on-chip (SoC). The reported throughput and power efficiency are 4 TOPS and 2 TOPS per watt, respectively \cite{coral2021Datasheet}. The Edge TPU supports 40 tensor operations including \emph{Conv2D} and \emph{DepthwiseConv2D} \cite{coral2021Compatibility}.
 
-However, the Edge TPU has disadvantages.
-\begin{itemize}
-	\item Power dissipation: The Edge TPU system-on-module (SoM) requires up to "15W" power supply\cite{coral2021Datasheet}, which can be inadequate for very low-power applications.
-	\item \textbf{Model compatibility}: The Edge TPU supports only TensorFlow Lite models that are fully 8-bit quantized and then compiled specifically for the Edge TPU \cite{cass2019taking}. As a limitation, the 8-bit quantization method requires a representative dataset that can be inaccessible.
-\end{itemize}
+However, the Edge TPU  does not support floating-point computation. The Edge TPU supports only TensorFlow Lite models that are fully 8-bit quantized and then compiled specifically for the Edge TPU \cite{cass2019taking}. As a limitation, the 8-bit quantization method requires a representative dataset that can be inaccessible.
+Regarding power dissipation, the Edge TPU system-on-module (SoM) requires up to $15W$ power supply\cite{coral2021Datasheet}, which can be inadequate for very low-power applications.
 
 \subsection{Xilinx Zynq DPU}
 The Xilinx deep learning processing unit (DPU) is a configurable computation engine optimized for CNNs. The degree of parallelism utilized in the engine is a design parameter and can be selected according to the target device and application. The DPU IP can be implemented in the programmable logic (PL) of the selected Zynq-7000 SoC or Zynq UltraScale+ MPSoC device with direct connections to the processing system (PS) \cite{xilinxDPU}. The peak theoretical performance reported on Zynq-7020 is 230 GOP/s.

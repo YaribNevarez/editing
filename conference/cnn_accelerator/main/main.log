@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2021.5.10)  19 SEP 2021 21:11
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2021.5.10)  19 SEP 2021 21:36
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -712,7 +712,7 @@ Overfull \hbox (6.0pt too wide) in paragraph at lines 24--25
  []
 
 [2 <../figures/sw_stack.pdf>]
-<../figures/dot-product_unit.pdf, id=50, 252.945pt x 361.35pt>
+<../figures/dot-product_unit.pdf, id=49, 252.945pt x 361.35pt>
 File: ../figures/dot-product_unit.pdf Graphic file (type pdf)
 
 <use ../figures/dot-product_unit.pdf>
@@ -733,7 +733,7 @@ ion: multiple pdfs with page group included in a single page
 
 pdfTeX warning: /usr/bin/pdflatex (file ../figures/dot-product_unit.pdf): PDF i
 nclusion: multiple pdfs with page group included in a single page
->] <../figures/models.pdf, id=105, 252.945pt x 162.6075pt>
+>] <../figures/models.pdf, id=104, 252.945pt x 162.6075pt>
 File: ../figures/models.pdf Graphic file (type pdf)
 
 <use ../figures/models.pdf>
@@ -749,7 +749,7 @@ Overfull \hbox (5.1469pt too wide) in paragraph at lines 31--47
  [][] 
  []
 
-<../figures/sched_A_fixed_point.pdf, id=106, 252.945pt x 173.448pt>
+<../figures/sched_A_fixed_point.pdf, id=105, 252.945pt x 173.448pt>
 File: ../figures/sched_A_fixed_point.pdf Graphic file (type pdf)
 
 <use ../figures/sched_A_fixed_point.pdf>
@@ -775,7 +775,7 @@ Overfull \hbox (20.22734pt too wide) in paragraph at lines 88--104
 
 pdfTeX warning: /usr/bin/pdflatex (file ../figures/sched_A_fixed_point.pdf): PD
 F inclusion: multiple pdfs with page group included in a single page
->] <../figures/sched_A_float_all.pdf, id=129, 505.89pt x 158.99399pt>
+>] <../figures/sched_A_float_all.pdf, id=128, 505.89pt x 158.99399pt>
 File: ../figures/sched_A_float_all.pdf Graphic file (type pdf)
 
 <use ../figures/sched_A_float_all.pdf>
@@ -783,7 +783,7 @@ Package pdftex.def Info: ../figures/sched_A_float_all.pdf used on input line 11
 2.
 (pdftex.def)             Requested size: 523.5307pt x 164.54196pt.
 
-<../figures/sched_B_float.pdf, id=130, 252.945pt x 180.675pt>
+<../figures/sched_B_float.pdf, id=129, 252.945pt x 180.675pt>
 File: ../figures/sched_B_float.pdf Graphic file (type pdf)
 
 <use ../figures/sched_B_float.pdf>
@@ -794,7 +794,7 @@ Overfull \hbox (6.0pt too wide) in paragraph at lines 120--121
  [][] 
  []
 
-<../figures/all_models_accuracy.pdf, id=131, 252.945pt x 108.405pt>
+<../figures/all_models_accuracy.pdf, id=130, 252.945pt x 108.405pt>
 File: ../figures/all_models_accuracy.pdf Graphic file (type pdf)
 
 <use ../figures/all_models_accuracy.pdf>
@@ -806,7 +806,7 @@ Overfull \hbox (6.0pt too wide) in paragraph at lines 152--153
  [][] 
  []
 
-<../figures/power_breackdown.pdf, id=132, 252.945pt x 252.945pt>
+<../figures/power_breackdown.pdf, id=131, 252.945pt x 252.945pt>
 File: ../figures/power_breackdown.pdf Graphic file (type pdf)
 
 <use ../figures/power_breackdown.pdf>
@@ -892,10 +892,10 @@ pdfTeX warning: /usr/bin/pdflatex (file ../figures/power_breackdown.pdf): PDF i
 nclusion: multiple pdfs with page group included in a single page
 >] (./main.aux) ) 
 Here is how much of TeX's memory you used:
- 7181 strings out of 494953
- 108656 string characters out of 6180977
- 204534 words of memory out of 5000000
- 10279 multiletter control sequences out of 15000+600000
+ 7177 strings out of 494953
+ 108603 string characters out of 6180977
+ 204525 words of memory out of 5000000
+ 10275 multiletter control sequences out of 15000+600000
  50942 words of font info for 107 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  38i,11n,35p,1320b,306s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -907,15 +907,14 @@ xmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dis
 t/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts
 /type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/
 public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb>
-</usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/te
-xlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dis
-t/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (6 pages, 516693 bytes).
+msfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb
+8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/s
+hare/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/te
+xmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on main.pdf (6 pages, 509444 bytes).
 PDF statistics:
- 227 PDF objects out of 1000 (max. 8388607)
- 138 compressed objects within 2 object streams
+ 223 PDF objects out of 1000 (max. 8388607)
+ 135 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  56 words of extra memory for PDF output out of 10000 (max. 10000000)
 
