@@ -7,5 +7,5 @@ The Edge Tensor Processing Unit (TPU) is an ASIC designed by Google that provide
 However, the Edge TPU has disadvantages.
 \begin{itemize}
 	\item Power dissipation: The Edge TPU System-on-Module (SoM) requires up to 3A at 5V DC power supply\cite{coral2021Datasheet}, which can be unsuitable for very low-power applications.
-	\item \textbf{Model compatibility}: It supports only TensorFlow Lite models that are fully 8-bit quantized and then compiled specifically for the Edge TPU \cite{cass2019taking}. The 8-bit quantization method requires a representative dataset that can be inaccessible, which limits its usability.
+	\item \textbf{Model compatibility}: The Edge TPU supports only TensorFlow Lite models that are fully 8-bit quantized and then compiled specifically for the Edge TPU \cite{cass2019taking}. As a limitation, the 8-bit quantization method requires a representative dataset that can be inaccessible.
 \end{itemize}

@@ -1,12 +1,16 @@
 \section{Experimental results}
 \label{sec:experimental_results}
-The proposed hardware/software framework is demonstrated on a Xilinx Zynq-7020 SoC (Zybo-Z7 development board). We deploy TFLite micro on the processing system (PS), and we implement the proposed hardware architecture on the programmable logic (PL). We address a design exploration by building and training custom CNN models in TF, and we evaluating their computational and accuracy performance on the proposed hardware architecture.
+The proposed hardware/software framework is demonstrated on a Xilinx Zynq-7020 SoC (Zybo-Z7 development board). We implement the proposed hardware architecture on the programmable logic (PL) at 150 MHz. The TFLite micro library is cross-compiled for the processing system (PS), composed of ARM Cortex-A9 CPU at 666MHz with NEON floating-point unit (FPU)\cite{xilinx2015zynq}.
 
-build and train two CNN-based models for CIFAR-10 dataset classification
+To evaluate the performance, we build model A and B in TensorFlow, see \Fig{fig:models}. Model B incorporates separable convolutions to evaluate DConv operations. These models are evaluated with the following hardware implementations:
 
-The PS ARM Cortex-A9 CPU at 666MHz, this processor includes NEON SIMD Engine and single/double precision floating-point unit (FPU)\cite{xilinx2015zynq}.
+\begin{enumerate}
+	\item Fixed-point.
+	\item Floating-point LogiCORE.
+	\item \textbf{Hybrid custom floating-point approximation.}
+	\item \textbf{Hybrid logarithmic approximation.}
+\end{enumerate}
 
-In this platform, we implement the proposed hardware/software solution to deploy TFLite models on the Zynq-7020 network structure shown in \fig{fig:sbs_network} for handwritten digit classification task using MNIST data set. The SbS model is trained in Matlab without any quantization method, using standard floating-point. The resulting synaptic weight matrices are deployed on the embedded system. There, the SbS network is built as a sequential model using the API from the SbS embedded software framework \cite{nevarez2020accelerator}. This API allows to configure the computational workload of the neural network, which can be distributed among the hardware processing units and the embedded CPU.
 
 \begin{figure}[t!]
 	\centering
@@ -15,21 +19,11 @@ In this platform, we implement the proposed hardware/software solution to deploy
 	\label{fig:models}
 \end{figure}
 
-For the evaluation of our approach, we address a design exploration by reviewing the computational latency, inference accuracy, resource utilization, and power dissipation. First, we benchmark the performance of SbS network simulation on the embedded CPU, and then repeat the measurements on hardware processing units with standard floating-point computation. Afterwards, we evaluate our dot-product architecture, addressing a design exploration with hybrid custom floating-point approximation, as well as the hybrid logarithmic approximation. Finally, we present a discussion of the presented results.
-
-\subsection{Computational performance}
-\subsubsection{Fixed-point}
-
-\begin{figure}[t!]
-	\centering
-	\includegraphics[width=0.5\textwidth]{../figures/sched_A_fixed_point.pdf}
-	\caption{Compute performance with fixed-point on model A.}
-	\label{fig:sched_model_a_fixed}
-\end{figure}
-
+\subsection{Fixed-point models}
+To evaluate the compute performance on fixed-point, we deploy model A and B with 8-bit fixed-point quantization. The compute performance on model A and B is presented in \tab{tab:performance_fixed_point}. A runtime execution of model A is illustrated in \fig{fig:sched_model_a_fixed}.
 
 \begin{table}[!htp]\centering
-	\caption{Compute performance with fixed-point on model A and B.}\label{tab:performance_fixed_point }
+	\caption{Compute performance with fixed-point on model A and B.}\label{tab:performance_fixed_point}
 	\scriptsize
 \begin{tabular}{lrrrrrrr}\toprule
 	\multicolumn{2}{c}{\textbf{Tensor operation}} &\textbf{CPU} &\multicolumn{3}{c}{\textbf{TP (fixed-point)}} &\multirow{2}{*}{\textbf{Accel.}} \\\cmidrule{1-6}
@@ -49,19 +43,20 @@ For the evaluation of our approach, we address a design exploration by reviewing
 \end{tabular}
 \end{table}
 
-
-
-\subsubsection{Floating-point}
-
-\begin{figure*}[t!]
+\begin{figure}[t!]
 	\centering
-	\includegraphics[width=\textwidth]{../figures/sched_A_float_all.pdf}
-	\caption{Compute performance with the proposed floating-point solutions on model A.}
-	\label{fig:sched_model_a_float}
-\end{figure*}
+	\includegraphics[width=0.5\textwidth]{../figures/sched_A_fixed_point.pdf}
+	\caption{Compute performance with fixed-point on model A.}
+	\label{fig:sched_model_a_fixed}
+\end{figure}
+
+
+\subsection{Floating-point models}
+The compute performance with floating-point LogiCORE IP is presented in \tab{tab:performace_float_logicore}. The compute performance with hybrid custom floating-point approximation is presented in \tab{tab:performace_float_hybrid}. In these tables, we find the peak acceleration on the forth convolution operator of model A. The LogiCORE implementation accelerates 9.77X, and the proposed technique accelerates 44.87X, which is 4.59X faster.
+
 
 \begin{table}[!htp]\centering
-	\caption{Compute performance with floating-point LogiCORE on model A and B.}\label{tab:performace_float_logicore }
+	\caption{Compute performance with floating-point LogiCORE on model A and B.}\label{tab:performace_float_logicore}
 	\scriptsize
 	\begin{tabular}{lrrrrrrr}\toprule
 		\multicolumn{2}{c}{\textbf{Tensor operation}} &\textbf{CPU} &\multicolumn{3}{c}{\textbf{TP (floating-point LogiCORE)}} &\multirow{2}{*}{\textbf{Accel.}} \\\cmidrule{1-6}
@@ -82,7 +77,7 @@ For the evaluation of our approach, we address a design exploration by reviewing
 \end{table}
 
 \begin{table}[!htp]\centering
-	\caption{Compute performance with hybrid custom floating-point approximation on model A and B.}\label{tab:performace_float_hybrid }
+	\caption{Compute performance with hybrid custom floating-point approximation on model A and B.}\label{tab:performace_float_hybrid}
 	\scriptsize
 \begin{tabular}{lrrrrrrr}\toprule
 	\multicolumn{2}{c}{\textbf{Tensor operation}} &\textbf{CPU} &\multicolumn{3}{c}{\textbf{TP (hybrid custom floating-point)}} &\multirow{2}{*}{\textbf{Accel.}} \\\cmidrule{1-6}
@@ -102,8 +97,14 @@ For the evaluation of our approach, we address a design exploration by reviewing
 \end{tabular}
 \end{table}
 
+For comparison, \fig{fig:sched_model_a_float} shows the runtime executions of model A with the proposed floating-point solutions. \fig{fig:sched_model_b_float} presents execution of model B, which incorporates separable convolutions with both Conv and DConv operations.
 
-
+\begin{figure*}[t!]
+	\centering
+	\includegraphics[width=\textwidth]{../figures/sched_A_float_all.pdf}
+	\caption{Compute performance with the proposed floating-point solutions on model A.}
+	\label{fig:sched_model_a_float}
+\end{figure*}
 
 
 \begin{figure}[t!]
@@ -113,9 +114,30 @@ For the evaluation of our approach, we address a design exploration by reviewing
 	\label{fig:sched_model_b_float}
 \end{figure}
 
-\subsubsection{DepthwiseConv2D operator}
 \subsection{Accuracy performance}
 
+To evaluate the accuracy performance, we train A an B models for image classification with CIFAR-10 dataset. We deploy the models with a baseline accuracy of 76.6\% for model A, and 68.8\% for model B.
+
+For accuracy evaluation, we implement the floating-point formats listed in \tab{tab:formats}. The base floating-point representation is quantized with bit-truncation and -rounding. The accuracy performance is presented in \fig{fig:accuracy}.
+
+\begin{table}[!htp]\centering
+	\caption{Implemented floating-point formats for accuracy evaluation.}\label{tab:formats}
+	\scriptsize
+	\begin{tabular}{lrrrrr}\toprule
+		\multicolumn{5}{c}{\textbf{Floating-point formats}} \\\cmidrule{1-5}
+		\textbf{Name} &\textbf{Size (bits)} &\textbf{Sign} &\textbf{Exponent} &\textbf{Mantissa} \\\midrule
+		Logarithmic &6 &1 &5 &0 \\
+		S1-E5-M1 &7 &1 &5 &1 \\
+		S1-E5-M2 &8 &1 &5 &2 \\
+		S1-E5-M3 &9 &1 &5 &3 \\
+		S1-E5-M4 &10 &1 &5 &4 \\
+		Float16 &16 &1 &5 &10 \\
+		BFloat16 &16 &1 &8 &7 \\
+		Tensor Float &19 &1 &8 &10 \\
+		Float32 &32 &1 &8 &23 \\
+		\bottomrule
+	\end{tabular}
+\end{table}
 
 \begin{figure}[t!]
 	\centering
@@ -125,8 +147,14 @@ For the evaluation of our approach, we address a design exploration by reviewing
 \end{figure}
 
 \subsection{Resource utilization and power dissipation}
+The resource utilization and power dissipation of the TP is listed in \tab{tab:resource}. The implementations with hybrid custom floating-point and logarithmic approximation are the most power efficient.
+
+The estimated power dissipation of the CPU is $1.4W$. The estimated power dissipation of the TP implementing Conv operator with hybrid custom floating-point is $66mW$. This implementation achieves a peak acceleration of $44.87\times$. This results in a peak power efficiency improvement of $951\times$.
+
+The power dissipation of the Zynq device is presented in \fig{fig:power}.
+
 \begin{table}[!htp]\centering
-	\caption{Resource utilization and power dissipation of the proposed TP engines.}\label{tab: }
+	\caption{Resource utilization and power dissipation of the proposed TP engines.}\label{tab:resource}
 	\scriptsize
 \begin{tabular}{lrrrrrr}\toprule
 	\textbf{} &\multicolumn{4}{c}{\textbf{Post-implementation resource utilization}} &\multirow{2}{*}{\textbf{Power (W)}} \\\cmidrule{2-5}
@@ -157,3 +185,4 @@ For the evaluation of our approach, we address a design exploration by reviewing
 	\caption{Estimated power dissipation of the Zynq-7020 SoC with different TP engines.}
 	\label{fig:power}
 \end{figure}
+

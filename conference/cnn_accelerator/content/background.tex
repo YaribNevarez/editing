@@ -1,13 +1,14 @@
 \section{Background}
 \label{sec:background}
 \subsection{Conv2D tensor operation}
+The Conv2D tensor operation is described in \Equ{eq:conv2D}. Where $X$ represents the input feature maps, $W$ represents the convolution kernel (known as filter) and $b$ represents the bias for the output feature maps\cite{goodfellow2016deep}.
 
- 	\begin{eqnarray} \label{eq:Conv2D}
- 	Conv2D\left(W,y\right)=\sum_{k,l,m}^{K,L,M}W_{(k,l,m)} \cdot y_{(i+k,j+l,m)}
+ 	\begin{eqnarray} \label{eq:conv2D}
+ 	Conv2D\left(W,x\right)_{i,j,o}=\sum_{k,l,m}^{K,L,M}W_{(o,k,l,m)} \cdot X_{(i+k,j+l,m)+b_{o}}
  	\end{eqnarray} 	
  	
 \subsection{DepthwiseConv2D tensor operation}
-
- 	\begin{eqnarray} \label{eq:DepthwiseConv2D}
- 	DepthwiseConv2D\left(W,y\right)=\sum_{k,l}^{K,L}W_{(k,l)} \odot y_{(i+k,j+l)}
+The DepthwiseConv2D tensor operation is described in \Equ{eq:dconv2D}. Where $X$ represents the input feature maps, $W$ represents the convolution kernel (known as filter), and $b$ represents the bias for the output feature maps.
+ 	\begin{eqnarray} \label{eq:dconv2D}
+ 	DConv2D\left(W,y\right)_{i,j,n}=\sum_{k,l}^{K,L}W_{(k,l,n)} \cdot X_{(i+k,j+l,n)}+b_{o}
  	\end{eqnarray}

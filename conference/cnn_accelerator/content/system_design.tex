@@ -1,7 +1,14 @@
 \section{System Design}
 \label{sec:system_design}
-\subsection{Embedded system architecture}
-The system architecture is an embedded CPU+FPGA-based platform illustrated in \fig{fig:system_architecture}. The CPU communicates with the tensor accelerator (TA) trough AXI-Lite, and the TA communicates to the external memory though AXI-Stream interface via Direct Memory Access (DMA).
+The proposed system architecture is a hardware/software framework to investigate tensor acceleration with target on Zynq devices. The system-on-chip (SoC) architecture is illustrated in \Fig{fig:system_architecture}. The software stack is shown in \Fig{fig:sw_stack}.
+
+\begin{figure}[t!]
+	\centering
+	\includegraphics[width=0.5\textwidth]{../figures/sw_stack.pdf}
+	\caption{System-level overview of the proposed embedded software stack.}
+	\label{fig:sw_stack}
+\end{figure}
+
 \begin{figure}[t!]
 	\centering
 	\includegraphics[width=0.5\textwidth]{../figures/system_design.pdf}
@@ -9,8 +16,8 @@ The system architecture is an embedded CPU+FPGA-based platform illustrated in \f
 	\label{fig:system_architecture}
 \end{figure}
 
-\subsection{Tensor accelerator}
-The tensor accelerator is a dedicated hardware module to compute tensor operations. In this paper, we present Conv2D and DepthwiseConv2D operators implemented using HLS with an approximate computing approach. For each operator, the compute engine represents the TFLite micro kernel C++ code adapted for hardware HLS. The accelerator architecture is illustrated in \Fig{fig:accelerator}.
+\subsection{Tensor processor}
+The TP is a dedicated hardware module to compute tensor operations. The hardware architecture is described in \fig{fig:accelerator}. This architecture implements on-chip storage, high performance off-chip communication with AXI-Stream, and communication with CPU via AXI-Lite and interrupt. This hardware architecture is implemented with HLS. The tensor operators are implemented based on the C++ TF Lite micro kernels \cite{tfLiteMicro}.
 
 \begin{figure}[t!]
 	\centering
@@ -19,20 +26,20 @@ The tensor accelerator is a dedicated hardware module to compute tensor operatio
 	\label{fig:accelerator}
 \end{figure}
 
-This accelerator offers two modes of operation: \emph{configuration} and \emph{computation}.
+This accelerator offers two modes of operation: \emph{configuration} and \emph{execution}.
 
-\subsubsection{Setup mode}
-In this mode, the accelerator receives the tensor operator ID and the hyperparameters for execution: stride, dilation, padding, offset, activation, quantized activation, depth-multiplier, input shape, filter shape, bias shape, and output shape. Afterwards the accelerator receives: filter tensor, bias tensor, and quantized multiplier/shift vectors in the case of using 8-bit quantization. These hyperparameters and tensors are stored in on-chip memory for reusage during compute mode.
+\subsubsection{Configuration mode}
+In this mode, the TP receives operator ID and the hyperparameters for execution: stride, dilation, padding, offset, activation, quantized activation, depth-multiplier, input shape, filter shape, bias shape, and output shape. Afterwards the accelerator receives: filter tensor, bias tensor, and quantization vectors.
 
-\subsubsection{Computation mode}
-In this mode, the accelerator performs the tensor operator according to the hyperparameters received during setup mode.
+\subsubsection{Execution mode}
+In this mode, the TP performs the tensor operator according to the hyperparameters received during configuration. With the delegate infrastructure, the input and output tensors are moved though the DMA from the memory regions allocated by TF Lite.
 
 \subsection{Compatibility}
 
- This hardware accelerator is compatible with TF Lite 8-bit quantized and floating-point formats. The designer is able to select the compute and number formats prior hardware synthesis.
+ This hardware accelerator is compatible with TF Lite 8-bit quantized models and standard floating-point formats. For this purpose, we implement the compute engines with regular integers and floating-point LogiCORE IPs.
  
- \subsection{Dot-product computation}
-Internally, the accelerator performs floating-point computation employing either: (1) HLS Xilinx LogiCORE IP, (2) decomposed custom floating-point, and (3) logarithmic computation. This design is proposed in \cite{nevarez2021accelerating}, where the authors present the hybrid custom floating-point and logarithmic dot-product approximation to accelerate Spike-by-Spike neural networks on embedded FPGA. In this paper, we adopt this approach to accelerate the vector dot-product on the convolution operators. With this approach, the designer is able to select the desired vector dot-product. See \Fig{fig:dot_product}.
+\subsection{Floating-point optimization}
+We optimize the floating-point computation adopting the dot-product with hybrid custom floating-point and logarithmic approximation presented in \cite{nevarez2021accelerating}. This approach: (1) denormalize input numbers, (2) performs computation in integer format for exponent and mantissa, (3) normalize the result into IEEE 754. This design implements a pipelined vector dot-product with a latency of $2N+II$, where $N$ and $II$ are the vector length and initiation interval, respectively. A pipelined vector dot-product implemented with Xilinx floating-point LogiCORE IP presents a latency of $10N+II$ \cite{nevarez2021accelerating}. \Fig{fig:dot_product} illustrates the vector dot-product implemented in this work.
 
 \begin{figure}[t!]
 	\centering
@@ -42,12 +49,3 @@ Internally, the accelerator performs floating-point computation employing either
 \end{figure}
 
 
-\subsection{Embedded software architecture}
-The software architecture is an extended version of TFLite for microcontrollers\cite{TensorFlowLibrary}. We implemented a delegate class for TFLite. This class encapsulates the accelerator and DMA low-level drivers. The TFLite library delegates the  Conv2D and DepthwiseConv2D tensor operations to the hardware accelerator, while the rest of the tensor operators are executed on the embedded CPU. At the application level, the end user would use the regular TFLite application programming interface (API) to load TFLite models, set input tensors, invoke inference, and get output tensors. The overall structure is depicted in \fig{fig:sw_stack}.
-
-\begin{figure}[t!]
-	\centering
-	\includegraphics[width=0.5\textwidth]{../figures/sw_stack.pdf}
-	\caption{System-level overview of the proposed embedded software stack.}
-	\label{fig:sw_stack}
-\end{figure}

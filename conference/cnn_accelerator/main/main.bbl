@@ -42,6 +42,27 @@ E.~Nurvitadhi, G.~Venkatesh, J.~Sim, D.~Marr, R.~Huang, J.~Ong Gee~Hock, Y.~T.
 K.~Abdelouahab, M.~Pelcat, J.~Serot, and F.~Berry, ``Accelerating cnn inference
   on fpgas: A survey,'' \emph{arXiv preprint arXiv:1806.01683}, 2018.
 
+\bibitem{moini2017resource}
+S.~Moini, B.~Alizadeh, M.~Emad, and R.~Ebrahimpour, ``A resource-limited
+  hardware accelerator for convolutional neural networks in embedded vision
+  applications,'' \emph{IEEE Transactions on Circuits and Systems II: Express
+  Briefs}, vol.~64, no.~10, pp. 1217--1221, 2017.
+
+\bibitem{guo2017angel}
+K.~Guo, L.~Sui, J.~Qiu, J.~Yu, J.~Wang, S.~Yao, S.~Han, Y.~Wang, and H.~Yang,
+  ``Angel-eye: A complete design flow for mapping cnn onto embedded fpga,''
+  \emph{IEEE transactions on computer-aided design of integrated circuits and
+  systems}, vol.~37, no.~1, pp. 35--47, 2017.
+
+\bibitem{TensorFlowDelegate}
+``Tensorflow lite delegates.''
+  https://www.tensorflow.org/lite/performance/delegates.
+
+\bibitem{nevarez2021accelerating}
+Y.~Nevarez, D.~Rotermund, K.~R. Pawelzik, and A.~Garcia-Ortiz, ``Accelerating
+  spike-by-spike neural networks on fpga with hybrid custom floating-point and
+  logarithmic dot-product approximation,'' \emph{IEEE Access}, 2021.
+
 \bibitem{yazdanbakhsh2021evaluation}
 A.~Yazdanbakhsh, K.~Seshadri, B.~Akin, J.~Laudon, and R.~Narayanaswami, ``An
   evaluation of edge tpu accelerators for convolutional neural networks,''
@@ -61,15 +82,13 @@ A.~Yazdanbakhsh, K.~Seshadri, B.~Akin, J.~Laudon, and R.~Narayanaswami, ``An
 S.~Cass, ``Taking ai to the edge: Google's tpu now comes in a maker-friendly
   package,'' \emph{IEEE Spectrum}, vol.~56, no.~5, pp. 16--17, 2019.
 
-\bibitem{nevarez2021accelerating}
-Y.~Nevarez, D.~Rotermund, K.~R. Pawelzik, and A.~Garcia-Ortiz, ``Accelerating
-  spike-by-spike neural networks on fpga with hybrid custom floating-point and
-  logarithmic dot-product approximation,'' \emph{IEEE Access}, 2021.
+\bibitem{goodfellow2016deep}
+I.~Goodfellow, Y.~Bengio, and A.~Courville, \emph{Deep learning}.\hskip 1em
+  plus 0.5em minus 0.4em\relax MIT press, 2016.
 
-\bibitem{TensorFlowLibrary}
-``Tensorflow lite for microcontrollers. “understand the c++ library.”,''
-  \url{https://www.tensorflow.org/lite/microcontrollers/library.}, accessed
-  September 15, 2021.
+\bibitem{tfLiteMicro}
+``Tensorflow lite for microcontrollers,''
+  https://github.com/tensorflow/tflite-micro.
 
 \bibitem{xilinx2015zynq}
 U.~Xilinx, ``Zynq-7000 all programmable soc: Technical reference manual,''

@@ -1,5 +1,9 @@
 \section{Conclusions}
 \label{sec:conclusions}
 
+In this paper, we present a tensor processor as a dedicated hardware accelerator for TensorFlow Lite on embedded FPGA. We accelerate Conv2D and DepthwiseConv2D tensor operations with fixed-point and floating-point. The proposed compute optimization performs vector dot-product with hybrid custom floating-point and logarithmic approximation. This approach accelerates computation, reduces energy consumption and resource utilization. To demonstrate the potential of the proposed architecture, we presented a design exploration with four compute engines: (1) fixed-point, (2) Xilinx floating-point LogiCORE IP, (3) hybrid custom floating-point approximation, and (4) hybrid logarithmic approximation.
+
+A single tensor processor running at 150 MHz on a Xilinx Zynq-7020 achieves 45X runtime acceleration and 951X power reduction on Conv2D tensor operation compared with ARM Cortex-A9 at 666MHz, and 4.5X compared with the equivalent implementation with floating-point LogiCORE IP.
+
 \section * {Acknowledgments}\label{sec:Ack}
 This work is funded by the \textit{Consejo Nacional de Ciencia y Tecnologia -- CONACYT} (the Mexican National Council for Science and Technology).
