@@ -55,8 +55,7 @@ K.~Guo, L.~Sui, J.~Qiu, J.~Yu, J.~Wang, S.~Yao, S.~Han, Y.~Wang, and H.~Yang,
   systems}, vol.~37, no.~1, pp. 35--47, 2017.
 
 \bibitem{TensorFlowDelegate}
-``Tensorflow lite delegates.''
-  https://www.tensorflow.org/lite/performance/delegates.
+``Tensorflow lite delegates.'' https://www.tensorflow.org/lite/performance/.
 
 \bibitem{nevarez2021accelerating}
 Y.~Nevarez, D.~Rotermund, K.~R. Pawelzik, and A.~Garcia-Ortiz, ``Accelerating

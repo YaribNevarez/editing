@@ -155,11 +155,7 @@ We evaluate the accuracy performance of the CNN models under the effects of tens
 \end{figure}
 
 \paragraph{Resource utilization and power dissipation}
-The resource utilization and power dissipation of the TP is listed in \tab{tab:resource}. The implementations with hybrid custom floating-point and logarithmic approximation are the most power efficient.
-
-The estimated power dissipation of the CPU is $1.4W$. The estimated power dissipation of the TP implementing \emph{Conv} operator with hybrid custom floating-point is $66mW$. This implementation achieves a peak acceleration of $44.87\times$. This results in a peak power efficiency improvement of $951\times$.
-
-The power dissipation of the Zynq device is presented in \fig{fig:power}.
+The resource utilization and power dissipation of the TP is listed in \tab{tab:resource}. The power dissipation of the Zynq device is presented in \fig{fig:power}. 
 
 \begin{table}[!htp]\centering
 	\caption{Resource utilization and power dissipation of the proposed TP engines.}\label{tab:resource}
@@ -194,3 +190,10 @@ The power dissipation of the Zynq device is presented in \fig{fig:power}.
 	\label{fig:power}
 \end{figure}
 
+
+\paragraph{Discussion}
+The implementations with hybrid custom floating-point and logarithmic approximation are the most power efficient. The \emph{Conv} with hybrid custom floating-point achieves a peak acceleration of $44.87\times$. Since the estimated power dissipation of the CPU and TP are $1.4W$ and $66mW$, respectively. This represents a power reduction of $951\times$.
+
+In the case of fixed-point implementation, the TP includes additional logic to support the quantized multiplier and shifter channel-wise corrections implemented for TF Lite 8-bit quantization. This TP presents the highest power dissipation.
+
+The system architecture proposed as a hardware/software framework allows to investigate acceleration of tensor operations with various architectural approaches.
