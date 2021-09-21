@@ -10,5 +10,5 @@ The \emph{Conv2D} tensor operation is described in \Equ{eq:conv2D}. Where $X$ re
 \subsection{DepthwiseConv2D tensor operation}
 The \emph{DepthwiseConv2D} tensor operation is described in \Equ{eq:dconv2D}. Where $X$ represents the input feature maps, $W$ represents the convolution kernel (known as filter), and $b$ represents the bias for the output feature maps.
  	\begin{eqnarray} \label{eq:dconv2D}
- 	DConv2D\left(W,x\right)_{i,j,n}=\sum_{k,l}^{K,L}W_{(k,l,n)} \cdot x_{(i+k,j+l,n)}+b_{o}
+ 	DConv2D\left(W,x\right)_{i,j,n}=\sum_{k,l}^{K,L}W_{(k,l,n)} \cdot x_{(i+k,j+l,n)}+b_{n}
  	\end{eqnarray}
