@@ -62,6 +62,12 @@ Y.~Nevarez, D.~Rotermund, K.~R. Pawelzik, and A.~Garcia-Ortiz, ``Accelerating
   spike-by-spike neural networks on fpga with hybrid custom floating-point and
   logarithmic dot-product approximation,'' \emph{IEEE Access}, 2021.
 
+\bibitem{venkataramani2015approximate}
+S.~Venkataramani, S.~T. Chakradhar, K.~Roy, and A.~Raghunathan, ``Approximate
+  computing and the quest for computing efficiency,'' in \emph{2015 52nd
+  ACM/EDAC/IEEE Design Automation Conference (DAC)}.\hskip 1em plus 0.5em minus
+  0.4em\relax IEEE, 2015, pp. 1--6.
+
 \bibitem{yazdanbakhsh2021evaluation}
 A.~Yazdanbakhsh, K.~Seshadri, B.~Akin, J.~Laudon, and R.~Narayanaswami, ``An
   evaluation of edge tpu accelerators for convolutional neural networks,''
@@ -91,6 +97,20 @@ I.~Goodfellow, Y.~Bengio, and A.~Courville, \emph{Deep learning}.\hskip 1em
 \bibitem{tfLiteMicro}
 ``Tensorflow lite for microcontrollers,''
   https://github.com/tensorflow/tflite-micro.
+
+\bibitem{hrica2012floating}
+J.~Hrica, ``Floating-point design with vivado hls,'' \emph{Xilinx Application
+  Note}, 2012.
+
+\bibitem{park2009dynamic}
+J.~Park, J.~H. Choi, and K.~Roy, ``Dynamic bit-width adaptation in dct: An
+  approach to trade off image quality and computation energy,'' \emph{IEEE
+  transactions on very large scale integration (VLSI) systems}, vol.~18, no.~5,
+  pp. 787--793, 2009.
+
+\bibitem{mittal2016survey}
+S.~Mittal, ``A survey of techniques for approximate computing,'' \emph{ACM
+  Computing Surveys (CSUR)}, vol.~48, no.~4, pp. 1--33, 2016.
 
 \bibitem{xilinx2015zynq}
 U.~Xilinx, ``Zynq-7000 all programmable soc: Technical reference manual,''

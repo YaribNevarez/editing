@@ -17,7 +17,7 @@ The proposed system architecture is a hardware/software framework to investigate
 \end{figure}
 
 \paragraph{Tensor processor}
-The TP is a dedicated hardware module to compute tensor operations. The hardware architecture is described in \fig{fig:accelerator}. This architecture implements on-chip storage, high performance off-chip communication with AXI-Stream, and communication with CPU via AXI-Lite and interrupt. This hardware architecture is implemented with HLS. The tensor operators are implemented based on the C++ TF Lite micro kernels \cite{tfLiteMicro}.
+The TP is a dedicated hardware module to compute tensor operations. The hardware architecture is described in \fig{fig:accelerator}. This architecture implements high performance off-chip communication with AXI-Stream, direct CPU communication with AXI-Lite, and on-chip storage utilizing BRAM. This hardware architecture is implemented with HLS. The tensor operations are implemented based on the C++ TF Lite micro kernels \cite{tfLiteMicro}.
 
 \begin{figure}[t!]
 	\centering
@@ -26,20 +26,22 @@ The TP is a dedicated hardware module to compute tensor operations. The hardware
 	\label{fig:accelerator}
 \end{figure}
 
-This accelerator offers two modes of operation: \emph{configuration} and \emph{execution}.
+\paragraph{Modes of operation} This accelerator offers two modes of operation: \emph{configuration} and \emph{execution}.
 
-\paragraph{Configuration mode}
-In this mode, the TP receives the operator ID and the hyperparameters for execution: stride, dilation, padding, offset, activation, quantized activation, depth-multiplier, input shape, filter shape, bias shape, and output shape. Afterwards the accelerator receives the \emph{filter}, \emph{bias} and quantization vectors.
+In configuration mode, the TP receives the operator ID and the hyperparameters for execution: stride, dilation, padding, offset, activation, quantized activation, depth-multiplier, input shape, filter shape, bias shape, and output shape. Afterwards the accelerator receives the \emph{filter}, \emph{bias} and quantization vectors.
 
-\paragraph{Execution mode}
-In this mode, the TP executes the tensor operator according to the hyperparameters given in the configuration mode. During execution, the input and output tensor buffers are moved from/to the TF Lite memory regions via direct memory access (DMA).
+In execution mode, the TP executes the tensor operator according to the hyperparameters given in the configuration mode. During execution, the input and output tensor buffers are moved from/to the TF Lite memory regions via direct memory access (DMA).
 
 \paragraph{Compatibility}
 
- This TP is compatible with TF Lite 8-bit quantized models and standard floating-point. For this purpose, we implement the compute engines with regular integers and floating-point LogiCORE IPs.
+ This TP is compatible with TF Lite 8-bit quantized models and standard floating-point. For this purpose, we implement the compute engines with regular fixed-point and floating-point LogiCORE IPs.
+ Vivado HLS accomplishes floating-point arithmetic operations by mapping
+ them onto Xilinx LogiCORE IP cores, these floating-point operator cores are instantiated in the resultant RTL \cite{hrica2012floating}.
  
-\paragraph{Floating-point optimization}
-We optimize the floating-point computation adopting the dot-product with hybrid custom floating-point and logarithmic approximation\cite{nevarez2021accelerating}. This approach: (1) denormalizes input numbers, (2) executes computation with integer format for exponent and mantissa, and finally, (3) it normalizes the result into IEEE 754 format. This design implements a pipelined vector dot-product with a latency of $2N+II$, where $N$ and $II$ are the vector length and initiation interval, respectively. This implementation achieves up to $5\times$ latency reduction compared with a pipelined vector dot-product using Xilinx floating-point LogiCORE \cite{nevarez2021accelerating}. We implement the vector dot-product illustrated in \Fig{fig:dot_product}.
+\paragraph{Dot-product with floating-point optimization}
+\label{sec:dot_product}
+We optimize the floating-point computation adopting the dot-product with hybrid custom floating-point and logarithmic approximation\cite{nevarez2021accelerating}. This approach: (1) denormalizes input numbers, (2) executes computation with integer format for exponent and mantissa, and finally, (3) it normalizes the result into IEEE 754 format. This design implements a pipelined vector dot-product with a latency of $2N+II$, where $N$ and $II$ are the vector length and initiation interval, respectively. This implementation achieves up to $5\times$ latency reduction compared with a pipelined vector dot-product using Xilinx floating-point LogiCORE \cite{nevarez2021accelerating}. The hardware dot-product is illustrated in \Fig{fig:dot_product}. As a design parameter, the mantissa bit-width of the weight vector provides a tunable knob to trade-off between resource-efficiency and QoR \cite{park2009dynamic}. Since the lower-order bits have smaller significance than the higher-order bits, truncating them may
+have only a minor impact on QoR \cite{mittal2016survey}.
 
 \begin{figure}[t!]
 	\centering
