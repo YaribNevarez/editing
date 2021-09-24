@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2021.5.10)  24 SEP 2021 20:04
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2021.5.10)  24 SEP 2021 23:11
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -894,13 +894,13 @@ Before submitting the final camera ready copy, remember to:
 
 ] (./main.aux) ) 
 Here is how much of TeX's memory you used:
- 7182 strings out of 494953
- 108704 string characters out of 6180977
- 215558 words of memory out of 5000000
- 10280 multiletter control sequences out of 15000+600000
+ 7183 strings out of 494953
+ 108713 string characters out of 6180977
+ 215567 words of memory out of 5000000
+ 10281 multiletter control sequences out of 15000+600000
  50942 words of font info for 107 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 38i,11n,35p,1320b,306s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 38i,11n,35p,1320b,334s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texl
@@ -914,7 +914,7 @@ m/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></
 usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texl
 ive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/
 fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (7 pages, 508624 bytes).
+Output written on main.pdf (7 pages, 508918 bytes).
 PDF statistics:
  233 PDF objects out of 1000 (max. 8388607)
  143 compressed objects within 2 object streams

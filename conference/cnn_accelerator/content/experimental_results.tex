@@ -186,9 +186,23 @@ The resource utilization and power dissipation of the TP is listed in \tab{tab:r
 \begin{enumerate}
 	\item{Acceleration}: The dot-product with hybrid custom floating-point approximation achieves better performance with larger vectors. Since \emph{DConv} performs a channel-wise spatial dot-product, this implementation presents very limited acceleration compared with the LogiCORE-based implementation.
 	
-	\item{Energy}: The implementations with hybrid custom floating-point and logarithmic approximation are the most energy efficient.
+	\item{Energy}: The implementations with hybrid custom floating-point and logarithmic approximation are the most efficient with energy reduction of $954\times$ and $1,055\times$, respectively. \tab{tab:edp} presents the energy-delay product (EDP) and energy reduction in \emph{(4A) Conv} operator.
+	
+\begin{table}[!htp]\centering
+	\caption{Energy consumption in tensor operation \emph{(4A) Conv}.}\label{tab:edp}
+	\scriptsize
+	\begin{tabular}{lrrrrr}\toprule
+		\textbf{Engine} & \textbf{t (ms)} &\textbf{Power (W)} &\textbf{EDP (J)} &\textbf{Reduction} \\\midrule
+		CPU &5,564.79 &1.404 &7,812.97 &1.00 \\
+		Fixed-point &122.58 &0.136 &16.67 &468.66 \\
+		Floating-point LogiCORE &569.30 &0.070 &39.85 &196.05 \\
+		Hybrid custom floating-point &124.03 &0.066 &8.19 &\textbf{954.43} \\
+		Hybrid logarithmic &123.32 &0.060 &7.40 &\textbf{1,055.92 }\\
+		\bottomrule
+	\end{tabular}
+\end{table}
 	
 	\item{Resource utilization}: In the case of fixed-point implementation, the TP includes additional logic to support the quantized multiplier and shifter channel-wise corrections implemented for TF Lite 8-bit quantization. This TP presents the highest power dissipation.
 	
-	\item{Accuracy}: Based on the presented classification accuracy, the hybrid custom floating-point approximation presents the best trade off between QoR and energy-efficiency. In this case, \emph{(4A) Conv} with hybrid custom floating-point achieves a peak acceleration of $44.87\times$. Since the estimated power dissipation of the CPU and TP are $1.4W$ and $66mW$, respectively. This represents an energy consumption of $951\times$.
+	\item{Accuracy}: Based on the presented classification accuracy, the hybrid custom floating-point approximation presents the best trade off between QoR and energy-efficiency.
 \end{enumerate}
