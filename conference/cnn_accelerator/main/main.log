@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2021.5.10)  24 SEP 2021 23:11
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2021.5.10)  29 SEP 2021 11:11
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -870,12 +870,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 82--85
 er 15,
  []
 
-
+[6 <../figures/power_breackdown.pdf>]
 Underfull \hbox (badness 10000) in paragraph at lines 98--100
 []\OT1/ptm/m/n/8 ``Tensorflow lite for mi-cro-con-trollers,''
  []
 
-[6 <../figures/power_breackdown.pdf>])
+)
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -896,7 +896,7 @@ Before submitting the final camera ready copy, remember to:
 Here is how much of TeX's memory you used:
  7183 strings out of 494953
  108713 string characters out of 6180977
- 215567 words of memory out of 5000000
+ 214567 words of memory out of 5000000
  10281 multiletter control sequences out of 15000+600000
  50942 words of font info for 107 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
@@ -914,7 +914,7 @@ m/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></
 usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texl
 ive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/
 fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (7 pages, 508918 bytes).
+Output written on main.pdf (7 pages, 508960 bytes).
 PDF statistics:
  233 PDF objects out of 1000 (max. 8388607)
  143 compressed objects within 2 object streams
