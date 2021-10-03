@@ -184,7 +184,11 @@ The resource utilization and power dissipation of the TP is listed in \tab{tab:r
 
 \subsection{Discussion}
 \begin{enumerate}
-	\item{Acceleration}: The dot-product with hybrid custom floating-point approximation achieves better performance with larger vectors. Since \emph{DConv} performs a channel-wise spatial dot-product, this implementation presents very limited acceleration compared with the LogiCORE-based implementation.
+	\item{Performance}: The dot-product with hybrid custom floating-point approximation achieves better performance with larger vectors. Since \emph{DConv} performs a channel-wise spatial dot-product, this implementation presents very limited acceleration compared with the LogiCORE-based implementation.
+
+	One critical problem is that the computation throughput may not well match the memory bandwidth provided an FPGA platform. Consequently, existing approaches cannot achieve best performance due to underutilization of either logic resource or memory bandwidth.
+
+	It means that the performance is degraded due to under-utilization of either logic resource or memory bandwidth.
 	
 	\item{Energy}: The implementations with hybrid custom floating-point and logarithmic approximation are the most efficient with energy reduction of $954\times$ and $1,055\times$, respectively. \tab{tab:edp} presents the energy-delay product (EDP) and energy reduction in \emph{(4A) Conv} operator.
 	
@@ -207,4 +211,9 @@ The resource utilization and power dissipation of the TP is listed in \tab{tab:r
 	\item{Accuracy}: Based on the presented classification accuracy, the hybrid custom floating-point approximation presents the best trade off between QoR and energy-efficiency.
 	
 	Theres is no accuracy degradation when using fixed-point and floating-point LogiCORE IP.
+
+	\item{Functionality}: Higher energy efficiency, fast development round, and capability of reconfiguration.
+
+	There are a lot of potential solutions that result in a huge design space for exploration
+	An integration with other optional layers, such as sub-sampling or max pooling layers, will be studied in future work.
 \end{enumerate}
