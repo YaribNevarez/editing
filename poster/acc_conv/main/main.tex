@@ -71,9 +71,21 @@
 
 \author{Yarib Nevarez} % Author(s)
 
-\institute{Ph.D. candidate at Universit\"at Bremen} % Institution(s)
 
-%----------------------------------------------------------------------------------------
+\institute{Universit\"at Bremen, \href{mailto:nevarez@item.uni-bremen.de}{nevarez@item.uni-bremen.de}} % Institution(s)
+
+\newcommand\Fig[1]{\textbf{Fig.}~\ref{#1}}
+\newcommand\fig[1]{\textbf{Fig.}~\ref{#1}}
+\newcommand\Tab[1]{\textbf{Tab.}~\ref{#1}}
+\newcommand\tab[1]{\textbf{Tab.}~\ref{#1}}
+\newcommand\Equ[1]{\textbf{Eq.}~(\ref{#1})}
+\newcommand\equ[1]{\textbf{Eq.}~(\ref{#1})}
+\newcommand\Sect[1]{\textbf{Sec.}~\ref{#1}}
+\newcommand\sect[1]{\textbf{Sec.}~\ref{#1}}
+\newcommand\Refs[1]{\textbf{Ref.}~\cite{#1}}
+\newcommand\refs[1]{\textbf{Ref.}~\cite{#1}}
+\newcommand\Algo[1]{\textbf{Algorithm}~\ref{#1}}
+\newcommand\algo[1]{\textbf{Algorithm}~\ref{#1}}
 
 \begin{document}
 
@@ -95,9 +107,9 @@
 %	ABSTRACT
 %----------------------------------------------------------------------------------------
 
-\begin{alertblock}{ABSTRACT}
+\begin{alertblock}{Abstract}
 
-We accelerate artificial neural networks (ANN) optimizing the floating-point computation with vector dot-product approximation. The proposed method exploits the intrinsic error resilience of machine learning (ML) algorithms to reduce computational latency, memory footprint, and power dissipation while preserving inference accuracy. To demonstrate our approach, we address a hardware design exploration with convolutional neural networks (CNNs) and spiking neural networks (SNNs).
+We accelerate artificial neural networks (ANN) optimizing the floating-point computation with vector dot-product approximation. The proposed method exploits the intrinsic error resilience of machine learning (ML) algorithms to reduce computational latency, memory footprint, and power dissipation while preserving inference accuracy. This method is integrated in a high-level design exploration framework serving as deployment tool. To demonstrate our approach, we address a hardware design exploration with convolutional neural networks (CNNs) and spiking neural networks (SNNs).
 \end{alertblock}
 
 %----------------------------------------------------------------------------------------
@@ -107,7 +119,7 @@ We accelerate artificial neural networks (ANN) optimizing the floating-point com
 \begin{block}{Introduction}
 
 %%%%%%% Contributions
-We accelerate ANN with a dot-product hardware design based on approximate computing with hybrid custom floating-point and logarithmic number representation. This hardware unit has a quality configurable scheme based on the bit truncation of the synaptic-weight vector. Fig. 1 illustrates the dot-product hardware module with standard floating-point (IEEE 754) arithmetic, and our approach with hybrid custom floating-point as well as logarithmic approximation. As a design parameter, the mantissa bit-width of the weight vector provides a tunable knob to trade-off between efficiency and quality of result (QoR)\cite{han2013approximate}. Since the lower-order bits have smaller significance than the higher-order bits, truncating them may have only a minor impact on QoR \cite{mittal2016survey}. Further on, we can remove completely the mantissa bits in order to use only the exponent of a floating-point representation. Therefore, the most efficient setup and yet the worst-case quality configuration becomes a logarithmic representation, which consequently leads to significant architectural-level optimizations using only adders and shifters for dot-product approximation in hardware. Moreover, since approximations and noise have qualitatively the same effect\cite{venkataramani2015approximate}, we apply noise tolerance plots as an intuitive visual measure to provide insights into the quality degradation of ANN under approximate processing effects.
+We accelerate ANN with a dot-product hardware design based on approximate computing with hybrid custom floating-point and logarithmic number representation\cite{nevarez2021accelerating}. This hardware unit has a quality configurable scheme based on the bit truncation of the synaptic-weight vector. \fig{fig:dot_product_unit} illustrates the dot-product hardware module with standard floating-point (IEEE 754) arithmetic, and our approach with hybrid custom floating-point as well as logarithmic approximation. As a design parameter, the mantissa bit-width of the weight vector provides a tunable knob to trade-off between efficiency and quality of result (QoR)\cite{han2013approximate}. Since the lower-order bits have smaller significance than the higher-order bits, truncating them may have only a minor impact on QoR \cite{mittal2016survey}. Further on, we can remove completely the mantissa bits in order to use only the exponent of a floating-point representation. Therefore, the most efficient setup and yet the worst-case quality configuration becomes a logarithmic representation, which consequently leads to significant hardware-level optimizations using only adders and shifters for dot-product approximation. Moreover, since approximations and noise have qualitatively the same effect\cite{venkataramani2015approximate}, we propose noise tolerance plots as an intuitive visual measure to provide insights into the quality degradation of ANN under approximate processing effects.
 
 
 \end{block}
@@ -126,7 +138,7 @@ We accelerate ANN with a dot-product hardware design based on approximate comput
 %	Design
 %----------------------------------------------------------------------------------------
 
-\begin{block}{Dot-Product Hardware Block}
+\begin{block}{Dot-Product Block-Level Design}
 
 \begin{figure}
 	\includegraphics[width=\linewidth]{../figures/dot-product_unit.pdf}
@@ -136,6 +148,15 @@ We accelerate ANN with a dot-product hardware design based on approximate comput
 
 \end{block}
 
+\begin{block}{Tensor Processor}
+		This section presents a tensor processor (TP) compatible with TensorFlow Lite to accelerate \emph{Conv2D} (\equ{eq:conv2D}) and \emph{DepthwiseConv2D} (\equ{eq:dconv2D}) operations on embedded FPGA. This TP instantiates the compute engines shown in \fig{fig:dot_product_unit}.
+	\begin{figure}
+		\includegraphics[width=\linewidth]{../figures/accelerator.pdf}
+		\caption{Hardware architecture of the proposed tensor processor.}
+		\label{fig:accelerator}
+	\end{figure}
+	
+\end{block}
 %----------------------------------------------------------------------------------------
 
 \end{column} % End of column 2.1
@@ -146,13 +167,41 @@ We accelerate ANN with a dot-product hardware design based on approximate comput
 %	SbS
 %----------------------------------------------------------------------------------------
 
-\begin{block}{Tensor Processor}
+\begin{block}{Embedded System Architecture}
 	\begin{figure}
-		\includegraphics[width=\linewidth]{../figures/accelerator.pdf}
-		\caption{Embedded system architecture of the proposed compute platform.}
+		\includegraphics[width=\linewidth]{../figures/system_design.pdf}
+		\caption{Base embedded hardware architecture.}
 		\label{fig:conv_sys_design}
 	\end{figure}
+	
+	\begin{figure}
+		\includegraphics[width=\linewidth]{../figures/sw_stack.pdf}
+		\caption{Base embedded software architecture.}
+		\label{fig:embedded_sw}
+	\end{figure}
+\end{block}
 
+\begin{block}{Experimental Results}
+	A single TP achieves a peak acceleration of 45X on \emph{Conv2D} tensor operation. The energy-delay product (EDP) of the different compute engines is compared in \tab{tab:energy}. Implemented custom floating-point representations and accuracy performance is shown in \fig{fig:accuracy}.
+	\begin{table}[!htp]\centering
+		\caption{Energy consumption of a single TP at peak acceleration of 45X.}\label{tab:energy}
+		\scriptsize
+		\begin{tabular}{lrrrr}\toprule
+			Engine &Power (W) &EDP (J) &Reduction \\\midrule
+			CPU (ARM Cortex-A9)&1.404 &7,812.97 &1.00 \\
+			TP (Fixed-point) &0.136 &16.67 &468.66 \\
+			TP (Floating-point LogiCORE) &0.070 &39.85 &196.05 \\
+			TP (Hybrid custom floating-point) &0.066 &8.19 &\textbf{954.43} \\
+			TP (Hybrid logarithmic) &0.060 &7.40 &\textbf{1,055.92} \\
+			\bottomrule
+		\end{tabular}
+	\end{table}
+	
+	\begin{figure}
+		\includegraphics[width=\linewidth]{../figures/all_models_accuracy.pdf}
+		\caption{Classification accuracy using hybrid custom floating-point approximation with various formats.}
+		\label{fig:accuracy}
+	\end{figure}
 \end{block}
 
 %----------------------------------------------------------------------------------------
@@ -161,14 +210,11 @@ We accelerate ANN with a dot-product hardware design based on approximate comput
 
 \end{columns} % End of the split of column 2 - any content after this will now take up 2 columns width
 
-%----------------------------------------------------------------------------------------
-%	IMPORTANT RESULT
-%----------------------------------------------------------------------------------------
 
-\begin{alertblock}{Computational intensive operations}
+\begin{alertblock}{Implemented operations}
 	
 \begin{eqnarray} \label{eq:conv2D}
-Conv2D\left(W,X\right)_{i,j,o}=\sum_{k,l,m}^{K,L,M}W_{(o,k,l,m)} \cdot X_{(i+k,j+l,m)+b_{o}}
+Conv2D\left(W,X\right)_{i,j,o}=\sum_{k,l,m}^{K,L,M}W_{(o,k,l,m)} \cdot X_{(i+k,j+l,m)}+b_{o}
 \end{eqnarray}
 
 
@@ -192,58 +238,12 @@ h_\mu^{new}(i) = \frac{1}{1+\epsilon} \left(h_\mu(i) + \epsilon \frac{h_\mu(i) W
 %	MATHEMATICAL SECTION
 %----------------------------------------------------------------------------------------
 
-\begin{block}{Embedded System Platform}
-In this section, we present a tensor processor compatible with TensorFlow Lite to accelerate \emph{Conv2D} and \emph{DepthwiseConv2D} operations on embedded FPGA. This implementation is integrated in a hardware/software co-design framework to accelerate tensor operations on FPGAs.
-
-\begin{figure}
-	\includegraphics[width=\linewidth]{../figures/system_design.pdf}
-	\caption{Embedded system architecture of the proposed compute platform.}
-	\label{fig:conv_sys_design}
-\end{figure}
-\end{block}
 
 %----------------------------------------------------------------------------------------
 
 \end{column} % End of column 2.1
 
 \begin{column}{\onecolwid} % The second column within column 2 (column 2.2)
-
-%----------------------------------------------------------------------------------------
-%	RESULTS
-%----------------------------------------------------------------------------------------
-
-\begin{block}{Results}
-
-\begin{figure}
-\includegraphics[width=0.8\linewidth]{../figures/placeholder.jpg}
-\caption{Figure caption}
-\end{figure}
-
-Nunc tempus venenatis facilisis. Curabitur suscipit consequat eros non porttitor. Sed a massa dolor, id ornare enim:
-
-Nunc tempus venenatis facilisis. Curabitur suscipit consequat eros non porttitor. Sed a massa dolor, id ornare enim:
-
-Nunc tempus venenatis facilisis. Curabitur suscipit consequat eros non porttitor. Sed a massa dolor, id ornare enim:
-
-Nunc tempus venenatis facilisis. Curabitur suscipit consequat eros non porttitor. Sed a massa dolor, id ornare enim:
-
-\begin{table}
-\vspace{2ex}
-\begin{tabular}{l l l}
-\toprule
-\textbf{Treatments} & \textbf{Res. 1} & \textbf{Res. 2}\\
-\midrule
-Treatment 1 & 0.0003262 & 0.562 \\
-Treatment 2 & 0.0015681 & 0.910 \\
-Treatment 3 & 0.0009271 & 0.296 \\
-\bottomrule
-\end{tabular}
-\caption{Table caption}
-\end{table}
-
-\end{block}
-
-%----------------------------------------------------------------------------------------
 
 \end{column} % End of column 2.2
 
@@ -259,40 +259,20 @@ Treatment 3 & 0.0009271 & 0.296 \\
 %	CONCLUSION
 %----------------------------------------------------------------------------------------
 
-\begin{block}{Spike-by-Spike neural networks}
-
-SbS is a spiking neural network approach based on a
-generative probabilistic model. It iteratively finds an estimate of
-its input probability distribution $p(s)$ (i.e. the probability of
-input node $s$ to stochastically send a spike) by its latent variables
-via $r(s) = \sum_i h(i) W(s|i)$. 
-where $\vec{h}$ is an inference
-population composed of a group of neurons that compete with each
-other.
-
-
-
+\begin{block}{Tolerance Plot}
+	For quality monitoring, we propose tolerance plots as an intuitive
+	visual measure to provide insights into the accuracy degradation of
+	ANN under different approximate processing effects. This plot revels inherent error resilience, hence, the
+	possibilities for approximate processing. \fig{fig:tolerance} shows the tolerance plot of a SbS network with hybrid logarithmic approximation \cite{nevarez2021accelerating}, this plot reveals elevated approximation resilience. The SbS dynamics is described in \equ{eq:sbs_update}.
+	\begin{figure}
+		\includegraphics[width=\linewidth]{../figures/accuracy_vs_spike_log.pdf}
+		\caption{Tolerance plot.}
+		\label{fig:tolerance}
+	\end{figure}
 \end{block}
 
-%----------------------------------------------------------------------------------------
-%	ADDITIONAL INFORMATION
-%----------------------------------------------------------------------------------------
-
-\begin{block}{Additional Information}
-
-Maecenas ultricies feugiat velit non mattis. Fusce tempus arcu id ligula varius dictum. 
-\begin{itemize}
-\item Curabitur pellentesque dignissim
-\item Eu facilisis est tempus quis
-\item Duis porta consequat lorem
-\end{itemize}
-
-Maecenas ultricies feugiat velit non mattis. Fusce tempus arcu id ligula varius dictum. 
-\begin{itemize}
-\item Curabitur pellentesque dignissim
-\item Eu facilisis est tempus quis
-\item Duis porta consequat lorem
-\end{itemize}
+\begin{block}{Conclusions}
+The proposed optimization technique accelerates floating-point computation. This approach accelerates computation, reduces energy consumption and resource utilization.
 
 \end{block}
 
@@ -316,27 +296,10 @@ Maecenas ultricies feugiat velit non mattis. Fusce tempus arcu id ligula varius 
 
 \begin{block}{Acknowledgements}
 
-\small{\rmfamily{Nam mollis tristique neque eu luctus. Suspendisse rutrum congue nisi sed convallis. Aenean id neque dolor. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.}} \\
+\small{\rmfamily{This work is funded by the \textit{CONACYT} (the Mexican National Council for Science and Technology).}} \\
 
 \end{block}
 
-%----------------------------------------------------------------------------------------
-%	CONTACT INFORMATION
-%----------------------------------------------------------------------------------------
-
-\setbeamercolor{block alerted title}{fg=white,bg=black!50} % Change the alert block title colors
-\setbeamercolor{block alerted body}{fg=black,bg=black!10} % Change the alert block body colors
-
-\begin{alertblock}{Contact Information}
-
-\begin{itemize}
-\item \href{mailto:nevarez@item.uni-bremen.de}{nevarez@item.uni-bremen.de}
-\item \href{www.linkedin.com/in/yarib-nevarez}{linkedin.com/in/yarib-nevarez}
-\item \href{https://github.com/YaribNevarez}{github.com/YaribNevarez}
-\item +49 (178) 893 6794
-\end{itemize}
-
-\end{alertblock}
 
 \begin{center}
 \begin{tabular}{ccc}

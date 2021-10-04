@@ -1,21 +1,21 @@
 \begin{thebibliography}{1}
 
+\bibitem{nevarez2021accelerating}
+Yarib Nevarez, David Rotermund, Klaus~R Pawelzik, and Alberto Garcia-Ortiz.
+\newblock Accelerating spike-by-spike neural networks on fpga with hybrid
+  custom floating-point and logarithmic dot-product approximation.
+
 \bibitem{han2013approximate}
 Jie Han and Michael Orshansky.
 \newblock Approximate computing: An emerging paradigm for energy-efficient
   design.
-\newblock In {\em 2013 18th IEEE European Test Symposium (ETS)}, pages 1--6.
-  IEEE, 2013.
 
 \bibitem{mittal2016survey}
 Sparsh Mittal.
 \newblock A survey of techniques for approximate computing.
-\newblock {\em ACM Computing Surveys (CSUR)}, 48(4):1--33, 2016.
 
 \bibitem{venkataramani2015approximate}
 Swagath Venkataramani, Srimat~T Chakradhar, Kaushik Roy, and Anand Raghunathan.
 \newblock Approximate computing and the quest for computing efficiency.
-\newblock In {\em 2015 52nd ACM/EDAC/IEEE Design Automation Conference (DAC)},
-  pages 1--6. IEEE, 2015.
 
 \end{thebibliography}

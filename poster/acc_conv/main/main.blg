@@ -3,44 +3,53 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: main.aux
 The style file: unsrt.bst
 Database file #1: sample.bib
-You've used 3 entries,
+Warning--empty journal in nevarez2021accelerating
+Warning--empty year in nevarez2021accelerating
+Warning--empty booktitle in han2013approximate
+Warning--empty year in han2013approximate
+Warning--empty journal in mittal2016survey
+Warning--empty year in mittal2016survey
+Warning--empty booktitle in venkataramani2015approximate
+Warning--empty year in venkataramani2015approximate
+You've used 4 entries,
             1791 wiz_defined-function locations,
-            466 strings with 4064 characters,
-and the built_in function-call counts, 833 in all, are:
-= -- 82
-> -- 26
-< -- 2
-+ -- 10
-- -- 7
-* -- 49
-:= -- 126
-add.period$ -- 11
-call.type$ -- 3
-change.case$ -- 3
+            457 strings with 4118 characters,
+and the built_in function-call counts, 672 in all, are:
+= -- 35
+> -- 40
+< -- 0
++ -- 15
+- -- 11
+* -- 42
+:= -- 114
+add.period$ -- 8
+call.type$ -- 4
+change.case$ -- 4
 chr.to.int$ -- 0
-cite$ -- 3
-duplicate$ -- 43
-empty$ -- 86
-format.name$ -- 7
-if$ -- 197
+cite$ -- 12
+duplicate$ -- 38
+empty$ -- 75
+format.name$ -- 11
+if$ -- 139
 int.to.chr$ -- 0
-int.to.str$ -- 3
-missing$ -- 3
-newline$ -- 18
-num.names$ -- 3
-pop$ -- 13
+int.to.str$ -- 4
+missing$ -- 4
+newline$ -- 19
+num.names$ -- 4
+pop$ -- 30
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 20
+skip$ -- 13
 stack$ -- 0
-substring$ -- 48
-swap$ -- 15
-text.length$ -- 2
+substring$ -- 0
+swap$ -- 2
+text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
-warning$ -- 0
-while$ -- 11
-width$ -- 4
-write$ -- 37
+warning$ -- 8
+while$ -- 4
+width$ -- 5
+write$ -- 30
+(There were 8 warnings)
