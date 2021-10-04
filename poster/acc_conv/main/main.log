@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2021.5.10)  4 OCT 2021 13:57
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2021.5.10)  4 OCT 2021 14:50
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1333,16 +1333,26 @@ Package pdftex.def Info: ../figures/accuracy_vs_spike_log.pdf used on input lin
 e 316.
 (pdftex.def)             Requested size: 572.38156pt x 429.31027pt.
 
-Underfull \hbox (badness 1215) in paragraph at lines 316--316
-\T1/lmr/m/n/37.03 This ap-proach ac-cel-er-ates com-pu-ta-
+Underfull \hbox (badness 10000) in paragraph at lines 316--316
+[]\T1/lmr/m/n/37.03 We present a hard-ware/software
  []
 
-(./main.bbl)
-Underfull \hbox (badness 1062) in paragraph at lines 316--316
-\T1/lmr/m/n/30.85 Mex-i-can Na-tional Coun-cil for Sci-ence and
+
+Underfull \hbox (badness 7273) in paragraph at lines 316--316
+\T1/lmr/m/n/37.03 co-design frame-work to ac-cel-er-ate
  []
 
-<../figures/logo_ub_2021.png, id=35, 419.5675pt x 150.5625pt>
+
+Underfull \hbox (badness 10000) in paragraph at lines 316--316
+\T1/lmr/m/n/37.03 floating-point ten-sor com-pu-ta-tion
+ []
+
+
+Underfull \hbox (badness 2057) in paragraph at lines 316--316
+\T1/lmr/m/n/37.03 in em-bed-ded FPGA with ap-prox-i-
+ []
+
+(./main.bbl) <../figures/logo_ub_2021.png, id=35, 419.5675pt x 150.5625pt>
 File: ../figures/logo_ub_2021.png Graphic file (type png)
 
 <use ../figures/logo_ub_2021.png>
@@ -1410,7 +1420,7 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 318.
 Here is how much of TeX's memory you used:
  22071 strings out of 494953
  431282 string characters out of 6180977
- 596029 words of memory out of 5000000
+ 595752 words of memory out of 5000000
  24787 multiletter control sequences out of 15000+600000
  93340 words of font info for 80 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
@@ -1424,7 +1434,7 @@ f/fonts/type1/public/lm/lmex10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi
 s/type1/public/lm/lmri12.pfb></usr/share/texmf/fonts/type1/public/lm/lmss17.pfb
 ></usr/share/texmf/fonts/type1/public/lm/lmssbx10.pfb></usr/share/texmf/fonts/t
 ype1/public/lm/lmsy10.pfb>
-Output written on main.pdf (1 page, 273168 bytes).
+Output written on main.pdf (1 page, 273251 bytes).
 PDF statistics:
  209 PDF objects out of 1000 (max. 8388607)
  122 compressed objects within 2 object streams
