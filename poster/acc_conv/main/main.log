@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2021.5.10)  5 OCT 2021 15:41
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2021.5.10)  5 OCT 2021 15:43
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1254,19 +1254,13 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <18.515> on input line 316.
 
-Underfull \hbox (badness 1478) in paragraph at lines 316--316
-\T1/lmr/m/n/37.03 hard-ware de-sign based on ap-prox-i-
+Underfull \hbox (badness 3058) in paragraph at lines 316--316
+[]\T1/lmr/m/n/37.03 We ac-cel-er-ate ANNs with a dot-
  []
 
 
-Underfull \hbox (badness 2119) in paragraph at lines 316--316
-\T1/lmr/m/n/37.03 weight vec-tor. \T1/lmr/bx/n/37.03 Fig. []\T1/lmr/m/n/37.03 1
-[][] il-lus-trates
- []
-
-
-Underfull \hbox (badness 2426) in paragraph at lines 316--316
-\T1/lmr/m/n/37.03 stan-dard floating-point (IEEE 754)
+Underfull \hbox (badness 2027) in paragraph at lines 316--316
+\T1/lmr/m/n/37.03 product hard-ware de-sign based on
  []
 
 <../figures/dot-product_unit.pdf, id=22, 252.945pt x 361.35pt>
@@ -1428,11 +1422,11 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 318.
 Here is how much of TeX's memory you used:
  22081 strings out of 494953
  431570 string characters out of 6180977
- 597486 words of memory out of 5000000
+ 597504 words of memory out of 5000000
  24796 multiletter control sequences out of 15000+600000
  93340 words of font info for 80 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 52i,18n,66p,1533b,1423s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 52i,18n,66p,1535b,1423s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc}{/usr/share/texmf/fonts/en
 c/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/u
 sr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/l
@@ -1442,7 +1436,7 @@ f/fonts/type1/public/lm/lmex10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi
 s/type1/public/lm/lmri12.pfb></usr/share/texmf/fonts/type1/public/lm/lmss17.pfb
 ></usr/share/texmf/fonts/type1/public/lm/lmssbx10.pfb></usr/share/texmf/fonts/t
 ype1/public/lm/lmsy10.pfb>
-Output written on main.pdf (1 page, 349653 bytes).
+Output written on main.pdf (1 page, 349658 bytes).
 PDF statistics:
  213 PDF objects out of 1000 (max. 8388607)
  123 compressed objects within 2 object streams
