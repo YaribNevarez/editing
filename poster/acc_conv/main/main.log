@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2021.5.10)  5 OCT 2021 15:37
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2021.5.10)  5 OCT 2021 15:41
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1222,8 +1222,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 316--316
  []
 
 
-Underfull \hbox (badness 3758) in paragraph at lines 316--316
-\T1/lmr/m/n/37.03 net-works (ANN) op-ti-miz-ing the
+Underfull \hbox (badness 1728) in paragraph at lines 316--316
+\T1/lmr/m/n/37.03 net-works (ANNs) op-ti-miz-ing the
  []
 
 
@@ -1428,7 +1428,7 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 318.
 Here is how much of TeX's memory you used:
  22081 strings out of 494953
  431570 string characters out of 6180977
- 597477 words of memory out of 5000000
+ 597486 words of memory out of 5000000
  24796 multiletter control sequences out of 15000+600000
  93340 words of font info for 80 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
@@ -1442,7 +1442,7 @@ f/fonts/type1/public/lm/lmex10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi
 s/type1/public/lm/lmri12.pfb></usr/share/texmf/fonts/type1/public/lm/lmss17.pfb
 ></usr/share/texmf/fonts/type1/public/lm/lmssbx10.pfb></usr/share/texmf/fonts/t
 ype1/public/lm/lmsy10.pfb>
-Output written on main.pdf (1 page, 349656 bytes).
+Output written on main.pdf (1 page, 349653 bytes).
 PDF statistics:
  213 PDF objects out of 1000 (max. 8388607)
  123 compressed objects within 2 object streams
