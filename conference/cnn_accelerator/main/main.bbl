@@ -42,12 +42,6 @@ E.~Nurvitadhi, G.~Venkatesh, J.~Sim, D.~Marr, R.~Huang, J.~Ong Gee~Hock, Y.~T.
 K.~Abdelouahab, M.~Pelcat, J.~Serot, and F.~Berry, ``Accelerating cnn inference
   on fpgas: A survey,'' \emph{arXiv preprint arXiv:1806.01683}, 2018.
 
-\bibitem{moini2017resource}
-S.~Moini, B.~Alizadeh, M.~Emad, and R.~Ebrahimpour, ``A resource-limited
-  hardware accelerator for convolutional neural networks in embedded vision
-  applications,'' \emph{IEEE Transactions on Circuits and Systems II: Express
-  Briefs}, vol.~64, no.~10, pp. 1217--1221, 2017.
-
 \bibitem{guo2017angel}
 K.~Guo, L.~Sui, J.~Qiu, J.~Yu, J.~Wang, S.~Yao, S.~Han, Y.~Wang, and H.~Yang,
   ``Angel-eye: A complete design flow for mapping cnn onto embedded fpga,''
@@ -76,11 +70,6 @@ A.~Yazdanbakhsh, K.~Seshadri, B.~Akin, J.~Laudon, and R.~Narayanaswami, ``An
 \bibitem{coral2021Datasheet}
 ``Coral. “dev board datasheet.”,''
   \url{https://coral.ai/docs/dev-board/datasheet/.}, accessed September 15,
-  2021.
-
-\bibitem{coral2021Compatibility}
-``Coral. “tensorflow models on the edge tpu.”,''
-  \url{https://coral.ai/docs/edgetpu/models-intro/.}, accessed September 15,
   2021.
 
 \bibitem{cass2019taking}

@@ -1,6 +1,6 @@
 \section{Experimental results}
 \label{sec:experimental_results}
-The proposed hardware/software framework is demonstrated on a Xilinx Zynq-7020 SoC (Zybo-Z7 development board). On the PL, we implement the proposed hardware architecture with a clock frequency at $150 MHz$. On the PS, we execute TF Lite Micro (bare-metal) on the ARM Cortex-A9 at $666MHz$ with NEON floating-point unit (FPU)\cite{xilinx2015zynq}.
+The proposed hardware/software co-design framework is demonstrated on a Xilinx Zynq-7020 SoC (Zybo-Z7 development board). On the PL, we implement the proposed hardware architecture with a clock frequency at $150 MHz$. On the PS, we execute TF Lite Micro (bare-metal) on the ARM Cortex-A9 at $666MHz$ with NEON floating-point unit (FPU)\cite{xilinx2015zynq}.
 
 To evaluate the performance, we build models $A$ and $B$ in TensorFlow, see \Fig{fig:models}. To evaluate \emph{DConv} tensor operation, model $B$ incorporates depthwise separable convolution operations (a depthwise convolution followed by
 a pointwise convolution).
