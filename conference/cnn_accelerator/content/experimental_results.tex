@@ -1,11 +1,11 @@
 \section{Experimental results}
 \label{sec:experimental_results}
-The proposed hardware/software co-design framework is demonstrated on a Xilinx Zynq-7020 SoC (Zybo-Z7 development board). On the PL, we implement the proposed hardware architecture with a clock frequency at $150 MHz$. On the PS, we execute TF Lite Micro (bare-metal) on the ARM Cortex-A9 at $666MHz$ with NEON floating-point unit (FPU)\cite{xilinx2015zynq}.
+The proposed hardware/software co-design framework is demonstrated on a Xilinx Zynq-7020 SoC (Zybo-Z7 development board). On the PL, we implement the proposed hardware architecture with a clock frequency at $150 MHz$. On the PS, we execute the bare-metal software TF Lite Micro on the ARM Cortex-A9 at $666MHz$ equipped with NEON floating-point unit (FPU)\cite{xilinx2015zynq}.
 
-To evaluate the performance, we build models $A$ and $B$ in TensorFlow, see \Fig{fig:models}. To evaluate \emph{DConv} tensor operation, model $B$ incorporates depthwise separable convolution operations (a depthwise convolution followed by
-a pointwise convolution).
+To demonstrate compliance of the proposed design, we build models $A$ and $B$ in TensorFlow. Model $B$ incorporates depthwise separable convolution operations (a depthwise convolution followed by
+a pointwise convolution). See \Fig{fig:models}.
 
-$A$ and $B$ are evaluated with the following hardware implementations:
+To demonstrate hardware feasibility, $A$ and $B$ are evaluated by addressing a design exploration with the following implementations:
 (1) fixed-point, (2) floating-point LogiCORE, (3) hybrid custom floating-point approximation, and (4) hybrid logarithmic approximation.
 
 
@@ -16,16 +16,16 @@ $A$ and $B$ are evaluated with the following hardware implementations:
 	\label{fig:models}
 \end{figure}
 
-\subsection{Hardware implementations}
+\subsection{Hardware design exploration}
 \begin{enumerate}
-\item{Fixed-point}: To evaluate the compute performance on fixed-point, we convert $A$ and $B$ to TF Lite models with 8-bit fixed-point quantization. The compute performance is presented in \tab{tab:performance_fixed_point}. A runtime execution of $A$ is illustrated in \fig{fig:sched_model_a_fixed}. This implementation achieves a peak acceleration of $45.23\times$ in model $A$ at the tensor operation \emph{(4A) Conv}, see \tab{tab:performance_fixed_point}.
+\item{\textbf{Fixed-point}}: To evaluate the compute performance on fixed-point, we convert $A$ and $B$ to TF Lite models with 8-bit fixed-point quantization. The compute performance is presented in \tab{tab:performance_fixed_point}. A runtime execution of $A$ is illustrated in \fig{fig:sched_model_a_fixed}. This implementation achieves a peak runtime acceleration of $45.23\times$ in model $A$ at the tensor operation \emph{(4A) Conv}, see \tab{tab:performance_fixed_point}.
 
-\item{Floating-point LogiCORE}: To evaluate the compute performance on floating-point models, we convert $A$ and $B$ to TF Lite without quantization. The compute performance is presented in \tab{tab:performace_float_logicore}.
+\item{\textbf{Floating-point LogiCORE}}: To evaluate the compute performance on floating-point models, we convert $A$ and $B$ to TF Lite without quantization. The compute performance is presented in \tab{tab:performace_float_logicore}.
 This implementation achieves a peak acceleration of $9.77\times$ in model $A$ at the tensor operation \emph{(4A) Conv}.
 
-\item{Hybrid custom floating-point approximation}: This implementation presents a peak acceleration of $44.87\times$ in model $A$ at the tensor operation \emph{(4A) Conv}. See \tab{tab:performace_float_hybrid}. This implementation achieves a $4.59\times$ acceleration over the LogiCORE floating-point implementation. The runtime execution of model $B$ with \emph{DConv} tensor operations is illustrated in \fig{fig:sched_model_b_float}.
+\item{\textbf{Hybrid custom floating-point approximation}}: This implementation presents a peak acceleration of $44.87\times$ in model $A$ at the tensor operation \emph{(4A) Conv}. See \tab{tab:performace_float_hybrid}. This implementation achieves a $4.59\times$ acceleration over the LogiCORE floating-point implementation. The runtime execution of model $B$ with \emph{DConv} tensor operations is illustrated in \fig{fig:sched_model_b_float}.
 
-\item{Hybrid logarithmic approximation}: This implementation is presented for comparison in \fig{fig:sched_model_a_float}, which shows the runtime executions of model $A$ with the proposed floating-point solutions including hybrid logarithmic approximation.
+\item{\textbf{Hybrid logarithmic approximation}}: This implementation is presented for comparison in \fig{fig:sched_model_a_float}, which shows the runtime executions of model $A$ with the proposed floating-point solutions including hybrid logarithmic approximation.
 \end{enumerate}
 
 \begin{table}[!htp]\centering
@@ -33,7 +33,7 @@ This implementation achieves a peak acceleration of $9.77\times$ in model $A$ at
 	\scriptsize
 \begin{tabular}{lrrrrrrr}\toprule
 	\multicolumn{2}{c}{\textbf{Tensor operation}} &\textbf{CPU} &\multicolumn{3}{c}{\textbf{TP (fixed-point)}} &\multirow{2}{*}{\textbf{Accel.}} \\\cmidrule{1-6}
-	\textbf{Operation} &\textbf{MOP} &\textbf{t (ms)} &\textbf{t (ms)} &\textbf{MOP/s} &\textbf{GOP/W} & \\\midrule
+	\textbf{Operation} &\textbf{MMAC} &\textbf{$t$ (ms)} &\textbf{$t$ (ms)} &\textbf{MMAC/s} &\textbf{GMAC/W} & \\\midrule
 	\multicolumn{2}{c}{\textbf{Model $A$}} & & & & & \\
 	(1A) Conv &1.769 &700.22 &55.19 &32.06 &0.23 &\textbf{12.69} \\
 	(2A) Conv &37.748 &12,666.91 &297.08 &127.06 &0.93 &\textbf{42.64} \\
@@ -62,7 +62,7 @@ This implementation achieves a peak acceleration of $9.77\times$ in model $A$ at
 	\scriptsize
 	\begin{tabular}{lrrrrrrr}\toprule
 		\multicolumn{2}{c}{\textbf{Tensor operation}} &\textbf{CPU} &\multicolumn{3}{c}{\textbf{TP (floating-point LogiCORE)}} &\multirow{2}{*}{\textbf{Accel.}} \\\cmidrule{1-6}
-		\textbf{Operation} &\textbf{MOP} &\textbf{t (ms)} &\textbf{t (ms)} &\textbf{MOP/s} &\textbf{GOP/W} & \\\midrule
+		\textbf{Operation} &\textbf{MMAC} &\textbf{$t$ (ms)} &\textbf{$t$ (ms)} &\textbf{MMAC/s} &\textbf{GMAC/W} & \\\midrule
 		\multicolumn{2}{c}{\textbf{Model $A$}} & & & & & \\
 		(1A) Conv &1.769 &670.95 &120.07 &14.73 &0.21 &\textbf{5.59} \\
 		(2A) Conv &37.748 &12,722.13 &1,328.08 &28.42 &0.40 &\textbf{9.58} \\
@@ -83,7 +83,7 @@ This implementation achieves a peak acceleration of $9.77\times$ in model $A$ at
 	\scriptsize
 \begin{tabular}{lrrrrrrr}\toprule
 	\multicolumn{2}{c}{\textbf{Tensor operation}} &\textbf{CPU} &\multicolumn{3}{c}{\textbf{TP (H. custom floating-point)}} &\multirow{2}{*}{\textbf{Accel.}} \\\cmidrule{1-6}
-	\textbf{Operation} &\textbf{MOP} &\textbf{t (ms)} &\textbf{t (ms)} &\textbf{MOP/s} &\textbf{GOP/W} & \\\midrule
+	\textbf{Operation} &\textbf{MMAC} &\textbf{$t$ (ms)} &\textbf{$t$ (ms)} &\textbf{MMAC/s} &\textbf{GMAC/W} & \\\midrule
 	\multicolumn{2}{c}{\textbf{Model $A$}} & & & & & \\
 	(1A) Conv &1.769 &670.95 &68.50 &25.83 &0.39 &\textbf{9.8} \\
 	(2A) Conv &37.748 &12,722.13 &307.83 &122.63 &1.85 &\textbf{41.33} \\
@@ -184,19 +184,14 @@ The resource utilization and power dissipation of the TP is listed in \tab{tab:r
 
 \subsection{Discussion}
 \begin{enumerate}
-	\item{Performance}: The dot-product with hybrid custom floating-point approximation achieves better performance with larger vectors. Since \emph{DConv} performs a channel-wise spatial dot-product, this implementation presents very limited acceleration compared with the LogiCORE-based implementation.
 
-	One critical problem is that the computation throughput may not well match the memory bandwidth provided an FPGA platform. Consequently, existing approaches cannot achieve best performance due to underutilization of either logic resource or memory bandwidth.
-
-	It means that the performance is degraded due to under-utilization of either logic resource or memory bandwidth.
-	
-	\item{Energy}: The implementations with hybrid custom floating-point and logarithmic approximation are the most efficient with energy reduction of $954\times$ and $1,055\times$, respectively. \tab{tab:edp} presents the energy-delay product (EDP) and energy reduction in \emph{(4A) Conv} operator.
+	\item{\textbf{Energy consumption}}: The implementations with hybrid custom floating-point and logarithmic approximation are the most efficient with energy reduction of $954\times$ and $1,055\times$, respectively. \tab{tab:edp} presents the energy-delay product (EDP) and energy reduction in \emph{(4A) Conv} operator.
 	
 \begin{table}[!htp]\centering
 	\caption{Energy consumption in tensor operation \emph{(4A) Conv}.}\label{tab:edp}
 	\scriptsize
 	\begin{tabular}{lrrrrr}\toprule
-		\textbf{Engine} & \textbf{t (ms)} &\textbf{Power (W)} &\textbf{EDP (J)} &\textbf{Reduction} \\\midrule
+		\textbf{Engine} & \textbf{$t$ (ms)} &\textbf{Power (W)} &\textbf{EDP (J)} &\textbf{Reduction} \\\midrule
 		CPU &5,564.79 &1.404 &7,812.97 &1.00 \\
 		Fixed-point &122.58 &0.136 &16.67 &468.66 \\
 		Floating-point LogiCORE &569.30 &0.070 &39.85 &196.05 \\
@@ -206,14 +201,9 @@ The resource utilization and power dissipation of the TP is listed in \tab{tab:r
 	\end{tabular}
 \end{table}
 	
-	\item{Resource utilization}: In the case of fixed-point implementation, the TP includes additional logic to support the quantized multiplier and shifter channel-wise corrections implemented for TF Lite 8-bit quantization. This TP presents the highest power dissipation.
+	\item{\textbf{Resource utilization}}: The fixed-point implementation presents the highest DSP utilization. Hence, this TP presents the highest power dissipation.
 	
-	\item{Accuracy}: Based on the presented classification accuracy, the hybrid custom floating-point approximation presents the best trade off between QoR and energy-efficiency.
+	\item{\textbf{Accuracy}}: The hybrid custom floating-point approximation presents the best trade off between QoR and energy-efficiency. The bfloat16 (brain floating-point with 16-bits) achieves a comparable QoR with floating-point 32-bits, see \fig{fig:accuracy}.
 	
-	Theres is no accuracy degradation when using fixed-point and floating-point LogiCORE IP.
-
-	\item{Functionality}: Higher energy efficiency, fast development round, and capability of reconfiguration.
-
-	There are a lot of potential solutions that result in a huge design space for exploration
-	An integration with other optional layers, such as sub-sampling or max pooling layers, will be studied in future work.
+	\item{\textbf{Bottleneck}}: To increase performance, this implementation would require matching computational throughput with memory bandwidth.
 \end{enumerate}

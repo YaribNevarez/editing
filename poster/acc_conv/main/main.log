@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2021.5.10)  5 OCT 2021 15:49
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2021.5.10)  7 OCT 2021 11:38
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1212,54 +1212,54 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <12.50194> on input line 91.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <8.93> on input line 91.
-LaTeX Font Info:    Try loading font information for T1+lmr on input line 315.
+LaTeX Font Info:    Try loading font information for T1+lmr on input line 317.
 
 (/usr/share/texmf/tex/latex/lm/t1lmr.fd
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-Underfull \hbox (badness 10000) in paragraph at lines 315--315
+Underfull \hbox (badness 10000) in paragraph at lines 317--317
 []\T1/lmr/m/n/37.03 We ac-cel-er-ate ar-ti-fi-cial neu-ral
  []
 
 
-Underfull \hbox (badness 1728) in paragraph at lines 315--315
+Underfull \hbox (badness 1728) in paragraph at lines 317--317
 \T1/lmr/m/n/37.03 net-works (ANNs) op-ti-miz-ing the
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 315--315
+Underfull \hbox (badness 10000) in paragraph at lines 317--317
 \T1/lmr/m/n/37.03 floating-point com-pu-ta-tion with
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 315--315
+Underfull \hbox (badness 10000) in paragraph at lines 317--317
 \T1/lmr/m/n/37.03 com-pu-ta-tional la-tency, mem-ory
  []
 
 
-Underfull \hbox (badness 2538) in paragraph at lines 315--315
+Underfull \hbox (badness 2538) in paragraph at lines 317--317
 \T1/lmr/m/n/37.03 foot-print, and power dis-si-pa-tion
  []
 
 
-Underfull \hbox (badness 2088) in paragraph at lines 315--315
+Underfull \hbox (badness 2088) in paragraph at lines 317--317
 \T1/lmr/m/n/37.03 de-sign ex-plo-ration with con-vo-lu-
  []
 
-LaTeX Font Info:    Calculating math sizes for size <37.03> on input line 315.
+LaTeX Font Info:    Calculating math sizes for size <37.03> on input line 317.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <37.03> on input line 315.
+(Font)              <37.03> on input line 317.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <25.92088> on input line 315.
+(Font)              <25.92088> on input line 317.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <18.515> on input line 315.
+(Font)              <18.515> on input line 317.
 
-Underfull \hbox (badness 3058) in paragraph at lines 315--315
+Underfull \hbox (badness 3058) in paragraph at lines 317--317
 []\T1/lmr/m/n/37.03 We ac-cel-er-ate ANNs with a dot-
  []
 
 
-Underfull \hbox (badness 2027) in paragraph at lines 315--315
+Underfull \hbox (badness 2027) in paragraph at lines 317--317
 \T1/lmr/m/n/37.03 product hard-ware de-sign based on
  []
 
@@ -1267,7 +1267,7 @@ Underfull \hbox (badness 2027) in paragraph at lines 315--315
 File: ../figures/dot-product_unit.pdf Graphic file (type pdf)
 
 <use ../figures/dot-product_unit.pdf>
-Package pdftex.def Info: ../figures/dot-product_unit.pdf used on input line 315
+Package pdftex.def Info: ../figures/dot-product_unit.pdf used on input line 317
 .
 (pdftex.def)             Requested size: 572.38156pt x 817.70566pt.
 
@@ -1275,31 +1275,31 @@ Package pdftex.def Info: ../figures/dot-product_unit.pdf used on input line 315
 File: ../figures/accelerator.pdf Graphic file (type pdf)
 
 <use ../figures/accelerator.pdf>
-Package pdftex.def Info: ../figures/accelerator.pdf used on input line 315.
+Package pdftex.def Info: ../figures/accelerator.pdf used on input line 317.
 (pdftex.def)             Requested size: 572.38156pt x 490.62337pt.
 
 <../figures/system_design.pdf, id=27, 252.945pt x 122.85901pt>
 File: ../figures/system_design.pdf Graphic file (type pdf)
 
 <use ../figures/system_design.pdf>
-Package pdftex.def Info: ../figures/system_design.pdf used on input line 315.
+Package pdftex.def Info: ../figures/system_design.pdf used on input line 317.
 (pdftex.def)             Requested size: 572.38156pt x 278.0199pt.
 
 <../figures/sw_stack.pdf, id=28, 252.945pt x 130.086pt>
 File: ../figures/sw_stack.pdf Graphic file (type pdf)
 
 <use ../figures/sw_stack.pdf>
-Package pdftex.def Info: ../figures/sw_stack.pdf used on input line 315.
+Package pdftex.def Info: ../figures/sw_stack.pdf used on input line 317.
 (pdftex.def)             Requested size: 572.38156pt x 294.374pt.
-LaTeX Font Info:    Calculating math sizes for size <21.43> on input line 315.
+LaTeX Font Info:    Calculating math sizes for size <21.43> on input line 317.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <21.43> on input line 315.
+(Font)              <21.43> on input line 317.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <15.00092> on input line 315.
+(Font)              <15.00092> on input line 317.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10.715> on input line 315.
+(Font)              <10.715> on input line 317.
 
-Overfull \hbox (30.32727pt too wide) in paragraph at lines 315--315
+Overfull \hbox (30.32727pt too wide) in paragraph at lines 317--317
  [] 
  []
 
@@ -1308,10 +1308,10 @@ File: ../figures/all_models_accuracy.pdf Graphic file (type pdf)
 
 <use ../figures/all_models_accuracy.pdf>
 Package pdftex.def Info: ../figures/all_models_accuracy.pdf used on input line 
-315.
+317.
 (pdftex.def)             Requested size: 572.38156pt x 245.31166pt.
 
-Underfull \hbox (badness 1590) in paragraph at lines 315--315
+Underfull \hbox (badness 1590) in paragraph at lines 317--317
 \T1/lmr/m/n/37.03 dif-fer-ent ap-prox-i-mate pro-cess-ing ef-
  []
 
@@ -1320,56 +1320,64 @@ File: ../figures/accuracy_vs_spike_log.pdf Graphic file (type pdf)
 
 <use ../figures/accuracy_vs_spike_log.pdf>
 Package pdftex.def Info: ../figures/accuracy_vs_spike_log.pdf used on input lin
-e 315.
+e 317.
 (pdftex.def)             Requested size: 572.38156pt x 429.31027pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 315--315
+Underfull \hbox (badness 10000) in paragraph at lines 317--317
 []\T1/lmr/m/n/37.03 We present a hard-ware/software
  []
 
 
-Underfull \hbox (badness 7273) in paragraph at lines 315--315
+Underfull \hbox (badness 7273) in paragraph at lines 317--317
 \T1/lmr/m/n/37.03 co-design frame-work to ac-cel-er-ate
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 315--315
+Underfull \hbox (badness 10000) in paragraph at lines 317--317
 \T1/lmr/m/n/37.03 floating-point ten-sor com-pu-ta-tion
  []
 
 
-Underfull \hbox (badness 2057) in paragraph at lines 315--315
+Underfull \hbox (badness 2057) in paragraph at lines 317--317
 \T1/lmr/m/n/37.03 in em-bed-ded FPGA with ap-prox-i-
  []
 
-(./main.bbl) <../figures/logo_CONACYT.png, id=36, 616.55344pt x 130.23656pt>
+(./main.bbl)
+LaTeX Font Info:    Calculating math sizes for size <30.85> on input line 317.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <30.85> on input line 317.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <21.59491> on input line 317.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <15.425> on input line 317.
+ <../figures/logo_CONACYT.png, id=36, 616.55344pt x 130.23656pt>
 File: ../figures/logo_CONACYT.png Graphic file (type png)
 
 <use ../figures/logo_CONACYT.png>
-Package pdftex.def Info: ../figures/logo_CONACYT.png used on input line 315.
+Package pdftex.def Info: ../figures/logo_CONACYT.png used on input line 317.
 (pdftex.def)             Requested size: 171.7162pt x 36.27122pt.
 
 <../figures/logo_ub_2021.png, id=38, 419.5675pt x 150.5625pt>
 File: ../figures/logo_ub_2021.png Graphic file (type png)
 
 <use ../figures/logo_ub_2021.png>
-Package pdftex.def Info: ../figures/logo_ub_2021.png used on input line 315.
+Package pdftex.def Info: ../figures/logo_ub_2021.png used on input line 317.
 (pdftex.def)             Requested size: 114.47456pt x 41.07973pt.
 
 <../figures/logo_item_ids.png, id=39, 216.81pt x 34.529pt>
 File: ../figures/logo_item_ids.png Graphic file (type png)
 
 <use ../figures/logo_item_ids.png>
-Package pdftex.def Info: ../figures/logo_item_ids.png used on input line 315.
+Package pdftex.def Info: ../figures/logo_item_ids.png used on input line 317.
 (pdftex.def)             Requested size: 143.09538pt x 22.79025pt.
 
-Overfull \hbox (150.41939pt too wide) detected at line 315
+Overfull \hbox (150.41939pt too wide) detected at line 317
 [][][] [][][][][][][][][] [][][][][][][][][] [][][][][][][][][] [][][][][][][][
 ][] [][][][][][][][][] [][][][][][][] 
  []
 
 
-Overfull \vbox (36.99069pt too high) detected at line 315
+Overfull \vbox (36.99069pt too high) detected at line 317
  []
 
 
@@ -1410,21 +1418,21 @@ item_ids.png>]
 \tf@snm=\write8
 \openout8 = `main.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 317.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 317.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 319.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 319.
  (./main.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 317.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 317.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 319.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 319.
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 317.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 319.
  ) 
 Here is how much of TeX's memory you used:
- 22081 strings out of 494953
- 431570 string characters out of 6180977
- 597497 words of memory out of 5000000
- 24796 multiletter control sequences out of 15000+600000
- 93340 words of font info for 80 fonts, out of 8000000 for 9000
+ 22100 strings out of 494953
+ 431904 string characters out of 6180977
+ 599197 words of memory out of 5000000
+ 24815 multiletter control sequences out of 15000+600000
+ 105436 words of font info for 95 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  52i,18n,66p,1535b,1423s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc}{/usr/share/texmf/fonts/en
@@ -1436,7 +1444,7 @@ f/fonts/type1/public/lm/lmex10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi
 s/type1/public/lm/lmri12.pfb></usr/share/texmf/fonts/type1/public/lm/lmss17.pfb
 ></usr/share/texmf/fonts/type1/public/lm/lmssbx10.pfb></usr/share/texmf/fonts/t
 ype1/public/lm/lmsy10.pfb>
-Output written on main.pdf (1 page, 349467 bytes).
+Output written on main.pdf (1 page, 349856 bytes).
 PDF statistics:
  213 PDF objects out of 1000 (max. 8388607)
  123 compressed objects within 2 object streams

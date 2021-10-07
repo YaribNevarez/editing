@@ -184,7 +184,7 @@ We accelerate ANNs with a dot-product hardware design based on approximate compu
 \begin{block}{Experimental Results}
 	Implementing the hardware/software co-design on Xilinx Zynq-7020, a single TP achieves a peak acceleration of $45\times$ on \emph{Conv2D} tensor operation. The energy-delay product (EDP) of the different compute engines are compared in \tab{tab:energy}. The implemented custom floating-point formats and their classification accuracy are shown in \fig{fig:accuracy}.
 	\begin{table}[!htp]\centering
-		\caption{Energy consumption of a single TP at peak acceleration of 45X.}\label{tab:energy}
+		\caption{Energy consumption of a single TP at peak runtime acceleration of 45X.}\label{tab:energy}
 		\scriptsize
 		\begin{tabular}{lrrrr}\toprule
 			Engine &Power (W) &EDP (J) &Reduction \\\midrule
@@ -211,7 +211,7 @@ We accelerate ANNs with a dot-product hardware design based on approximate compu
 \end{columns} % End of the split of column 2 - any content after this will now take up 2 columns width
 
 
-\begin{alertblock}{Implemented operations}
+\begin{alertblock}{Implemented Tensor Operations}
 	
 \begin{eqnarray} \label{eq:conv2D}
 Conv2D\left(W,X\right)_{i,j,o}=\sum_{k,l,m}^{K,L,M}W_{(o,k,l,m)} \cdot X_{(i+k,j+l,m)}+b_{o}
@@ -266,7 +266,7 @@ h_\mu^{new}(i) = \frac{1}{1+\epsilon} \left(h_\mu(i) + \epsilon \frac{h_\mu(i) W
 	possibilities for approximate processing. \fig{fig:tolerance} shows the tolerance plot of a SbS network with hybrid logarithmic approximation \cite{nevarez2021accelerating}, this plot reveals elevated approximation resilience. The SbS dynamics is described in \equ{eq:sbs_update}.
 	\begin{figure}
 		\includegraphics[width=\linewidth]{../figures/accuracy_vs_spike_log.pdf}
-		\caption{Tolerance plot.}
+		\caption{Tolerance plot of SbS neural network with hybrid logarithmic approximation.}
 		\label{fig:tolerance}
 	\end{figure}
 \end{block}
@@ -297,14 +297,16 @@ We present a hardware/software co-design framework to accelerate floating-point 
 \begin{block}{Acknowledgements}
 \begin{center}
 	\small{\rmfamily{This work is funded by \textit{CONACYT}.}}
+	
+		\begin{tabular}{lcccr}\toprule
+			\includegraphics[width=0.30\linewidth]{../figures/logo_CONACYT.png} & &
+			\includegraphics[width=0.20\linewidth]{../figures/logo_ub_2021.png} & & \includegraphics[width=0.25\linewidth]{../figures/logo_item_ids.png}
+		\end{tabular}
 \end{center}
 \end{block}
 
 \begin{center}
-	\begin{tabular}{lcccr}
-		\includegraphics[width=0.30\linewidth]{../figures/logo_CONACYT.png} & &
-		\includegraphics[width=0.20\linewidth]{../figures/logo_ub_2021.png} & & \includegraphics[width=0.25\linewidth]{../figures/logo_item_ids.png}
-	\end{tabular}
+
 \end{center}
 %----------------------------------------------------------------------------------------
 
