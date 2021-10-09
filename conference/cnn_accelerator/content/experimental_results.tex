@@ -203,7 +203,7 @@ The resource utilization and power dissipation of the TP is listed in \tab{tab:r
 	
 	\item{\textbf{Resource utilization}}: The fixed-point implementation presents the highest DSP utilization. Hence, this TP presents the highest power dissipation.
 	
-	\item{\textbf{Accuracy}}: The hybrid custom floating-point approximation presents the best trade off between QoR and energy-efficiency. The bfloat16 (brain floating-point with 16-bits) achieves a comparable QoR with floating-point 32-bits, see \fig{fig:accuracy}.
+	\item{\textbf{Accuracy}}: The hybrid custom floating-point approximation presents the best trade off between QoR and energy-efficiency. The bfloat16 (brain floating-point with 16-bits) achieves a comparable QoR with floating-point 32-bits, see \fig{fig:accuracy}. To improve accuracy, the CNN models would require quantization aware training methods.
 	
-	\item{\textbf{Bottleneck}}: To increase performance, this implementation would require matching computational throughput with memory bandwidth.
+	\item{\textbf{Bottleneck}}: To increase performance, this implementation would require matching computational throughput with memory bandwidth using parallelization approaches.
 \end{enumerate}
