@@ -27,75 +27,74 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-A}}Conv2D tensor operation}{2}}
 \@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Base embedded system architecture.}}{2}}
 \newlabel{fig:system_architecture}{{2}{2}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Base embedded software architecture.}}{2}}
-\newlabel{fig:sw_stack}{{3}{2}}
 \newlabel{eq:conv2D}{{1}{2}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-B}}DepthwiseConv2D tensor operation}{2}}
 \newlabel{eq:dconv2D}{{2}{2}}
 \@writefile{toc}{\contentsline {section}{\numberline {IV}System Design}{2}}
 \newlabel{sec:system_design}{{IV}{2}}
 \@writefile{toc}{\contentsline {paragraph}{\numberline {\unhbox \voidb@x \hbox {IV-}0a}\textbf  {Tensor processor}}{2}}
+\newlabel{eq:tp_memory}{{3}{2}}
+\newlabel{eq:input_memory}{{4}{2}}
 \citation{hrica2012floating}
 \citation{nevarez2021accelerating}
 \citation{nevarez2021accelerating}
 \citation{park2009dynamic}
 \citation{mittal2016survey}
 \citation{xilinx2015zynq}
-\newlabel{eq:tp_memory}{{3}{3}}
-\newlabel{eq:input_memory}{{4}{3}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Base embedded software architecture.}}{3}}
+\newlabel{fig:sw_stack}{{3}{3}}
 \newlabel{eq:filter_memory}{{5}{3}}
 \newlabel{eq:bias_memory}{{6}{3}}
 \newlabel{eq:channel_in_memory}{{7}{3}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Convolution of input tensor, with (a) filter tensor, and (b) input buffer. }}{3}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Convolution of input tensor illustrating filter buffer and input buffer.}}{3}}
 \newlabel{fig:accelerator_buffers}{{4}{3}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Hardware architecture of the proposed tensor processor.}}{3}}
-\newlabel{fig:accelerator}{{5}{3}}
 \@writefile{toc}{\contentsline {paragraph}{\numberline {\unhbox \voidb@x \hbox {IV-}0b}\textbf  {Modes of operation}}{3}}
 \@writefile{toc}{\contentsline {paragraph}{\numberline {\unhbox \voidb@x \hbox {IV-}0c}\textbf  {Compatibility}}{3}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Hardware architecture of the proposed tensor processor.}}{3}}
+\newlabel{fig:accelerator}{{5}{3}}
 \newlabel{sec:dot_product}{{\unhbox \voidb@x \hbox {IV-}0d}{3}}
 \@writefile{toc}{\contentsline {paragraph}{\numberline {\unhbox \voidb@x \hbox {IV-}0d}\textbf  {Dot-product with floating-point optimization}}{3}}
 \@writefile{toc}{\contentsline {section}{\numberline {V}Experimental results}{3}}
 \newlabel{sec:experimental_results}{{V}{3}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-A}}Hardware design exploration}{3}}
 \@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Hardware alternatives for vector dot-product.}}{4}}
 \newlabel{fig:dot_product}{{6}{4}}
 \@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces CNN-based models for case study.}}{4}}
 \newlabel{fig:models}{{7}{4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-A}}Hardware design exploration}{4}}
 \@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Compute performance with fixed-point on model $A$.}}{4}}
 \newlabel{fig:sched_model_a_fixed}{{8}{4}}
 \@writefile{lot}{\contentsline {table}{\numberline {I}{\ignorespaces Compute performance with fixed-point on model $A$ and $B$.}}{4}}
 \newlabel{tab:performance_fixed_point}{{I}{4}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-B}}Classification accuracy}{4}}
 \@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Compute performance with the proposed floating-point solutions on model $A$.}}{5}}
 \newlabel{fig:sched_model_a_float}{{9}{5}}
 \@writefile{lot}{\contentsline {table}{\numberline {II}{\ignorespaces Compute performance with floating-point LogiCORE on models $A$ and $B$.}}{5}}
 \newlabel{tab:performace_float_logicore}{{II}{5}}
 \@writefile{lot}{\contentsline {table}{\numberline {III}{\ignorespaces Compute performance with hybrid custom floating-point approximation on models $A$ and $B$.}}{5}}
 \newlabel{tab:performace_float_hybrid}{{III}{5}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-C}}Resource utilization and power dissipation}{5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-B}}Classification accuracy}{5}}
 \@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Compute performance on model $B$ (floating-point).}}{5}}
 \newlabel{fig:sched_model_b_float}{{10}{5}}
 \@writefile{lot}{\contentsline {table}{\numberline {IV}{\ignorespaces Implemented floating-point formats for accuracy evaluation.}}{5}}
 \newlabel{tab:formats}{{IV}{5}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-D}}Discussion}{5}}
 \bibstyle{IEEEtran}
 \bibdata{../content/bibliography.bib}
 \bibcite{hassaballah2020deep}{1}
-\bibcite{dhillon2020convolutional}{2}
-\bibcite{nurvitadhi2017can}{3}
-\bibcite{abdelouahab2018accelerating}{4}
-\bibcite{guo2017angel}{5}
 \@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Accuracy performance using hybrid custom floating-point approximation with various formats. Samples: CIFAR-10 test dataset ($10,000$ images).}}{6}}
 \newlabel{fig:accuracy}{{11}{6}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-C}}Resource utilization and power dissipation}{6}}
 \@writefile{lot}{\contentsline {table}{\numberline {V}{\ignorespaces Resource utilization and power dissipation of the proposed TP engines.}}{6}}
 \newlabel{tab:resource}{{V}{6}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-D}}Discussion}{6}}
 \@writefile{lot}{\contentsline {table}{\numberline {VI}{\ignorespaces Energy consumption in tensor operation \emph  {(4A) Conv}.}}{6}}
 \newlabel{tab:edp}{{VI}{6}}
 \@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces Estimated power dissipation of the Zynq-7020 SoC with different TP engines.}}{6}}
 \newlabel{fig:power}{{12}{6}}
 \@writefile{toc}{\contentsline {section}{\numberline {VI}Conclusions}{6}}
 \newlabel{sec:conclusions}{{VI}{6}}
-\@writefile{toc}{\contentsline {section}{References}{6}}
+\bibcite{dhillon2020convolutional}{2}
+\bibcite{nurvitadhi2017can}{3}
+\bibcite{abdelouahab2018accelerating}{4}
+\bibcite{guo2017angel}{5}
 \bibcite{TensorFlowDelegate}{6}
 \bibcite{nevarez2021accelerating}{7}
 \bibcite{venkataramani2015approximate}{8}
@@ -109,3 +108,4 @@
 \bibcite{park2009dynamic}{16}
 \bibcite{mittal2016survey}{17}
 \bibcite{xilinx2015zynq}{18}
+\@writefile{toc}{\contentsline {section}{References}{7}}
