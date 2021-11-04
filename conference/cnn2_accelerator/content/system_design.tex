@@ -19,7 +19,35 @@ The proposed system architecture is a hardware/software co-design framework to i
 \paragraph{\textbf{Tensor processor}}
 The TP is a dedicated hardware module to compute tensor operations. The hardware architecture is described in \fig{fig:accelerator}. This architecture implements high performance off-chip communication with AXI-Stream, direct CPU communication with AXI-Lite, and on-chip storage utilizing BRAM. This hardware architecture is implemented with HLS. The tensor operations are implemented based on the C++ TF Lite micro kernels \cite{tfLiteMicro}.
 
-\begin{figure}[t!]
+
+\begin{eqnarray} \label{eq:tp_memory}
+TP_{M}=Input_{M}+Filter_{M}+Bias_{M}+Var_{M}
+\end{eqnarray}	
+
+\begin{eqnarray} \label{eq:input_memory}
+Input_{M}=K_{H}W_{I}C_{I}BitSize_{I}
+\end{eqnarray}
+
+\begin{eqnarray} \label{eq:filter_memory}
+Filter_{M}=C_{I}K_{W}K_{H}C_{O}BitSize_{F}
+\end{eqnarray}
+
+\begin{eqnarray} \label{eq:bias_memory}
+Bias_{M}=C_{O}BitSize_{B}
+\end{eqnarray}
+
+\begin{eqnarray} \label{eq:channel_in_memory}
+C_{O}=\frac{TP_{M}-Var_{M}-K_{H}W_{I}C_{I}BitSize_{I}}{C_{I}K_{W}K_{H}BitSize_{F}+BitSize_{B}}
+\end{eqnarray}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.5\textwidth]{../figures/accelerator_buffers.pdf}
+	\caption{Convolution of input tensor, with (a) filter tensor, and (b) input buffer. }
+	\label{fig:accelerator_buffers}
+\end{figure}
+
+\begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.5\textwidth]{../figures/accelerator.pdf}
 	\caption{Hardware architecture of the proposed tensor processor.}

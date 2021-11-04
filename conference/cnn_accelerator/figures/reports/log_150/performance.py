@@ -6,15 +6,18 @@ fig, (ax1, ax2) = plt.subplots(2, 1)
 fig.suptitle('Performance')
 
 #Python:
-begin   = np.array([0.000, 0.036, 64.496, 369.918, 394.903, 541.335, 553.404, 557.959, 565.621, 688.953, 694.984, 695.484, 725.975, 726.059, ])
-latency = np.array([726.068, 64.060, 305.419, 24.192, 146.430, 12.066, 4.553, 4.531, 123.329, 6.029, 0.498, 30.486, 0.082, 0.008, ])
-event   = ["Interpreter", "CONV_HW", "CONV_HW", "MAX_POOL_2D", "CONV_HW", "MAX_POOL_2D", "MUL", "ADD", "CONV_HW", "MAX_POOL_2D", "RESHAPE", "FULLY_CONNECTED", "FULLY_CONNECTED", "SOFTMAX", ]
-colors  = ["#1864ab", "#94c4df", "#94c4df", "#4a98c9", "#94c4df", "#4a98c9", "#4a98c9", "#4a98c9", "#94c4df", "#4a98c9", "#4a98c9", "#4a98c9", "#4a98c9", "#4a98c9", ]
+begin   = np.array([0.000, 0.003, 0.009, 0.027, 0.035, 0.049, 0.058, 0.072, 8.324, 8.327, 8.420, 8.465, 8.558, 8.599, 8.692, 31.581, 43.659, 43.662, 43.845, 43.877, 44.059, 44.085, 44.267, 55.095, 55.097, 55.455, 55.481, 55.839, 55.862, 56.220, 74.523, 80.600, 80.603, 81.314, 81.333, 82.045, 82.059, 82.770, 88.200, 88.203, 89.619, 89.634, 91.051, 91.063, 92.479, 102.171, 105.199, 105.449, 120.744, 120.828, ])
+latency = np.array([120.837, 8.319, 0.025, 8.252, 0.022, 7.996, 0.021, 7.924, 23.214, 0.137, 23.116, 0.133, 22.458, 0.133, 22.398, 12.075, 11.410, 0.214, 11.222, 0.208, 10.531, 0.211, 10.493, 19.404, 0.383, 19.042, 0.380, 17.823, 0.379, 17.826, 6.074, 7.587, 0.730, 6.625, 0.724, 5.422, 0.725, 5.415, 13.957, 1.430, 11.941, 1.428, 9.678, 1.427, 9.677, 3.025, 0.249, 15.291, 0.082, 0.008, ])
+event   = ["MODEL", "CONV_2D", "DELEGATE", "HARDWARE", "DELEGATE", "HARDWARE", "DELEGATE", "HARDWARE", "CONV_2D", "DELEGATE", "HARDWARE", "DELEGATE", "HARDWARE", "DELEGATE", "HARDWARE", "MAX_POOL_2D", "CONV_2D", "DELEGATE", "HARDWARE", "DELEGATE", "HARDWARE", "DELEGATE", "HARDWARE", "CONV_2D", "DELEGATE", "HARDWARE", "DELEGATE", "HARDWARE", "DELEGATE", "HARDWARE", "MAX_POOL_2D", "CONV_2D", "DELEGATE", "HARDWARE", "DELEGATE", "HARDWARE", "DELEGATE", "HARDWARE", "CONV_2D", "DELEGATE", "HARDWARE", "DELEGATE", "HARDWARE", "DELEGATE", "HARDWARE", "MAX_POOL_2D", "RESHAPE", "FULLY_CONNECTED", "FULLY_CONNECTED", "SOFTMAX", ]
+colors  = ["#1864ab", "#4a98c9", "#6faed4", "#94c4df", "#6faed4", "#94c4df", "#6faed4", "#94c4df", "#4a98c9", "#6faed4", "#94c4df", "#6faed4", "#94c4df", "#6faed4", "#94c4df", "#4a98c9", "#4a98c9", "#6faed4", "#94c4df", "#6faed4", "#94c4df", "#6faed4", "#94c4df", "#4a98c9", "#6faed4", "#94c4df", "#6faed4", "#94c4df", "#6faed4", "#94c4df", "#4a98c9", "#4a98c9", "#6faed4", "#94c4df", "#6faed4", "#94c4df", "#6faed4", "#94c4df", "#4a98c9", "#6faed4", "#94c4df", "#6faed4", "#94c4df", "#6faed4", "#94c4df", "#4a98c9", "#4a98c9", "#4a98c9", "#4a98c9", "#4a98c9", ]
 
-data = [[0.003, 64.099, 369.918, 394.113, 541.335, 553.404, 557.959, 562.493, 688.953, 694.984, 695.484, 725.975, 726.059, ],
-        [ 64.093, 305.817, 24.192, 147.220, 12.066, 4.553, 4.531, 126.458, 6.029, 0.498, 30.486, 0.082, 0.008, ],
-        [ 64.060, 305.419, 0.000, 146.430, 0.000, 0.000, 0.000, 123.329, 0.000, 0.000, 0.000, 0.000, 0.000, ]]
-columns = ("CONV_2D", "CONV_2D", "MAX_POOL_2D", "CONV_2D", "MAX_POOL_2D", "MUL", "ADD", "CONV_2D", "MAX_POOL_2D", "RESHAPE", "FULLY_CONNECTED", "FULLY_CONNECTED", "SOFTMAX", )
+data = [[0.003, 335.346, 3507.252, 3519.275, 5049.681, 8096.818, 8102.862, 9497.286, 12278.258, 12281.268, 12281.520, 12296.819, 12296.903, ],
+        [ 335.338, 3171.903, 12.020, 1530.403, 3047.134, 6.042, 1394.421, 2780.968, 3.008, 0.249, 15.296, 0.082, 0.008, ],
+        [ 8.252, 23.116, 0.000, 11.222, 19.042, 0.000, 6.625, 11.941, 0.000, 0.000, 0.000, 0.000, 0.000, ]]
+columns = ("CONV_2D", "CONV_2D", "MAX_POOL_2D", "CONV_2D", "CONV_2D", "MAX_POOL_2D", "CONV_2D", "CONV_2D", "MAX_POOL_2D", "RESHAPE", "FULLY_CONNECTED", "FULLY_CONNECTED", "SOFTMAX", )
+
+
+
 
 ax1.barh(range(len(begin)),  latency, left=begin, color=colors)
 ax1.grid(linestyle = ':')

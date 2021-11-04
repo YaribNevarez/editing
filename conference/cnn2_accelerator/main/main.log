@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2021.5.10)  9 OCT 2021 13:59
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2021.5.10)  4 NOV 2021 00:05
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -697,40 +697,47 @@ Overfull \hbox (6.0pt too wide) in paragraph at lines 14--15
  [][] 
  []
 
-<../figures/accelerator.pdf, id=31, 252.945pt x 216.81pt>
+[2 <../figures/system_design.pdf> <../figures/sw_stack.pdf
+
+pdfTeX warning: /usr/bin/pdflatex (file ../figures/sw_stack.pdf): PDF inclusion
+: multiple pdfs with page group included in a single page
+>] <../figures/accelerator_buffers.pdf, id=53, 252.945pt x 144.54pt>
+File: ../figures/accelerator_buffers.pdf Graphic file (type pdf)
+
+<use ../figures/accelerator_buffers.pdf>
+Package pdftex.def Info: ../figures/accelerator_buffers.pdf used on input line 
+45.
+(pdftex.def)             Requested size: 261.76535pt x 149.5836pt.
+
+Overfull \hbox (6.0pt too wide) in paragraph at lines 45--46
+ [][] 
+ []
+
+<../figures/accelerator.pdf, id=54, 252.945pt x 216.81pt>
 File: ../figures/accelerator.pdf Graphic file (type pdf)
 
 <use ../figures/accelerator.pdf>
-Package pdftex.def Info: ../figures/accelerator.pdf used on input line 24.
+Package pdftex.def Info: ../figures/accelerator.pdf used on input line 52.
 (pdftex.def)             Requested size: 261.76535pt x 224.37543pt.
 
-Overfull \hbox (6.0pt too wide) in paragraph at lines 24--25
+Overfull \hbox (6.0pt too wide) in paragraph at lines 52--53
  [][] 
  []
 
-[2 <../figures/system_design.pdf>]
-<../figures/dot-product_unit.pdf, id=48, 252.945pt x 361.35pt>
+<../figures/dot-product_unit.pdf, id=55, 252.945pt x 361.35pt>
 File: ../figures/dot-product_unit.pdf Graphic file (type pdf)
 
 <use ../figures/dot-product_unit.pdf>
-Package pdftex.def Info: ../figures/dot-product_unit.pdf used on input line 48.
+Package pdftex.def Info: ../figures/dot-product_unit.pdf used on input line 76.
 
 (pdftex.def)             Requested size: 261.76535pt x 373.95906pt.
 
-Overfull \hbox (6.0pt too wide) in paragraph at lines 48--49
+Overfull \hbox (6.0pt too wide) in paragraph at lines 76--77
  [][] 
  []
 
-) (../content/experimental_results.tex [3 <../figures/sw_stack.pdf> <../figures
-/accelerator.pdf
-
-pdfTeX warning: /usr/bin/pdflatex (file ../figures/accelerator.pdf): PDF inclus
-ion: multiple pdfs with page group included in a single page
-> <../figures/dot-product_unit.pdf
-
-pdfTeX warning: /usr/bin/pdflatex (file ../figures/dot-product_unit.pdf): PDF i
-nclusion: multiple pdfs with page group included in a single page
->] <../figures/models.pdf, id=103, 252.945pt x 130.086pt>
+) (../content/experimental_results.tex
+<../figures/models.pdf, id=56, 252.945pt x 130.086pt>
 File: ../figures/models.pdf Graphic file (type pdf)
 
 <use ../figures/models.pdf>
@@ -741,12 +748,19 @@ Overfull \hbox (6.0pt too wide) in paragraph at lines 14--15
  [][] 
  []
 
+[3 <../figures/accelerator_buffers.pdf> <../figures/accelerator.pdf
+
+pdfTeX warning: /usr/bin/pdflatex (file ../figures/accelerator.pdf): PDF inclus
+ion: multiple pdfs with page group included in a single page
+>]
+Underfull \vbox (badness 1546) has occurred while \output is active []
+
 
 Overfull \hbox (22.05186pt too wide) in paragraph at lines 34--50
  [][] 
  []
 
-<../figures/sched_A_fixed_point.pdf, id=104, 252.945pt x 173.448pt>
+<../figures/sched_A_fixed_point.pdf, id=96, 252.945pt x 173.448pt>
 File: ../figures/sched_A_fixed_point.pdf Graphic file (type pdf)
 
 <use ../figures/sched_A_fixed_point.pdf>
@@ -768,7 +782,7 @@ Overfull \hbox (22.05186pt too wide) in paragraph at lines 84--100
  [][] 
  []
 
-<../figures/sched_A_float_all.pdf, id=105, 505.89pt x 173.448pt>
+<../figures/sched_A_float_all.pdf, id=97, 505.89pt x 173.448pt>
 File: ../figures/sched_A_float_all.pdf Graphic file (type pdf)
 
 <use ../figures/sched_A_float_all.pdf>
@@ -776,7 +790,7 @@ Package pdftex.def Info: ../figures/sched_A_float_all.pdf used on input line 10
 5.
 (pdftex.def)             Requested size: 523.5307pt x 179.50034pt.
 
-<../figures/sched_B_float.pdf, id=106, 252.945pt x 195.129pt>
+<../figures/sched_B_float.pdf, id=98, 252.945pt x 195.129pt>
 File: ../figures/sched_B_float.pdf Graphic file (type pdf)
 
 <use ../figures/sched_B_float.pdf>
@@ -787,7 +801,15 @@ Overfull \hbox (6.0pt too wide) in paragraph at lines 113--114
  [][] 
  []
 
-<../figures/all_models_accuracy.pdf, id=107, 252.945pt x 108.405pt>
+[4 <../figures/dot-product_unit.pdf> <../figures/models.pdf
+
+pdfTeX warning: /usr/bin/pdflatex (file ../figures/models.pdf): PDF inclusion: 
+multiple pdfs with page group included in a single page
+> <../figures/sched_A_fixed_point.pdf
+
+pdfTeX warning: /usr/bin/pdflatex (file ../figures/sched_A_fixed_point.pdf): PD
+F inclusion: multiple pdfs with page group included in a single page
+>] <../figures/all_models_accuracy.pdf, id=159, 252.945pt x 108.405pt>
 File: ../figures/all_models_accuracy.pdf Graphic file (type pdf)
 
 <use ../figures/all_models_accuracy.pdf>
@@ -799,7 +821,7 @@ Overfull \hbox (6.0pt too wide) in paragraph at lines 143--144
  [][] 
  []
 
-<../figures/power_breackdown.pdf, id=108, 252.945pt x 252.945pt>
+<../figures/power_breackdown.pdf, id=160, 252.945pt x 252.945pt>
 File: ../figures/power_breackdown.pdf Graphic file (type pdf)
 
 <use ../figures/power_breackdown.pdf>
@@ -811,19 +833,16 @@ Overfull \hbox (6.0pt too wide) in paragraph at lines 179--180
  [][] 
  []
 
-[4 <../figures/models.pdf> <../figures/sched_A_fixed_point.pdf
-
-pdfTeX warning: /usr/bin/pdflatex (file ../figures/sched_A_fixed_point.pdf): PD
-F inclusion: multiple pdfs with page group included in a single page
->] [5 <../figures/sched_A_float_all.pdf> <../figures/sched_B_float.pdf
+[5 <../figures/sched_A_float_all.pdf> <../figures/sched_B_float.pdf
 
 pdfTeX warning: /usr/bin/pdflatex (file ../figures/sched_B_float.pdf): PDF incl
 usion: multiple pdfs with page group included in a single page
-> <../figures/all_models_accuracy.pdf
+>]) (../content/conclusions.tex) (./main.bbl [6 <../figures/all_models_accuracy
+.pdf> <../figures/power_breackdown.pdf
 
-pdfTeX warning: /usr/bin/pdflatex (file ../figures/all_models_accuracy.pdf): PD
-F inclusion: multiple pdfs with page group included in a single page
->]) (../content/conclusions.tex) (./main.bbl
+pdfTeX warning: /usr/bin/pdflatex (file ../figures/power_breackdown.pdf): PDF i
+nclusion: multiple pdfs with page group included in a single page
+>]
 Underfull \hbox (badness 10000) in paragraph at lines 66--69
 []\OT1/ptm/m/n/8 A. Yaz-dan-bakhsh, K. Se-shadri, B. Akin, J. Laudon, and
  []
@@ -860,31 +879,33 @@ Before submitting the final camera ready copy, remember to:
 \Changes@OutFile=\write3
 \openout3 = `main.soc'.
 
-[6 <../figures/power_breackdown.pdf>] (./main.aux) ) 
+[7
+
+] (./main.aux) ) 
 Here is how much of TeX's memory you used:
- 7182 strings out of 494953
- 108677 string characters out of 6180977
- 215559 words of memory out of 5000000
- 10279 multiletter control sequences out of 15000+600000
+ 7193 strings out of 494953
+ 108967 string characters out of 6180977
+ 212608 words of memory out of 5000000
+ 10289 multiletter control sequences out of 15000+600000
  52038 words of font info for 108 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  38i,11n,35p,1301b,336s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texlive/texmf-d
-ist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/publ
-ic/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
-fonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi
-8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><
-/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/sha
-re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texli
-ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/tex
-mf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/t
-ype1/urw/times/utmbi8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times
-/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (6 pages, 504082 bytes).
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a
+.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/sha
+re/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on main.pdf (7 pages, 552753 bytes).
 PDF statistics:
- 224 PDF objects out of 1000 (max. 8388607)
- 136 compressed objects within 2 object streams
+ 259 PDF objects out of 1000 (max. 8388607)
+ 155 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 56 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 61 words of extra memory for PDF output out of 10000 (max. 10000000)
 
