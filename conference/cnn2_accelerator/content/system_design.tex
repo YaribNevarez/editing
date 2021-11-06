@@ -79,3 +79,47 @@ have only a minor impact on QoR \cite{mittal2016survey}.
 \end{figure}
 
 
+\paragraph{\textbf{Quantized aware training}}
+
+
+\begin{algorithm}[h!]
+	\label{alg:quantize_training}
+	\caption{Custom floating-point quantization.}
+	\begin{algorithmic}
+		\SetAlgoLined
+		\renewcommand{\algorithmicrequire}{\textbf{input:}}
+		\renewcommand{\algorithmicensure}{\textbf{output:}}
+		\REQUIRE $MODEL$ as the CNN.
+		\REQUIRE $E_{size}$ as the target bit size for exponent.
+		\REQUIRE $M_{size}$ as the target bits size for mantissa.
+		\REQUIRE $STDM_{size}$ as the IEEE 754 bits size for mantissa.
+		\FOR {$layer$ in $MODEL$}
+		\IF {$layer$ is $Conv2D$ or $SeparableConv2D$}
+		\STATE GET FILTER TENSOR $filter \gets Filter(layer)$
+		\STATE GET BIAS TENSOR $bias \gets Bias(layer)$
+		\FOR {$x$ in $filter$ and $bias$}
+			\STATE $sign \gets Sign(x)$
+			\STATE $exp \gets Exponent(x)$
+			\STATE $fullexp \gets 2^{E_{size}-1}-1$ // Full range value of exp
+			\STATE $cman \gets CustomMantissa(x, M_{size})$
+			\STATE $resman \gets ResidualMantissa(x, M_{size})$
+			\IF {$exp <-fullexp$}
+				\STATE$x\gets0$
+			\ELSIF{$exp > fullexp$}
+				\STATE$x\gets (-1)^{sign}\cdot2^{fullexp}\cdot(1+(1-2^{-M{size}}))$
+			\ELSE
+				\IF {$2^{STDM_{size}-M_{size}-1}-1<resman$}
+					\STATE $cman \gets cman+1$
+					\IF{$2^{M_{size}}-1<cman$}
+					\STATE $cman \gets 0$
+					\STATE $exp \gets exp + 1$
+					\ENDIF
+				\ENDIF
+				\STATE$x\gets (-1)^{sign}\cdot2^{exp}\cdot(1+cman\cdot2^{-M_{size}})$
+			\ENDIF
+		\ENDFOR		
+		\ENDIF
+		\ENDFOR
+	\end{algorithmic}
+\end{algorithm}
+
