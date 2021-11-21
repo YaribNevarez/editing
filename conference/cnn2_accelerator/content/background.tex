@@ -1,15 +1,15 @@
 \section{Background}
 \label{sec:background}
 \subsection{Conv2D tensor operation}
-The \emph{Conv2D} tensor operation is described in \Equ{eq:conv2D}, where $X$ represents the input feature maps, $W$ represents the convolution kernel (known as filter) and $b$ represents the bias for the output feature maps\cite{goodfellow2016deep}. We denote \emph{Conv} as \emph{Conv2D} operator.
+The \emph{Conv2D} tensor operation is described in \Equ{eq:conv2D}, where $h$ is the input feature map, $W$ is the convolution kernel (known as filter), and $b$ is the bias for the output feature map\cite{goodfellow2016deep}. We denote \emph{Conv} as \emph{Conv2D} operator.
 
 \begin{eqnarray} \label{eq:conv2D}
-Conv\left(W,X\right)_{i,j,o}=\sum_{k,l,m}^{K,L,M}W_{(o,k,l,m)} \cdot X_{(i+k,j+l,m)}+b_{o}
+Conv\left(W,h\right)_{i,j,o}=\sum_{k,l,m}^{K,L,M} h_{(i+k,j+l,m)} W_{(o,k,l,m)}+b_{o}
 \end{eqnarray} 	
  	
 \subsection{DepthwiseConv2D tensor operation}
-The \emph{DepthwiseConv2D} tensor operation is described in \Equ{eq:dconv2D}, where $X$ represents the input feature maps, $W$ represents the convolution kernel (known as filter), and $b$ represents the bias for the output feature maps. We denote \emph{DConv} as \emph{DepthwiseConv2D} operator.
+The \emph{DepthwiseConv2D} tensor operation is described in \Equ{eq:dconv2D}, where $h$ is the input feature map, $W$ is the convolution kernel (known as filter), and $b$ is the bias for the output feature map. We denote \emph{DConv} as \emph{DepthwiseConv2D} operator.
 
 \begin{eqnarray} \label{eq:dconv2D}
-DConv\left(W,X\right)_{i,j,n}=\sum_{k,l}^{K,L}W_{(k,l,n)} \cdot X_{(i+k,j+l,n)}+b_{n}
+DConv\left(W,h\right)_{i,j,n}=\sum_{k,l}^{K,L} h_{(i+k,j+l,n)} W_{(k,l,n)}+b_{n}
 \end{eqnarray}

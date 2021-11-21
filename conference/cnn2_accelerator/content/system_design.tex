@@ -57,7 +57,7 @@ L_{log}=N+6
 	\centering
 	\includegraphics[width=0.5\textwidth]{../figures/dot_product_hybrid.pdf}
 	\caption{Dot-product hardware module with hybrid custom floating-point, (a) exhibits the initiation interval of 1 clock cycle, and (b) presents
-		the iteration latency of 8 clock cycles.}
+		the iteration latency of 8 clock cycles. $I_H$ and $I_F$ represent the input and filter buffer indexes, respectively.}
 	\label{fig:dot_product_hybrid}
 \end{figure}
 
@@ -100,11 +100,43 @@ C_{O}=\frac{TP_{M}-V_{M}-K_{H}W_{I}C_{I}BitSize_{I}}{C_{I}K_{W}K_{H}BitSize_{F}+
 
 
 \subsection{\textbf{Quantized aware training}}
-The quantization method maps the full precision filter and bias values to the closest representable quantized values. To employ the quantization method, the custom CNN model is initially trained with early stop monitoring until minimal validation loss, then the CNN model is retrained including the quantization method implemented as a callback function on batch end. The quantization retraining starts with a wide exponent bit size target (e.g. 5-bits) and gradually reduces the target size until the model drops to a given accuracy degradation threshold (e.g. 1\%). We have observed that the exponent bit size plays a more predominant influence on the model accuracy than the mantissa bit size. The quantization retraining can start with a minimum mantissa bit-size (e.g. 1-bit). The quantization method is described in \Algo{alg:quantize_training}. As a callback function on batch end, the quantization method gets as parameters the CNN model, exponent bit size, mantissa bit size, and gives as output the quantized CNN model. The method quantizes the filter and bias tensors of the \emph{Conv2D} and \emph{SeparableConv2D} layers.
+The quantize-aware training method is an iterative optimization. The custom CNN model is initially trained with early stop monitoring until minimal validation loss, then the CNN model is retrained including the quantization method implemented as a callback function on every batch end, see \Algo{alg:training}. The quantization method maps the full precision filter and bias values to the closest representable quantized values, see \Algo{alg:quantize_training}. The quantize-aware training method starts with a wide exponent size target (e.g. 5-bits) and gradually reduces the target size until the model drops to a given accuracy degradation threshold (e.g. 1\%). We have observed that the exponent bit size plays a more predominant influence on the model accuracy than the mantissa bit size. The mantissa bit size can be set to the minimum (e.g. 1-bit). This method quantizes the filter and bias tensors of the \emph{Conv2D} and \emph{SeparableConv2D} layers, since these are buffered in the on-chip memory of the TP.
+
+\begin{algorithm}[h!]
+	\label{alg:training}
+	\caption{Training method.}
+	\begin{algorithmic}
+		\SetAlgoLined
+		\renewcommand{\algorithmicrequire}{\textbf{input:}}
+		\renewcommand{\algorithmicensure}{\textbf{output:}}
+		\REQUIRE $MODEL$ as the CNN.
+		\REQUIRE $E_{size}$ as the target exponent bit size.
+		\REQUIRE $M_{size}$ as the target mantissa bits size.
+		\REQUIRE $D_{train}$ as the training data set.
+		\REQUIRE $D_{val}$ as the validation data set.
+		\REQUIRE $Acc_d$ as the accuracy degradation threshold.
+		\REQUIRE $Loop_{max}$ as the max quantization loop iterations.
+		\ENSURE $MODEL$ as the quantized CNN.
+		\STATE // Regular training with early stop
+		\STATE $Train(MODEL, D_{train}, D_{val})$
+		\STATE // Get benchmark accuracy
+		\STATE $acc_i \gets Evaluate(MODEL, D_{val})$
+		\STATE // Initialize quantize training
+		\STATE $acc_q \gets 0, loop_c \gets 0$
+		\WHILE {$(acc_q<acc_i - Acc_d) \land (loop_c<Loop_{max})$}
+		\STATE // Iterative optimization
+		\STATE $callback \gets Quantize(E_{size}, M_{size})$
+		\STATE // Quantized-aware training with early stop
+		\STATE $Train(MODEL, D_{train}, D_{val}, callback)$
+		\STATE $acc_q \gets Evaluate(MODEL, D_{val})$
+		\STATE $loop_c \gets loop_c + 1$
+		\ENDWHILE
+	\end{algorithmic}
+\end{algorithm}
 
 \begin{algorithm}[h!]
 	\label{alg:quantize_training}
-	\caption{Custom floating-point quantization.}
+	\caption{Custom floating-point quantization method.}
 	\begin{algorithmic}
 		\SetAlgoLined
 		\renewcommand{\algorithmicrequire}{\textbf{input:}}
