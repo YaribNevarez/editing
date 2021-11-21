@@ -57,7 +57,6 @@
 \newlabel{eq:channel_in_memory}{{9}{4}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-C}}\textbf  {Quantized aware training}}{4}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-D}}\textbf  {Embedded software architecture}}{4}}
-\citation{xilinx2015zynq}
 \newlabel{alg:training}{{1}{5}}
 \@writefile{loa}{\contentsline {algocf}{\numberline {1}{\ignorespaces Training method.}}{5}}
 \@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Base embedded software architecture.}}{5}}
@@ -66,31 +65,32 @@
 \newlabel{sec:experimental_results}{{V}{5}}
 \newlabel{alg:quantize_training}{{2}{5}}
 \@writefile{loa}{\contentsline {algocf}{\numberline {2}{\ignorespaces Custom floating-point quantization method.}}{5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-A}}Hardware design exploration}{5}}
 \@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces CNN-based models for case study.}}{6}}
 \newlabel{fig:models}{{8}{6}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-A}}Hardware design exploration}{6}}
-\@writefile{lot}{\contentsline {table}{\numberline {I}{\ignorespaces Compute performance with fixed-point on model $A$ and $B$.}}{6}}
-\newlabel{tab:performance_fixed_point}{{I}{6}}
-\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Compute performance with fixed-point on model $A$.}}{6}}
-\newlabel{fig:sched_model_a_fixed}{{9}{6}}
-\@writefile{lot}{\contentsline {table}{\numberline {II}{\ignorespaces Compute performance with floating-point LogiCORE on models $A$ and $B$.}}{6}}
-\newlabel{tab:performace_float_logicore}{{II}{6}}
-\@writefile{lot}{\contentsline {table}{\numberline {III}{\ignorespaces Compute performance with hybrid custom floating-point approximation on models $A$ and $B$.}}{6}}
-\newlabel{tab:performace_float_hybrid}{{III}{6}}
+\@writefile{lot}{\contentsline {table}{\numberline {I}{\ignorespaces Compute performance with hybrid custom floating-point approximation on models $A$ and $B$.}}{6}}
+\newlabel{tab:performace_float_hybrid}{{I}{6}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-B}}Classification accuracy}{6}}
-\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Compute performance with the proposed floating-point solutions on model $A$.}}{7}}
-\newlabel{fig:sched_model_a_float}{{10}{7}}
-\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Compute performance on model $B$ (floating-point).}}{7}}
-\newlabel{fig:sched_model_b_float}{{11}{7}}
-\@writefile{lot}{\contentsline {table}{\numberline {IV}{\ignorespaces Implemented floating-point formats for accuracy evaluation.}}{7}}
-\newlabel{tab:formats}{{IV}{7}}
-\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces Accuracy performance using hybrid custom floating-point approximation with various formats. Samples: CIFAR-10 test dataset ($10,000$ images).}}{7}}
-\newlabel{fig:accuracy}{{12}{7}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-C}}Resource utilization and power dissipation}{7}}
-\@writefile{lot}{\contentsline {table}{\numberline {V}{\ignorespaces Resource utilization and power dissipation of the proposed TP engines.}}{7}}
-\newlabel{tab:resource}{{V}{7}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-C}}Resource utilization and power dissipation}{6}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-D}}Discussion}{6}}
+\@writefile{lot}{\contentsline {table}{\numberline {II}{\ignorespaces Implemented floating-point formats for accuracy evaluation.}}{6}}
+\newlabel{tab:formats}{{II}{6}}
+\@writefile{lot}{\contentsline {table}{\numberline {III}{\ignorespaces Resource utilization and power dissipation of the proposed TP engines.}}{6}}
+\newlabel{tab:resource}{{III}{6}}
+\@writefile{lot}{\contentsline {table}{\numberline {IV}{\ignorespaces Energy consumption in tensor operation \emph  {(4A) Conv}.}}{6}}
+\newlabel{tab:edp}{{IV}{6}}
 \bibstyle{IEEEtran}
 \bibdata{../content/bibliography.bib}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Compute performance with the proposed floating-point solutions on model $A$.}}{7}}
+\newlabel{fig:sched_model_a_float}{{9}{7}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Compute performance on model $B$ (floating-point).}}{7}}
+\newlabel{fig:sched_model_b_float}{{10}{7}}
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Accuracy performance using hybrid custom floating-point approximation with various formats. Samples: CIFAR-10 test dataset ($10,000$ images).}}{7}}
+\newlabel{fig:accuracy}{{11}{7}}
+\@writefile{toc}{\contentsline {section}{\numberline {VI}Conclusions}{7}}
+\newlabel{sec:conclusions}{{VI}{7}}
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces Estimated power dissipation of the Zynq-7020 SoC with different TP engines.}}{7}}
+\newlabel{fig:power}{{12}{7}}
 \bibcite{li2019sensor}{1}
 \bibcite{dong2018rolling}{2}
 \bibcite{nagayama2007structural}{3}
@@ -107,15 +107,8 @@
 \bibcite{xilinxDPU}{14}
 \bibcite{goodfellow2016deep}{15}
 \bibcite{tfLiteMicro}{16}
-\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces Estimated power dissipation of the Zynq-7020 SoC with different TP engines.}}{8}}
-\newlabel{fig:power}{{13}{8}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-D}}Discussion}{8}}
-\@writefile{lot}{\contentsline {table}{\numberline {VI}{\ignorespaces Energy consumption in tensor operation \emph  {(4A) Conv}.}}{8}}
-\newlabel{tab:edp}{{VI}{8}}
-\@writefile{toc}{\contentsline {section}{\numberline {VI}Conclusions}{8}}
-\newlabel{sec:conclusions}{{VI}{8}}
-\@writefile{toc}{\contentsline {section}{References}{8}}
 \bibcite{hrica2012floating}{17}
 \bibcite{park2009dynamic}{18}
 \bibcite{mittal2016survey}{19}
 \bibcite{xilinx2015zynq}{20}
+\@writefile{toc}{\contentsline {section}{References}{8}}

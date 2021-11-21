@@ -23,7 +23,7 @@ To operate the proposed system, the user would train a custom CNN model using Te
 Our main contributions are as follows:
 \begin{enumerate}
 	\item We develop a hardware/software co-design framework targeting low-power, resource-limited embedded FPGAs for floating-point CNN acceleration. This is a scalable and parameterized architecture integrated with TensorFlow Lite that allows hardware design exploration.
-	\item We present a customizable tensor processor (TP) as a dedicated hardware accelerator. This TP computes \emph{Conv2D} and \emph{DepthwiseConv2D} tensor operations employing hybrid custom floating-point formats and hybrid logarithmic approximation with parametrized on-chip memory utilization.
+	\item We present a customizable tensor processor (TP) as a dedicated hardware accelerator. This design computes \emph{Conv2D} and \emph{DepthwiseConv2D} tensor operations employing a pipelined vector dot-product using hybrid custom floating-point and hybrid logarithmic approximation with parametrized on-chip memory utilization.
 	\item We propose a quantize aware training method that maintains and increases inference accuracy with low-precision custom floating-point formats.
 	\item We demonstrate the potential of the proposed architecture by addressing a design exploration with custom shallow CNN models using \emph{Conv2D} and \emph{DepthwiseConv2D} tensor operations. We evaluate compute performance and classification accuracy.
 \end{enumerate}
