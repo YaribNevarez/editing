@@ -22,7 +22,47 @@ The TP is a dedicated hardware module to compute tensor operations. The hardware
 	\label{fig:accelerator}
 \end{figure}
 
-\paragraph{\textbf{On-chip memory utilization}}
+\subsubsection{\textbf{Modes of operation}} This accelerator offers two modes of operation: \emph{configuration} and \emph{execution}.
+
+\begin{itemize}
+	\item In \emph{configuration} mode, the TP receives the tensor operation ID and hyperparameters: stride, dilation, padding, offset, activation, depth-multiplier, input shape, filter shape, bias shape, and output shape. Afterwards, the TP receives filter and bias tensors to be locally stored.
+	
+	\item In \emph{execution} mode, the TP executes the tensor operator according to the hyperparameters given in the configuration mode. During execution, the input and output tensor-buffers are moved from/to the TF Lite memory regions via DMA.
+\end{itemize}
+
+\subsubsection{\textbf{Dot-product with with hybrid custom
+		floating-point and logarithmic
+		dot-product approximation}}
+\label{sec:dot_product}
+We optimize the floating-point computation adopting the dot-product with hybrid custom floating-point and logarithmic approximation\cite{nevarez2021accelerating}. The hardware dot-product is illustrated in \Fig{fig:dot_product}. This approach: (1) denormalizes input values, (2) executes computation with integer format for exponent and mantissa, and finally, (3) it normalizes the result into IEEE 754 format, see \Fig{fig:dot_product_hybrid}. The latency in clock cycles of this hardware module is defined by \equ{eq:dot_custom_float_latency} and \equ{eq:dot_log_latency}, where $N$ is the dot-product vector length. The latency equations are obtained from the general pipelined hardware latency formula: $L=\left(N-1\right)II+IL$, where $II$ is the initiation interval (\fig{fig:dot_product_hybrid}(a)), and $IL$ is the iteration latency (\fig{fig:dot_product_hybrid}(b)). Both $II$ and $IL$ are obtained from the high-level synthesis analysis. The logarithmic approximation removes the mantissa bit-field, which removes the mantissa multiplication and correction in clock cycle 3 and 4, respectively, see \fig{fig:dot_product_hybrid}.
+\begin{eqnarray} \label{eq:dot_custom_float_latency}
+L_{custom}=N+7
+\end{eqnarray}
+
+\begin{eqnarray} \label{eq:dot_log_latency}
+L_{log}=N+6
+\end{eqnarray}
+
+ As a design parameter, both the exponent and mantissa bit-width of the weight/filter vector provides a tunable knob to trade-off between resource utilization and QoR \cite{park2009dynamic}. These parameters must be defined before hardware synthesis.
+
+\begin{figure}[t!]
+	\centering
+	\includegraphics[width=0.5\textwidth]{../figures/dot-product_unit.pdf}
+	\caption{Dot-product hardware module with (a) standard floating-point
+		(IEEE 754) arithmetic, (b) hybrid custom floating-point, and (c) hybrid logarithmic approximation.}
+	\label{fig:dot_product}
+\end{figure}
+
+\begin{figure}[t!]
+	\centering
+	\includegraphics[width=0.5\textwidth]{../figures/dot_product_hybrid.pdf}
+	\caption{Dot-product hardware module with hybrid custom floating-point, (a) exhibits the initiation interval of 1 clock cycle, and (b) presents
+		the iteration latency of 8 clock cycles.}
+	\label{fig:dot_product_hybrid}
+\end{figure}
+
+
+\subsubsection{\textbf{On-chip memory utilization}}
 The total on-chip memory utilization on the TP is defined by \Equ{eq:tp_memory}, where $Input_{M}$ is the \emph{input buffer}, $Filter_{M}$ is the \emph{filter buffer}, $Bias_{M}$ is the \emph{bias buffer}, and $V_{M}$ represents the local variables required for operation. The on-chip memory buffers are defined in bits. \fig{fig:accelerator} illustrates the convolution operation utilizing the on-chip memory buffers.
 
 \begin{figure}[h!]
@@ -58,27 +98,9 @@ As a design trade-off, \Equ{eq:channel_in_memory} defines the capacity of output
 C_{O}=\frac{TP_{M}-V_{M}-K_{H}W_{I}C_{I}BitSize_{I}}{C_{I}K_{W}K_{H}BitSize_{F}+BitSize_{B}}
 \end{eqnarray}
 
-\paragraph{\textbf{Modes of operation}} This accelerator offers two modes of operation: \emph{configuration} and \emph{execution}.
 
-In \emph{configuration} mode, the TP receives the operation ID and hyperparameters: stride, dilation, padding, offset, activation, depth-multiplier, input shape, filter shape, bias shape, and output shape. Afterwards, the TP receives filter and bias tensors to be locally stored.
-
-In \emph{execution} mode, the TP executes the tensor operator according to the hyperparameters given in the configuration mode. During execution, the input and output tensor-buffers are moved from/to the TF Lite memory regions via DMA.
- 
-\paragraph{\textbf{Dot-product with floating-point optimization}}
-\label{sec:dot_product}
-We optimize the floating-point computation adopting the dot-product with hybrid custom floating-point and logarithmic approximation\cite{nevarez2021accelerating}. This approach: (1) denormalizes input numbers, (2) executes computation with integer format for exponent and mantissa, and finally, (3) it normalizes the result into IEEE 754 format. This design implements a pipelined vector dot-product with a latency of $2N+II$ (clock cycles)\cite{nevarez2021accelerating}, where $N$ and $II$ are the vector length and initiation interval, respectively. The hardware dot-product is illustrated in \Fig{fig:dot_product}. As a design parameter, the mantissa bit-width of the weight vector provides a tunable knob to trade-off between resource-efficiency and QoR \cite{park2009dynamic}. Since the lower-order bits have smaller significance than the higher-order bits, truncating them may
-have only a minor impact on QoR \cite{mittal2016survey}.
-
-\begin{figure}[t!]
-	\centering
-	\includegraphics[width=0.5\textwidth]{../figures/dot-product_unit.pdf}
-	\caption{Hardware alternatives for vector dot-product.}
-	\label{fig:dot_product}
-\end{figure}
-
-
-\paragraph{\textbf{Quantized aware training}}
-
+\subsection{\textbf{Quantized aware training}}
+The quantization method maps the full precision filter and bias values to the closest representable quantized values. To employ the quantization method, the custom CNN model is initially trained with early stop monitoring until minimal validation loss, then the CNN model is retrained including the quantization method implemented as a callback function on batch end. The quantization retraining starts with a wide exponent bit size target (e.g. 5-bits) and gradually reduces the target size until the model drops to a given accuracy degradation threshold (e.g. 1\%). We have observed that the exponent bit size plays a more predominant influence on the model accuracy than the mantissa bit size. The quantization retraining can start with a minimum mantissa bit-size (e.g. 1-bit). The quantization method is described in \Algo{alg:quantize_training}. As a callback function on batch end, the quantization method gets as parameters the CNN model, exponent bit size, mantissa bit size, and gives as output the quantized CNN model. The method quantizes the filter and bias tensors of the \emph{Conv2D} and \emph{SeparableConv2D} layers.
 
 \begin{algorithm}[h!]
 	\label{alg:quantize_training}
@@ -94,31 +116,39 @@ have only a minor impact on QoR \cite{mittal2016survey}.
 		\ENSURE $MODEL$ as the quantized CNN.
 		\FOR {$layer$ in $MODEL$}
 		\IF {$layer$ is $Conv2D$ or $SeparableConv2D$}
-		\STATE GET FILTER TENSOR $filter \gets Filter(layer)$
-		\STATE GET BIAS TENSOR $bias \gets Bias(layer)$
+		\STATE $filter \gets Filter(layer)$ // Get filter tensor
+		\STATE $bias \gets Bias(layer)$ // Get bias tensor
 		\FOR {$x$ in $filter$ and $bias$}
 			\STATE $sign \gets Sign(x)$
 			\STATE $exp \gets Exponent(x)$
-			\STATE $fullexp \gets 2^{E_{size}-1}-1$ // Full range value of exp
+			\STATE // Get full range exponent value with $E_{size}$
+			\STATE $fullexp \gets 2^{E_{size}-1}-1$
+			\STATE // Get custom truncated mantissa value with $M_{size}$
 			\STATE $cman \gets CustomMantissa(x, M_{size})$
-			\STATE $resman \gets ResidualMantissa(x, M_{size})$
+			\STATE // Get leftover mantissa value
+			\STATE $leftman \gets LeftoverMantissa(x, M_{size})$
 			\IF {$exp <-fullexp$}
+				\STATE // Set minimum quantized value
 				\STATE$x\gets0$
 			\ELSIF{$exp > fullexp$}
+				\STATE // Set maximum quantized value
 				\STATE$x\gets (-1)^{sign}\cdot2^{fullexp}\cdot(1+(1-2^{-M{size}}))$
 			\ELSE
-				\IF {$2^{STDM_{size}-M_{size}-1}-1<resman$}
+				\IF {$2^{STDM_{size}-M_{size}-1}-1<leftman$}
+					\STATE // Leftover mantissa above halfway threshold
 					\STATE $cman \gets cman+1$
 					\IF{$2^{M_{size}}-1<cman$}
+					\STATE // Mantissa overflow
 					\STATE $cman \gets 0$
 					\STATE $exp \gets exp + 1$
 					\ENDIF
 				\ENDIF
+				\STATE // Build custom quantized floating-point value
 				\STATE$x\gets (-1)^{sign}\cdot2^{exp}\cdot(1+cman\cdot2^{-M_{size}})$
 			\ENDIF
 		\ENDFOR
-		\STATE SET QUANTIZED FILTER TENSOR $SetFiler(layer, filter)$
-		\STATE SET QUANTIZED BIAS TENSOR $SetBias(layer, bias)$
+		\STATE $SetFiler(layer, filter)$
+		\STATE $SetBias(layer, bias)$
 		\ENDIF
 		\ENDFOR
 	\end{algorithmic}
@@ -130,4 +160,7 @@ have only a minor impact on QoR \cite{mittal2016survey}.
 	\caption{Base embedded software architecture.}
 	\label{fig:sw_stack}
 \end{figure}
+
+\subsection{\textbf{Embedded software architecture}}
+The software architecture is structured a layered object-oriented application framework written in C++. This offers a comprehensive high level embedded software application programming interface (API) that allows the construction of scalable sequential SbS networks with configurable hardware acceleration. Conceptually this design is modular, reusable, and extensible. The overall structure is depicted in \fig{fig:sw_stack}.
 

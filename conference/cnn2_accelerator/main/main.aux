@@ -33,57 +33,65 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-A}}\textbf  {Base embedded system architecture}}{2}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-B}}\textbf  {Tensor processor}}{2}}
 \citation{nevarez2021accelerating}
-\citation{nevarez2021accelerating}
 \citation{park2009dynamic}
-\citation{mittal2016survey}
 \@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Base embedded system architecture.}}{3}}
 \newlabel{fig:system_architecture}{{2}{3}}
 \@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Hardware architecture of the proposed tensor processor.}}{3}}
 \newlabel{fig:accelerator}{{3}{3}}
-\@writefile{toc}{\contentsline {paragraph}{\numberline {\unhbox \voidb@x \hbox {IV-B}0a}\textbf  {On-chip memory utilization}}{3}}
-\newlabel{eq:tp_memory}{{3}{3}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Design parameters for on-chip memory buffers on the TP.}}{3}}
-\newlabel{fig:accelerator_buffers}{{4}{3}}
-\newlabel{eq:input_memory}{{4}{3}}
-\newlabel{eq:filter_memory}{{5}{3}}
-\newlabel{eq:bias_memory}{{6}{3}}
-\newlabel{eq:channel_in_memory}{{7}{3}}
-\@writefile{toc}{\contentsline {paragraph}{\numberline {\unhbox \voidb@x \hbox {IV-B}0b}\textbf  {Modes of operation}}{3}}
-\newlabel{sec:dot_product}{{\unhbox \voidb@x \hbox {IV-B}0c}{3}}
-\@writefile{toc}{\contentsline {paragraph}{\numberline {\unhbox \voidb@x \hbox {IV-B}0c}\textbf  {Dot-product with floating-point optimization}}{3}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {IV-B}1}\textbf  {Modes of operation}}{3}}
+\newlabel{sec:dot_product}{{\unhbox \voidb@x \hbox {IV-B}2}{3}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {IV-B}2}\textbf  {Dot-product with with hybrid custom floating-point and logarithmic dot-product approximation}}{3}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Dot-product hardware module with (a) standard floating-point (IEEE 754) arithmetic, (b) hybrid custom floating-point, and (c) hybrid logarithmic approximation.}}{3}}
+\newlabel{fig:dot_product}{{4}{3}}
+\newlabel{eq:dot_custom_float_latency}{{3}{3}}
+\newlabel{eq:dot_log_latency}{{4}{3}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {IV-B}3}\textbf  {On-chip memory utilization}}{3}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Dot-product hardware module with hybrid custom floating-point, (a) exhibits the initiation interval of 1 clock cycle, and (b) presents the iteration latency of 8 clock cycles.}}{4}}
+\newlabel{fig:dot_product_hybrid}{{5}{4}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Design parameters for on-chip memory buffers on the TP.}}{4}}
+\newlabel{fig:accelerator_buffers}{{6}{4}}
+\newlabel{eq:tp_memory}{{5}{4}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Base embedded software architecture.}}{4}}
+\newlabel{fig:sw_stack}{{7}{4}}
+\newlabel{eq:input_memory}{{6}{4}}
+\newlabel{eq:filter_memory}{{7}{4}}
+\newlabel{eq:bias_memory}{{8}{4}}
+\newlabel{eq:channel_in_memory}{{9}{4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-C}}\textbf  {Quantized aware training}}{4}}
 \citation{xilinx2015zynq}
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Hardware alternatives for vector dot-product.}}{4}}
-\newlabel{fig:dot_product}{{5}{4}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Base embedded software architecture.}}{4}}
-\newlabel{fig:sw_stack}{{6}{4}}
-\@writefile{toc}{\contentsline {paragraph}{\numberline {\unhbox \voidb@x \hbox {IV-B}0d}\textbf  {Quantized aware training}}{4}}
-\newlabel{alg:quantize_training}{{1}{4}}
-\@writefile{loa}{\contentsline {algocf}{\numberline {1}{\ignorespaces Custom floating-point quantization.}}{4}}
-\@writefile{toc}{\contentsline {section}{\numberline {V}Experimental results}{4}}
-\newlabel{sec:experimental_results}{{V}{4}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces CNN-based models for case study.}}{5}}
-\newlabel{fig:models}{{7}{5}}
+\newlabel{alg:quantize_training}{{1}{5}}
+\@writefile{loa}{\contentsline {algocf}{\numberline {1}{\ignorespaces Custom floating-point quantization.}}{5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-D}}\textbf  {Embedded software architecture}}{5}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces CNN-based models for case study.}}{5}}
+\newlabel{fig:models}{{8}{5}}
+\@writefile{toc}{\contentsline {section}{\numberline {V}Experimental results}{5}}
+\newlabel{sec:experimental_results}{{V}{5}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-A}}Hardware design exploration}{5}}
-\@writefile{lot}{\contentsline {table}{\numberline {I}{\ignorespaces Compute performance with fixed-point on model $A$ and $B$.}}{5}}
-\newlabel{tab:performance_fixed_point}{{I}{5}}
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Compute performance with fixed-point on model $A$.}}{5}}
-\newlabel{fig:sched_model_a_fixed}{{8}{5}}
-\@writefile{lot}{\contentsline {table}{\numberline {II}{\ignorespaces Compute performance with floating-point LogiCORE on models $A$ and $B$.}}{5}}
-\newlabel{tab:performace_float_logicore}{{II}{5}}
-\@writefile{lot}{\contentsline {table}{\numberline {III}{\ignorespaces Compute performance with hybrid custom floating-point approximation on models $A$ and $B$.}}{5}}
-\newlabel{tab:performace_float_hybrid}{{III}{5}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-B}}Classification accuracy}{5}}
-\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Compute performance with the proposed floating-point solutions on model $A$.}}{6}}
-\newlabel{fig:sched_model_a_float}{{9}{6}}
-\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Compute performance on model $B$ (floating-point).}}{6}}
-\newlabel{fig:sched_model_b_float}{{10}{6}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Compute performance with fixed-point on model $A$.}}{6}}
+\newlabel{fig:sched_model_a_fixed}{{9}{6}}
+\@writefile{lot}{\contentsline {table}{\numberline {I}{\ignorespaces Compute performance with fixed-point on model $A$ and $B$.}}{6}}
+\newlabel{tab:performance_fixed_point}{{I}{6}}
+\@writefile{lot}{\contentsline {table}{\numberline {II}{\ignorespaces Compute performance with floating-point LogiCORE on models $A$ and $B$.}}{6}}
+\newlabel{tab:performace_float_logicore}{{II}{6}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-B}}Classification accuracy}{6}}
+\@writefile{lot}{\contentsline {table}{\numberline {III}{\ignorespaces Compute performance with hybrid custom floating-point approximation on models $A$ and $B$.}}{6}}
+\newlabel{tab:performace_float_hybrid}{{III}{6}}
 \@writefile{lot}{\contentsline {table}{\numberline {IV}{\ignorespaces Implemented floating-point formats for accuracy evaluation.}}{6}}
 \newlabel{tab:formats}{{IV}{6}}
-\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Accuracy performance using hybrid custom floating-point approximation with various formats. Samples: CIFAR-10 test dataset ($10,000$ images).}}{6}}
-\newlabel{fig:accuracy}{{11}{6}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-C}}Resource utilization and power dissipation}{6}}
-\@writefile{lot}{\contentsline {table}{\numberline {V}{\ignorespaces Resource utilization and power dissipation of the proposed TP engines.}}{6}}
-\newlabel{tab:resource}{{V}{6}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-D}}Discussion}{6}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Compute performance with the proposed floating-point solutions on model $A$.}}{7}}
+\newlabel{fig:sched_model_a_float}{{10}{7}}
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Compute performance on model $B$ (floating-point).}}{7}}
+\newlabel{fig:sched_model_b_float}{{11}{7}}
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces Accuracy performance using hybrid custom floating-point approximation with various formats. Samples: CIFAR-10 test dataset ($10,000$ images).}}{7}}
+\newlabel{fig:accuracy}{{12}{7}}
+\@writefile{toc}{\contentsline {section}{\numberline {VI}Conclusions}{7}}
+\newlabel{sec:conclusions}{{VI}{7}}
+\@writefile{lot}{\contentsline {table}{\numberline {V}{\ignorespaces Resource utilization and power dissipation of the proposed TP engines.}}{7}}
+\newlabel{tab:resource}{{V}{7}}
+\@writefile{lot}{\contentsline {table}{\numberline {VI}{\ignorespaces Energy consumption in tensor operation \emph  {(4A) Conv}.}}{7}}
+\newlabel{tab:edp}{{VI}{7}}
 \bibstyle{IEEEtran}
 \bibdata{../content/bibliography.bib}
 \bibcite{li2019sensor}{1}
@@ -102,15 +110,10 @@
 \bibcite{xilinxDPU}{14}
 \bibcite{goodfellow2016deep}{15}
 \bibcite{tfLiteMicro}{16}
-\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces Estimated power dissipation of the Zynq-7020 SoC with different TP engines.}}{7}}
-\newlabel{fig:power}{{12}{7}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-D}}Discussion}{7}}
-\@writefile{lot}{\contentsline {table}{\numberline {VI}{\ignorespaces Energy consumption in tensor operation \emph  {(4A) Conv}.}}{7}}
-\newlabel{tab:edp}{{VI}{7}}
-\@writefile{toc}{\contentsline {section}{\numberline {VI}Conclusions}{7}}
-\newlabel{sec:conclusions}{{VI}{7}}
-\@writefile{toc}{\contentsline {section}{References}{7}}
 \bibcite{hrica2012floating}{17}
 \bibcite{park2009dynamic}{18}
 \bibcite{mittal2016survey}{19}
 \bibcite{xilinx2015zynq}{20}
+\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces Estimated power dissipation of the Zynq-7020 SoC with different TP engines.}}{8}}
+\newlabel{fig:power}{{13}{8}}
+\@writefile{toc}{\contentsline {section}{References}{8}}
