@@ -4,38 +4,31 @@
 \citation{wang2019deep}
 \citation{kim2017hazardous}
 \citation{nurvitadhi2017can}
-\citation{abdelouahab2018accelerating,guo2017angel}
+\citation{abdelouahab2018accelerating}
 \citation{nevarez2021accelerating}
-\citation{venkataramani2015approximate}
 \@writefile{toc}{\contentsline {section}{\numberline {I}Introduction}{1}}
 \newlabel{sec:introduction}{{I}{1}}
 \@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces The workflow of our approach on embedded FPGAs.}}{1}}
 \newlabel{fig:workflow}{{1}{1}}
-\citation{yazdanbakhsh2021evaluation}
-\citation{coral2021Datasheet}
-\citation{cass2019taking}
-\citation{coral2021Datasheet}
-\citation{xilinxDPU}
-\citation{xilinxDPU}
+\citation{gao2020edgedrnn}
+\citation{meloni2019cnn}
 \citation{goodfellow2016deep}
 \@writefile{toc}{\contentsline {section}{\numberline {II}Related work}{2}}
 \newlabel{sec:related_work}{{II}{2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {II-A}}Google's Edge TPU}{2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {II-B}}Xilinx Zynq DPU}{2}}
 \@writefile{toc}{\contentsline {section}{\numberline {III}Background}{2}}
 \newlabel{sec:background}{{III}{2}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-A}}Conv2D tensor operation}{2}}
 \newlabel{eq:conv2D}{{1}{2}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-B}}DepthwiseConv2D tensor operation}{2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Base embedded system architecture.}}{2}}
+\newlabel{fig:system_architecture}{{2}{2}}
 \newlabel{eq:dconv2D}{{2}{2}}
 \@writefile{toc}{\contentsline {section}{\numberline {IV}System Design}{2}}
 \newlabel{sec:system_design}{{IV}{2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-A}}\textbf  {Base embedded system architecture}}{2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-B}}\textbf  {Tensor processor}}{2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-A}}Base embedded system architecture}{2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-B}}Tensor processor}{2}}
 \citation{nevarez2021accelerating}
 \citation{park2009dynamic}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Base embedded system architecture.}}{3}}
-\newlabel{fig:system_architecture}{{2}{3}}
 \@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Hardware architecture of the proposed tensor processor.}}{3}}
 \newlabel{fig:accelerator}{{3}{3}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {IV-B}1}\textbf  {Modes of operation}}{3}}
@@ -46,51 +39,29 @@
 \newlabel{eq:dot_custom_float_latency}{{3}{3}}
 \newlabel{eq:dot_log_latency}{{4}{3}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {IV-B}3}\textbf  {On-chip memory utilization}}{3}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Dot-product hardware module with hybrid custom floating-point, (a) exhibits the initiation interval of 1 clock cycle, and (b) presents the iteration latency of 8 clock cycles. $I_H$ and $I_F$ represent the input and filter buffer indexes, respectively.}}{4}}
+\newlabel{eq:tp_memory}{{5}{3}}
+\newlabel{eq:input_memory}{{6}{3}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Pipelined hardware module for vector dot-product with hybrid custom floating-point, (a) exhibits the initiation interval of 1 clock cycle, and (b) presents the iteration latency of 8 clock cycles. $I_H$ and $I_F$ represent the input and filter buffer indexes, respectively.}}{4}}
 \newlabel{fig:dot_product_hybrid}{{5}{4}}
 \@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Design parameters for on-chip memory buffers on the TP.}}{4}}
 \newlabel{fig:accelerator_buffers}{{6}{4}}
-\newlabel{eq:tp_memory}{{5}{4}}
-\newlabel{eq:input_memory}{{6}{4}}
 \newlabel{eq:filter_memory}{{7}{4}}
 \newlabel{eq:bias_memory}{{8}{4}}
 \newlabel{eq:channel_in_memory}{{9}{4}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-C}}\textbf  {Quantized aware training}}{4}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-D}}\textbf  {Embedded software architecture}}{4}}
-\newlabel{alg:training}{{1}{5}}
-\@writefile{loa}{\contentsline {algocf}{\numberline {1}{\ignorespaces Training method.}}{5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-C}}Quantized aware training}{4}}
+\newlabel{alg:training}{{1}{4}}
+\@writefile{loa}{\contentsline {algocf}{\numberline {1}{\ignorespaces Training method.}}{4}}
+\newlabel{alg:quantize_training}{{2}{5}}
+\@writefile{loa}{\contentsline {algocf}{\numberline {2}{\ignorespaces Custom floating-point quantization method.}}{5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-D}}Embedded software architecture}{5}}
 \@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Base embedded software architecture.}}{5}}
 \newlabel{fig:sw_stack}{{7}{5}}
 \@writefile{toc}{\contentsline {section}{\numberline {V}Experimental results}{5}}
 \newlabel{sec:experimental_results}{{V}{5}}
-\newlabel{alg:quantize_training}{{2}{5}}
-\@writefile{loa}{\contentsline {algocf}{\numberline {2}{\ignorespaces Custom floating-point quantization method.}}{5}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-A}}Hardware design exploration}{5}}
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces CNN-based models for case study.}}{6}}
-\newlabel{fig:models}{{8}{6}}
-\@writefile{lot}{\contentsline {table}{\numberline {I}{\ignorespaces Compute performance with hybrid custom floating-point approximation on models $A$ and $B$.}}{6}}
-\newlabel{tab:performace_float_hybrid}{{I}{6}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-B}}Classification accuracy}{6}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-C}}Resource utilization and power dissipation}{6}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-D}}Discussion}{6}}
-\@writefile{lot}{\contentsline {table}{\numberline {II}{\ignorespaces Implemented floating-point formats for accuracy evaluation.}}{6}}
-\newlabel{tab:formats}{{II}{6}}
-\@writefile{lot}{\contentsline {table}{\numberline {III}{\ignorespaces Resource utilization and power dissipation of the proposed TP engines.}}{6}}
-\newlabel{tab:resource}{{III}{6}}
-\@writefile{lot}{\contentsline {table}{\numberline {IV}{\ignorespaces Energy consumption in tensor operation \emph  {(4A) Conv}.}}{6}}
-\newlabel{tab:edp}{{IV}{6}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-B}}Classification accuracy}{5}}
 \bibstyle{IEEEtran}
 \bibdata{../content/bibliography.bib}
-\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Compute performance with the proposed floating-point solutions on model $A$.}}{7}}
-\newlabel{fig:sched_model_a_float}{{9}{7}}
-\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Compute performance on model $B$ (floating-point).}}{7}}
-\newlabel{fig:sched_model_b_float}{{10}{7}}
-\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Accuracy performance using hybrid custom floating-point approximation with various formats. Samples: CIFAR-10 test dataset ($10,000$ images).}}{7}}
-\newlabel{fig:accuracy}{{11}{7}}
-\@writefile{toc}{\contentsline {section}{\numberline {VI}Conclusions}{7}}
-\newlabel{sec:conclusions}{{VI}{7}}
-\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces Estimated power dissipation of the Zynq-7020 SoC with different TP engines.}}{7}}
-\newlabel{fig:power}{{12}{7}}
 \bibcite{li2019sensor}{1}
 \bibcite{dong2018rolling}{2}
 \bibcite{nagayama2007structural}{3}
@@ -98,17 +69,17 @@
 \bibcite{kim2017hazardous}{5}
 \bibcite{nurvitadhi2017can}{6}
 \bibcite{abdelouahab2018accelerating}{7}
-\bibcite{guo2017angel}{8}
-\bibcite{nevarez2021accelerating}{9}
-\bibcite{venkataramani2015approximate}{10}
-\bibcite{yazdanbakhsh2021evaluation}{11}
-\bibcite{coral2021Datasheet}{12}
-\bibcite{cass2019taking}{13}
-\bibcite{xilinxDPU}{14}
-\bibcite{goodfellow2016deep}{15}
-\bibcite{tfLiteMicro}{16}
-\bibcite{hrica2012floating}{17}
-\bibcite{park2009dynamic}{18}
-\bibcite{mittal2016survey}{19}
-\bibcite{xilinx2015zynq}{20}
-\@writefile{toc}{\contentsline {section}{References}{8}}
+\bibcite{nevarez2021accelerating}{8}
+\bibcite{gao2020edgedrnn}{9}
+\bibcite{meloni2019cnn}{10}
+\bibcite{goodfellow2016deep}{11}
+\bibcite{park2009dynamic}{12}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Accuracy performance using hybrid custom floating-point approximation with various formats. Samples: CIFAR-10 test dataset ($10,000$ images).}}{6}}
+\newlabel{fig:accuracy}{{8}{6}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-C}}Resource utilization and power dissipation}{6}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-D}}Discussion}{6}}
+\@writefile{lot}{\contentsline {table}{\numberline {I}{\ignorespaces Energy consumption in tensor operation \emph  {(4A) Conv}.}}{6}}
+\newlabel{tab:edp}{{I}{6}}
+\@writefile{toc}{\contentsline {section}{\numberline {VI}Conclusions}{6}}
+\newlabel{sec:conclusions}{{VI}{6}}
+\@writefile{toc}{\contentsline {section}{References}{6}}
