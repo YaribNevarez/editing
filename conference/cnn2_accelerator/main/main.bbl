@@ -56,10 +56,6 @@ E.~Nurvitadhi, G.~Venkatesh, J.~Sim, D.~Marr, R.~Huang, J.~Ong Gee~Hock, Y.~T.
   \emph{Proceedings of the 2017 ACM/SIGDA International Symposium on
   Field-Programmable Gate Arrays}, 2017, pp. 5--14.
 
-\bibitem{abdelouahab2018accelerating}
-K.~Abdelouahab, M.~Pelcat, J.~Serot, and F.~Berry, ``Accelerating cnn inference
-  on fpgas: A survey,'' \emph{arXiv preprint arXiv:1806.01683}, 2018.
-
 \bibitem{nevarez2021accelerating}
 Y.~Nevarez, D.~Rotermund, K.~R. Pawelzik, and A.~Garcia-Ortiz, ``Accelerating
   spike-by-spike neural networks on fpga with hybrid custom floating-point and

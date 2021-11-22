@@ -1,54 +1,71 @@
 \section{Experimental results}
 \label{sec:experimental_results}
-The proposed hardware/software co-design framework is demonstrated on XC7Z007S (MiniZed) and XC7Z010 (Zybo). On the PL, we implement the proposed hardware architecture with a clock frequency at $200 MHz$. On the PS, we execute the bare-metal software architecture on the ARM Cortex-A9 at $666MHz$.
+The proposed hardware/software co-design framework is demonstrated on XC7Z007S with 1 TP instance, and XC7Z010 with 2 TP instances. On the PL, we implement the proposed hardware architecture with a clock frequency at $200 MHz$. On the PS, we execute the bare-metal software architecture on the ARM Cortex-A9 at $666MHz$ in both devices.
 
-To demonstrate compliance of the proposed design, we build models $A$ and $B$ in TensorFlow. Model $B$ incorporates depthwise separable convolution operations (a depthwise convolution followed by a pointwise convolution). See \Fig{fig:models}.
+To demonstrate the proposed design, we build models $A$ and $B$ in TensorFlow. Model $B$ incorporates depthwise separable convolution operations (a depthwise convolution followed by a pointwise convolution). See \Fig{fig:models}.
 
-To demonstrate hardware feasibility, $A$ and $B$ are evaluated by addressing a design exploration with hybrid custom floating-point, and hybrid logarithmic approximation.
+\begin{figure}[t!]
+	\centering
+	\includegraphics[width=0.5\textwidth]{../figures/models.pdf}
+	\caption{Shallow CNN models for case study.}
+	\label{fig:models}
+\end{figure}
 
-\subsection{Hardware design exploration}
-\begin{enumerate}
-\item{\textbf{Hybrid custom floating-point}}: This implementation presents a peak acceleration of $54\times$ in model $A$ at the tensor operation \emph{(4A) Conv}. See \tab{tab:performace_float_hybrid}. The runtime execution of model $B$ with \emph{DConv} tensor operations is illustrated in \fig{fig:sched_model_b_float}.
+\subsection{Custom floating-point format based on classification accuracy}
+To obtain the best number format, we train $A$ and $B$ with CIFAR-10 using early stop and batch size of 20, and \emph{adam} optimizer. The proposed quantized-aware training method is used with two iterations, see \fig{fig:accuracy}.
 
-\item{\textbf{Hybrid logarithmic approximation}}: This implementation is presented for comparison in \fig{fig:sched_model_a_float}, which shows the runtime executions of model $A$ with the proposed floating-point solutions including hybrid logarithmic approximation.
-\end{enumerate}
-
-\subsection{Classification accuracy}
-
-We evaluate the classification accuracy of the CNN models under the effects of custom floating and logarithmic quantization. \tab{tab:formats} presents the list of custom formats proposed for evaluation. In this case, the \emph{filter} and \emph{bias} tensors are quantized from base floating-point representation (IEEE 754) into custom reduced formats with the proposed quantized-aware training method. For this evaluation, we train $A$ an $B$ for image classification with CIFAR-10 dataset, see \fig{fig:accuracy}.
-
+To demonstrate hardware feasibility, $A$ and $B$ are evaluated by addressing a design exploration with hybrid custom floating-point and hybrid logarithmic approximation. We explore three reduced floating-point formats for filter and bias: exponent $E_{size} = 5, 4, 3$-bits, all formats with mantissa $M_{size} = 1$-bit and sign $S_{size} = 1$-bit. For Logarithmic approximation, we remove the mantissa bit.
 
 \begin{figure}[t!]
 	\centering
 	\includegraphics[width=0.5\textwidth]{../figures/all_models_accuracy.pdf}
-	\caption{Accuracy performance using hybrid custom floating-point approximation with various formats. Samples: CIFAR-10 test dataset ($10,000$ images).}
+	\caption{Accuracy performance using the proposed training method.}
 	\label{fig:accuracy}
 \end{figure}
 
-\subsection{Resource utilization and power dissipation}
-The resource utilization and power dissipation of the TP is listed in \tab{tab:resource}. The power dissipation of the Zynq device is presented in \fig{fig:power}. 
-
-
-\subsection{Discussion}
-\begin{enumerate}
-
-	\item{\textbf{Energy consumption}}: The implementations with hybrid custom floating-point and logarithmic approximation are the most efficient with energy reduction of $954\times$ and $1,055\times$, respectively. \tab{tab:edp} presents the energy-delay product (EDP) and energy reduction in \emph{(4A) Conv} operator.
-	
-\begin{table}[!htp]\centering
-	\caption{Energy consumption in tensor operation \emph{(4A) Conv}.}\label{tab:edp}
+\begin{table*}[!t]\centering
+	\caption{Compute performance of the proposed design on models $A$ and $B$.}\label{tab:perf}
 	\scriptsize
-	\begin{tabular}{lrrrrr}\toprule
-		\textbf{Engine} & \textbf{$t$ (ms)} &\textbf{Power (W)} &\textbf{EDP (J)} &\textbf{Reduction} \\\midrule
-		CPU &5,564.79 &1.404 &7,812.97 &1.00 \\
-		Hybrid custom floating-point &124.03 &0.066 &8.19 &\textbf{954.43} \\
-		Hybrid logarithmic &123.32 &0.060 &7.40 &\textbf{1,055.92 }\\
+	\begin{tabular}{lrrrrrrrrrrrrr}\toprule
+		\multicolumn{2}{c}{\textbf{Tensor operation}} &\textbf{} &\multicolumn{2}{c}{\textbf{CPU}} &\textbf{} &\multicolumn{4}{c}{\textbf{TP}} &\textbf{} &\multirow{3}{*}{\textbf{Acceleration}} &\multirow{3}{*}{\textbf{Power reduction}} \\\cmidrule{1-2}\cmidrule{4-5}\cmidrule{7-10}
+		\textbf{Operation} &\textbf{(MFLOP)} &\textbf{} &\textbf{t (ms)} &\textbf{EDP (mJ)} &\textbf{} &\textbf{t (ms)} &\textbf{(MFLOP/s)} &\textbf{(MFLOP/s/W)} &\textbf{EDP (mJ)} &\textbf{} & & \\\midrule
+		\multicolumn{2}{c}{\textbf{XC7Z007S (1 TP)} on Model A} &\textbf{} &\textbf{} &\textbf{} &\textbf{} &\textbf{} & & & &\textbf{} & & \\
+		(1A) Conv &2.212 & &429.50 &511.10 & &38.14 &57.99 &715.96 &3.09 & &11.26 &165.44 \\
+		(2A) Conv &11.059 & &1,836.24 &2,185.13 & &36.70 &301.34 &3,720.25 &2.97 & &50.03 &735.06 \\
+		(3A) Conv &8.294 & &1,257.89 &1,496.89 & &22.87 &362.68 &4,477.48 &1.85 &\textbf{} &\textbf{55.00} &\textbf{808.05} \\
+		\multicolumn{2}{c}{\textbf{XC7Z010 (2 TPs)} on Model A} & & & & & & & & & & & \\
+		(1A) Conv &2.212 & &423.67 &594.83 & &19.02 &116.29 &880.99 &2.51 & &22.27 &236.92 \\
+		(2A) Conv &11.059 & &1,836.22 &2,578.05 & &18.35 &602.68 &4,565.77 &2.42 & &100.07 &1064.34 \\
+		(3A) Conv &8.294 & &1,257.86 &1,766.04 & &11.93 &695.26 &5,267.09 &1.57 &\textbf{} &\textbf{105.44} &\textbf{1121.46} \\
+		\multicolumn{2}{c}{\textbf{XC7Z010 (1 TP)} on Model B} & & & & & & & & & & & \\
+		(1B) DConv &0.055 & &11.74 &16.48 & &1.74 &31.78 &481.50 &0.13 &\textbf{} &\textbf{6.75} &\textbf{131.57} \\
+		(2B) Conv &0.246 & &60.71 &85.24 & &11.68 &21.04 &318.80 &0.77 & &5.20 &110.57 \\
+		(3B) DConv &0.184 & &37.60 &52.79 & &5.75 &32.06 &485.69 &0.41 & &6.54 &127.51 \\
+		(4B) Conv &1.229 & &223.96 &314.44 & &6.76 &181.78 &2,754.17 &0.45 & &33.13 &704.77 \\
+		(5B) DConv &0.069 & &13.18 &18.50 & &2.15 &32.15 &487.10 &0.15 & &6.13 &119.54 \\
+		(6B) Conv &0.922 & &166.60 &233.91 & &3.8 &242.53 &3,674.64 &0.25 &\textbf{} &\textbf{43.84} &\textbf{932.64} \\
+		\bottomrule
+	\end{tabular}
+\end{table*}
+\subsection{Hardware design exploration}
+To evaluate the methodology, we employ \Equ{eq:channel_in_memory}, giving the maximum hyper parameters from models $A$ and $B$: $W_{I}=32$, $C_{I}=60$, $C_{O}=120$, $K_{W} = K_{H} =3$. For the number formats, $BitSize_{I}=32$-b, and $BitSize_{F} = BitSize_{B}=6$-bits. To determine $V_{M}$, we use HLS tool, which gives an estimate of 6 RAM blocks. The performance evaluation and the hardware resource utilization are displayed in \tab{tab:perf} and \tab{tab:resource}, respectively.
+
+\begin{enumerate}
+\item{\textbf{XC7Z007S}}: As a resource-limited FPGA, this device has a capacity of 14,400 LUTs and 1.8Mb of BRAM. This limitation allows to instantiate one TP with \emph{Conv} due to its LUT capacity. With \Equ{eq:tp_memory}, we obtain a BRAM utilization of 789.84Kb. This implementation presents a peak runtime acceleration of $55\times$ in model $A$ at the tensor operation \emph{(3A) Conv} with a power reduction of $808\times$.
+
+\item{\textbf{XC7Z010}}: This device has a capacity of 17,600 LUTs and 2.1Mb of BRAM. These resources allow to instantiate two TPs with \emph{Conv}, and one TP with \emph{Conv} and \emph{DConv} engines. With \Equ{eq:tp_memory}, we obtain a BRAM utilization of 1,580Kb. This implementation presents a peak runtime acceleration of $105\times$ in model $A$ at the tensor operation \emph{(3A) Conv} with a power reduction of $1121\times$. On model $B$, \emph{(6B) Conv} presents a peak acceleration of $43.8\times$. The \emph{DConv} tensor operator yields an acceleration of $6.75 \times$, which is limited since the pipelined vector dot-product performs on channel wise.
+\end{enumerate}
+
+\begin{table}[!h]\centering
+	\caption{Hardware resource utilization and estimated power dissipation.}\label{tab:resource}
+	\scriptsize
+	\begin{tabular}{lrrrrrrr}\toprule
+		\multirow{2}{*}{\textbf{Device}} &\multirow{2}{*}{\textbf{TP}} &\multicolumn{4}{c}{\textbf{Post-implementation resource utilization}} &\multirow{2}{*}{\textbf{Power (W)}} \\\cmidrule{3-6}
+		& &\textbf{LUT} &\textbf{FF} &\textbf{DSP} &\textbf{BRAM 36Kb} & \\\midrule
+		\multirow{2}{*}{XC7Z007S} &\multirow{2}{*}{1} &7,939 &8,955 &20 &25 &\multirow{2}{*}{1.44} \\
+		& &55\% &31\% &30\% &50\% & \\\midrule
+		\multirow{2}{*}{XC7Z010} &\multirow{2}{*}{2} &13,542 &15,279 &36 &46 &\multirow{2}{*}{1.880} \\
+		& &77\% &43\% &45\% &76\% & \\
 		\bottomrule
 	\end{tabular}
 \end{table}
-	
-	\item{\textbf{Resource utilization}}: 
-	
-	\item{\textbf{Accuracy}}: The hybrid custom floating-point approximation presents the best trade off between QoR and energy-efficiency. The bfloat16 (brain floating-point with 16-bits) achieves a comparable QoR with floating-point 32-bits, see \fig{fig:accuracy}. To improve accuracy, the CNN models would require quantization aware training methods.
-	
-	\item{\textbf{Bottleneck}}: To increase performance, this implementation would require matching computational throughput with memory bandwidth using parallelization approaches.
-\end{enumerate}

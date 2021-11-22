@@ -97,16 +97,12 @@ The quantize-aware training method is an iterative optimization. The custom CNN 
 		\REQUIRE $Acc_d$ as the accuracy degradation threshold.
 		\REQUIRE $Loop_{max}$ as the max quantization loop iterations.
 		\ENSURE $MODEL$ as the quantized CNN.
-		\STATE // Regular training with early stop
-		\STATE $Train(MODEL, D_{train}, D_{val})$
-		\STATE // Get benchmark accuracy
-		\STATE $acc_i \gets Evaluate(MODEL, D_{val})$
-		\STATE // Initialize quantize training
-		\STATE $acc_q \gets 0, loop_c \gets 0$
+		\STATE $Train(MODEL, D_{train}, D_{val})$ // Regular training
+		\STATE $acc_i \gets Evaluate(MODEL, D_{val})$ // Benchmark
+		\STATE $acc_q \gets 0, loop_c \gets 0$ // Initialize quantize training
 		\WHILE {$(acc_q<acc_i - Acc_d) \land (loop_c<Loop_{max})$}
 		\STATE // Iterative optimization
 		\STATE $callback \gets Quantize(E_{size}, M_{size})$
-		\STATE // Quantized-aware training with early stop
 		\STATE $Train(MODEL, D_{train}, D_{val}, callback)$
 		\STATE $acc_q \gets Evaluate(MODEL, D_{val})$
 		\STATE $loop_c \gets loop_c + 1$
@@ -127,30 +123,22 @@ The quantize-aware training method is an iterative optimization. The custom CNN 
 		\ENSURE $MODEL$ as the quantized CNN.
 		\FOR {$layer$ in $MODEL$}
 		\IF {$layer$ is $Conv2D$ or $SeparableConv2D$}
-		\STATE $filter \gets Filter(layer)$ // Get filter tensor
-		\STATE $bias \gets Bias(layer)$ // Get bias tensor
+		\STATE $filter, bias \gets GetWeights(layer)$
 		\FOR {$x$ in $filter$ and $bias$}
-			\STATE $sign \gets Sign(x)$
-			\STATE $exp \gets Exponent(x)$
-			\STATE // Get full range exponent value with $E_{size}$
-			\STATE $fullexp \gets 2^{E_{size}-1}-1$
-			\STATE // Get custom truncated mantissa value with $M_{size}$
-			\STATE $cman \gets CustomMantissa(x, M_{size})$
-			\STATE // Get leftover mantissa value
-			\STATE $leftman \gets LeftoverMantissa(x, M_{size})$
+			\STATE $sign \gets GetSign(x)$
+			\STATE $exp \gets GetExponent(x)$
+			\STATE $fullexp \gets 2^{E_{size}-1}-1$ // Get full range value
+			\STATE $cman \gets GetCustomMantissa(x, M_{size})$
+			\STATE $leftman \gets GetLeftoverMantissa(x, M_{size})$
 			\IF {$exp <-fullexp$}
-				\STATE // Set minimum quantized value
 				\STATE$x\gets0$
 			\ELSIF{$exp > fullexp$}
-				\STATE // Set maximum quantized value
 				\STATE$x\gets (-1)^{sign}\cdot2^{fullexp}\cdot(1+(1-2^{-M{size}}))$
 			\ELSE
 				\IF {$2^{STDM_{size}-M_{size}-1}-1<leftman$}
-					\STATE // Leftover mantissa above halfway threshold
-					\STATE $cman \gets cman+1$
+					\STATE $cman \gets cman+1$ // Above halfway
 					\IF{$2^{M_{size}}-1<cman$}
-					\STATE // Mantissa overflow
-					\STATE $cman \gets 0$
+					\STATE $cman \gets 0$ // Correct mantissa overflow
 					\STATE $exp \gets exp + 1$
 					\ENDIF
 				\ENDIF
@@ -158,8 +146,7 @@ The quantize-aware training method is an iterative optimization. The custom CNN 
 				\STATE$x\gets (-1)^{sign}\cdot2^{exp}\cdot(1+cman\cdot2^{-M_{size}})$
 			\ENDIF
 		\ENDFOR
-		\STATE $SetFiler(layer, filter)$
-		\STATE $SetBias(layer, bias)$
+		\STATE $SetWeights(layer, filter, bias)$
 		\ENDIF
 		\ENDFOR
 	\end{algorithmic}
