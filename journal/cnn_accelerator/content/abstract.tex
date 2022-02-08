@@ -1,0 +1,36 @@
+\title {Accelerator Framework for Near Sensor Analytics with Approximate Floating-Point on Low-Power Resource-Limited Embedded FPGAs}
+
+\author{
+	\uppercase{Yarib Nevarez}\authorrefmark{1},	
+	\uppercase{David Rotermund}\authorrefmark{2},
+	\uppercase{Klaus R. Pawelzik}\authorrefmark{3},
+	\uppercase{Alberto Garcia-Ortiz}\authorrefmark{4} \IEEEmembership{Member, IEEE},
+}
+
+\address[1]{Institute of Electrodynamics and Microelectronics, University of Bremen, Bremen 28359, Germany (e-mail: nevarez@item.uni-bremen.de)}
+
+\address[2]{Institute for Theoretical Physics, University of Bremen, Bremen 28359, Germany (e-mail: davrot@neuro.uni-bremen.de)}
+
+\address[3]{Institute for Theoretical Physics, University of Bremen, Bremen 28359, Germany (e-mail: pawelzik@neuro.uni-bremen.de)}
+
+\address[4]{Institute of Electrodynamics and Microelectronics, University of Bremen, Bremen 28359, Germany (e-mail: agarcia@item.uni-bremen.de)}
+
+\tfootnote{This work is funded by the Consejo Nacional de Ciencia y Tecnologia - CONACYT}
+
+\markboth
+{Author \headeretal: Preparation of Papers for IEEE TRANSACTIONS and JOURNALS}
+{Author \headeretal: Preparation of Papers for IEEE TRANSACTIONS and JOURNALS}
+
+\corresp{Corresponding author: Yarib Nevarez (e-mail: nevarez@item.uni-bremen.de).}
+
+\begin{abstract}
+In this paper, we present a design exploration framework to train and deploy convolutional neural networks (CNN) with scalable hardware acceleration targeting low-power and resource-limited embedded FPGAs. The proposed optimization performs pipelined vector dot-product with reduced hybrid custom floating-point and logarithmic approximation with quantized-aware training methods. This approach accelerates computation, reduces energy consumption and resource utilization without accuracy degradation. This framework is demonstrated on XC7Z007S and  XC7Z010 achieving a peak runtime acceleration of 105X on the low-level Conv2D tensor operation while maintaining output accuracy compared with the embedded CPU with custom reduced floating-point formats.	
+\end{abstract}
+
+\begin{keywords}
+Convolutional neural networks, depthwise separable convolution, hardware accelerator, TensorFlow Lite, embedded systems, FPGA, custom floating-point, logarithmic computation, approximate computing
+\end{keywords}
+
+\titlepgskip=-15pt
+
+\maketitle

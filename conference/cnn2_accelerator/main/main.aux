@@ -19,49 +19,50 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-A}}Conv2D tensor operation}{2}}
 \newlabel{eq:conv2D}{{1}{2}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-B}}DepthwiseConv2D tensor operation}{2}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Base embedded system architecture.}}{2}}
-\newlabel{fig:system_architecture}{{2}{2}}
 \newlabel{eq:dconv2D}{{2}{2}}
 \@writefile{toc}{\contentsline {section}{\numberline {IV}System Design}{2}}
 \newlabel{sec:system_design}{{IV}{2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Base embedded system architecture.}}{2}}
+\newlabel{fig:system_architecture}{{2}{2}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-A}}Base embedded system architecture}{2}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-B}}Tensor processor}{2}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {IV-B}1}\textbf  {Modes of operation}}{2}}
 \citation{nevarez2021accelerating}
 \citation{park2009dynamic}
 \@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Hardware architecture of the proposed tensor processor.}}{3}}
 \newlabel{fig:accelerator}{{3}{3}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {IV-B}1}\textbf  {Modes of operation}}{3}}
 \newlabel{sec:dot_product}{{\unhbox \voidb@x \hbox {IV-B}2}{3}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {IV-B}2}\textbf  {Dot-product with with hybrid custom floating-point and logarithmic dot-product approximation}}{3}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Dot-product hardware module with (a) standard floating-point (IEEE 754) arithmetic, (b) hybrid custom floating-point, and (c) hybrid logarithmic approximation.}}{3}}
-\newlabel{fig:dot_product}{{4}{3}}
 \newlabel{eq:dot_custom_float_latency}{{3}{3}}
 \newlabel{eq:dot_log_latency}{{4}{3}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {IV-B}3}\textbf  {On-chip memory utilization}}{3}}
-\newlabel{eq:tp_memory}{{5}{3}}
-\newlabel{eq:input_memory}{{6}{3}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Pipelined hardware module for vector dot-product with hybrid custom floating-point, (a) exhibits the initiation interval of 1 clock cycle, and (b) presents the iteration latency of 8 clock cycles. $I_H$ and $I_F$ represent the input and filter buffer indexes, respectively.}}{4}}
-\newlabel{fig:dot_product_hybrid}{{5}{4}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Dot-product hardware module with (a) standard floating-point (IEEE 754) arithmetic, (b) hybrid custom floating-point, and (c) hybrid logarithmic approximation.}}{3}}
+\newlabel{fig:dot_product}{{4}{3}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Pipelined hardware module for vector dot-product with hybrid custom floating-point, (a) exhibits the initiation interval of 1 clock cycle, and (b) presents the iteration latency of 8 clock cycles. $I_H$ and $I_F$ represent the input and filter buffer indexes, respectively.}}{3}}
+\newlabel{fig:dot_product_hybrid}{{5}{3}}
 \@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Design parameters for on-chip memory buffers on the TP.}}{4}}
 \newlabel{fig:accelerator_buffers}{{6}{4}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {IV-B}3}\textbf  {On-chip memory utilization}}{4}}
+\newlabel{eq:tp_memory}{{5}{4}}
+\newlabel{eq:input_memory}{{6}{4}}
 \newlabel{eq:filter_memory}{{7}{4}}
 \newlabel{eq:bias_memory}{{8}{4}}
 \newlabel{eq:channel_in_memory}{{9}{4}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Base embedded software architecture.}}{4}}
+\newlabel{fig:sw_stack}{{7}{4}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-C}}Quantized aware training}{4}}
 \newlabel{alg:training}{{1}{4}}
 \@writefile{loa}{\contentsline {algocf}{\numberline {1}{\ignorespaces Training method.}}{4}}
 \newlabel{alg:quantize_training}{{2}{5}}
 \@writefile{loa}{\contentsline {algocf}{\numberline {2}{\ignorespaces Custom floating-point quantization method.}}{5}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Base embedded software architecture.}}{5}}
-\newlabel{fig:sw_stack}{{7}{5}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-D}}Embedded software architecture}{5}}
+\@writefile{toc}{\contentsline {section}{\numberline {V}Experimental results}{5}}
+\newlabel{sec:experimental_results}{{V}{5}}
 \@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Shallow CNN models for case study.}}{5}}
 \newlabel{fig:models}{{8}{5}}
 \@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Accuracy performance using the proposed training method.}}{5}}
 \newlabel{fig:accuracy}{{9}{5}}
-\@writefile{toc}{\contentsline {section}{\numberline {V}Experimental results}{5}}
-\newlabel{sec:experimental_results}{{V}{5}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-A}}Custom floating-point format based on classification accuracy}{5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-B}}Hardware design exploration}{5}}
 \bibstyle{IEEEtran}
 \bibdata{../content/bibliography.bib}
 \bibcite{li2019sensor}{1}
@@ -72,14 +73,13 @@
 \bibcite{nurvitadhi2017can}{6}
 \bibcite{nevarez2021accelerating}{7}
 \bibcite{gao2020edgedrnn}{8}
+\bibcite{meloni2019cnn}{9}
+\bibcite{goodfellow2016deep}{10}
+\bibcite{park2009dynamic}{11}
 \@writefile{lot}{\contentsline {table}{\numberline {I}{\ignorespaces Compute performance of the proposed design on models $A$ and $B$.}}{6}}
 \newlabel{tab:perf}{{I}{6}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-B}}Hardware design exploration}{6}}
 \@writefile{lot}{\contentsline {table}{\numberline {II}{\ignorespaces Hardware resource utilization and estimated power dissipation.}}{6}}
 \newlabel{tab:resource}{{II}{6}}
 \@writefile{toc}{\contentsline {section}{\numberline {VI}Conclusions}{6}}
 \newlabel{sec:conclusions}{{VI}{6}}
 \@writefile{toc}{\contentsline {section}{References}{6}}
-\bibcite{meloni2019cnn}{9}
-\bibcite{goodfellow2016deep}{10}
-\bibcite{park2009dynamic}{11}
