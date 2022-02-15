@@ -1,4 +1,4 @@
-\title {Accelerator Framework for Near Sensor Analytics with Approximate Floating-Point on Low-Power Resource-Limited Embedded FPGAs}
+\title {Investigation of Custom Reduced Floating-Point Quantization on Convolutional Neural Networks and its Dedicated Hardware Design for Low-Power Sensor Analytics}
 
 \author{
 	\uppercase{Yarib Nevarez}\authorrefmark{1},	
@@ -24,7 +24,7 @@
 \corresp{Corresponding author: Yarib Nevarez (e-mail: nevarez@item.uni-bremen.de).}
 
 \begin{abstract}
-In this paper, we present a design exploration framework to train and deploy convolutional neural networks (CNN) with scalable hardware acceleration targeting low-power and resource-limited embedded FPGAs. The proposed optimization performs pipelined vector dot-product with reduced hybrid custom floating-point and logarithmic approximation with quantized-aware training methods. This approach accelerates computation, reduces energy consumption and resource utilization without accuracy degradation. This framework is demonstrated on XC7Z007S and  XC7Z010 achieving a peak runtime acceleration of 105X on the low-level Conv2D tensor operation while maintaining output accuracy compared with the embedded CPU with custom reduced floating-point formats.	
+The use of artificial intelligence (AI) in near-sensor analytic applications is entering a new era based on the use of ubiquitous small connected devices. This transformation requires the adoption of low-power design methodologies that reconcile high precision results with approximate computing techniques. In this paper, we present a design methodology for training and deployment of machine learning (ML) models with scalable hardware acceleration targeting low-power and resource-limited embedded FPGAs. The key contributions of this work are the investigation of custom reduced floating-point quantization and its dedicated hardware design for low-power sensor analytics applications. We propose a quantization aware training method that improves the generalization of Convolutional Neural Networks (CNNs) increasing overall accuracy using less than 8-bits floating-point quantization on trainable parameters. As hardware accelerator, we propose a fully customizable tensor processor (TP) implementing a pipelined vector dot-product with hybrid custom floating-point and logarithmic approximation. This methodology reduces energy consumption and resource utilization preserving inference accuracy. We demonstrate our methodology implementing a CNN-based sensor analytic application for structural health monitoring (SHM) for anomaly localization. The embedded hardware/software framework is demonstrated on XC7Z007S achieving a peak power efficiency of 4.5 GFLOP/s/W, runtime acceleration of 55X, and 808X energy reduction compared to the embedded CPU.
 \end{abstract}
 
 \begin{keywords}
